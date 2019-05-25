@@ -1,4 +1,4 @@
-package free.controllor;
+package user.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FreeListServlet
+ * Servlet implementation class UserViewServlet
  */
-@WebServlet("/free/freeList")
-public class FreeListServlet extends HttpServlet {
+@WebServlet("/user/uesrView")
+public class UserViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
