@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title ere</title>
+<title>Insert title er</title>
 </head>
 <body>
 
