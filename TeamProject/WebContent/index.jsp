@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>SellBar - Flea Market For U</title>
-=======
 <title>Sell&Buy</title>
 <script>
 
