@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SellBar - Flea Market For U</title>
 </head>
 <body>
-
+	<h2>Welcome to the SellBar!</h2>
 </body>
 </html>
