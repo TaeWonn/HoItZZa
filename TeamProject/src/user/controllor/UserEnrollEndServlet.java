@@ -14,38 +14,49 @@ import user.model.service.UserService;
 import user.model.vo.User;
 
 /**
- * Servlet implementation class UserViewServlet
+ * Servlet implementation class UserEnrollEndServlet
  */
-@WebServlet("/user/uesrView")
-public class UserViewServlet extends HttpServlet {
+@WebServlet("/user/userEnrollEnd")
+public class UserEnrollEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.파라미터핸들링
+		// 1. 파라미터 핸들링
 		String userId = request.getParameter("userId");
+		String name = request.getParameter("userName");
+		String gender = request.getParameter("gender");
+		int point = 0;
+		String ssn = request.getParameter("ssn");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String [] interests = request.getParameterValues("interest");
+		String interest = "";	//request.getParameter("interest");
+		// intrests가 널이면, NPE 발생
+		if(interests != null)
+			interest = String.join(",", interest);
+		
+		User u = new User(userId, name, gender, point, ssn, password, email, phone, interest, null);
 		
 		//2.업무로직
-		User user = new UserService().selectOne(userId);
+		int result = new UserService().insertUser(u);
 		
-		//3.view단 처리
-		String view = "";
-		String loc = "";
 		String msg = "";
-		if(user != null) {
-			view = "/WEB-INF/views/user/userView.jsp";
-			request.setAttribute("user", user);
+		if(result > 0) {
+			msg = "회원가입성공!";
 		}
 		else {
-			view = "/WEB-INF/views/common/msg.jsp";
-			msg = "해당 회원이 없습니다.";
-			loc = "/";
-			request.setAttribute("msg", msg);
-			request.setAttribute("loc", loc);
+			msg = "회원가입실패!";
 		}
 		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", "/");
+		
+		//3.view단처리
+		String view = "/WEB-INF/views/common/msg.jsp";
 		request.getRequestDispatcher(view)
 			   .forward(request, response);
 	}
