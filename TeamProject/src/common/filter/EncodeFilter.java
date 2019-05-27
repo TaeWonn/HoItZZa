@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class EncodeFilter
  */
-@WebFilter("/*")
+//@WebFilter("/*")
 public class EncodeFilter implements Filter {
 
 	private FilterConfig fConfig;
@@ -30,7 +30,7 @@ public class EncodeFilter implements Filter {
 		String encodeType = fConfig.getInitParameter("encode_type");
 		
 		request.setCharacterEncoding(encodeType);
-		// pass the request along the filter chain
+		
 		chain.doFilter(request, response);
 	}
 
