@@ -24,57 +24,11 @@ img{width:20px;height:20px;position: relative;top: 5.5px;}
 
 
 </style>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 </head>
+
 <body>
-	<h2>Welcome to the SellBar!!</h2>
-	<p>강다혜가 수정한 코드입니다. 테스트용이니 지워도 괜찮습니다.</p>
-
-	<div id="head-container">
-		<span id="sellBuy1">Sell&Buy</span>&nbsp;<br />
-		<span id="sellBuy2">우리들의 쎌빠</span>
-	</div>
-	<hr />
-
-	<aside id="asideLeft">
-	<section>
-	<div id="login-container">
-		<img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><input type="text" name="userId" id="userId" />
-		<input type="password" name="userPwd" id="userPwd" />
-		
-	</div>
-	
-	<p>테스트ㅇㅇㅇㅇㅇㅇ</p>
-	<p>테스트ㅇㅇㅇ</p>
-	<p>테스트ㅇㅇㅇ</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-	<p>테스트</p>
-
-	</section>
-	</aside>
-	
-	<aside id="asideRight">
-		<section>
-			<div id="weather-day">
-			오늘 날짜/ 날씨
-			</div>
-			<div id="ad1">
-			광고1
-			</div>
-			<div id="ad2">
-			광고2
-			</div>
-		</section>
-	</aside>
-
-
 
 
 
