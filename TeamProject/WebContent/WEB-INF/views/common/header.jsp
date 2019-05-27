@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	User useLoggedIn=(User)request.getAttribute("useLoggedIn");
+	User userLoggedIn=(User)request.getAttribute("useLoggedIn");
 
 
 %>
@@ -28,7 +28,7 @@
 
 	<aside id="asideLeft">
 	<section>
-	<%if(useLoggedIn==null){ %>
+	<%if(userLoggedIn==null){ %>
 	<div id="login-container">
 		<br />
 		<img src="<%=request.getContextPath() %>/images/userId.svg" class="inout"><input type="text" name="userId" id="userId" />
