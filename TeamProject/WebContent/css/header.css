@@ -1,0 +1,59 @@
+
+@charset "UTF-8";
+
+span#sellBuy1{font-family: 'Gloria Hallelujah', cursive; font-size: 60px;margin:0 auto;}
+span#sellBuy2{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 auto; color: orange;}
+div#head-container{max-height: 200px;text-align: center;}
+aside#asideLeft{float: left;width: 170px;height: 100%;}
+aside#asideRight{float: right;width: 200px;height: 100%;}
+body{max-width:1024px;}
+input{width:120px;position: relative;bottom: 3px;}
+.inout{width:20px;height:20px;position: relative;top: 5.5px; margin-right: 7px;}
+div#login-container{text-align:center;border: 1px solid black;margin:0;}
+
+button#loginBtn{margin:10px;width:80px; height:30px;}
+ul#link{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
+p{margin:3px;}
+ul#link li{margin:3px;font-family: '휴먼편지체', cursive;text-decoration:none;}
+div#board-list-container{margin-top:30px;border: 1px solid gray;}
+div#board-list-container ul{margin-top:10px;margin-bottom: 10px}
+div#board-list-container li{margin-top:5px;margin-bottom: 5px;}
+div#board-list-container p{margin-top:16px;}
+div#weather-day{background:white; border: 1px solid;text-align: center;font-family: '맑은고딕'}
+div#weather-day img{width:70px;}
+div#weather-day span{margin:10px;}
+#wSpan{font-size: 40px;position:relative;bottom: 19px;font-family: "휴먼고딕"}
+
+div#weather-day{margin-bottom: 20px;}
+a{ text-decoration:none !important;}
+.ad{margin-top:6px; margin-bottom: 6px;text-align: center; border: 1px solid;max-height: 300px;}
+.ad img{width:100%;height: 170px;border-radius: 50%;}
+
+div#login-container #user_profile_photo{margin-bottom:5px; margin-top:10px;width:80px; height: 80px;}
+
+div#login-container li{margin-top: 8px;} 
+div#login-container span{margin-top: 8px;}
+ul#link2{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
+/* ul#link li{margin:3px;font-family: '휴먼편지체', cursive;} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
