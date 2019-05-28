@@ -45,4 +45,44 @@ public class UserService {
 		return user;
 	}
 
+	public int deleteUser(String userId) {
+		Connection conn = getConnection();
+		int result = new UserDAO().deleteUser(conn, userId);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);		
+		return result;
+	}
+
+	public int loginCheck(User u) {
+		Connection conn = getConnection();
+		int result = new UserDAO().loginCheck(conn, u);
+		close(conn);
+		return result;
+	}
+
+	public int updatePassword(User user) {
+		Connection conn = getConnection();
+		int result = new UserDAO().updatePassword(conn, user);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int updateUser(User user) {
+		Connection conn = getConnection();
+		int result = new UserDAO().updateUser(conn, user);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }
