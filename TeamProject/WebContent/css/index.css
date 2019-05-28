@@ -1,1 +1,31 @@
 @charset "UTF-8";
+
+article{margin: 0; width: 617px; position: relative; left: 188px;height: 100%;}
+table{border: 1px solid; border-collapse: collapse;}
+table#sellList{position:relative;left:-164px;top:15px;width:300px; }
+table#buyList{position:relative;left:143px;top:-280px;width:300px;}
+span.title{font-size: 30px;}
+
+div#board1{height: 350px;}
+div#board2{height: 400px;}
+
+table#jayuList1{position:relative;left:-164px;width:300px;top:20px;}
+table#jayuList2{position:relative;left:143px;width:300px;top:-107px;}
+table#jayuList3{position:relative;left:5px;width:300px;top:-84px;}
+table#jayuList4{position:relative;left:313px;width:300px;top:-212px;}
+.board_no{text-align: center;width:35px;}
+table{border: 1px solid; border-collapse: collapse;}
+table td,th{border:1px solid;}
+.viewer{width:60px; text-align: center;}
+
+
+
+
+
+
+
+
+
+
+
+
