@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
 </head>
-<body>
+<body>  
   
 <article id="article">
 <section>
@@ -162,4 +162,3 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
->>>>>>> refs/remotes/origin/YeRim
