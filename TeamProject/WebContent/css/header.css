@@ -2,7 +2,7 @@
 @charset "UTF-8";
 
 span#sellBuy1{font-family: 'Gloria Hallelujah', cursive; font-size: 60px;margin:0 auto;}
-span#sellBuy2{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 auto; color: orange;}
+span#sellBuy2 a{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 auto; color: orange;}
 div#head-container{max-height: 200px;text-align: center;}
 aside#asideLeft{float: left;width: 170px;height: 100%;}
 aside#asideRight{float: right;width: 200px;height: 100%;}
@@ -34,11 +34,10 @@ div#login-container #user_profile_photo{margin-bottom:5px; margin-top:10px;width
 div#login-container li{margin-top: 8px;} 
 div#login-container span{margin-top: 8px;}
 ul#link2{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
-/* ul#link li{margin:3px;font-family: '휴먼편지체', cursive;} */
 
+div#weather span{font-family: 'Sunflower', sans-serif; font-size: 20px; }
 
-
-
+section#content{min-height:720px;}
 
 
 

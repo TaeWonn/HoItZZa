@@ -4,7 +4,7 @@
     
 <%
 	User userLoggedIn=(User)request.getAttribute("useLoggedIn");
-
+	
 
 %>
 <!DOCTYPE html >
@@ -14,15 +14,30 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.0.js"></script>
 <title>SellBar - Flea Market For U</title>
 
+<!-- 부트스트랩 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- 부트스트랩 End -->
+
+
 <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css" />
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 
+<style>
+#head-container{
+background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
+}
+
+</style>
 </head>
 <body>
-	<div id="head-container">
+	<div id="head-container" >
 		<span id="sellBuy1">Sell&Buy</span>&nbsp;<br />
-		<span id="sellBuy2">우리들의 쎌빠</span>
+		<span id="sellBuy2"><a href="<%=request.getContextPath()%>">우리들의 쎌빠</a></span>
 	</div>
 	<hr />
 
@@ -31,12 +46,14 @@
 	<%if(userLoggedIn==null){ %>
 	<div id="login-container">
 		<br />
-		<img src="<%=request.getContextPath() %>/images/userId.svg" class="inout"><input type="text" name="userId" id="userId" />
-		<br />
-		<img src="<%=request.getContextPath() %>/images/pwd.svg" class="inout"><input type="password" name="userPwd" id="userPwd" />
-		<br />
-		<button id="loginBtn">Login</button>
-		<br />
+		<form action="<%=request.getContextPath()%>/views/user/login" method="post"  onsubmit="checkLogin();">
+			<img src="<%=request.getContextPath() %>/images/userId.svg" class="inout"><input type="text" name="userId" id="header_userId" />
+			<br />
+			<img src="<%=request.getContextPath() %>/images/pwd.svg" class="inout"><input type="password" name="userPwd" id="header_userPwd" />
+			<br />
+			<button type="submit" id="loginBtn" >Login</button>
+			<br />
+		</form>
 		<ul id="link">
 			<li><a href="<%=request.getContextPath() %>/views/user/userJoin">회원가입</a></li>
 			<li><a href="<%=request.getContextPath() %>/views/user/findId_pwd">아이디/비밀번호 찾기</a></li>
@@ -75,7 +92,7 @@
 			<li><a href="">신고 게시판</a></li>
 		</ul>
 		
-	
+		
 	</div>
 
 	</section>
@@ -86,16 +103,17 @@
 			<div id="weather-day">
 			
 			</div>
-			<div id="ad1" class="ad">
+			<div id="ad1" class="ad"><a href="">
 				<img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" />
 				<span>지식을 원하는자</span>
 				<br /><span>나에게 오라</span>
-				
+			</a>	
 			</div>
-			<div id="ad2"class="ad">
+			<div id="ad2"class="ad"><a href="">
 			<img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" />
 			<span>공부를 원하는자</span>
 			<br /><span>나에게 질문하라</span>
+			</a>
 			</div>
 		</section>
 	</aside>
@@ -105,7 +123,6 @@
 
 //날씨정보 api불러오기
 $(function(){
-	console.log('sdfs');
 	var location="Seoul";
 	var today = new Date();
 	var dd = today.getDate();
@@ -130,19 +147,30 @@ $(function(){
 
             var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png";
 
-               var html='<span style="font-size:24px;">'+today+'</span><div id="weather"><img src="'+imgURL+'" alt="" /><span id="wSpan">'+resp.weather[0].description+'</span><br /><span>현재위치 : '+resp.name+'</span><br />';
+               var html='<div id="weather"><span style="font-size:24px;">'+today+'</span><img src="'+imgURL+'" alt="" /><span id="wSpan">'+resp.weather[0].description+'</span><br /><span>현재위치 : '+resp.name+'</span><br />';
                 	html+='<span>현재온도 : '+Math.round((resp.main.temp- 273.15)*10.0)/10.0+'°C</span><br /><span>현재습도 : '+resp.main.humidity+'</span><br />';
-                	html+='<span>풍속 : '+resp.wind.speed+'</span></div>';
+                	html+='<span>풍속 : '+resp.wind.speed+' m/s</span></div><br />';
             	 $("#weather-day").append(html);
             }
         });
 	});
 
+	//로그인 처리
+	function checkLogin(){
+		var id=$('#header_userId').val().trim();
+		var pwd=$('#header_userPwd').val().trim();
+		if(id.length==0){
+			alert('아이디를 입력해주세요.');
+			return;
+		}
+		if(pwd.length==0){
+			alert('비밀번호를 입력해주세요.');
+			return;
+		}
+		return true;
+	}
 
 
 
 </script>
-
-
-</body>
-</html>
+<section id="content">
