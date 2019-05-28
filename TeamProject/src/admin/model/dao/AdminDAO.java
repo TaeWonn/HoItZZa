@@ -105,5 +105,12 @@ public class AdminDAO {
 		return result;
 	}
 
+	public int userWarring(Connection conn, String[] userIds) {
+		int result = 0;
+		PreparedStatement ps = null;
+		String sql ="update black_list set ";
+		return result;
+	}
+
 	
 }
