@@ -26,7 +26,6 @@ public class SellBarFileRenamePolicy implements FileRenamePolicy{
 				ext = oldName.substring(dot);
 			}
 			
-			
 			//새로운 파일명
 			String newName = sdf.format(new Date(currentTime))
 						+ "_"
