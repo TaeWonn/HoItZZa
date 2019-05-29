@@ -74,7 +74,7 @@ public class SellDAO {
 			close(rs);
 			close(ps);
 		}
- 		
+ 		 
 		return sell;
 	}
 
