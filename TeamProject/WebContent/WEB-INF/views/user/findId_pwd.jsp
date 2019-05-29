@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/findId_pwd.css" />
-<section>
-
-</section>
+<article id="article">
 	<div id="findUserService">
 		<h1>회원 정보 찾기</h1>
 		<br />
@@ -28,7 +26,7 @@
 		</div>
 		
 		<div id="findPwd">
-		<form action="<%=request.getContextPath() %>/views/user/findPwd" method="post" >
+		<form action="<%=request.getContextPath() %>/views/user/findPwd" method="post" onsubmit="return checkPwdInfo();" >
 			<h3 class="formTitle">비밀번호 찾기</h3>
 			<table>
 				<tr>
@@ -55,7 +53,7 @@
 		</form>
 		</div>
 	</div>
-	
+</article>
 <script>
 function checkFindId(){
 	var name=$('input[name=findUserId_name]').val().trim();
@@ -77,6 +75,36 @@ function checkFindId(){
 	}
 	
 	return true;
+}
+
+function checkPwdInfo(){
+	var $id=$('input[name=findUserPwd_Id]').val().trim();
+	var $name=$('input[name=findUserPwd_name]').val().trim();
+	var ssn1=$('#ssn_1').val().trim();
+	var ssn2=$('#ssn_2').val().trim();
+	//주민등록번호 유효성 검사
+	var reg1=/^[0-9]{6}$/;
+	var regSsn1=reg1.test(ssn1);
+	var reg2=/^[0-9]{7}$/;
+	var regSsn2=reg2.test(ssn2);
+	
+	if($id.length==0){
+		alert('아이디가 입력되지 않았습니다.');
+		return false;
+	}else if($name.length==0){
+		alert('이름이 입력되지 않았습니다.');
+		return false;
+	}else if(ssn1.length==0||ssn2.length==0){
+		alert('주민등록번호가 입력되지 않았습니다.');
+		return false;
+	}else if(!regSsn1 || !regSsn2){
+		alert('올바른 주민등록 번호를 입력해주세요.');
+		return false;
+	}
+	
+	else return true;
+	
+	
 }
 
 

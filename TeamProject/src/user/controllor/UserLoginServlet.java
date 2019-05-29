@@ -19,7 +19,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserLoginServlet
  */
-@WebServlet("/user/login")
+@WebServlet("/views/user/login")
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
