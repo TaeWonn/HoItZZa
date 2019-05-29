@@ -31,7 +31,7 @@ public class BoardCommentDeleteServlet extends HttpServlet {
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String loc = "/board/boardView?boardNo="+boardNo;
 		if(result>0) {
-			msg = "댓글 삭제 성공!";
+			msg = "댓글 삭제 성공! ";
 		}
 		else {
 			msg = "댓글 삭제 실패!";
