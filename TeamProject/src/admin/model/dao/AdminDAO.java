@@ -84,7 +84,7 @@ public class AdminDAO {
 		String second = "";
 		for(int i=0; i<userIds.length; i++) {
 			if(i < userIds.length-1) {
-				second += "'"+userIds[i]+"'"+", ";
+				second += "'"+userIds[i]+"'"+" or ";
 			}else {
 				second += "'"+userIds+"'";
 			}
@@ -105,12 +105,6 @@ public class AdminDAO {
 		return result;
 	}
 
-	public int userWarring(Connection conn, String[] userIds) {
-		int result = 0;
-		PreparedStatement ps = null;
-		String sql ="update black_list set ";
-		return result;
-	}
 
 	
 }

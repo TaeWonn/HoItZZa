@@ -74,8 +74,31 @@ public class SellDAO {
 			close(rs);
 			close(ps);
 		}
- 		
+ 		 
 		return sell;
+	}
+
+	public int insertSell(Connection conn, Sell s) {
+		int result= 0;
+		
+		
+		PreparedStatement ps = null;
+		String sql = prop.getProperty("insertSell");
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, s.getBoardTitle());
+			ps.setString(2, s.getBoardContent());
+			ps.setString(3, s.getBoardWriter());
+			ps.setString(4, s.getBoardCodeNo());
+			  
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
 	}
 
 }
