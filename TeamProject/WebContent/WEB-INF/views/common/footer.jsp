@@ -9,12 +9,9 @@ background-image: url('<%=request.getContextPath()%>/images/leo.jpg');
 width:100%;
 height: 120px;
 }
-
-
 </style>
- 
-
 </section>
+<footer>
 
 <div id="footer">
 
@@ -22,6 +19,6 @@ height: 120px;
 	
 </div>
     
-   
+</footer>
 </body>
 </html>
