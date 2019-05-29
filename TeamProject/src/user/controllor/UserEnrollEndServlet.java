@@ -36,8 +36,10 @@ public class UserEnrollEndServlet extends HttpServlet {
 					 + request.getParameter("phone_3").trim();
 		String addr = request.getParameter("addr1").trim() + " " 
 					+ request.getParameter("addr2").trim();
-		String [] interests = request.getParameterValues("interest");
-		String interest = "";	//request.getParameter("interest");
+		String [] interests = {request.getParameter("interest1"),
+							   request.getParameter("interest2"),
+							   request.getParameter("interest3")};
+		String interest = "";	
 		
 		// intrests가 널이면, NPE 발생
 		if(interests != null)

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.model.service.UserService;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class UserFindIdServlet
@@ -26,19 +27,24 @@ public class UserFindIdServlet extends HttpServlet {
 				   + request.getParameter("ssn_2").trim();
 		
 		// 2. 업무 로직
-		String userId = new UserService().findUserId(name, ssn);
+		User u = new User();
+		u.setName(name);
+		u.setSsn(ssn);
+		String userId = new UserService().findUserId(u);
+		
+		
 		
 		// 3. view단 처리
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/WEB-INF/views/user/findId.jsp";
+		String loc = "";
 		if(userId == null || "".equals(userId)) {
-			msg = "회원 정보와 일치하는 아이디를 찾았습니다.";
-			loc = "/WEB-INF/views/user/findId.jsp";
+			msg = "일치하는 회원 정보가 존재하지 않습니다.";
+			loc = "/views/user/findId_pwd";
 		}
 		else {
-			msg = "회원정보와 일치하는 아이디가 존재하지 않습니다.";
-			loc = "/WEB-INF/views/user/findId_pwd.jsp";
+			msg = "회원 정보와 일치하는 아이디를 찾았습니다.";
+			loc = "views/user/findId?userId=" + userId;
 		}
 		
 		request.setAttribute("msg", msg);

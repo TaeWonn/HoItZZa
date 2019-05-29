@@ -85,9 +85,18 @@ public class UserService {
 		return result;
 	}
 
-	public String findUserId(String name, String ssn) {
-		// TODO Auto-generated method stub
-		return null;
+	public String findUserId(User u) {
+		Connection conn = getConnection();
+		String userId = new UserDAO().findUserId(conn, u);
+		close(conn);
+		return userId;
+	}
+
+	public Boolean findUserPwd(User u) {
+		Connection conn = getConnection();
+		Boolean chkPwd = new UserDAO().findUserPwd(conn, u);
+		close(conn);
+		return chkPwd;
 	}
 
 }
