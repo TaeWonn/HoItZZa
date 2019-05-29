@@ -4,7 +4,7 @@
 
 <%
 	//세션 객체로부터 저장된 로그인 사용자 정보 가져오기
-	User userLoggedIn = (User) session.getAttribute("memberLoggedIn");
+	User userLoggedIn = (User)session.getAttribute("userLoggedIn");
 
 	//쿠키 처리
 	Cookie[] cookies = request.getCookies();
