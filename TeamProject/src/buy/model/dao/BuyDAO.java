@@ -59,7 +59,7 @@ public class BuyDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Buy b = new Buy();
-				b.setBoardNo(rs.getInt("board_no"));
+				b.setBoardNo(rs.getString("board_no"));
 				b.setBoardTitle(rs.getString("board_title"));
 				b.setBoardContent(rs.getString("board_content"));
 				b.setBoardCode(rs.getString("board_code"));
