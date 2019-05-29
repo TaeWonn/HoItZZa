@@ -25,13 +25,14 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String boardContent = request.getParameter("boardContent");
 		String boardWriter = request.getParameter("boardWriter");
 		String boardDeal = request.getParameter("boardDeal");
-		String boardCode = request.getParameter("boardCodeNo");
+		String boardCodeNo = request.getParameter("boardCodeNo");
 		
 		Buy b = new Buy();
 		b.setBoardTitle(boardTitle);
 		b.setBoardContent(boardContent);
 		b.setBoardWriter(boardWriter);
-		b.setBoardCode(boardCode);
+		b.setBoardCodeNo(boardCodeNo);
+		b.setBoardDeal(boardDeal);
 		
 		int result = new BuyService().insertBoard(b);
 		

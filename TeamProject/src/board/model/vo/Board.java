@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Board {
 	private String boardNo;
-	private String boardCode;
 	private String boardTitle;
 	private String boardContent;
 	private String boardDeal;
@@ -15,10 +14,9 @@ public class Board {
 	
 	public Board() {}
 	
-	public Board(String boardNo, String boardCode, String boardTitle, String boardContent, String boardDeal,
+	public Board(String boardNo, String boardTitle, String boardContent, String boardDeal,
 			String boardWriter, String boardCodeNo, int boardReadCounter, Date boardDate) {
 		this.boardNo = boardNo;
-		this.boardCode = boardCode;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 		this.boardDeal = boardDeal;
@@ -34,14 +32,6 @@ public class Board {
 
 	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
-	}
-
-	public String getBoardCode() {
-		return boardCode;
-	}
-
-	public void setBoardCode(String boardCode) {
-		this.boardCode = boardCode;
 	}
 
 	public String getBoardTitle() {
@@ -102,7 +92,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Sell [boardNo=" + boardNo + ", boardCode=" + boardCode + ", boardTitle=" + boardTitle
+		return "Sell [boardNo=" + boardNo + ", boardTitle=" + boardTitle
 				+ ", boardContent=" + boardContent + ", boardDeal=" + boardDeal + ", boardWriter=" + boardWriter
 				+ ", boardCodeNo=" + boardCodeNo + ", boardReadCounter=" + boardReadCounter + ", boardDate=" + boardDate
 				+ "]";

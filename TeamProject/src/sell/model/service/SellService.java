@@ -36,4 +36,11 @@ public class SellService {
 		return result;
 	}
 
+	public Sell selectOneSell(String boardNo) {
+		Connection conn = getConnection();
+		Sell s = new SellDAO().selectOneSell(conn, boardNo);
+		close(conn);
+		return s;
+	}
+
 }

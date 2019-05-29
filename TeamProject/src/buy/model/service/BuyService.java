@@ -31,4 +31,11 @@ public class BuyService {
 		return result;
 	}
 
+	public Buy selectOneBuy(String boardNo) {
+		Connection conn = getConnection();
+		Buy b = new BuyDAO().selectOneBuy(conn, boardNo);
+		close(conn);
+		return b;
+	}
+
 }

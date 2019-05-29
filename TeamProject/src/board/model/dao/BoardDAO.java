@@ -86,7 +86,6 @@ public class BoardDAO {
 				Board b = new Board();
 				//컬럼명은 대소문자 구분이 없다.
 				b.setBoardNo(rset.getString("board_no"));
-				b.setBoardCode(rset.getString("board_code"));
 				b.setBoardTitle(rset.getString("board_title"));
 				b.setBoardContent(rset.getString("board_content"));
 				b.setBoardDeal(rset.getString("board_deal"));
@@ -129,7 +128,6 @@ public class BoardDAO {
 			// 받아오는 정보: 품목분류코드, 품목분류명, 글제목, 작성자, 글내용, 거래방식 
 			// 품목을 분류명으로 받아오다보니 DB와 연결하여 품목코드를 설정하는 방법이 필요
 			pstmt.setString(1, b.getBoardCodeNo());
-			pstmt.setString(2, b.getBoardCode());
 			pstmt.setString(3, b.getBoardTitle());
 			pstmt.setString(4, b.getBoardWriter());
 			pstmt.setString(5, b.getBoardContent());

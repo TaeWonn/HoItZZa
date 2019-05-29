@@ -65,7 +65,7 @@ public class OpinionDAO {
 				o.setBoardNo(rs.getString("board_no"));
 				o.setBoardTitle(rs.getString("board_title"));
 				o.setBoardContent(rs.getString("board_content"));
-				o.setBoardCode(rs.getString("board_code"));
+				o.setBoardCodeNo(rs.getString("board_code_no"));
 				o.setBoardDate(rs.getDate("board_date"));
 				o.setBoardDeal(rs.getString("board_deal"));
 				o.setBoardReadCounter(rs.getInt("board_read_count"));
