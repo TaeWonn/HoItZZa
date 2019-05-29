@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import user.model.service.UserService;
+
 /**
  * Servlet implementation class UserFindIdServlet
  */
@@ -18,8 +20,32 @@ public class UserFindIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 1. 파라미터 서블릿
+		String name = request.getParameter("userName");
+		String ssn = request.getParameter("ssn_1").trim()
+				   + request.getParameter("ssn_2").trim();
+		
+		// 2. 업무 로직
+		String userId = new UserService().findUserId(name, ssn);
+		
+		// 3. view단 처리
+		String view = "/WEB-INF/views/common/msg.jsp";
+		String msg = "";
+		String loc = "/WEB-INF/views/user/findId.jsp";
+		if(userId == null || "".equals(userId)) {
+			msg = "회원 정보와 일치하는 아이디를 찾았습니다.";
+			loc = "/WEB-INF/views/user/findId.jsp";
+		}
+		else {
+			msg = "회원정보와 일치하는 아이디가 존재하지 않습니다.";
+			loc = "/WEB-INF/views/user/findId_pwd.jsp";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher(view).forward(request, response);
+		
 	}
 
 	/**

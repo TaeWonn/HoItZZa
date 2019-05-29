@@ -74,15 +74,20 @@ public class UserService {
 		return result;
 	}
 
-	public int updateUser(User user) {
+	public int updateUser(User u) {
 		Connection conn = getConnection();
-		int result = new UserDAO().updateUser(conn, user);
+		int result = new UserDAO().updateUser(conn, u);
 		if(result > 0)
 			commit(conn);
 		else
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public String findUserId(String name, String ssn) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

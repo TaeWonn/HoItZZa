@@ -23,18 +23,27 @@ public class UserUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 파라미터 핸들링(아이디, 비밀번호, 이름, 이메일, 전화번호, 관심카테고리)
+		// 1. 파라미터 핸들링(아이디, 이름, 이메일, 전화번호, 주소, 관심카테고리)
 		String userId = request.getParameter("userId");
-		String password = null;
 		String name = request.getParameter("userName");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String phone = request.getParameter("phone_1").trim()
+					 + request.getParameter("phone_2").trim()
+					 + request.getParameter("phone_3").trim();
+		String addr = request.getParameter("addr1").trim() + " " 
+					+ request.getParameter("addr2").trim();
 		String [] interest = request.getParameterValues("interest");
 		
-		User user = new User(userId, name, null, 0, null, password, email, phone, interest, null);
+		User u = new User();
+		u.setUserId(userId);
+		u.setName(name);
+		u.setEmail(email);
+		u.setPhone(phone);
+		u.setAddr(addr);
+		u.setInterest(interest);
 		
 		// 2. Business Logic
-		int result = new UserService().updateUser(user);
+		int result = new UserService().updateUser(u);
 		
 		// 3. view
 		String view = "/WEB-INF/vies/common/msg.jsp";

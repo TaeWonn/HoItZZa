@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UserFindIdPwdServlet
+ * Servlet implementation class UserEnrollServlet
  */
-@WebServlet("/views/user/findId_pwd")
-public class UserFindIdPwdServlet extends HttpServlet {
+@WebServlet("/views/user/userEnroll")
+public class UserEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/user/findId_pwd.jsp")
-			   .forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/user/userJoin.jsp")
+		   .forward(request, response);
 	}
 
 	/**
