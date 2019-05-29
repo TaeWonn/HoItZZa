@@ -91,7 +91,7 @@ public class SellDAO {
 			ps.setString(2, s.getBoardContent());
 			ps.setString(3, s.getBoardWriter());
 			ps.setString(4, s.getBoardCodeNo());
-			
+			 
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
