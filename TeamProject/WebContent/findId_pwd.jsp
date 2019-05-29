@@ -9,16 +9,16 @@
 		<h1>회원 정보 찾기</h1>
 		<br />
 		<div id="findId">
-		<form action="<%=request.getContextPath() %>/views/user/findId" method="post" >
+		<form action="<%=request.getContextPath() %>/views/user/findId" method="post" onsubmit="checkFindId();">
 			<h3 class="formTitle">아이디 찾기</h3>
 			<table>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" name="findUserId_name"  /></td>
+				<td><input type="text" name="findUserId_name" required="required" /></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="number" name="findUserId_phone"  placeholder="하이픈(-)없이 입력"/></td>
+				<td><input type="number" name="findUserId_phone"  placeholder="하이픈(-)없이 입력" required /></td>
 			</tr>
 			<tr>
 			<th></th>
@@ -56,5 +56,30 @@
 		</div>
 	</div>
 	
+<script>
+function checkFindId(){
+	var name=$('input[name=findUserId_name]').val().trim();
+	var phone=$('input[name=findUserId_phone]').val().trim();
+	if(name.length==0){
+		alert('이름을 입력해주세요');
+		return;
+	}else{
+		if(phone.length==0){
+			alert('휴대폰 번호를 입력해주세요');
+			return;	
+		}else{
+			var checkcontains=phone.indexOf('-');
+			if(checkcontains!=-1){
+				alert('하이픈을 제외하고 입력해주세요');
+				return;	
+			}
+		}
+	}
+	
+	return true;
+}
+
+
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
