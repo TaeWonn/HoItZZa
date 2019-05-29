@@ -58,7 +58,7 @@ public class SellDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Sell s = new  Sell();
-				s.setBoardNo(rs.getInt("board_no"));
+				s.setBoardNo(rs.getString("board_no"));
 				s.setBoardTitle(rs.getString("board_title"));
 				s.setBoardContent(rs.getString("board_content"));
 				s.setBoardCode(rs.getString("board_code"));

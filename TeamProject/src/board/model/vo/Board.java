@@ -3,7 +3,7 @@ package board.model.vo;
 import java.sql.Date;
 
 public class Board {
-	private int boardNo;
+	private String boardNo;
 	private String boardCode;
 	private String boardTitle;
 	private String boardContent;
@@ -15,7 +15,7 @@ public class Board {
 	
 	public Board() {}
 	
-	public Board(int boardNo, String boardCode, String boardTitle, String boardContent, String boardDeal,
+	public Board(String boardNo, String boardCode, String boardTitle, String boardContent, String boardDeal,
 			String boardWriter, String boardCodeNo, int boardReadCounter, Date boardDate) {
 		this.boardNo = boardNo;
 		this.boardCode = boardCode;
@@ -28,11 +28,11 @@ public class Board {
 		this.boardDate = boardDate;
 	}
 
-	public int getBoardNo() {
+	public String getBoardNo() {
 		return boardNo;
 	}
 
-	public void setBoardNo(int boardNo) {
+	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
 	}
 
