@@ -15,7 +15,7 @@
 			<tr>
 				<th>이름</th>
 				<td><input type="text" name="findUserId_name"  /></td>
-			</tr> 
+			</tr>  
 			<tr>
 				<th>전화번호</th>
 				<td><input type="number" name="findUserId_phone"  placeholder="하이픈(-)없이 입력"/></td>
