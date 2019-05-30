@@ -25,12 +25,6 @@ public class SellBarFileRenamePolicy implements FileRenamePolicy{
 			if(dot > -1) {
 				ext = oldName.substring(dot);
 			}
-<<<<<<< HEAD
-			
-			
-=======
-			//확인
->>>>>>> refs/remotes/choose_remote_name/SeUh
 			//새로운 파일명
 			String newName = sdf.format(new Date(currentTime))
 						+ "_"
