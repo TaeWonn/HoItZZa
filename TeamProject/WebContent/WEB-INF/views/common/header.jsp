@@ -83,7 +83,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<br />
 				<form action="<%=request.getContextPath()%>/views/user/login" method="post" id="loginFrm">
 					<img src="<%=request.getContextPath()%>/images/userId.svg" class="inout">
-					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userId:"" %>' /> 
+					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userLoggedIn.getUserId():"" %>' /> 
 						<br /> 
 						<img src="<%=request.getContextPath()%>/images/pwd.svg" class="inout">
 						<input type="password" name="userPwd" id="header_userPwd" />
@@ -92,7 +92,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 						 <label for="saveId">아이디 저장</label> 
 						<br />
 						<button type="button" id="loginBtn" class="btn btn-secondary" onclick="checkLogin();" >Login</button>
-					<!-- <button type="button" id="loginBtn" onclick="checkLogin();">Login</button> -->
+					
 					<br />
 				</form>
 				<ul id="link">
@@ -106,7 +106,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			%>
 			<div id="login-container">
 
-				<span>admin님 안녕하세요!</span> <img src="images/profile.png" alt=""
+				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
@@ -234,7 +234,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 					return;
 				}
 			}
-
+			
 			$('#loginFrm').submit();
 
 		}
