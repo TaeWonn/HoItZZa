@@ -13,7 +13,7 @@ import user.model.service.UserService;
 /**
  * Servlet implementation class CheckIdDuplicateServlet
  */
-@WebServlet("/user/checkIdDuplicate")
+@WebServlet("/views/user/checkIdDuplicate")
 public class CheckIdDuplicateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

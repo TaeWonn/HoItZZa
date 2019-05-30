@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UserUpdatePassword
  */
-@WebServlet("/user/updatePassword")
+@WebServlet("/views/user/updatePwd")
 public class UserUpdatePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class UserUpdatePassword extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/user/updatePassword.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/user/updatePwd.jsp")
 			   .forward(request, response);
 	}
 

@@ -15,7 +15,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserUpdatePasswordEndServlet
  */
-@WebServlet("/user/updatePasswordEnd")
+@WebServlet("/views/user/updatePasswordEnd")
 public class UserUpdatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

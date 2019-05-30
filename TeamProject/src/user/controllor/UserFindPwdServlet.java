@@ -22,10 +22,12 @@ public class UserFindPwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
-		String userId = request.getParameter("userId");
-		String name = request.getParameter("userName");
-		String ssn = request.getParameter("ssn_1").trim()
-				   + request.getParameter("ssn_2").trim();
+		String userId = request.getParameter("findUserPwd_Id");
+		String name = request.getParameter("findUserPwd_name");
+		String ssn = request.getParameter("findUserPwd_ssn_1").trim()
+				   + request.getParameter("findUserPwd_ssn_2").trim();
+		
+		System.out.println("@userFindPwdServlet:userId="+userId+", name="+name+", ssn="+ssn);
 		
 		User u = new User();
 		u.setUserId(userId);

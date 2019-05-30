@@ -19,7 +19,8 @@ public class UserDAO {
 	private Properties prop = new Properties();
 	
 	public UserDAO() {
-		String filePath = getClass().getResource("/user/user-query.properties").getPath();
+		String filePath = getClass().getResource("/sql/user/user-query.properties").getPath();
+		System.out.println("filePath@userDao="+filePath);
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
