@@ -5,8 +5,7 @@
 	<article id="article">
 <h1>비밀번호 변경</h1>
 	<div id="changePwd">
-	<%-- <%=request.getContextPath()%>/views/user/changePwd --%>
-	<form action="" method="post" 
+	<form action="<%=request.getContextPath()%>/views/user/updatePwdEnd" method="post" 
 			onsubmit="return checkChangePwd();">
 		<table id="changePwdTable">
 		<tr>
@@ -47,8 +46,6 @@ function checkChangePwd(){
 	else{
 		return true;
 	}
-	
-	
 }
 
 function check(){

@@ -28,7 +28,7 @@ div#weather #wSpan{font-size: 40px;position:relative;bottom: -6px;font-family: "
 div#weather-day{margin-bottom: 20px;}
 a{ text-decoration:none !important;}
 .ad{margin-top:6px; margin-top:10px;text-align: center; border: 1px solid;max-height: 300px;}
-.ad img{width:99%;height: 176px;border-radius: 50%;}
+.ad img{width:99%;height: 182px;border-radius: 50%;}
 
 div#login-container #user_profile_photo{margin-bottom:5px; margin-top:10px;width:80px; height: 80px;}
 
