@@ -1,8 +1,7 @@
 package user.controllor;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import buy.model.service.BuyService;
+import buy.model.vo.Buy;
+import sell.model.service.SellService;
+import sell.model.vo.Sell;
 import user.model.service.UserService;
 import user.model.vo.User;
 
@@ -28,15 +31,20 @@ public class UserViewServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		
 		//2.업무로직
-		User user = new UserService().selectOne(userId);
+		User u = new UserService().selectOne(userId);
+		List<Sell> interestSellListByUser = new SellService().selectInterestSellListByUser(userId);
+		List<Buy> interestBuyListByUser = new BuyService().selectInterestBuyListByUser(userId);
+		List<Sell> interestCategoryList1 = new SellService().selectInterestSellListByCategory(u.getInterest()[0]);
+		List<Sell> interestCategoryList2 = new SellService().selectInterestSellListByCategory(u.getInterest()[1]);
+		List<Sell> interestCategoryList3 = new SellService().selectInterestSellListByCategory(u.getInterest()[2]);
 		
 		//3.view단 처리
 		String view = "";
 		String loc = "";
 		String msg = "";
-		if(user != null) {
+		if(u != null) {
 			view = "/WEB-INF/views/user/userView.jsp";
-			request.setAttribute("user", user);
+			request.setAttribute("user", u);
 		}
 		else {
 			view = "/WEB-INF/views/common/msg.jsp";

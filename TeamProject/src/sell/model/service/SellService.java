@@ -43,4 +43,11 @@ public class SellService {
 		return s;
 	}
 
+	public List<Sell> selectInterestSellListByUser(String userId) {
+		Connection conn = getConnection();
+		List<Sell> interestSellList = new SellDAO().selectInterestSellListByUser(conn, userId);
+		close(conn);
+		return null;
+	}
+
 }

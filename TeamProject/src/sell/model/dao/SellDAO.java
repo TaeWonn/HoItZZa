@@ -126,4 +126,9 @@ public class SellDAO {
 		return s;
 	}
 
+	public List<Sell> selectInterestSellListByUser(Connection conn, String userId) {
+		
+		return null;
+	}
+
 }
