@@ -7,12 +7,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/userJoin.css" />
 <!-- 회원가입 view단 -->
 <article>
-
-
 	<div id="joinMain">
 	<span id="title">회원 가입</span>
 
-		<form action="<%=request.getContextPath()%>/views/user/userJoin" method="post" onsubmit="return validate();">
+		<form action="<%=request.getContextPath()%>/views/user/userEnrollEnd" method="post" onsubmit="return validate();">
 			<table id='join'>
 				<colgroup>
 					<col style="width: 30%" />
@@ -76,17 +74,81 @@
 							<input type="text" id="tel3" name='phone_3' maxlength="4" class='tel' required></td>
 					</tr>
 					<tr>
+						<th>관심사</th>
+						<td>
+						<div id="interest_List1">
+						<!-- 1차 분류 -->
+						<select  name="interest1" class="selectBox" >
+						  <option selected>관심사</option>
+						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option value="B">뷰티</option>
+						  <option value="C">출산/유아동</option>
+						  <option value="D">식품</option>
+						  <option value="E">주방용품</option>
+						  <option value="F">생활용품</option>
+						  <option value="G">홈인테리어</option>
+						  <option value="H">가전디지털</option>
+						  <option value="I">스포츠/레저</option>
+						  <option value="J">자동차용품</option>
+						  <option value="K">도서/음반/DVD</option>
+						  <option value="L">완구/취미</option>
+						  <option value="M">문구/오피스</option>
+						  <option value="N">반려동물용품</option>
+						  <option value="O">헬스/건강식품</option>
+						</select>
+						<select  name="interest2" class="selectBox" >
+						  <option selected>관심사</option>
+						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option value="B">뷰티</option>
+						  <option value="C">출산/유아동</option>
+						  <option value="D">식품</option>
+						  <option value="E">주방용품</option>
+						  <option value="F">생활용품</option>
+						  <option value="G">홈인테리어</option>
+						  <option value="H">가전디지털</option>
+						  <option value="I">스포츠/레저</option>
+						  <option value="J">자동차용품</option>
+						  <option value="K">도서/음반/DVD</option>
+						  <option value="L">완구/취미</option>
+						  <option value="M">문구/오피스</option>
+						  <option value="N">반려동물용품</option>
+						  <option value="O">헬스/건강식품</option>
+						</select>
+						<select name="interest3" class="selectBox" >
+						  <option selected>관심사</option>
+						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option value="B">뷰티</option>
+						  <option value="C">출산/유아동</option>
+						  <option value="D">식품</option>
+						  <option value="E">주방용품</option>
+						  <option value="F">생활용품</option>
+						  <option value="G">홈인테리어</option>
+						  <option value="H">가전디지털</option>
+						  <option value="I">스포츠/레저</option>
+						  <option value="J">자동차용품</option>
+						  <option value="K">도서/음반/DVD</option>
+						  <option value="L">완구/취미</option>
+						  <option value="M">문구/오피스</option>
+						  <option value="N">반려동물용품</option>
+						  <option value="O">헬스/건강식품</option>
+						</select>
+							
+						</div>
+						<div id="interest_List2">
+						
+						</div>
+						</td>
+					</tr>
+					<tr>
 					<th></th>
 					<td colspan="2">
-					<button type="submit" id='submitBtn' class="btn btn-outline-secondary">Secondary</button>
+					<button type="submit" id='submitBtn' class="btn btn-outline-secondary">회원가입</button>
 					<!-- <button type="submit" id='submitBtn' onclick="return validate();">회원가입</button> --></td>
 					</tr>
 					
 					
 				</tbody>
 			</table>
-			
-
 
 		</form>
 
@@ -134,7 +196,6 @@ function regTest(reg,info,msg){
       return true;
   }else{
       alert(msg);
-      
       return false;
   }
 }
@@ -151,7 +212,7 @@ function validate(){
   if(!bool){
       result=false;
   }else{
-	  reg=/^[0-9]{6}$/;
+	  reg=/^[\d]{6}$/;
 	  bool=regTest(reg,'ssn_1','주민등록번호는 숫자만 입력가능합니다.');
 	  console.log('주민1 : '+bool);
 	  if(!bool){

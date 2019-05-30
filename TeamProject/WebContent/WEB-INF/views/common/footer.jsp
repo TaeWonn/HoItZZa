@@ -7,7 +7,7 @@
 #footer{
 background-image: url('<%=request.getContextPath()%>/images/leo.jpg');
 width:100%;
-height: 120px;
+height: 180px;
 }
 </style>
 </section>
