@@ -38,7 +38,7 @@ public class UserViewServlet extends HttpServlet {
 		List<Sell> interestCategoryList2 = new SellService().selectInterestSellListByCategory(u.getInterest()[1]);
 		List<Sell> interestCategoryList3 = new SellService().selectInterestSellListByCategory(u.getInterest()[2]);
 		
-		//3.view단 처리
+		//3.view단 처리  
 		String view = "";
 		String loc = "";
 		String msg = "";
