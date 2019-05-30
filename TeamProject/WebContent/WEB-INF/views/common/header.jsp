@@ -23,7 +23,7 @@
 		}
 	}
 	//String[] interestArr=userLoggedIn.getInterest();
-	String[] interestArr={"A","B","D"};
+	String[] interestArr={"A","D","F"};
 %>
 	
 	
@@ -115,11 +115,10 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
-						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/">관리자 페이지</a></span></li>
+						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
 					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
 				</ul>
 			</div>	
-					
 			
 			<%}else{%>
 			<div id="login-container">
