@@ -180,7 +180,7 @@ function searchAddr(){
       var address1=data.address;
       var jibun=data.jibunAddress;
       $('#address1').val(address1);
-      $('#address2').val('(지번주소)'+jibun+' ');
+      //지번주소 표기는 폐기처리.$('#address2').val('(지번주소)'+jibun+' ');
  
 
   }

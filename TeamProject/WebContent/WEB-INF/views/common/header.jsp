@@ -5,7 +5,7 @@
 <%
 	//세션 객체로부터 저장된 로그인 사용자 정보 가져오기
 	User userLoggedIn = (User)session.getAttribute("userLoggedIn");
-
+	String userIdd="user";
 	//쿠키 처리
 	Cookie[] cookies = request.getCookies();
 	boolean saveIdflag = false;
@@ -22,7 +22,13 @@
 			}
 		}
 	}
+	//String[] interestArr=userLoggedIn.getInterest();
+	String[] interestArr={"A","D","F"};
 %>
+	
+	
+	
+	
 <!DOCTYPE html >
 <html>
 <head>
@@ -102,23 +108,32 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				</ul>
 			</div>
 			<%
-				} else {
-			%>
+				} else if(userLoggedIn.getUserId().equals("admin")){%>
+				<div id="login-container">
+
+				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
+					id="user_profile_photo" />
+				<ul id="link">
+					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
+						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
+					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
+				</ul>
+			</div>	
+			
+			<%}else{%>
 			<div id="login-container">
 
 				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
-						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/">내정보
+						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo">내정보
 								보기</a></span></li>
 					<li><a href="<%=request.getContextPath()%>/">현재 포인트</a></li>
 					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
 				</ul>
 			</div>
-			<%
-				}
-			%>
+			<%}%>
 			<div id="board-list-container">
 				<p id="board_title">판매/구매</p>
 				<ul class="boardList">
