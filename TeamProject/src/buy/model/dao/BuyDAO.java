@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Properties;
 
 import buy.model.vo.Buy;
+import comment.model.vo.Comment;
+import file.model.vo.FileTable;
 
 public class BuyDAO {
 	
@@ -129,6 +131,114 @@ public class BuyDAO {
 			close(ps); 
 		}
 		return b;
+	}
+
+	public String selectOneBoardNo(Connection conn, Buy b) {
+		//시퀀스 현재 번호 가져오기
+		String boardNo = null;
+		String sql = prop.getProperty("selectOneBoardNo");
+		PreparedStatement ps = null;
+		ResultSet rs= null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				boardNo = rs.getString("board_no");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return boardNo;
+	}
+
+	public int insertFileTable(Connection conn, FileTable t) {
+		int result = 0;
+		String sql = prop.getProperty("insertFileTable");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, t.getBoardNo());
+			ps.setString(2, t.getOriginalFileName());
+			ps.setString(3, t.getRenamedFileName());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
+	}
+
+	public int warningCnt(Connection conn, String boardWriter) {
+		int warningCnt = 0;
+		String sql = prop.getProperty("warningCnt");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardWriter);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				warningCnt = rs.getInt("warningCnt");
+			}
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return warningCnt;
+	}
+
+	public int buyDelte(Connection conn, String boardNo) {
+		int result= 0;
+		String sql = prop.getProperty("buyDelete");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int insertComment(Connection conn, Comment c) {
+		int result = 0;
+		String sql = prop.getProperty("insertComment");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, c.getBoardNo());
+			ps.setString(2, c.getCommentContent());
+			ps.setString(3, c.getCommnetWriter());
+			ps.setInt(4, c.getCommentLevel());
+			ps.setInt(5, c.getCommentNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
 	}
 
 }

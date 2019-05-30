@@ -50,6 +50,15 @@ public class User {
 		this.password = password;
 	}
 
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr1) {
+		this.addr = addr1;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -90,13 +99,6 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
 
 	public int getPoint() {
 		return point;
