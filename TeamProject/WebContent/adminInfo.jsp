@@ -1,7 +1,17 @@
+<%@page import="board.model.vo.Board"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
+<%
+
+List<Board> suggestionBoardList=(List<Board>)request.getAttribute("");
+List<Board> reportBoardList=(List<Board>)request.getAttribute("");
+
+
+%>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/admin/adminInfo.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <article>
 
@@ -43,39 +53,37 @@
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" id="viewUser" value="회원관리" class="btnGroup" />
+			<input type="button" value="회원관리" class="btnGroup" onclick="viewUser();" />
 			</td>
 		</tr>
 	</table>
 </form>
 </div>
 
-<div id="reportBoard">
-	<h3>관심글</h3>
+<div id="Board">
+	<div id="suggestionBoard" class="boardTitle">
+	<p>건의게시판</p>
+	<table>
+	<tr>
+	<th>작성자</th>
+	<th>제목</th>
+	<th>작성일</th>
+	</tr>
+	<%-- <%for(Board b1 :suggestionBoardList){ %> --%>
+	<tr>
+		<td>나는 유저</td>
+		<td>이것좀 고쳐주시면...</td>
+		<td>2019/03/04</td>
+	</tr>
+	<%--  <%}  --%>
+	</table>
 	
-
-
+	</div>
+	
+	<div id="reportBoard" class="boardTitle">
+	<p>신고게시판</p>
+	</div>
 </div>
-
-<div id="interestBoardAll">
-	관심사  연관 글
-	<div id="first" class="list3">
-	첫번째 관심품목명
-		<table>
-		<tr>
-
-		</tr>
-		</table>
-	</div>
-	<div id="second" class="list3">
-		두번째 관심품목
-	</div>
-	<div id="third" class="list3">
-		세번쨰 관심품목
-	</div>
-
-</div>
-
 
 
 </article>
@@ -92,6 +100,11 @@ function searchAddr(){
 		      //지번주소 표기는 폐기처리.$('#address2').val('(지번주소)'+jibun+' ');
 		  }
 		}).open();
+}
+
+function viewUser(){
+	
+	location.href="<%=request.getContextPath()%>/views/admin/viewUsers";
 }
 
 </script>

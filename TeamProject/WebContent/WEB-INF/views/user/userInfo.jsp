@@ -9,7 +9,7 @@
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
 
-	List<Board> interestBBoardList=(List<Board>)request.getAttribute("Binterest");
+
 	List<Board> interestSBoardList=(List<Board>)request.getAttribute("Sinterest");
 	List<Board> interest1BoardList=(List<Board>)request.getAttribute("1BoardList");
 	List<Board> interest2BoardList=(List<Board>)request.getAttribute("2BoardList");
@@ -134,8 +134,8 @@
 	
 	<table id="interestBuyBoard">
 	<p>구매글</p>
-	 <%if(interestBBoardList!=null){ 
-		for(Board b:interestBBoardList){%>
+	 <%if(interestSBoardList!=null){ 
+		for(Board b:interestSBoardList){%>
 		<tr>
 		<td><%=b.getBoardNo() %></td>
 		<td><%=b.getBoardTitle() %></td>
@@ -144,14 +144,6 @@
 		</tr>
 	<% } } %>
 	</table>
-	<table id="interestSellBoard">
-	<p>판매글</p>
-		<tr>
-		<th></th>
-		<td></td>
-		</tr>
-	</table>
-
 </div>
 
 <div id="interestBoardAll">
