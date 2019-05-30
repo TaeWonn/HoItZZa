@@ -6,17 +6,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import buy.model.service.BuyService;
-import buy.model.vo.Buy;
-import user.model.vo.User;
+import comment.model.vo.Comment;
 
 /**
- * Servlet implementation class BoardModifiedServlet
+ * Servlet implementation class BuyCommnetServlet
  */
-@WebServlet("/buy/buyModified")
-public class BoardModifiedServlet extends HttpServlet {
+@WebServlet("/buy/buyComment")
+public class BuyCommnetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,11 +22,23 @@ public class BoardModifiedServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
+		String commentWriter = request.getParameter("commentWriter");
+		String commentContent = request.getParameter("commentContent");
+		int commentNoRef = Integer.parseInt(request.getParameter("commentNoRef"));
+		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
-		Buy b = new BuyService().selectOneBuy(boardNo);
+		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel);
+		int result = new BuyService().insertComment(c);
 		
-		request.setAttribute("buy", b);
-		request.getRequestDispatcher("/WEB-INF/views/buy/buyModifiedEnd.jsp")
+		String msg = "";
+		if(result > 0) {
+			msg = "댓글 등록 완료";
+		} else {
+			msg = "댓글 등록중 오류발생";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", "/buy/buyView?boardNo="+boardNo);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 	}
 

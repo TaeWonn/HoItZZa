@@ -4,16 +4,14 @@ public class FileTable {
 	
 	private String originalFileName;
 	private String renamedFileName;
-	private int boardNo;
-	private String boardWriter;
+	private String boardNo;
 	
 	public FileTable() {}
 	
-	public FileTable(String originalFileName, String renamedFileName, int boardNo, String boardWriter, String boardSubject) {
+	public FileTable(String originalFileName, String renamedFileName, String boardNo) {
 		this.originalFileName = originalFileName;
 		this.renamedFileName = renamedFileName;
 		this.boardNo = boardNo;
-		this.boardWriter = boardWriter;
 	}
 
 	public String getOriginalFileName() {
@@ -32,28 +30,21 @@ public class FileTable {
 		this.renamedFileName = renamedFileName;
 	}
 
-	public int getBoardNo() {
+	public String getBoardNo() {
 		return boardNo;
 	}
 
-	public void setBoardNo(int boardNo) {
+	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
 	}
 
-	public String getBoardWriter() {
-		return boardWriter;
-	}
-
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
-	}
 
 	
 
 	@Override
 	public String toString() {
 		return "FileTable [originalFileName=" + originalFileName + ", renamedFileName=" + renamedFileName + ", boardNo="
-				+ boardNo + ", boardWriter=" + boardWriter + "]";
+				+ boardNo + "]";
 	}
 	
 	

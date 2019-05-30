@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import comment.model.vo.Comment;
+import file.model.vo.FileTable;
 import sell.model.vo.Sell;
 
 public class SellDAO {
@@ -124,6 +126,160 @@ public class SellDAO {
 			close(ps);
 		}
 		return s;
+	}
+
+	public String selectOneBoardNo(Connection conn) {
+		//현재 시퀀스 번호 가져오기
+		String boardNo = null;
+		String sql = prop.getProperty("selectOneBoardNo");
+		PreparedStatement ps = null;
+		ResultSet rs= null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				boardNo = rs.getString("boardNo");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally{
+			close(rs);
+			close(ps);
+		}
+		return boardNo;
+	}
+
+	public int insertFileTable(Connection conn, FileTable t) {
+		int result = 0;
+		String sql = prop.getProperty("insertFileTable");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, t.getBoardNo());
+			ps.setString(2, t.getOriginalFileName());
+			ps.setString(3, t.getRenamedFileName());
+			
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int updateSell(Connection conn, Sell s) {
+		int result =0;
+		String sql = prop.getProperty("updateSell");
+		PreparedStatement ps =null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, s.getBoardTitle());
+			ps.setString(2, s.getBoardContent());
+			ps.setString(3, s.getBoardDeal());
+			ps.setString(4, s.getBoardCodeNo());
+			ps.setString(5, s.getBoardNo());
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public List<FileTable> selectFiles(Connection conn, String boardNo) {
+		List<FileTable> ft = new ArrayList<>();
+		String sql = prop.getProperty("selectFiles");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				FileTable f = new FileTable();
+				f.setBoardNo(rs.getString("board_no"));
+				f.setOriginalFileName("original_file_name");
+				f.setRenamedFileName(rs.getString("renamed_file_name"));
+				ft.add(f);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return ft;
+	}
+
+	public int warningCnt(Connection conn, String boardWriter) {
+		int warningCnt = 0;
+		String sql = prop.getProperty("warningCnt");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardWriter);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				warningCnt = rs.getInt("warningCnt");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return warningCnt;
+	}
+
+	public int SellDelte(Connection conn, String boardNo) {
+		int result = 0;
+		String sql = prop.getProperty("sellDelte");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			result = ps.executeUpdate();
+		} catch( Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int insertComment(Connection conn, Comment c) {
+		int result = 0;
+		String sql = prop.getProperty("insertComment");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, c.getBoardNo());
+			ps.setString(2, c.getCommentContent());
+			ps.setString(3, c.getCommnetWriter());
+			ps.setInt(4, c.getCommentLevel());
+			ps.setInt(5, c.getCommentNo());
+			
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
 	}
 
 }

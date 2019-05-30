@@ -1,4 +1,4 @@
-package buy.controllor;
+package sell.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,17 +6,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import buy.model.service.BuyService;
-import buy.model.vo.Buy;
-import user.model.vo.User;
+import sell.model.service.SellService;
 
 /**
- * Servlet implementation class BoardModifiedServlet
+ * Servlet implementation class SellDeleteServlet
  */
-@WebServlet("/buy/buyModified")
-public class BoardModifiedServlet extends HttpServlet {
+@WebServlet("/sell/sellDelete")
+public class SellDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,10 +22,18 @@ public class BoardModifiedServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
 		
-		Buy b = new BuyService().selectOneBuy(boardNo);
+		int result = new SellService().SellDelete(boardNo);
 		
-		request.setAttribute("buy", b);
-		request.getRequestDispatcher("/WEB-INF/views/buy/buyModifiedEnd.jsp")
+		String msg = "";
+		if(result > 0) {
+			msg = "삭제 완료";
+		} else {
+			msg = "삭제중 오류 발생";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", "/buy/buyList");
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 	}
 

@@ -7,6 +7,8 @@ import java.util.List;
 
 import buy.model.dao.BuyDAO;
 import buy.model.vo.Buy;
+import comment.model.vo.Comment;
+import file.model.vo.FileTable;
 
 public class BuyService {
 
@@ -36,6 +38,54 @@ public class BuyService {
 		Buy b = new BuyDAO().selectOneBuy(conn, boardNo);
 		close(conn);
 		return b;
+	}
+
+	public String selectOneBoardNo(Buy b) {
+		Connection conn = getConnection();
+		String boardNo = new BuyDAO().selectOneBoardNo(conn, b);
+		close(conn);
+		return boardNo;
+	}
+
+	public int insertFileTable(FileTable t) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().insertFileTable(conn ,t);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int warningCnt(String boardWriter) {
+		Connection conn = getConnection();
+		int warningCnt = new BuyDAO().warningCnt(conn, boardWriter);
+		close(conn);
+		return warningCnt;
+	}
+
+	public int buyDelete(String boardNo) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().buyDelte(conn, boardNo);
+		if( result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertComment(Comment c) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().insertComment(conn, c);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
 	}
 
 }
