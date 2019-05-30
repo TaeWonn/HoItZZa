@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+   .table{
+        width: 500px; 
+        border: 2px solid rgb(196, 192, 192);
+        padding: 15px;
+        margin: 20px auto;
+        text-align: center;
+        font-size: 18px;
+    }
+    
+    .table2{
+        width: 500px; 
+        border: 2px solid rgb(196, 192, 192);
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+        font-size: 18px;
+    }
+    .table2 thead{
+        background-color: rgb(222, 228, 228);
+    }
+    .table2 tr{
+        border: 2px solid rgb(196, 192, 192);
+
+    }
+    .del_check{
+        size: 20px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+

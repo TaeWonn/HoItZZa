@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import user.model.vo.User;
@@ -115,33 +117,87 @@ public class UserDAO {
 		return 0;
 	}
 
-	public int updateUser(Connection conn, User user) {
-//		int result = 0;
-//		PreparedStatement pstmt = null;
-//		String query = prop.getProperty("updateMember"); 
-//
-//		try {
-//			//미완성쿼리문을 가지고 객체생성.
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, member.getMemberName());
-//			pstmt.setString(2, member.getGender());
-//			pstmt.setInt(3, member.getAge());
-//			pstmt.setString(4, member.getEmail());
-//			pstmt.setString(5, member.getPhone());
-//			pstmt.setString(6, member.getAddress());
-//			pstmt.setString(7, member.getHobby());
-//			pstmt.setString(8, member.getMemberId());
-//			
-//			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
-//			//DML은 executeUpdate()
-//			result = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-		return 0;
+	public int updateUser(Connection conn, User u) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateUser"); 
+
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, u.getName());
+			pstmt.setString(2, u.getEmail());
+			pstmt.setString(3, u.getPhone());
+			pstmt.setString(4, u.getAddr());
+			pstmt.setString(5, String.join(",", u.getInterest()));
+			pstmt.setString(6, u.getUserId());
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public String findUserId(Connection conn, User u) {
+		String userId = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("findUserId");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getName());
+			ps.setString(2, u.getPhone());
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+				userId = rs.getString("userId");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return userId;
+	}
+
+	public Boolean findUserPwd(Connection conn, User u) {
+		Boolean chkPwd = false;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		// 일치하는 회원 정보를 count로 받아올 것.
+		String sql = prop.getProperty("findUserPwd");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getName());
+			ps.setString(2, u.getSsn());
+			ps.setString(3, u.getUserId());
+			
+			rs = ps.executeQuery();
+			int result = 0;
+			if(rs.next()) 
+				result = rs.getInt("cnt");
+			
+			if(result>0)
+				chkPwd = true;
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return chkPwd;
 	}
 
 }

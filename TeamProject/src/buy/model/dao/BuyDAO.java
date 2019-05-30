@@ -59,10 +59,10 @@ public class BuyDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Buy b = new Buy();
-				b.setBoardNo(rs.getInt("board_no"));
+				b.setBoardNo(rs.getString("board_no"));
 				b.setBoardTitle(rs.getString("board_title"));
 				b.setBoardContent(rs.getString("board_content"));
-				b.setBoardCode(rs.getString("board_code"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
 				b.setBoardDate(rs.getDate("board_date"));
 				b.setBoardDeal(rs.getString("board_deal"));
 				b.setBoardReadCounter(rs.getInt("board_read_count"));
@@ -98,6 +98,37 @@ public class BuyDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public Buy selectOneBuy(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneBuy");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Buy b = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				b = new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardContent(rs.getString("board_content"));
+				b.setBoardDate(rs.getDate("board_date"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs); 
+			close(ps); 
+		}
+		return b;
 	}
 
 }

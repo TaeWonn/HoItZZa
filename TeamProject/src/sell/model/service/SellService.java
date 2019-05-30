@@ -24,4 +24,23 @@ public class SellService {
 		return sell;
 	}
 
+	public int insertSell(Sell s) {
+		Connection conn = getConnection();
+		int result = new SellDAO().insertSell(conn, s);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public Sell selectOneSell(String boardNo) {
+		Connection conn = getConnection();
+		Sell s = new SellDAO().selectOneSell(conn, boardNo);
+		close(conn);
+		return s;
+	}
+
 }

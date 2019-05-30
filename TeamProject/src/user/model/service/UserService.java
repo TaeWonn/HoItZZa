@@ -74,15 +74,29 @@ public class UserService {
 		return result;
 	}
 
-	public int updateUser(User user) {
+	public int updateUser(User u) {
 		Connection conn = getConnection();
-		int result = new UserDAO().updateUser(conn, user);
+		int result = new UserDAO().updateUser(conn, u);
 		if(result > 0)
 			commit(conn);
 		else
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public String findUserId(User u) {
+		Connection conn = getConnection();
+		String userId = new UserDAO().findUserId(conn, u);
+		close(conn);
+		return userId;
+	}
+
+	public Boolean findUserPwd(User u) {
+		Connection conn = getConnection();
+		Boolean chkPwd = new UserDAO().findUserPwd(conn, u);
+		close(conn);
+		return chkPwd;
 	}
 
 }

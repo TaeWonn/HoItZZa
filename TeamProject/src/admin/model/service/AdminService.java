@@ -39,17 +39,13 @@ public class AdminService {
 		return result;
 	}
 
-	public int userWarring(String[] userIds) {
+	public User selectOneUser(String userId) {
 		Connection conn = getConnection();
-		int result = new AdminDAO().userWarring(conn, userIds);
-		if(result> 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		User u = new AdminDAO().selectOneUser(conn, userId);
 		close(conn);
-		return result;
+		return u;
 	}
+
 
 	
 }

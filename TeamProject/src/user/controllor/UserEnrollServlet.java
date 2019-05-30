@@ -1,4 +1,4 @@
-package admin.controllor;
+package user.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,38 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.AdminService;
-
 /**
- * Servlet implementation class AdminWarringServlet
+ * Servlet implementation class UserEnrollServlet
  */
-@WebServlet("/admin/adminWarring")
-public class AdminWarringServlet extends HttpServlet {
+@WebServlet("/views/user/userEnroll")
+public class UserEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		
-		String userIds[] = userId.split(",");
-		
-		int result =  new AdminService().userWarring(userIds);
-		
-		String msg = "";
-		String loc = "";
-		if(result > 0) {
-			msg ="경고 처리 완료";
-			loc = "/admin/adminList";
-		} else {
-			msg ="에러 발생";
-			loc = "/admin/adminList";
-		}
-		
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-				.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/user/userJoin.jsp")
+		   .forward(request, response);
 	}
 
 	/**

@@ -84,7 +84,7 @@ public class AdminDAO {
 		String second = "";
 		for(int i=0; i<userIds.length; i++) {
 			if(i < userIds.length-1) {
-				second += "'"+userIds[i]+"'"+", ";
+				second += "'"+userIds[i]+"'"+" or ";
 			}else {
 				second += "'"+userIds+"'";
 			}
@@ -105,12 +105,36 @@ public class AdminDAO {
 		return result;
 	}
 
-	public int userWarring(Connection conn, String[] userIds) {
-		int result = 0;
+	public User selectOneUser(Connection conn, String userId) {
+		String sql = prop.getProperty("selectOneUser");
+		User u = new User();
 		PreparedStatement ps = null;
-		String sql ="update black_list set ";
-		return result;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				u.setUserId(userId);
+				u.setEmail(rs.getString("email"));
+				u.setGender(rs.getString("gender"));
+				u.setJoin_date(rs.getDate("join_date"));
+				u.setName(rs.getString("name"));
+				u.setPhone(rs.getString("phone"));
+				u.setPoint(rs.getInt("point"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return u;
 	}
+
 
 	
 }

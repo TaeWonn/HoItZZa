@@ -8,9 +8,11 @@ public class Free extends Board{
 
 	public Free() {}
 	
-	public Free(int boardNo,String boardCode,String boardTitle,String boardContent,String boardDeal,
+	public Free(String boardNo,String boardCode,String boardTitle,String boardContent,String boardDeal,
 			String boardWriter,String boardCodeNo,int  boardReadCounter,Date boardDate) {
-		super(boardNo, boardCode, boardTitle, boardContent, boardDeal,
+		super(boardNo, boardTitle, boardContent, boardDeal,
 				boardWriter, boardCodeNo, boardReadCounter, boardDate);
 	}
+	
+	
 }
