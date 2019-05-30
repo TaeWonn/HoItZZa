@@ -39,6 +39,13 @@ public class AdminService {
 		return result;
 	}
 
+	public User selectOneUser(String userId) {
+		Connection conn = getConnection();
+		User u = new AdminDAO().selectOneUser(conn, userId);
+		close(conn);
+		return u;
+	}
+
 
 	
 }

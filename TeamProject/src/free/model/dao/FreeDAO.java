@@ -63,7 +63,7 @@ public class FreeDAO {
 				f.setBoardNo(rs.getString("board_no"));
 				f.setBoardTitle(rs.getString("board_title"));
 				f.setBoardContent(rs.getString("board_content"));
-				f.setBoardCode(rs.getString("board_code"));
+				f.setBoardCodeNo(rs.getString("board_code_no"));
 				f.setBoardDate(rs.getDate("board_date"));
 				f.setBoardDeal(rs.getString("board_deal"));
 				f.setBoardReadCounter(rs.getInt("board_read_count"));

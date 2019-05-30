@@ -61,7 +61,7 @@ public class SellDAO {
 				s.setBoardNo(rs.getString("board_no"));
 				s.setBoardTitle(rs.getString("board_title"));
 				s.setBoardContent(rs.getString("board_content"));
-				s.setBoardCode(rs.getString("board_code"));
+				s.setBoardCodeNo(rs.getString("board_code_no"));
 				s.setBoardDate(rs.getDate("board_date"));
 				s.setBoardDeal(rs.getString("board_deal"));
 				s.setBoardReadCounter(rs.getInt("board_read_count"));
@@ -99,6 +99,31 @@ public class SellDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public Sell selectOneSell(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneSell");
+		Sell s = new Sell();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo);
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				s.setBoardTitle(rs.getString("board_title"));
+				s.setBoardContent(rs.getString("board_content"));
+				s.setBoardWriter(rs.getString("board_writer"));
+				s.setBoardDeal(rs.getString("board_deal"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return s;
 	}
 
 }

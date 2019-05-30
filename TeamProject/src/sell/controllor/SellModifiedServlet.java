@@ -1,6 +1,7 @@
-package buy.controllor;
+package sell.controllor;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,29 +9,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import buy.model.service.BuyService;
-import buy.model.vo.Buy;
+import sell.model.service.SellService;
+import sell.model.vo.Sell;
 import user.model.vo.User;
 
 /**
- * Servlet implementation class BoardModifiedServlet
+ * Servlet implementation class SellModifiedServlet
  */
-@WebServlet("/buy/buyModified")
-public class BoardModifiedServlet extends HttpServlet {
+@WebServlet("/sell/sellModified")
+public class SellModifiedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardNo = request.getParameter("boardNo");
+String boardNo = request.getParameter("boardNo");
 		
-		Buy b = new BuyService().selectOneBuy(boardNo);
+		Sell s = new SellService().selectOneSell(boardNo);
 		HttpSession session = request.getSession();
 		User userLoggedIn = (User)session.getAttribute("userLoggedIn");
 		String userId = request.getParameter("userId");
 		if(userLoggedIn == null || 
-				!userId.equals(b.getBoardWriter()) ||
+				!userId.equals(s.getBoardWriter()) ||
 				!userId.equals("admin")) {
 			request.setAttribute("msg", "작성자만 수정할수있습니다");
 			request.setAttribute("loc", "/");
@@ -38,11 +39,9 @@ public class BoardModifiedServlet extends HttpServlet {
 				.forward(request, response);
 			return;
 		}
-			
 		
-		
-		request.setAttribute("buy", b);
-		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
+		request.setAttribute("sell", s);
+		request.getRequestDispatcher("/WEB-INF/views/sell/sellModified.jsp")
 				.forward(request, response);
 	}
 
