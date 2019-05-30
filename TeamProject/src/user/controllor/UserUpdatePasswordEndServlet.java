@@ -15,7 +15,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserUpdatePasswordEndServlet
  */
-@WebServlet("/views/user/updatePasswordEnd")
+@WebServlet("/views/user/updatePwdEnd")
 public class UserUpdatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,36 +24,34 @@ public class UserUpdatePasswordEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		String password_new = request.getParameter("password_new");
-		
-		User user = new User();
-		user.setUserId(userId);
-		user.setPassword(password);
-		
-		// 2. Service Logic
-		int result = new UserService().loginCheck(user);
-		
-		// 3. If Correct, update password
-		//	  else, call pop-up url
+		String userId = request.getParameter("findUserPwd_Id");
+		String password = request.getParameter("changePwd");
+
+		System.out.println("@userFindPwdServlet:userId="+userId+", password="+password);
+
+		User u = new User();
+		u.setUserId(userId);
+		u.setName(password);
+
+		// 2. 업무 로직
+		int result = new UserService().updatePassword(u);
+
+		// 3. view단 처리
+		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "";
-		String view = "/WEB-INF/views/common/msg.jsp";
-		if(result == UserService.LOGIN_OK) {
-			user.setPassword(password_new);
-			result = new UserService().updatePassword(user);
-			if(result>0) 
-				msg = "패스워드 변경 성공";
+		if(result>0) {
+			msg = "비밀번호가 성공적으로 변겨되었습니다.";
+			loc = "/";
 		}
 		else {
-			msg = "패스워드를 잘못 입력하셨습니다.";
-			loc = "/user/updatePassword?userId=" + userId;
+			msg = "비밀번호 변경에 실패하였습니다.";
+			loc = "/WEB-INF/views/user/updatePwd";
 		}
-		
+
 		request.setAttribute("msg", msg);
-		request.setAttribute("script", "self.close();");
 		request.setAttribute("loc", loc);
+
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 
