@@ -26,7 +26,7 @@
 		</div>
 		
 		<div id="findPwd">
-		<form action="<%=request.getContextPath() %>/views/user/findPwd" method="post" onsubmit="return checkPwdInfo();" >
+		<form action="<%=request.getContextPath() %>/views/user/updatePwd" method="post" onsubmit="return checkPwdInfo();" >
 			<h3 class="formTitle">비밀번호 찾기</h3>
 			<table>
 				<tr>

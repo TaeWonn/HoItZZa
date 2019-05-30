@@ -5,15 +5,15 @@
 	<article id="article">
 <h1>비밀번호 변경</h1>
 	<div id="changePwd">
-	<%-- <%=request.getContextPath()%>/views/user/changePwd --%>
-	<form action="" method="post" 
+	<%-- <%=request.getContextPath()%>/views/user/updatePwd --%>
+	<form action="<%=request.getContextPath()%>/views/user/updatePwdEnd" method="post" 
 			onsubmit="return checkChangePwd();">
 		<table id="changePwdTable">
 		<tr>
 			<th>변경 할 비밀번호</th>
 			<td>
 			<input type="password"  id="changePwd" name="changePwd" onkeyup="check();" />
-			<input type="hidden" name="findUserPwd_Id" <%=userId!=null?userId:""%> />
+			<input type="hidden" name="findUserPwd_Id" value="<%=request.getAttribute("userId")%>" />
 			</td>
 		</tr>
 		<tr>

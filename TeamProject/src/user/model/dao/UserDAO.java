@@ -1,6 +1,6 @@
 package user.model.dao;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import user.model.service.UserService;
 import user.model.vo.User;
 
 public class UserDAO {
@@ -18,7 +19,8 @@ public class UserDAO {
 	private Properties prop = new Properties();
 	
 	public UserDAO() {
-		String filePath = getClass().getResource("/user/user-query.properties").getPath();
+		String filePath = getClass().getResource("/sql/user/user-query.properties").getPath();
+		System.out.println("filePath@userDao="+filePath);
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
@@ -28,93 +30,172 @@ public class UserDAO {
 		}
 	}
 
-	public int insertMember(Connection conn, User u) {
+	public int insertUser(Connection conn, User u) {
 		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = "";
+		PreparedStatement ps = null;
+		String sql = prop.getProperty("insertUser");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getUserId());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getName());
+			ps.setString(4, u.getGender());
+			ps.setString(5, u.getSsn());
+			ps.setString(6, u.getEmail());
+			ps.setString(7, u.getPhone());
+			ps.setString(8, u.getAddr());
+			ps.setString(9, String.join(",", u.getInterest()));
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
 		
 		return result;
 	}
 
 	public boolean checkIdDuplicate(Connection conn, String userId) {
 		boolean isUsable = false;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("checkIdDuplicate");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int cnt = rs.getInt("cnt");
+				
+				if(cnt == 0) 
+					isUsable = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
 		return isUsable;
 	}
 
 	public User selectOne(Connection conn, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User u = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				u = new User();
+				u.setUserId(rs.getString("userId"));
+				u.setPassword(rs.getString("password"));
+				u.setName(rs.getString("name"));
+				u.setGender(rs.getString("gender"));
+				u.setSsn(rs.getString("ssn"));
+				u.setEmail(rs.getString("email"));
+				u.setPhone(rs.getString("phone"));
+				u.setAddr(rs.getString("addr"));
+				u.setPoint(rs.getInt("point"));
+				String interestStr = rs.getString("interest");
+				String [] interest = interestStr.split(",");
+				u.setInterest(interest);
+				u.setJoin_date(rs.getDate("join_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return u;
 	}
 
 	public int deleteUser(Connection conn, String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		PreparedStatement ps = null;
+		String sql = prop.getProperty("deleteUser");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
+		return result;
 	}
 
 	public int loginCheck(Connection conn, User u) {
-//		int result = MemberService.ID_NOT_EXIST;
-//		String sql = prop.getProperty("selectOne");
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		try {
-//			//미완성쿼리를 가지고 statement객체 생성
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, m.getMemberId());
-//			//쿼리실행
-//			rset = pstmt.executeQuery();
-//			//rset의 결과를 변수에 담기
-//			String memberId = "";
-//			String password = "";
-//			//리턴된 행이 있을 경우
-//			if(rset.next()) {
-//				memberId = rset.getString("memberid");
-//				password = rset.getString("password");
-//			}
-//			
-//			//비교 및 결과 도출
-//			if(memberId.equals(m.getMemberId()) 
-//					&& password.equals(m.getPassword())) {
-//				result = MemberService.LOGIN_OK;
-//			}
-//			else if(memberId.equals(m.getMemberId())) {
-//				result = MemberService.WRONG_PASSWORD;
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rset);
-//			close(pstmt);
-//		}
-//		
-//		return result;
-		return 0;
+		int result = UserService.ID_NOT_EXIST;
+		String sql = prop.getProperty("loginCheck");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getUserId());
+			
+			rs = ps.executeQuery();
+			
+			String userId = "";
+			String password = "";
+			
+			if(rs.next()) {
+				userId = rs.getString("userId");
+				password = rs.getString("password");
+			}
+			
+			if(userId.equals(u.getUserId())
+					&& password.equals(u.getPassword())) {
+				result = UserService.LOGIN_OK;
+			}
+			else if(userId.equals(u.getUserId())) {
+				result = UserService.WRONG_PASSWORD;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return result;
 	}
 
 	public int updatePassword(Connection conn, User user) {
-//		int result = 0;
-//		PreparedStatement pstmt = null;
-//		String query = prop.getProperty("updatePassword"); 
-//
-//		try {
-//			//미완성쿼리문을 가지고 객체생성.
-//			pstmt = conn.prepareStatement(query);
-//			//쿼리문미완성
-//			pstmt.setString(1, member.getPassword());
-//			pstmt.setString(2, member.getMemberId());
-//			
-//			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
-//			//DML은 executeUpdate()
-//			result = pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-		return 0;
+		int result = 0;
+		PreparedStatement ps = null;
+		String sql = prop.getProperty("updatePassword");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getPassword());
+			ps.setString(2, user.getUserId());
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
 	}
 
 	public int updateUser(Connection conn, User u) {

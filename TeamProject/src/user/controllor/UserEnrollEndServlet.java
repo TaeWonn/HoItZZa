@@ -16,7 +16,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserEnrollEndServlet
  */
-@WebServlet("/views/user/userJoin")
+@WebServlet("/views/user/userJoinEnd")
 public class UserEnrollEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class UserEnrollEndServlet extends HttpServlet {
 		String phone = request.getParameter("phone_1").trim()
 					 + request.getParameter("phone_2").trim()
 					 + request.getParameter("phone_3").trim();
-		String addr = request.getParameter("addr1").trim() + " " 
+		String addr = request.getParameter("addr1").trim() + "," 
 					+ request.getParameter("addr2").trim();
 		String [] interests = {request.getParameter("interest1"),
 							   request.getParameter("interest2"),

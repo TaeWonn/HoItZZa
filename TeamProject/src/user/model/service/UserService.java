@@ -19,7 +19,7 @@ public class UserService {
 	
 	public int insertUser(User u) {
 		Connection conn = getConnection();
-		int result = new UserDAO().insertMember(conn, u);
+		int result = new UserDAO().insertUser(conn, u);
 		//dml인 경우 transaction처리 직접하기
 		if(result > 0)
 			commit(conn);
