@@ -9,7 +9,7 @@
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
 
-
+	List<Board> interestBBoardList=(List<Board>)request.getAttribute("Binterest");
 	List<Board> interestSBoardList=(List<Board>)request.getAttribute("Sinterest");
 	List<Board> interest1BoardList=(List<Board>)request.getAttribute("1BoardList");
 	List<Board> interest2BoardList=(List<Board>)request.getAttribute("2BoardList");
@@ -32,16 +32,20 @@
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>
-			<td><input type="text" value="유저이름" readonly /></td>
+			<td><input type="text" value="유저이름" name="userId" readonly /></td>
 		</tr>
 		<tr>
 			<th>포인트</th>
 			<td><input type="text" value="소지포인트" readonly /></td>
 		</tr>
 		<tr>
+			<th>연락처</th>
+			<td><input type="text" value="전화번호" name="phone" /></td>
+		</tr>
+		<tr>
 			<th>비밀번호</th>
 			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%=userIdd%>;" >변경하기</button>
+			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd('<%=userIdd%>');" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
@@ -129,21 +133,45 @@
 </div>
 
 <div id="interestBoard">
-	<h3>관심글</h3>
-	
-	
-	<table id="interestBuyBoard">
-	<p>구매글</p>
-	 <%if(interestSBoardList!=null){ 
-		for(Board b:interestSBoardList){%>
+	<h3>관심글</h3>	
+	<p id="p1">판매글</p>
+	<table id="interestSellBoard">
+	<tr>
+		<th><nobr>번호</nobr></th>
+		<th><nobr>제목</nobr></th>
+		<th><nobr>작성자</nobr></th>
+		<th><nobr>조회수</nobr></th>
+	</tr>
+	 <%/* if(interestSBoardList!=null){  */
+		for(int i=1;i<=5;i++){%>
 		<tr>
-		<td><%=b.getBoardNo() %></td>
-		<td><%=b.getBoardTitle() %></td>
-		<td><%=b.getBoardWriter() %></td>
-		<td><%=b.getBoardReadCounter()%></td>
+		<td><nobr><%-- <%=b.getBoardNo() %> --%> <%=i %></nobr></td>
+		<td><nobr><%-- <%=b.getBoardTitle() %> --%><%=i %>번 가방 팝니다</nobr></td>
+		<td><nobr><%-- <%=b.getBoardWriter() %> --%><%=i %>번째작성</nobr></td>
+		<td><nobr><%-- <%=b.getBoardReadCounter()%> --%><%=i %></nobr></td>
 		</tr>
-	<% } } %>
+	<% /* } */ } %>
 	</table>
+	<p id="p2">구매글</p>
+	<!-- sellboard -->
+	<table id="interestBuyBoard">
+	<tr>
+		<th><nobr>번호</nobr></th>
+		<th><nobr>제목</nobr></th>
+		<th><nobr>작성자</nobr></th>
+		<th><nobr>조회수</nobr></th>
+	</tr>
+	 <%/* if(interestSBoardList!=null){  */
+		for(int i=1;i<=5;i++){%>
+		<tr>
+		<td><nobr><%-- <%=b.getBoardNo() %> --%> <%=i %></nobr></td>
+		<td><nobr><%-- <%=b.getBoardTitle() %> --%><%=i %>번 가방 삽니다</nobr></td>
+		<td><nobr><%-- <%=b.getBoardWriter() %> --%><%=i %>번째작성</nobr></td>
+		<td><nobr><%-- <%=b.getBoardReadCounter()%> --%><%=i %></nobr></td>
+		</tr>
+	<% /* } */ } %>
+	</table>
+	
 </div>
 
 <div id="interestBoardAll">
@@ -186,6 +214,10 @@ function searchAddr(){
 		      //지번주소 표기는 폐기처리.$('#address2').val('(지번주소)'+jibun+' ');
 		  }
 		}).open();
+}
+//비밀번호 변경페이지로 이동
+function changeUserPwd(userId){
+	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+userId;
 }
 
 </script>

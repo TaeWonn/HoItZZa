@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+article{max-height:654px; width:652px;position:relative;left:171px;}
+div#dUserList{width:100%;text-align:center; ;position:absolute;top:20px;width: 650px;left:2px;}
+div#pageBar{position: absolute;top:590px;width:100%;text-align: center;}
+table#userList{top:40px; left:45px;border: 1px solid;border-collapse: collapse;position:absolute;}
+table#userList th,td{border:1px solid; padding:3px;text-align: center;}
+table#userList th{min-width: 55px;height: 30px;background: lightgray;}
+div#dUserList p{font-size: 25px;}
+
+table#userList tr:hover{cursor: pointer;background: lightseagreen;}
+
+div#search-container{position:relative;top:555px;width:100%;left:-42px;}
+div#search-container input[type=search]{width:220px;}
+div#search-container input[type=button]{width:50px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
