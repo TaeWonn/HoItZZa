@@ -40,7 +40,7 @@ div#search-memberName {
 		<tr>
 			<td><nobr><%-- <%=userList.get(i).getUserId() %> --%>user<%=i %></nobr></td>
 			<td><nobr> <%-- <%=userList.get(i).getName() %> --%>유저</nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getGender().equals("M")?"남성":"여성" %> --%>여성</nobr></td>
+			<td><nobr> <%-- <%=userList.get(i).getGender().equals("M")?"남":"여" %> --%>여성</nobr></td>
 			<td><nobr> <%-- <%=userList.get(i).getEmail() %> --%>female<%=i %>@naver.com</nobr></td>
 			<td><nobr> <%-- <%=userList.get(i).getPhone() %> --%>010-1234-1234</nobr></td>
 			<td><nobr> <%-- <%=userList.get(i).getJoin_date() %> --%>2019/03/<%=i %></nobr></td>		
