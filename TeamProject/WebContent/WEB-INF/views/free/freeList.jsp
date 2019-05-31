@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="board.model.vo.Board, java.util.*" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%
+	List<Board> list = (List<Board>)request.getAttribute("list");
+	String pageBar = (String)request.getAttribute("pageBar");
+	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
+	//Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
 
   <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -57,6 +64,11 @@
         
       </table>
 
+<%-- <%if(memberLoggedIn != null){ %>
+		<input type="button" value="글쓰기" 
+			   id="btn-add"
+			   onclick="location.href='<%=request.getContextPath()%>/board/boardForm'"/>
+	<% } %> --%>
 </body>
 </html>
 

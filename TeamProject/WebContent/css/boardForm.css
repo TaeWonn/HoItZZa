@@ -1,21 +1,27 @@
 @charset "UTF-8";
 
-
+body{
+	margin: auto;
+}
  
+.img-viewer{
+
+	 height : 200;
+}
  input:radio{
     width: 20px;
 }
 .custom-select{
     width: 500px;
-    margin: 10px;
-    margin-left : 70px;
+    margin: 7px;
+    margin-left : 7.5%;
 }
 .alert-light{
     border: 0.5px solid;
     width: 500px;
-    margin: 10px;
+    margin: 7px;
     height: 40px;
-    margin-left : 70px;
+    margin-left : 7.5%;
 }
 #userId{
     background: lightgray;
@@ -23,7 +29,7 @@
     color : black;
     width: 250px;
 }
-#how{
+#boardDeal{
 margin-left : 25px;
 margin-top : -6px;
 width: 210px;
@@ -31,12 +37,15 @@ border: 1px solid red;
 }
 #boardContent{
     margin: 10px;
-     margin-left : 70px;
+    width: 500px;
+    height: 400px;
+    margin : auto;
+    overflow : auto;  
+    border: 0.5px solid gray;
      
 }
 .form-control-file{
-    margin-left : 240px;
-    margin-top: -10px; 
+    margin-left : 23%;
     width: 200px;
     border: 0.1px solid rgb(211, 208, 208);
       margin-bottom: 20px;
@@ -61,9 +70,9 @@ border: 1px solid red;
 
 
 .filebox{
-	margin-left: 240px;
-	
+	margin-left: 24%;
 }
+
 
 .filebox input[type="file"] {
   position: absolute;

@@ -12,10 +12,10 @@
 <body>
 
 
-	<form action="<%=request.getContextPath()%>/imgtest.jsp"
+<form action="<%=request.getContextPath()%>/sell/sellWriteEnd"
 	 method="post" enctype="multipart/form-data">
 	
-		<h2 style="text-align: center">구매글 작성</h2>
+		<h2 style="text-align: center">판매글 작성</h2>
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
@@ -31,7 +31,7 @@
 
         <br>
 
-        <select class="custom-select" id="inputGroupSelect02" name="kategory">
+        <select class="custom-select" id="boardCodeNo" name="boardCodeNo">
                 <option selected>카테고리 선택</option>
                 <option value="1">식품</option>
                 <option value="2">가전</option>
@@ -41,21 +41,19 @@
         <!-- <div id="img-viewer-container">
 						<img id="img-viewer" width=350/>
 					</div> -->
-        <div contentEditable="true"  id="boardContent">
-        <img id="img-viewer" style="display: block;"/>
-        
-        </div>
+        <textarea name="boardContent" id="boardContent" cols="68" rows="10"></textarea>
         <br>
            <div class="filebox">
-           			
-					
-	<input type="file" id="ex_img" onchange="loadImg(this);">			 
-    <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="file" id="ex_filename" class="upload-hidden" name="filename1">
+  <div id="img-viewer-container">
+						<img id="img-viewer"  width=350/>
+					</div>
+					 <input type="file" id="ex_img" onchange="loadImg(this);">
+  <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="file" id="ex_filename" class="upload-hidden" >
+    <input class="upload-name" value="파일명" disabled="disabled">
     
-  <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden" name="">
+  <input type="file" id="ex_filename" class="upload-hidden">
 </div>
           
                 <div id="buttons">
