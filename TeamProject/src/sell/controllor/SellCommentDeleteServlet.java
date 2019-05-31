@@ -12,7 +12,7 @@ import sell.model.service.SellService;
 /**
  * Servlet implementation class SellCommentDeleteServlet
  */
-@WebServlet("/sell/sellDelete")
+@WebServlet("/sell/sellCommentDelete")
 public class SellCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

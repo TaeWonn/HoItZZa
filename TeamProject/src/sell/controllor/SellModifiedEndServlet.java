@@ -24,7 +24,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class SellModifiedServlet
  */
-@WebServlet("/sell/sellModified")
+@WebServlet("/sell/sellModifiedEnd")
 public class SellModifiedEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
