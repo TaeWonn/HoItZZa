@@ -158,10 +158,9 @@ public class UserDAO {
 			String password = "";
 			
 			if(rs.next()) {
-				userId = rs.getString("userId");
+				userId = rs.getString("user_Id");//이부분 열이름 틀려서 수정
 				password = rs.getString("password");
 			}
-			
 			if(userId.equals(u.getUserId())
 					&& password.equals(u.getPassword())) {
 				result = UserService.LOGIN_OK;

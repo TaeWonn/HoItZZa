@@ -16,7 +16,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserEnrollEndServlet
  */
-@WebServlet("/views/user/userJoinEnd")
+@WebServlet("/views/user/userEnrollEnd")
 public class UserEnrollEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
