@@ -111,6 +111,7 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 			loc = "/";
 		}
 		
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")

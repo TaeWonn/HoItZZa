@@ -371,4 +371,46 @@ public class BuyDAO {
 		return result;
 	}
 
+	public int selectUserPoint(Connection conn, String userId) {
+		int point = 0;
+		String sql = prop.getProperty("selectUserPoint");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				point = rs.getInt("point");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return point;
+	}
+
+	public int buying(Connection conn, int price, int point) {
+		int result =0;
+		String sql = prop.getProperty("buying");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, point);
+			ps.setInt(2, price);
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
 }

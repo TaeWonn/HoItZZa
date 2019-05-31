@@ -134,4 +134,22 @@ public class BuyService {
 		return result;
 	}
 
+	public int selectUserPoint(String userId) {
+		Connection conn = getConnection();
+		int point = new BuyDAO().selectUserPoint(conn, userId);
+		close(conn);
+		return point;
+	}
+
+	public int buying(int price, int point) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().buying(conn, price, point);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }
