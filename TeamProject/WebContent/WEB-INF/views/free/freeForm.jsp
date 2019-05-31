@@ -12,46 +12,40 @@
 <body>
 
 
-	<form action="<%=request.getContextPath()%>/imgtest.jsp"
+	<form action="<%=request.getContextPath()%>/free/freFormEnd"
 	 method="post" enctype="multipart/form-data">
 	
-		<h2 style="text-align: center">구매글 작성</h2>
+		<h3 style="text-align: center">자유게시판  글작성</h3>
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
-        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
-
-
-<!-- 거래방식 -->
-    	<select class="custom-select" id="boardDeal" name="boardDeal">
-
-                <option value="1" selected>택배</option>
-                <option value="2">직거래</option>
-        </select>
-
+        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly style="width : 500px"> 
         <br>
 
-        <select class="custom-select" id="inputGroupSelect02" name="kategory">
+        <select class="custom-select" id="boardCodeNo" name="boardCodeNo">
                 <option selected>카테고리 선택</option>
-                <option value="1">식품</option>
-                <option value="2">가전</option>
-                <option value="3">패션</option>
+                <option value="1">잡답 게시판</option>
+                <option value="2">생활지식 게시판</option>
+                <option value="3">연예/미디어 게시판</option>
+                <option value="4">나눔게시판</option>
         </select>
         <br>
         <!-- <div id="img-viewer-container">
 						<img id="img-viewer" width=350/>
 					</div> -->
         <div contentEditable="true"  id="boardContent">
+        
+        
         <img id="img-viewer" style="display: block;"/>
         
-        </div>
-        <br>
-           <div class="filebox">
+        
+        </div><br>
+        <div class="filebox">
            			
 					
 	<input type="file" id="ex_img" onchange="loadImg(this);">			 
     <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="file" id="ex_filename" class="upload-hidden" name="filename1">
+    <input type="file" id="ex_filename" class="upload-hidden" >
     
   <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
@@ -116,6 +110,7 @@ fileTarget.on('change', function(){ // 값이 변경되면
 
   // 추출한 파일명 삽입
   $(this).siblings('.upload-name').val(filename);
+  
 });
 
 

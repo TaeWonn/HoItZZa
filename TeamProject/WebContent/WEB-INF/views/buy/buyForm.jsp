@@ -12,7 +12,8 @@
 <body>
 
 
-<form>
+	<form action="<%=request.getContextPath()%>/buy/buyWriteEnd"
+	 method="post" enctype="multipart/form-data">
 	
 		<h2 style="text-align: center">구매글 작성</h2>
 		<br>
@@ -20,7 +21,9 @@
         <br>
         <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
 
-    	<select class="custom-select" id="how">
+
+<!-- 거래방식 -->
+    	<select class="custom-select" id="boardDeal" name="boardDeal">
 
                 <option value="1" selected>택배</option>
                 <option value="2">직거래</option>
@@ -38,19 +41,21 @@
         <!-- <div id="img-viewer-container">
 						<img id="img-viewer" width=350/>
 					</div> -->
-        <textarea name="boardContent" id="boardContent" cols="68" rows="10"></textarea>
+        <div contentEditable="true"  id="boardContent">
+        <img id="img-viewer" style="display: block;"/>
+        
+        </div>
         <br>
            <div class="filebox">
-  <div id="img-viewer-container">
-						<img id="img-viewer"  width=350/>
-					</div>
-					 <input type="file" id="ex_img" onchange="loadImg(this);">
-  <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="file" id="ex_filename" class="upload-hidden" >
-    <input class="upload-name" value="파일명" disabled="disabled">
+           			
+					
+	<input type="file" id="ex_img" onchange="loadImg(this);">			 
+    <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="file" id="ex_filename" class="upload-hidden" >
     
+  <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden">
+  <input type="file" id="ex_filename" class="upload-hidden" name="">
 </div>
           
                 <div id="buttons">
