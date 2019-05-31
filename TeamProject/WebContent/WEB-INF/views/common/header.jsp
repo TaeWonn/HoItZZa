@@ -10,12 +10,10 @@
 	Cookie[] cookies = request.getCookies();
 	boolean saveIdflag = false;
 	String userId = "";
-
 	if (cookies != null) {
 		for (Cookie c : cookies) {
 			String key = c.getName();
 			String value = c.getValue();
-
 			if ("saveId".equals(key)) {
 				saveIdflag = true;
 				userId = value;
@@ -70,7 +68,6 @@
 #head-container {
 	background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
 }
-
 ul#link2{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
 ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
 </style>
@@ -193,14 +190,12 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			var dd = today.getDate();
 			var mm = today.getMonth() + 1; //January is 0!
 			var yyyy = today.getFullYear();
-
 			if (dd < 10) {
 				dd = '0' + dd
 			}
 			if (mm < 10) {
 				mm = '0' + mm
 			}
-
 			today = yyyy + "년" + mm + "월" + dd + "일";
 			var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d69250224a399641ef739b6e02e5cfaf";
 			$
@@ -210,10 +205,8 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 						type : "GET",
 						async : "false",
 						success : function(resp) {
-
 							var imgURL = "http://openweathermap.org/img/w/"
 									+ resp.weather[0].icon + ".png";
-
 							var html = '<div id="weather"><span style="font-size:20px;" id="today">'
 									+ today
 									+ '</span><img src="'+imgURL+'" alt="" /><span id="wSpan">'
@@ -232,10 +225,8 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 						}
 					});
 		});
-
 		//로그인 처리
 		function checkLogin() {
-
 			var id = $('#header_userId').val().trim();
 			var pwd = $('#header_userPwd').val().trim();
 			if (id.length == 0) {
@@ -251,7 +242,6 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			}
 			
 			$('#loginFrm').submit();
-
 		}
 		
 		function enterUser(){

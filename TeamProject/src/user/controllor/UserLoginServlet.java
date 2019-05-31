@@ -29,7 +29,7 @@ public class UserLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+		String password = request.getParameter("userPwd");
 		
 		String saveId = request.getParameter("saveId");
 		
@@ -43,20 +43,34 @@ public class UserLoginServlet extends HttpServlet {
 		
 		Map<String, String> headerMap = new HashMap<>();
 		Enumeration<String> headerNames = request.getHeaderNames();
+		while(headerNames.hasMoreElements()) {
+			String name = headerNames.nextElement();
+			String value = request.getHeader(name);
+			headerMap.put(name, value);
+		}
+		
+		System.out.println("headermap@loginServlet="+headerMap);
 		
 		String referer = headerNames.nextElement();
 		String origin = request.getHeader("Origin");
 		String url = request.getRequestURL().toString();
-		String uri = request.getRequestURI().toString();
+		String uri = request.getRequestURI();
+		
+		System.out.println("referer="+referer);
+		System.out.println("origin="+origin);
+		System.out.println("url="+url);
+		System.out.println("uri="+uri);
 		
 		String view = "";
 		String msg = "";
-		String loc = referer.replace(origin+request.getContextPath(), "");
+//		String loc = referer.replace(origin+request.getContextPath(), "");
+		String loc = "/";
 		
 		// login Success
 		if(result == UserService.LOGIN_OK) {
 			view = "/";
 			
+			//로그인에 성공한 회원정보 가져오기
 			User userLoggedIn = new UserService().selectOne(userId);
 			
 			HttpSession session = request.getSession();
@@ -83,8 +97,9 @@ public class UserLoginServlet extends HttpServlet {
 				c.setPath("/");
 				response.addCookie(c);
 				
-				response.sendRedirect(request.getContextPath());
 			}	// end of if(saveId != null)
+			
+			response.sendRedirect(request.getContextPath());
 		} // end of if(LOGIN_OK)
 		else {	// login failure
 			view = "/WEB-INF/views/common/msg.jsp";
@@ -100,10 +115,11 @@ public class UserLoginServlet extends HttpServlet {
 			
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
+			
+			// 3. view
+			request.getRequestDispatcher(view).forward(request, response);
 		}	// end of else(Login Failure)
 		
-		// 3. view
-		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**
