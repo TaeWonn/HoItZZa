@@ -92,7 +92,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userLoggedIn.getUserId():"" %>' /> 
 						<br /> 
 						<img src="<%=request.getContextPath()%>/images/pwd.svg" class="inout">
-						<input type="password" name="userPwd" id="header_userPwd" />
+						<input type="password" name="userPwd" id="header_userPwd" onkeyup="enterUser();"/>
 						 <br /> 
 						 <input type="checkbox" name="saveId" id="saveId"  <%=saveIdflag?"checked":"" %> />
 						 <label for="saveId">아이디 저장</label> 
@@ -252,6 +252,12 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			
 			$('#loginFrm').submit();
 
+		}
+		
+		function enterUser(){
+			if(window.event.keyCode==13){
+				checkLogin();
+			}
 		}
 	</script>
 	<section id="content">

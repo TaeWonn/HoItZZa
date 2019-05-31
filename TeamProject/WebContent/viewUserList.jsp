@@ -7,6 +7,7 @@ List<User>userList=(List<User>)request.getAttribute("userList");
 String searchType=(String)request.getAttribute("searchType");
 String searchKeyword=(String)request.getAttribute("searchKeyword");
 int numPerPage=10;
+String pageBar=(String)request.getAttribute("pageBar");
 
 
 %>
@@ -78,7 +79,7 @@ div#search-memberName {
 		</div>
 	</div>
 <div id="pageBar">
-	페이지바 둘 곳
+	<%=pageBar %>
 </div>
 
 
