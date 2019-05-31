@@ -91,10 +91,11 @@ public class BuyDAO {
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, b.getBoardTitle());
-			ps.setString(2, b.getBoardCodeNo());
-			ps.setString(3, b.getBoardContent());
+			ps.setString(2, b.getBoardContent());
+			ps.setString(3, b.getBoardCodeNo());
 			ps.setString(4, b.getBoardDeal());
-			
+			//테이블 insert순서 title,content,writer,board_code_no
+			//,board_deal,board_date,board_read_count순임
 			result =ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
