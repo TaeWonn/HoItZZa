@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-article{width:652px;position:relative;left:171px;}
+article{width:652px;position:relative;left:171px;height: 743px;}
 div#viewMain{width:100%;text-align: center;position:absolute;margin-top:40px;height: 50px;}
 span#h1{font-size: 40px;position: absolute;right:130px;}
 div#infoList{position: absolute;top:105px;width:340px;height:470px;left:15px;background:lightgray;}

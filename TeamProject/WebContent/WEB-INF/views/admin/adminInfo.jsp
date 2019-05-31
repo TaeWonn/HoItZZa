@@ -77,8 +77,8 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 	</tr>
 	 <%}%>
 	</table>
-	<%-- <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%=userIdd%>)">건의게시판 바로가기</button> --%>
-	<button type="button" id="move1"onclick="moveSBoard('<%=userIdd%>')">건의게시판 바로가기</button>
+	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%=userIdd%>)">건의게시판 바로가기</button>
+	<%-- <button type="button" id="move1"onclick="moveSBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
 	</div>
 	
 	<div id="reportBoard"  class="boardTitle">
@@ -97,8 +97,8 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 	</tr>
 	 <%}%>
 	</table>
-	<%-- <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%=userIdd%>)">신고게시판 바로가기</button> --%>
-	<button type="button" id="move2"onclick="moveRBoard('<%=userIdd%>')">건의게시판 바로가기</button>
+	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%=userIdd%>)">신고게시판 바로가기</button>
+	<%-- <button type="button" id="move2"onclick="moveRBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
 	</div>
 </div>
 

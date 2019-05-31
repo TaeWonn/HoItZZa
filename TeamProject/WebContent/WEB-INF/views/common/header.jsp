@@ -92,7 +92,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userLoggedIn.getUserId():"" %>' /> 
 						<br /> 
 						<img src="<%=request.getContextPath()%>/images/pwd.svg" class="inout">
-						<input type="password" name="userPwd" id="header_userPwd" />
+						<input type="password" name="userPwd" id="header_userPwd" onkeyup="enterUser();"/>
 						 <br /> 
 						 <input type="checkbox" name="saveId" id="saveId"  <%=saveIdflag?"checked":"" %> />
 						 <label for="saveId">아이디 저장</label> 
@@ -114,7 +114,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
-					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
 					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
 				</ul>
@@ -252,6 +252,12 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			
 			$('#loginFrm').submit();
 
+		}
+		
+		function enterUser(){
+			if(window.event.keyCode==13){
+				checkLogin();
+			}
 		}
 	</script>
 	<section id="content">

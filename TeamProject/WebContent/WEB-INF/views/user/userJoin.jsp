@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/userJoin.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/userJoin.css" />
 <!-- 회원가입 view단 -->
 <article>
 	<div id="joinMain">

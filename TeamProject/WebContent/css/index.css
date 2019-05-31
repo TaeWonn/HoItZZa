@@ -2,23 +2,21 @@
 
 article{margin: 0; width: 617px; position: relative; left: 188px;height: 100%;}
 table{border: 1px solid; border-collapse: collapse;}
-table#sellList{position:absolute;width:300px; }
-table#buyList{position:absolute;left: 324px;width:300px;}
+table#sellList{position:absolute;width:300px;table-layout:fixed; }
+table#buyList{position:absolute;left: 324px;width:300px;table-layout:fixed;}
 span.title{font-size: 30px;}
 
 div#board1{height: 350px;position:relative;}
-div#board2{height: 400px;position:relative;top:14px;}
+div#board2{height: 400px;position:relative;top:26px;}
 
-table#jayuList1{position:absolute;width:300px;}
-table#jayuList2{position:absolute;width:300px;left: 324px;}
-table#jayuList3{position:absolute;width:300px;top:215px;}
-table#jayuList4{position:absolute;width:300px;top:215px;left: 324px;}
-.board_no{text-align: center;width:43px;}
+table#jayuList1{position:absolute;width:300px;table-layout:fixed;}
+table#jayuList2{position:absolute;width:300px;left: 324px;table-layout:fixed;}
+table#jayuList3{position:absolute;width:300px;top:215px;table-layout:fixed;}
+table#jayuList4{position:absolute;width:300px;top:215px;left: 324px;table-layout:fixed;}
+
 table{border: 1px solid; border-collapse: collapse;}
-table td,th{border:1px solid;}
-.viewer{width:53px; text-align: center;}
-
-
+table td,th{border:1px solid;text-overflow:ellipsis;overflow:hidden;text-align: center;}
+table th{text-align: center;max-width: 43px;}
 
 
 
