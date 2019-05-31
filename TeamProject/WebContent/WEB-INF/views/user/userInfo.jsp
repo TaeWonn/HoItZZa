@@ -19,7 +19,7 @@
 %>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/userInfo.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/userInfo.css" />
 
 <article>
 

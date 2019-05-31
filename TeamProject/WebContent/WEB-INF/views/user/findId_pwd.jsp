@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/findId_pwd.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/findId_pwd.css" />
 <article id="article">
 	<div id="findUserService">
 		<h1>회원 정보 찾기</h1>

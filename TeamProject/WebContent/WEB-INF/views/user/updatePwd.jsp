@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/findPwd.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/findPwd.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<article id="article">
 <h1>비밀번호 변경</h1>
 	<div id="changePwd">
-<<<<<<< HEAD
 	<%-- <%=request.getContextPath()%>/views/user/updatePwd --%>
 	<form action="<%=request.getContextPath()%>/views/user/updatePwdEnd" method="post" 
 			onsubmit="return checkChangePwd();">

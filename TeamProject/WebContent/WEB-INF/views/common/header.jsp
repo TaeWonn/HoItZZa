@@ -114,7 +114,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
-					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
 					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
 				</ul>

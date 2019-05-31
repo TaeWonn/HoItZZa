@@ -6,7 +6,7 @@ span#sellBuy2 a{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 aut
 div#head-container{max-height: 200px;text-align: center;}
 aside#asideLeft{float: left;width: 170px;height: 100%;}
 aside#asideRight{float: right;width: 200px;height: 100%;}
-body{max-width:1024px;}
+body{max-width:1024px;margin:auto;}
 input{width:120px;position: relative;bottom: 3px;}
 .inout{width:20px;height:20px;position: relative;top: -2.5px; margin-right: 7px;}
 div#login-container{text-align:center;border: 1px solid black;margin:0;}

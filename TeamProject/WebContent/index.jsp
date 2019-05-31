@@ -8,6 +8,7 @@
 	<div id="list-container">
 	<div id="board1">
 		<span class="title">판매 / 구매 게시판</span>
+		
 		<table id="sellList">
 		<colgroup>
 	        <col width="30px">
@@ -173,6 +174,7 @@
 		</table>
 		
 		</div>
+
 	</div>
  
 </section>
