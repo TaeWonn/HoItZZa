@@ -23,12 +23,12 @@ public class UserFindIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 서블릿
 		String name = request.getParameter("findUserId_name");
-		String phone = request.getParameter("find_UserId_phone");
+		String phone = request.getParameter("findUserId_phone");
 		
 		// 2. 업무 로직
 		User u = new User();
 		u.setName(name);
-		u.setSsn(phone);
+		u.setPhone(phone);
 		String userId = new UserService().findUserId(u);
 		
 		
