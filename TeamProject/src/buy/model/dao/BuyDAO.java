@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -14,6 +15,7 @@ import java.util.Properties;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
+import sell.model.vo.Sell;
 
 public class BuyDAO {
 	
@@ -239,6 +241,37 @@ public class BuyDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public List<Buy> selectInterestBuyListByUser(Connection conn, String userId) {
+		List<Buy> list = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectInterestBuyListByUser");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Buy b = new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardContent("board_content");
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				b.setBoardReadCounter(rs.getInt("board_read_counter"));
+				b.setBoardDate(rs.getDate("board_date"));
+				
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

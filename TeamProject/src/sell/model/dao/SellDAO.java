@@ -5,8 +5,10 @@ import static common.JDBCTemplate.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -282,8 +284,65 @@ public class SellDAO {
 		return result;
 	}
 	public List<Sell> selectInterestSellListByUser(Connection conn, String userId) {
+		List<Sell> list = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectInterestSellListByUser");
 		
-		return null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Sell s = new Sell();
+				s.setBoardNo(rs.getString("board_no"));
+				s.setBoardCodeNo(rs.getString("board_code_no"));
+				s.setBoardTitle(rs.getString("board_title"));
+				s.setBoardContent("board_content");
+				s.setBoardDeal(rs.getString("board_deal"));
+				s.setBoardWriter(rs.getString("board_writer"));
+				s.setBoardReadCounter(rs.getInt("board_read_counter"));
+				s.setBoardDate(rs.getDate("board_date"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<Sell> selectInterestSellListByCategory(Connection conn, String interest) {
+		List<Sell> list = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectInterestSellListByUser");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, interest);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Sell s = new Sell();
+				s.setBoardNo(rs.getString("board_no"));
+				s.setBoardCodeNo(rs.getString("board_code_no"));
+				s.setBoardTitle(rs.getString("board_title"));
+				s.setBoardContent("board_content");
+				s.setBoardDeal(rs.getString("board_deal"));
+				s.setBoardWriter(rs.getString("board_writer"));
+				s.setBoardReadCounter(rs.getInt("board_read_counter"));
+				s.setBoardDate(rs.getDate("board_date"));
+				
+				list.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

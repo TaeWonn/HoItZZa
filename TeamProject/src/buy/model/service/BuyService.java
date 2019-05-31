@@ -9,6 +9,8 @@ import buy.model.dao.BuyDAO;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
+import sell.model.dao.SellDAO;
+import sell.model.vo.Sell;
 
 public class BuyService {
 
@@ -86,6 +88,13 @@ public class BuyService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public List<Buy> selectInterestBuyListByUser(String userId) {
+		Connection conn = getConnection();
+		List<Buy> interestBuyList = new BuyDAO().selectInterestBuyListByUser(conn, userId);
+		close(conn);
+		return interestBuyList;
 	}
 
 }

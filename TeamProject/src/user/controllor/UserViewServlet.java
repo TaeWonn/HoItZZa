@@ -45,6 +45,11 @@ public class UserViewServlet extends HttpServlet {
 		if(u != null) {
 			view = "/WEB-INF/views/user/userView.jsp";
 			request.setAttribute("user", u);
+			request.setAttribute("interestSellListByUser", interestSellListByUser);
+			request.setAttribute("interestBuyListByUser", interestBuyListByUser);
+			request.setAttribute("interestCategoryList1", interestCategoryList1);
+			request.setAttribute("interestCategoryList2", interestCategoryList2);
+			request.setAttribute("interestCategoryList3", interestCategoryList3);
 		}
 		else {
 			view = "/WEB-INF/views/common/msg.jsp";
