@@ -95,7 +95,7 @@ public class SellDAO {
 			ps.setString(2, s.getBoardContent());
 			ps.setString(3, s.getBoardWriter());
 			ps.setString(4, s.getBoardCodeNo());
-			  
+			ps.setString(5, s.getBoardDeal());//이부분이 빠져있어서 추가했어-세웅
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

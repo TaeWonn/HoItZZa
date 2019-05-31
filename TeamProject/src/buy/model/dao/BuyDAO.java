@@ -92,10 +92,11 @@ public class BuyDAO {
 
 			ps.setString(1, b.getBoardTitle());
 			ps.setString(2, b.getBoardContent());
-			ps.setString(3, b.getBoardCodeNo());
-			ps.setString(4, b.getBoardDeal());
+			ps.setString(3, b.getBoardWriter());//빠져서 추가-세웅
+			ps.setString(4, b.getBoardCodeNo());
+			ps.setString(5, b.getBoardDeal());
 			//테이블 insert순서 title,content,writer,board_code_no
-			//,board_deal,board_date,board_read_count순임
+			//,board_deal,board_date,board_read_count순임-세웅
 			result =ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
