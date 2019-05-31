@@ -84,7 +84,7 @@ public class SellWriteEndServlet extends HttpServlet {
 		}else if(res == 0) {
 			view = "/WEB-INF/views/common/msg.jsp";
 			msg = "파일 업로딩 오류";
-			loc = "/sell/sellList";
+			loc = "/sell/sellList"; 
 		} else {
 			msg = "글 등록 실패";
 			loc = "/sell/sellList";
