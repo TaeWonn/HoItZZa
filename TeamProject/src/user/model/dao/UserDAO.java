@@ -99,7 +99,7 @@ public class UserDAO {
 			
 			if(rs.next()) {
 				u = new User();
-				u.setUserId(rs.getString("userId"));
+				u.setUserId(rs.getString("user_Id"));
 				u.setPassword(rs.getString("password"));
 				u.setName(rs.getString("name"));
 				u.setGender(rs.getString("gender"));
@@ -120,6 +120,7 @@ public class UserDAO {
 			close(rs);
 		}
 		
+		System.out.println("User@DAO="+u);
 		return u;
 	}
 
@@ -158,7 +159,7 @@ public class UserDAO {
 			String password = "";
 			
 			if(rs.next()) {
-				userId = rs.getString("userId");
+				userId = rs.getString("user_Id");
 				password = rs.getString("password");
 			}
 			
@@ -256,6 +257,7 @@ public class UserDAO {
 		ResultSet rs = null;
 		// 일치하는 회원 정보를 count로 받아올 것.
 		String sql = prop.getProperty("findUserPwd");
+		System.out.println("findUserPwd@SQL="+sql);
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -268,6 +270,7 @@ public class UserDAO {
 			if(rs.next()) 
 				result = rs.getInt("cnt");
 			
+			System.out.println("result@userDAO="+result);
 			if(result>0)
 				chkPwd = true;
 				
