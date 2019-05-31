@@ -318,7 +318,7 @@ public class SellDAO {
 		List<Sell> list = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = prop.getProperty("selectInterestSellListByUser");
+		String sql = prop.getProperty("selectInterestSellListByCategory");
 		
 		try {
 			ps = conn.prepareStatement(sql);

@@ -99,7 +99,7 @@ public class UserDAO {
 			
 			if(rs.next()) {
 				u = new User();
-				u.setUserId(rs.getString("userId"));
+				u.setUserId(rs.getString("user_Id"));
 				u.setPassword(rs.getString("password"));
 				u.setName(rs.getString("name"));
 				u.setGender(rs.getString("gender"));
@@ -234,11 +234,12 @@ public class UserDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getName());
 			ps.setString(2, u.getPhone());
-			
+			System.out.println("ID뭐야!!!"+u.getName());
+			System.out.println("폰번!!!!"+u.getPhone());
 			rs = ps.executeQuery();
 			
 			if(rs.next())
-				userId = rs.getString("userId");
+				userId = rs.getString("user_Id");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
