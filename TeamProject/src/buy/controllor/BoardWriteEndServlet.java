@@ -67,6 +67,9 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		String delFile = multiReq.getParameter("delFile");
 		File f = multiReq.getFile("upFile0");
 		
+		boardContent =boardContent.replaceAll("<", "&lt;")
+				.replaceAll(">", "&gt;");
+		
 		Sell s = new Sell();
 		s.setBoardNo(boardNo);
 		s.setBoardTitle(boardTitle);

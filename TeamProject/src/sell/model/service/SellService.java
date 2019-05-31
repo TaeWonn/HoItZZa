@@ -123,4 +123,22 @@ public class SellService {
 		return list;
 	}
 
+	public List<Comment> commentList(String boardNo) {
+		Connection conn = getConnection();
+		List<Comment> clist = new SellDAO().commentList(conn, boardNo);
+		close(conn);
+		return clist;
+	}
+
+	public int deleteComment(int commentNo) {
+		Connection conn = getConnection();
+		int result = new SellDAO().deleteComment(conn, commentNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

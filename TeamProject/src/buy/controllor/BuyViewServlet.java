@@ -1,6 +1,8 @@
 package buy.controllor;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
+import comment.model.vo.Comment;
 
 /**
  * Servlet implementation class BuyViewServlet
@@ -35,6 +38,9 @@ public class BuyViewServlet extends HttpServlet {
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
 		
+		List<Comment> clist = new BuyService().commentList(boardNo);
+		
+		request.setAttribute("cList", clist);
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("buy", b);
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyList.jsp")

@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import comment.model.vo.Comment;
+import buy.model.service.BuyService;
 import file.model.vo.FileTable;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
 /**
- * Servlet implementation class SellViewServlet
+ * Servlet implementation class SellModifiedServlet
  */
-@WebServlet("/sell/sellView")
-public class SellViewServlet extends HttpServlet {
+@WebServlet("/sell/sellModified")
+public class SellModifiedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,27 +29,11 @@ public class SellViewServlet extends HttpServlet {
 		
 		Sell s = new SellService().selectOneSell(boardNo);
 		
-		List<FileTable> ft = new SellService().selectFiles(boardNo);
+		List<FileTable> flist = new BuyService().selectFileList(boardNo);
 		
-		//경고 횟수 가져오기
-		
-		
-		if(s == null) {
-			request.setAttribute("msg", "게시글이 존재하지않습니다");
-			request.setAttribute("loc", "/sell/sellList");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-				.forward(request, response);
-			return;
-		}
-		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
-		
-		List<Comment> clist = new SellService().commentList(boardNo);
-
-		request.setAttribute("cList", clist);
-		request.setAttribute("warningCnt", warningCnt);
+		request.setAttribute("flist", flist);
 		request.setAttribute("sell", s);
-		request.setAttribute("files", ft);
-		request.getRequestDispatcher("/WEB-INF/views/sell/sellView.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/sell/sellModifiedEnd.jsp")
 				.forward(request, response);
 	}
 

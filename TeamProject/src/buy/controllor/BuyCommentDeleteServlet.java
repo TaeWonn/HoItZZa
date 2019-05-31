@@ -1,25 +1,21 @@
 package buy.controllor;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import buy.model.dao.BuyDAO;
 import buy.model.service.BuyService;
-import buy.model.vo.Buy;
-import file.model.vo.FileTable;
-import user.model.vo.User;
 
 /**
- * Servlet implementation class BoardModifiedServlet
+ * Servlet implementation class BuyCommentDeleteServlet
  */
-@WebServlet("/buy/buyModified")
-public class BoardModifiedServlet extends HttpServlet {
+@WebServlet("/buy/commentDelete")
+public class BuyCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,14 +23,21 @@ public class BoardModifiedServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
+		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
 		
-		Buy b = new BuyService().selectOneBuy(boardNo);
+		int result= new BuyService().deleteComment(commentNo);
 		
-		List<FileTable> flist = new BuyService().selectFileList(boardNo);
+		String msg = "";
+		String loc = "/buy/buyView?boardNo="+boardNo;
+		if(result > 0) {
+			msg = "댓글 삭제 성공";
+		} else {
+			msg = "댓글 삭제 실패";
+		}
 		
-		request.setAttribute("flist", flist);
-		request.setAttribute("buy", b);
-		request.getRequestDispatcher("/WEB-INF/views/buy/buyModifiedEnd.jsp")
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 	}
 

@@ -56,6 +56,9 @@ public class SellWriteEndServlet extends HttpServlet {
 		String originalFileName = multiReq.getOriginalFileName("upFile");
 		String renamedFileName = multiReq.getFilesystemName("upFile");
 		
+		boardContent =boardContent.replaceAll("<", "&lt;")
+								.replaceAll(">", "&gt;");
+		
 		Sell s = new Sell();
 		s.setBoardTitle(boardTitle);
 		s.setBoardContent(boardContent);

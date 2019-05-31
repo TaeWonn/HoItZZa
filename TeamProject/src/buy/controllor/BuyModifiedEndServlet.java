@@ -1,4 +1,4 @@
-package sell.controllor;
+package buy.controllor;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,24 +8,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+import buy.model.service.BuyService;
+import buy.model.vo.Buy;
 import common.SellBarFileRenamePolicy;
 import file.model.vo.FileTable;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
-import user.model.vo.User;
 
 /**
- * Servlet implementation class SellModifiedServlet
+ * Servlet implementation class BuyModifiedEndServlet
  */
-@WebServlet("/sell/sellModified")
-public class SellModifiedEndServlet extends HttpServlet {
+@WebServlet("/buy/buyModifiedEnd")
+public class BuyModifiedEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,7 +39,7 @@ public class SellModifiedEndServlet extends HttpServlet {
 				.forward(request, response);
 			return;
 		}
-		String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
+		String saveDirectory = getServletContext().getRealPath("/")+"upload/buy";
 		
 		int maxPostSize = 1024 * 1024 * 30;
 		
@@ -67,14 +67,14 @@ public class SellModifiedEndServlet extends HttpServlet {
 		String delFile = multiReq.getParameter("delFile");
 		File f = multiReq.getFile("upFile0");
 		
-		Sell s = new Sell();
-		s.setBoardNo(boardNo);
-		s.setBoardTitle(boardTitle);
-		s.setBoardContent(boardContent);
-		s.setBoardDeal(boardDeal);
-		s.setBoardCodeNo(boardCodeNo);
+		Buy b = new Buy();
+		b.setBoardNo(boardNo);
+		b.setBoardTitle(boardTitle);
+		b.setBoardContent(boardContent);
+		b.setBoardDeal(boardDeal);
+		b.setBoardCodeNo(boardCodeNo);
 		
-		int result = new SellService().updateSell(s);
+		int result = new BuyService().updateBuy(b);
 		
 		if(f != null) {
 			FileTable t = new FileTable();
@@ -90,7 +90,7 @@ public class SellModifiedEndServlet extends HttpServlet {
 				t.setBoardNo(boardNo);
 				t.setOriginalFileName(fname);
 				t.setRenamedFileName(newfname);
-				new SellService().insertFileTable(ft);
+				new BuyService().insertFileTable(ft);
 				
 			}
 		}
@@ -102,7 +102,7 @@ public class SellModifiedEndServlet extends HttpServlet {
 		String loc = "";
 		if(result > 0) {
 			msg = "게시글변경완료";
-			loc = "/sell/sellView?boardNo="+s.getBoardNo();
+			loc = "/buy/buyView?boardNo="+b.getBoardNo();
 		}else {
 			msg = "변경중 오류 발생";
 			loc = "/";

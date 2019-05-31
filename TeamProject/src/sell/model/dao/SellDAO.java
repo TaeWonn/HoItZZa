@@ -345,4 +345,51 @@ public class SellDAO {
 		return list;
 	}
 
+	public List<Comment> commentList(Connection conn, String boardNo) {
+		List<Comment> clist = new ArrayList<>();
+		String sql = prop.getProperty("commentList");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs= ps.executeQuery();
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setCommentContent(rs.getString("comment_comment"));
+				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommnetWriter(rs.getString("comment_writer"));
+				c.setBoardNo(boardNo);
+				
+				clist.add(c);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return clist;
+	}
+
+	public int deleteComment(Connection conn, int commentNo) {
+		int result =0;
+		String sql = prop.getProperty("deleteComment");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, commentNo);
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
 }

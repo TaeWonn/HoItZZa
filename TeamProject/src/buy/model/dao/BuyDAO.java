@@ -274,4 +274,101 @@ public class BuyDAO {
 		return list;
 	}
 
+	public List<FileTable> selectFileList(Connection conn, String boardNo) {
+		List<FileTable> flist = new ArrayList<>();
+		String sql = prop.getProperty("selectFileList");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				FileTable t = new FileTable();
+				t.setBoardNo(rs.getString("board_no"));
+				t.setOriginalFileName(rs.getString("original_file_name"));
+				t.setRenamedFileName(rs.getString("renamed_file_name"));
+				
+				flist.add(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return flist;
+	}
+
+	public int updateBuy(Connection conn, Buy b) {
+		int result = 0;
+		String sql = prop.getProperty("updateBuy");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, b.getBoardTitle());
+			ps.setString(2, b.getBoardContent());
+			ps.setString(3, b.getBoardDeal());
+			ps.setString(4, b.getBoardCodeNo());
+			ps.setString(5, b.getBoardNo());
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public List<Comment> commentList(Connection conn, String boardNo) {
+		List<Comment> clist = new ArrayList<>();
+		String sql = prop.getProperty("commentList");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setCommentContent(rs.getString("comment_content"));
+				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommnetWriter(rs.getString("comment_writer"));
+				c.setBoardNo(boardNo);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		
+		return clist;
+	}
+
+	public int deleteComment(Connection conn ,int commentNo) {
+		int result =0;
+		String sql = prop.getProperty("deleteComment");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, commentNo);
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
 }

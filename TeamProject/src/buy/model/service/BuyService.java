@@ -10,6 +10,7 @@ import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.dao.SellDAO;
+import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
 public class BuyService {
@@ -95,6 +96,42 @@ public class BuyService {
 		List<Buy> interestBuyList = new BuyDAO().selectInterestBuyListByUser(conn, userId);
 		close(conn);
 		return interestBuyList;
+	}
+
+	public List<FileTable> selectFileList(String boardNo) {
+		Connection conn = getConnection();
+		List<FileTable> flist = new BuyDAO().selectFileList(conn, boardNo);
+		close(conn);
+		return flist;
+	}
+
+	public int updateBuy(Buy b) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().updateBuy(conn, b);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public List<Comment> commentList(String boardNo) {
+		Connection conn = getConnection();
+		List<Comment> clist = new BuyDAO().commentList(conn, boardNo);
+		close(conn);
+		return clist;
+	}
+
+	public int deleteComment(int commentNo) {
+		Connection conn = getConnection();
+		int result = new BuyDAO().deleteComment(conn, commentNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
 	}
 
 }
