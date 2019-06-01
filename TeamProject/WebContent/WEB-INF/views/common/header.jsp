@@ -14,7 +14,6 @@
 	String userId = "";
 	if (cookies != null) {
 		for (Cookie c : cookies) {
-	System.out.println("쿠키확인"+c.getName());
 			
 			String key = c.getName();
 			String value = c.getValue();
@@ -25,7 +24,6 @@
 		}
 	}
 	
-	System.out.println("세이브 플래그"+saveIdflag);
 	
 %>
 	
@@ -72,9 +70,8 @@
 <style>
 #head-container {
 	background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
-}
-ul#link2{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
-ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;}
+} 
+
 </style>
 </head>
 <body>
@@ -114,27 +111,28 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				} else if(userLoggedIn.getUserId().equals("admin")){%>
 				<div id="login-container">
 
-				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
+				<span id="hi">관리자님 안녕하세요!</span><img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
-					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span>
-						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
-					<li><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
 				</ul>
 			</div>	
 			
 			<%}else{%>
 			<div id="login-container">
-
-				<span><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
+				<div id="contnet">
+				<span id="hi"><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
-						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo">내정보
+						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userId%>">내정보
 								보기</a></span></li>
-					<li><a href="<%=request.getContextPath()%>/">현재 포인트</a></li>
-					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
+					<li><span><a href="<%=request.getContextPath()%>/">현재 포인트</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
 				</ul>
+				</div>
 			</div>
 			<%}%>
 			<div id="board-list-container">

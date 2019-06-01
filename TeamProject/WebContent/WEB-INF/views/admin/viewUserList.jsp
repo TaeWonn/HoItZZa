@@ -12,15 +12,15 @@ String pageBar=(String)request.getAttribute("pageBar");
 
 %>
 <style>
-div#search-memberId {
-	display: <%=searchType == null || "memberId".equals(searchType) ? "inline-block" : "none"%>
+div#search-userId_find {
+	display: <%=searchType == null || "userId_find".equals(searchType) ? "inline-block" : "none"%>
 }
-div#search-memberName {
-	<%-- display: <%=searchType == null || "memberName".equals(searchType) ? "inline-block" : "none"%> --%>
+div#search-userName_find {
 	display:none;
-}
-div#search-gender {
-	<%-- display: <%=searchType == null || "gender".equals(searchType) ? "inline-block" : "none"%> --%>
+	<%-- display: <%=searchType == null || "userName_find".equals(searchType) ? "inline-block" : "none"%> --%>
+	}
+div#search-gender_find {
+	<%-- display: <%=searchType == null || "gender_find".equals(searchType) ? "inline-block" : "none"%> --%>
 	display:none;
 }
 </style>
@@ -58,38 +58,38 @@ div#search-gender {
 	<div id="search-container">
 
 		<select name="" id="searchType" >
-			<option value="memberId"
-				<%="memberId".equals(searchType) ? "selected" : ""%>>아이디로
+			<option value="userId_find"
+				<%="userId_find".equals(searchType) ? "selected" : ""%>>아이디로
 				조회</option>
-			<option value="memberName"
-				<%="memberName".equals(searchType) ? "selected" : ""%>>회원명으로
+			<option value="userName_find"
+				<%="userName_find".equals(searchType) ? "selected" : ""%>>회원명으로
 				조회</option>
-			<option value="gender"
-			<%="gender".equals(searchType) ? "selected" : ""%>>성별로 조회</option>
+			<option value="gender_find"
+			<%="gender_find".equals(searchType) ? "selected" : ""%>>성별로 조회</option>
 		</select>
 
-		<div id="search-memberId">
+		<div id="search-userId_find">
 
 			<input type="search" onchange="insertKeyword(this);" 
 				 size="25" placeholder="검색할 아이디를 입력하세요" 
-				value='<%="memberId".equals(searchType)?searchKeyword:"" %>' /> 
+				value='<%="userId".equals(searchType)?searchKeyword:"" %>' /> 
 				<input type="button" value="검색" onclick="submit();"/>
 		</div>
-		<div id="search-memberName">
+		<div id="search-userName_find">
 
 			<input type="search" onchange="insertKeyword(this);" 
-				value='<%="memberName".equals(searchType)?searchKeyword:"" %>'
+				value='<%="userName_find".equals(searchType)?searchKeyword:"" %>'
 				size="25" placeholder="검색할 회원명을 입력하세요" />
 			<input type="button" value="검색" onclick="submit();"/>
 
 		</div>
-		<div id="search-gender">
+		<div id="search-gender_find">
 
 			 <input type="radio" onchange="insertKeyword(this);"  
-				value="M" id="gender0" <%="gender".equals(searchType) && "M".equals(searchKeyword) ? "checked" : ""%> />
+				value="M" id="gender0" <%="gender_find".equals(searchType) && "M".equals(searchKeyword) ? "checked" : ""%> />
 			<label for="gender0">남성</label> 
 			<input type="radio" value="F" id="gender1" onchange="insertKeyword(this);"
-				<%="gender".equals(searchType) && "F".equals(searchKeyword) ? "checked" : ""%> />
+				<%="gender_find".equals(searchType) && "F".equals(searchKeyword) ? "checked" : ""%> />
 			<label for="gender1">여성</label> <input type="button" value="검색"
 				onclick="submit();" />
 		</div>
@@ -113,7 +113,7 @@ div#search-gender {
 <script>
 
 $('#searchType').change(function() {
-	
+	console.log('서치타입 : '+$('#searchType option:selected').val());
 	var value = $('#searchType option:selected').val();
 	$('#search-container div').css('display', 'none');
 	$('#search-' + value).css('display', 'inline-block');
@@ -123,7 +123,6 @@ $('#searchType').change(function() {
 });
 	function insertKeyword(obj){
 		 $('input[name=searchKeyword]').val(obj.value);
-		 console.log($('input[name=searchKeyword]').val());
 
 	}
 	function submit(){

@@ -1,18 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/user/message.css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/message.css" />
-<article>
+<%
+	String pageBar=(String)request.getAttribute("pageBar");
+	String searchKeyword=(String)request.getAttribute("searchKeyword");
+	String searchType=(String)request.getAttribute("searchType");
 
+%>
+<style>
+div#search-memberId {
+	display: <%=searchType == null || "memberId".equals(searchType) ? "inline-block" : "none"%>
+}
+div#search-memberName {
+	<%-- display: <%=searchType == null || "memberName".equals(searchType) ? "inline-block" : "none"%> --%>
+	display:none;
+}
+div#search-gender {
+	<%-- display: <%=searchType == null || "gender".equals(searchType) ? "inline-block" : "none"%> --%>
+	display:none;
+} 
+
+</style>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/message.css" />
+
+<article>
 	<h2 id="title2" >쪽지함</h2>
 	<table class="table">
 		<thead class="thead-light">
@@ -24,118 +35,81 @@
 			</tr>
 		</thead>
 		<tbody>
+		<%for(int i=1;i<=11;i++){ %>
 			<tr>
-				<th scope="row">Mark</th>
-				<td>Sparta!</td>
-				<td>1993/23/34</td>
+				<th scope="row">festa<%=i %></th>
+				<td>Sparta!<%=i %></td>
+				<td>2019/02/<%= i<10?("0"+i):i %></td>
 				<td>
 					<button type="button" class="btn btn-secondary"
 						onclick="deletemsg();">삭제</button>
 
 					<button type="button" class="btn btn-secondary" onclick="reply();"
-						value="gg">답장</button>
+						value="">답장</button>
 				</td>
 			</tr>
-			<tr>
-				<th scope="row">Jacob</th>
-				<td>Jacob</td>
-				<td>1902/04/01</td>
-				<td>
-					<button type="button" class="btn btn-secondary"
-						onclick="deletemsg();">삭제</button>
-
-					<button type="button" class="btn btn-secondary" onclick="reply();">답장</button>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">Larry</th>
-				<td>the Bird</td>
-				<td>2012/02/23</td>
-				<td>
-					<button type="button" class="btn btn-secondary"
-						onclick="deletemsg();">삭제</button>
-
-					<button type="button" class="btn btn-secondary" onclick="reply();">답장</button>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">Larry</th>
-				<td>the Bird</td>
-				<td>2039/12/03</td>
-				<td>
-					<button type="button" class="btn btn-secondary"
-						onclick="deletemsg();">삭제</button>
-
-					<button type="button" class="btn btn-secondary" onclick="reply();">답장</button>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">Larry</th>
-				<td>안녕하세요</td>
-				<td>1994/02/33</td>
-				<td>
-					<button type="button" class="btn btn-secondary"
-						onclick="deletemsg();">삭제</button>
-
-					<button type="button" class="btn btn-secondary" onclick="reply();">답장</button>
-				</td>
-			</tr>
-
+			<%} %>
 		</tbody>
-
 	</table>
 	<br>
-	<br>
-	<table class="table2">
-		<thead class="thead-light">
-			<tr>
-				<th scope="col">날짜</th>
-				<th scope="col">메세지</th>
-				<th scope="col">수신인</th>
-				<th scope="col">발신인</th>
-				<th scope="col"><button type="button"
-						class="btn btn-outline-danger">삭제</button></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">작성자명</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td></td>
-				<td><input type="checkbox" name="" id="" class="del_check"></td>
-			</tr>
-			<tr>
-				<th scope="row">작성자명</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td></td>
-				<td><input type="checkbox" name="" id="" class="del_check"></td>
-			</tr>
-			<tr>
-				<th scope="row">작성자명</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td></td>
-				<td><input type="checkbox" name="" id="" class="del_check"></td>
-			</tr>
-			<tr>
-				<th scope="row">작성자명</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td></td>
-				<td><input type="checkbox" name="" id="" class="del_check"></td>
-			</tr>
-			<tr>
-				<th scope="row">작성자명</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td></td>
-				<td><input type="checkbox" name="" id="" class="del_check"></td>
-			</tr>
+	<div id="pageBar">
+		<%=pageBar %>페이지바
+	</div>
+	
+	<div id="search-container">
 
-		</tbody>
+		<select name="" id="searchType" >
+			<option value="userId"
+				<%="userId".equals(searchType) ? "selected" : ""%>>아이디로
+				조회</option>
+			<option value="content"
+				<%="content".equals(searchType) ? "selected" : ""%>>내용으로
+				조회</option>
+		</select>
 
-	</table>
+		<div id="search-memberId">
+
+			<input type="search" onchange="insertKeyword(this);" 
+				 size="25" placeholder="검색할 아이디를 입력하세요" 
+				value='<%="memberId".equals(searchType)?searchKeyword:"" %>' /> 
+				<input type="button" value="검색" onclick="submit();"/>
+		</div>
+		<div id="search-memberName">
+
+			<input type="search" onchange="insertKeyword(this);" 
+				value='<%="memberName".equals(searchType)?searchKeyword:"" %>'
+				size="25" placeholder="검색할 회원명을 입력하세요" />
+			<input type="button" value="검색" onclick="submit();"/>
+
+		</div>
+		<div id="search-gender">
+
+			 <input type="radio" onchange="insertKeyword(this);"  
+				value="M" id="gender0" <%="gender".equals(searchType) && "M".equals(searchKeyword) ? "checked" : ""%> />
+			<label for="gender0">남성</label> 
+			<input type="radio" value="F" id="gender1" onchange="insertKeyword(this);"
+				<%="gender".equals(searchType) && "F".equals(searchKeyword) ? "checked" : ""%> />
+			<label for="gender1">여성</label> <input type="button" value="검색"
+				onclick="submit();" />
+		</div>
+		
+		<div id="sub">
+		<form action="<%=request.getContextPath()%>/admin/userFinder">
+			<input type="hidden" name="searchType" />
+			<input type="hidden" name="searchKeyword" />
+		</form>
+		</div>
+	</div>
 </article>
+
+<script>
+function deletemsg(){
+	
+}
+function reply(){
+	
+}
+
+
+</script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -1,8 +1,18 @@
 @charset "UTF-8";
-article{height: 743px;width:652px;position:relative;left:171px;}
+article{height: 743px;width:652px;position:relative;left:171px;text-align: center;}
   
-  #title2{position:relative;left:97px;}
-  
+ #title2{position:relative;left:-97px;}
+ table tr:hover{background: #e9ecef;}
+ div#pageBar{right:177px; position:absolute;top:650px; width:300px;height: 30px;display:inline-block; }
+ 
+ /*검색창*/
+div#search-container{position:relative;top:620px;width:100%;left:-50px;}
+div#search-container input[type=search]{width:220px;}
+div#search-container input[type=button]{width:50px;}
+div#search-container input[type=radio]{width:30px;}
+
+ 
+/*기존 효령씨 css에서 편집*/  
    .table{
         width: 100%; 
         border: 2px solid rgb(196, 192, 192);
@@ -16,9 +26,10 @@ article{height: 743px;width:652px;position:relative;left:171px;}
     .table th{font-size: 15px;vertical-align: baseline;}
     .table th,td{padding:2px;}
     .table td{    max-height: 20px;
-   				 padding: 6px;
+   				 padding: 4px;
     			vertical-align: unset;
     			}
+    .table th{padding:10px;}
     
     .table2{
         width: 500px; 
@@ -40,10 +51,8 @@ article{height: 743px;width:652px;position:relative;left:171px;}
     .del_check{
         size: 20px;
     }
-	body{margin: auto;}
 
-
-
+	
 
 
 
