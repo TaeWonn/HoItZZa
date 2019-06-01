@@ -1,13 +1,24 @@
 @charset "UTF-8";
-
+article{height: 743px;width:652px;position:relative;left:171px;}
+  
+  #title2{position:relative;left:97px;}
+  
    .table{
-        width: 500px; 
+        width: 100%; 
         border: 2px solid rgb(196, 192, 192);
-        padding: 15px;
         margin: 20px auto;
         text-align: center;
         font-size: 18px;
-    }
+        position:absolute;
+        table-layout:fixed;
+        text-overflow:ellipsis;
+        }
+    .table th{font-size: 15px;vertical-align: baseline;}
+    .table th,td{padding:2px;}
+    .table td{    max-height: 20px;
+   				 padding: 6px;
+    			vertical-align: unset;
+    			}
     
     .table2{
         width: 500px; 
@@ -16,6 +27,8 @@
         margin: auto;
         text-align: center;
         font-size: 18px;
+        position:absolute;
+        top:300px;
     }
     .table2 thead{
         background-color: rgb(222, 228, 228);
@@ -27,10 +40,7 @@
     .del_check{
         size: 20px;
     }
-
-
-
-
+	body{margin: auto;}
 
 
 

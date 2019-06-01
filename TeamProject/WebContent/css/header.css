@@ -1,6 +1,5 @@
 
 @charset "UTF-8";
-
 span#sellBuy1{font-family: 'Gloria Hallelujah', cursive; font-size: 60px;margin:0 auto;}
 span#sellBuy2 a{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 auto; color: orange;}
 div#head-container{max-height: 200px;text-align: center;}
@@ -26,7 +25,7 @@ div#weather-day span{margin:10px;}
 div#weather #wSpan{font-size: 40px;position:relative;bottom: -6px;font-family: "휴먼고딕"}
 
 div#weather-day{margin-bottom: 20px;}
-a{ text-decoration:none !important;}
+a{ text-decoration:none !important;font-size: 15px;}
 .ad{margin-top:6px; margin-top:10px;text-align: center; border: 1px solid;max-height: 300px;}
 .ad img{width:99%;height: 182px;border-radius: 50%;}
 

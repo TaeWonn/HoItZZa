@@ -73,6 +73,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 </style>
 </head>
 <body>
+<header>
 	<div id="head-container">
 		<span id="sellBuy1">Sell&Buy</span>&nbsp;<br /> <span id="sellBuy2"><a
 			href="<%=request.getContextPath()%>">우리들의 쎌빠</a></span>
@@ -113,7 +114,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
-					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
+					<li><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></li>
 				</ul>
 			</div>	
 			
@@ -180,6 +181,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 			</div>
 		</section>
 	</aside>
+</header>
 
 
 	<script>
