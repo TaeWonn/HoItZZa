@@ -203,7 +203,7 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updateUser"); 
 
-		try {
+		try { 
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, u.getName());
