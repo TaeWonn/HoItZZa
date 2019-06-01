@@ -4,14 +4,18 @@
 
 <%
 	//세션 객체로부터 저장된 로그인 사용자 정보 가져오기
+
+
 	User userLoggedIn = (User)session.getAttribute("userLoggedIn");
-	String userIdd="user";
+	
 	//쿠키 처리
 	Cookie[] cookies = request.getCookies();
 	boolean saveIdflag = false;
 	String userId = "";
 	if (cookies != null) {
 		for (Cookie c : cookies) {
+	System.out.println("쿠키확인"+c.getName());
+			
 			String key = c.getName();
 			String value = c.getValue();
 			if ("saveId".equals(key)) {
@@ -20,8 +24,9 @@
 			}
 		}
 	}
-	//String[] interestArr=userLoggedIn.getInterest();
-	String[] interestArr={"A","D","F"};
+	
+	System.out.println("세이브 플래그"+saveIdflag);
+	
 %>
 	
 	
@@ -87,7 +92,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<br />
 				<form action="<%=request.getContextPath()%>/views/user/login" method="post" id="loginFrm">
 					<img src="<%=request.getContextPath()%>/images/userId.svg" class="inout">
-					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userLoggedIn.getUserId():"" %>' /> 
+					<input type="text" name="userId" id="header_userId" value='<%=saveIdflag?userId:"" %>' /> 
 						<br /> 
 						<img src="<%=request.getContextPath()%>/images/pwd.svg" class="inout">
 						<input type="password" name="userPwd" id="header_userPwd" onkeyup="enterUser();"/>
