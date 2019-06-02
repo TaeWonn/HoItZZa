@@ -7,14 +7,14 @@
 #footer{
 background-image: url('<%=request.getContextPath()%>/images/leo.jpg');
 
-}
+} 
 </style>
 </section>
 <footer>
 
 <div id="footer">
 
-	<p id="text">여긴 footer다</p>
+	<p id="text">footer.copyright</p>
 	
 </div>
     
