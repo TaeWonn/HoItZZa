@@ -116,6 +116,7 @@ $('#searchType').change(function() {
 	
 	$('input[name=searchType]').val(value);
 	
+	
 });
 function insertKeyword(obj){
 	 $('input[name=searchKeyword]').val(obj.value);
