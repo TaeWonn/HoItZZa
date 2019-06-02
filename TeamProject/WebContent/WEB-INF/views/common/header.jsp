@@ -141,7 +141,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<ul class="boardList">
 					<li><a href="">잡담 게시판</a></li>
 					<li><a href="">유용한 생활지식</a></li>
-					<li><a href="">연예/미디어</a></li>
+					<li><a href="">연예/미디어</a></li> 
 					<li><a href="">나눔 게시판</a></li>
 				</ul>
 				<p id="board_title">건의사항/신고</p>
