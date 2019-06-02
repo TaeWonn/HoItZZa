@@ -31,26 +31,6 @@ div#search-container input[type=radio]{width:30px;}
     			}
     .table th{padding:10px;}
     
-    .table2{
-        width: 500px; 
-        border: 2px solid rgb(196, 192, 192);
-        padding: 15px;
-        margin: auto;
-        text-align: center;
-        font-size: 18px;
-        position:absolute;
-        top:300px;
-    }
-    .table2 thead{
-        background-color: rgb(222, 228, 228);
-    }
-    .table2 tr{
-        border: 2px solid rgb(196, 192, 192);
-
-    }
-    .del_check{
-        size: 20px;
-    }
 
 	
 

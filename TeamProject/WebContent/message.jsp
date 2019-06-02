@@ -42,9 +42,9 @@ div#search-gender {
 				<td>2019/02/<%= i<10?("0"+i):i %></td>
 				<td>
 					<button type="button" class="btn btn-secondary"
-						onclick="deletemsg();">삭제</button>
+						onclick="deletemsg(보낸아이디,받는 아이디);">삭제</button>
 
-					<button type="button" class="btn btn-secondary" onclick="reply();"
+					<button type="button" class="btn btn-secondary" onclick="reply(아이디);"
 						value="">답장</button>
 				</td>
 			</tr>
@@ -57,7 +57,6 @@ div#search-gender {
 	</div>
 	
 	<div id="search-container">
-
 		<select name="" id="searchType" >
 			<option value="userId"
 				<%="userId".equals(searchType) ? "selected" : ""%>>아이디로
@@ -99,17 +98,32 @@ div#search-gender {
 			<input type="hidden" name="searchKeyword" />
 		</form>
 		</div>
+		
 	</div>
 </article>
 
 <script>
-function deletemsg(){
-	
+function deletemsg(sender,receiver){
+	location.href="<%=request.getContextPath()%>/views/user/messageDelete?senderId="+sender+"&receiverId="+receiver;
 }
-function reply(){
-	
+function reply(sender,receiver){
+	location.href="<%=request.getContextPath()%>/views/user/messageReply?senderId="+sender+"&receiverId="+receiver;	
 }
-
+$('#searchType').change(function() {
+	var value = $('#searchType option:selected').val();
+	$('#search-container div').css('display', 'none');
+	$('#search-' + value).css('display', 'inline-block');
+	
+	$('input[name=searchType]').val(value);
+	
+});
+function insertKeyword(obj){
+	 $('input[name=searchKeyword]').val(obj.value);
+}
+function submit(){
+	$('input[name=searchType]').val($('#searchType').val());	
+	$('#submit').submit();  
+}
 
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -113,7 +113,6 @@ div#search-gender_find {
 <script>
 
 $('#searchType').change(function() {
-	console.log('서치타입 : '+$('#searchType option:selected').val());
 	var value = $('#searchType option:selected').val();
 	$('#search-container div').css('display', 'none');
 	$('#search-' + value).css('display', 'inline-block');
