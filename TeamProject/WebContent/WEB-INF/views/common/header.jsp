@@ -113,7 +113,7 @@ ul#link{padding-left:6px;list-style: none;padding-left: 0px;margin-top: 0px;marg
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
-					<li><a href="<%=request.getContextPath()%>/">로그아웃</a></li>
+					<li><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></li>
 				</ul>
 			</div>	
 			
