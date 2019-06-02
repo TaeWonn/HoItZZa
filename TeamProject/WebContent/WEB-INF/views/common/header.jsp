@@ -172,7 +172,7 @@
 			</div>
 			<div id="ad1" class="ad">
 				<a href=""> <img
-					src="<%=request.getContextPath()%>/images/강사님.PNG" alt="" /> <span>지식을
+					src="<%=request.getContextPath()%>/images/강사님.PNG" alt="" /> <span>지식을 
 						원하는자</span> <br /> <span>나에게 오라</span>
 				</a>
 			</div>
