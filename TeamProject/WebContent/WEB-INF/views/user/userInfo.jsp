@@ -24,7 +24,7 @@
 <article>
 
 <div id="viewMain">
-	<span id="h1"><%=userIdd %>님의 개인 페이지</span>
+	<span id="h1">  <%--  <%=userIdd %>  --%>  님의 개인 페이지</span>
 </div>
 
 <div id="infoList">
@@ -45,7 +45,7 @@
 		<tr>
 			<th>비밀번호</th>
 			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd('<%=userIdd%>');" >변경하기</button>
+			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(' <%-- <%=userIdd%>'   --%>);" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
@@ -64,11 +64,11 @@
 		<tr>
 			<th>관심품목</th>
 			<td>
-			<%for(int i=0;i<interestArr.length;i++){
-				String arr=""; %>
-			<select name="interest<%=i+1%>" class="interestBo">
+		<%-- 	  <%for(int i=0;i<interestArr.length;i++){
+				String arr=""; %>  --%>
+			<select name="interest <%--  <%=i+1%> --%>" class="interestBo">
 				<option selected >
-				<%if(interestArr[i].equals("A")){
+				<%--  <%if(interestArr[i].equals("A")){
 		 		arr="패션의류/잡화";
 				}else if(interestArr[i].equals("B")){
 					arr="뷰티";
@@ -98,8 +98,8 @@
 					arr="반려동물용품";
 				}else{
 					arr="헬스/건강식품";
-				}%>
-				<%=arr %>
+				}%>  --%>
+				<%--  <%=arr %> --%>
 				</option>
 				  <option value="A">패션의류/잡화</option>
 				  <option value="B">뷰티</option>
@@ -117,7 +117,7 @@
 				  <option value="N">반려동물용품</option>
 				  <option value="O">헬스/건강식품</option>
 				 </select>
-				 <%} %>
+				 <%-- } --%>
 			</td>
 			
 		</tr>

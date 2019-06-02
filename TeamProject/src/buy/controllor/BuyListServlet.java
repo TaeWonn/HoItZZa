@@ -52,14 +52,14 @@ public class BuyListServlet extends HttpServlet {
 		if(pageNo==1) {
 			
 		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/admin/adminList?cPage="+(pageNo-1)+
+			pageBar += "<a href='"+request.getContextPath()+"/buy/buyList?cPage="+(pageNo-1)+
 							"&numPerPage="+numPerPage+"'>[이전]</a>";
 		}
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
 			if(cPage == pageNo) {
 				pageBar += "<span>"+pageNo+"</span>";
 			} else {
-				pageBar += "<a href='"+request.getContextPath()+"/admin/adminList?cPage="+pageNo+
+				pageBar += "<a href='"+request.getContextPath()+"/buy/buyList?cPage="+pageNo+
 							"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
 			pageNo ++;
@@ -68,7 +68,7 @@ public class BuyListServlet extends HttpServlet {
 		if(pageNo > totalPage) {
 			
 		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/admin/adminList?cPage="+pageNo+
+			pageBar += "<a href='"+request.getContextPath()+"/buy/buyList?cPage="+pageNo+
 						"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
 		
@@ -79,7 +79,7 @@ public class BuyListServlet extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher("/WEB-INF/views/admin/adminList.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/buy/buyList.jsp")
 				.forward(request, response);
 	}
 

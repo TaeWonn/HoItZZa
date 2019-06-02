@@ -22,7 +22,7 @@ public class BuyDAO {
 	private Properties prop = new Properties();
 	
 	public BuyDAO() {
-		String filePath = getClass().getResource("/buy/buy-query.properties").getPath();
+		String filePath = getClass().getResource("/sql/buy/buy-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {

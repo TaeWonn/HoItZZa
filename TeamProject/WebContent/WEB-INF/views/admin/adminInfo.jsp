@@ -29,7 +29,7 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 		<tr>
 			<th>비밀번호</th>			
 			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%=userIdd%>);" >변경하기</button>
+			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%--<%=userIdd%>--%>);" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
@@ -77,7 +77,7 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 	</tr>
 	 <%}%>
 	</table>
-	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%=userIdd%>)">건의게시판 바로가기</button>
+	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%--<%=userIdd%>--%>)">건의게시판 바로가기</button>
 	<%-- <button type="button" id="move1"onclick="moveSBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
 	</div>
 	
@@ -97,7 +97,7 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 	</tr>
 	 <%}%>
 	</table>
-	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%=userIdd%>)">신고게시판 바로가기</button>
+	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%--<%=userIdd%>)--%>">신고게시판 바로가기</button>
 	<%-- <button type="button" id="move2"onclick="moveRBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
 	</div>
 </div>
@@ -122,12 +122,12 @@ function searchAddr(){
 //관리자가 유저 목록 확인을 위한 함수
 function viewUser(){
 	//admin 외의 접근을 막기 위해 아이디값 보냄
-	location.href="<%=request.getContextPath()%>/views/admin/viewUserList?userId=<%=userIdd%>";
+	location.href="<%=request.getContextPath()%>/views/admin/viewUserList?userId=<%--<%=userIdd%> --%>";
 }
 
 //비밀번호 변경페이지로 이동
 function changeUserPwd(userId){
-	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+<%=userIdd%>;
+	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+<%--<%=userIdd%>--%>;
 }
 
 function moveSBoard(userId){

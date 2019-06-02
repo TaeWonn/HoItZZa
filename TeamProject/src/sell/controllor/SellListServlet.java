@@ -39,10 +39,15 @@ public class SellListServlet extends HttpServlet {
 		int totalContents = new SellService().selectSellCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
+		
 		int pageBarSize = 5;
 		
 		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize +1;
 		int pageEnd = pageStart+pageBarSize-1;
+		System.out.println("totalContents =" + totalContents);
+		System.out.println("totalPage = "+totalPage);
+		System.out.println("page Start= "+pageStart);
+		System.out.println("pageEnd = " + pageEnd);
 		
 		int pageNo = pageStart;
 		
@@ -62,6 +67,7 @@ public class SellListServlet extends HttpServlet {
 				pageBar += "<a href='"+request.getContextPath()+"/sell/sellList?cPage="+pageNo+
 							"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
+			pageNo ++;
 			
 		}
 		
@@ -75,6 +81,8 @@ public class SellListServlet extends HttpServlet {
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("PageBar", pageBar);
+		
+		 System.out.println("sellListServlet-0----");
 		
 		request.setAttribute("sell", sell);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellList.jsp")

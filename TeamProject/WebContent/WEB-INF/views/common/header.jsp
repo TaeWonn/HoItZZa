@@ -138,8 +138,8 @@
 			<div id="board-list-container">
 				<p id="board_title">판매/구매</p>
 				<ul class="boardList">
-					<li><a href="">판매 게시판</a></li>
-					<li><a href="">구매 게시판</a></li>
+					<li><a href="<%=request.getContextPath()%>/sell/sellList">판매 게시판</a></li>
+					<li><a href="<%=request.getContextPath()%>/buy/buyList">구매 게시판</a></li>
 				</ul>
 				<p id="board_title">자유게시판</p>
 				<ul class="boardList">

@@ -22,7 +22,7 @@ public class SellDAO {
 	private Properties prop = new Properties();
 	
 	public SellDAO() {
-		String filePath = getClass().getResource("/sell/sell-query.properties").getPath();
+		String filePath = getClass().getResource("/sql/sell/sell-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
@@ -70,6 +70,8 @@ public class SellDAO {
 				s.setBoardDeal(rs.getString("board_deal"));
 				s.setBoardReadCounter(rs.getInt("board_read_count"));
 				s.setBoardWriter(rs.getString("board_writer"));
+				
+				sell.add(s);
 			}
 			
 		} catch (Exception e) {
@@ -78,7 +80,7 @@ public class SellDAO {
 			close(rs);
 			close(ps);
 		}
- 		 
+ 		 System.out.println("sellDAO@ ="+sell);
 		return sell;
 	}
 
