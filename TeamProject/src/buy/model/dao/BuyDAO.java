@@ -279,7 +279,7 @@ public class BuyDAO {
 	public List<FileTable> selectFileList(Connection conn, String boardNo) {
 		List<FileTable> flist = new ArrayList<>();
 		String sql = prop.getProperty("selectFileList");
-		PreparedStatement ps = null;
+		PreparedStatement ps = null; 
 		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(sql);
