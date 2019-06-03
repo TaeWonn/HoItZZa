@@ -46,6 +46,48 @@ public class AdminService {
 		return u;
 	}
 
+	public List<User> userIdFind(String searchKeyword) {
+		Connection conn = getConnection();
+		List<User> ulist = new AdminDAO().userIdFind(conn, searchKeyword);
+		close(conn);
+		return ulist;
+	}
+
+	public int userIdCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int result = new AdminDAO().userIdContents(conn, searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public List<User> userNameFind(String searchKeyword) {
+		Connection conn = getConnection();
+		List<User> ulist = new AdminDAO().userNameFind(conn, searchKeyword);
+		close(conn);
+		return ulist;
+	}
+
+	public int userNameCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int result = new AdminDAO().userNameContents(conn, searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public List<User> genderFind(String searchKeyword) {
+		Connection conn = getConnection();
+		List<User> ulist = new AdminDAO().genderFind(conn, searchKeyword);
+		close(conn);
+		return ulist;
+	}
+
+	public int genderCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int result = new AdminDAO().genderContents(conn, searchKeyword);
+		close(conn);
+		return result;
+	}
+
 
 	
 }

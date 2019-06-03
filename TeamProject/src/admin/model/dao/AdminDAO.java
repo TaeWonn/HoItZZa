@@ -17,7 +17,7 @@ public class AdminDAO {
 	private Properties prop = new Properties();
 	
 	public AdminDAO() {
-		String filePath = getClass().getResource("/sql/admin/admin-query/properties").getPath();
+		String filePath = getClass().getResource("/sql/admin/admin-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
@@ -34,6 +34,9 @@ public class AdminDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			System.out.println((cPage-1)*numPerPage +1);
+			System.out.println(cPage* numPerPage);
+			
 			pstmt.setInt(1, (cPage - 1)*numPerPage +1);
 			pstmt.setInt(2, cPage*numPerPage);
 			
@@ -45,6 +48,11 @@ public class AdminDAO {
 				u.setName(rs.getString("name"));
 				u.setEmail(rs.getString("email"));
 				u.setJoin_date(rs.getDate("join_date"));
+				u.setGender(rs.getString("gender"));
+				u.setSsn(rs.getString("ssn"));
+				u.setPhone(rs.getString("phone"));
+				
+				userList.add(u);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,6 +141,165 @@ public class AdminDAO {
 		}
 		
 		return u;
+	}
+
+	public List<User> userIdFind(Connection conn, String searchKeyword) {
+		List<User> ulist = new ArrayList<>();
+		String sql = prop.getProperty("userIdFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				User u = new User();
+				u.setUserId(rs.getString("user_id"));
+				u.setEmail(rs.getString("email"));
+				u.setGender(rs.getString("gender"));
+				u.setJoin_date(rs.getDate("join_date"));
+				u.setName(rs.getString("name"));
+				u.setPhone(rs.getString("phone"));
+				u.setPoint(rs.getInt("point"));
+				
+				ulist.add(u);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return ulist;
+	}
+	
+	public List<User> userNameFind(Connection conn, String searchKeyword) {
+		List<User> ulist = new ArrayList<>();
+		String sql = prop.getProperty("userNameFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				User u = new User();
+				u.setUserId(rs.getString("user_id"));
+				u.setEmail(rs.getString("email"));
+				u.setGender(rs.getString("gender"));
+				u.setJoin_date(rs.getDate("join_date"));
+				u.setName(rs.getString("name"));
+				u.setPhone(rs.getString("phone"));
+				u.setPoint(rs.getInt("point"));
+				
+				ulist.add(u);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return ulist;
+	}
+	
+	public List<User> genderFind(Connection conn, String searchKeyword) {
+		List<User> ulist = new ArrayList<>();
+		String sql = prop.getProperty("genderFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, searchKeyword);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				User u = new User();
+				u.setUserId(rs.getString("user_id"));
+				u.setEmail(rs.getString("email"));
+				u.setGender(rs.getString("gender"));
+				u.setJoin_date(rs.getDate("join_date"));
+				u.setName(rs.getString("name"));
+				u.setPhone(rs.getString("phone"));
+				u.setPoint(rs.getInt("point"));
+				
+				ulist.add(u);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return ulist;
+	}
+
+	public int userIdContents(Connection conn, String searchKeyword) {
+		int result = 0;
+		String sql = prop.getProperty("userIdContents");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
+	}
+	
+	public int userNameContents(Connection conn, String searchKeyword) {
+		int result = 0;
+		String sql = prop.getProperty("userNameContents");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
+	}
+	
+	public int genderContents(Connection conn, String searchKeyword) {
+		int result = 0;
+		String sql = prop.getProperty("genderContents");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, searchKeyword);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return result;
 	}
 
 
