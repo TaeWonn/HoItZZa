@@ -187,8 +187,8 @@ public class UserViewServlet extends HttpServlet {
 			}
 			System.out.println("서블릿"+u);
 			request.setAttribute("user", u);
-			request.setAttribute("addr1", addrArr[0]);
-			request.setAttribute("addr2", addrArr[1]);
+//			request.setAttribute("addr1", addrArr[0]);
+//			request.setAttribute("addr2", addrArr[1]);
 //			request.setAttribute("pageBar", pageBar);
 //			request.setAttribute("interestBoardList", list);
 //			request.setAttribute("firstInterestList", interestCategoryList1);
