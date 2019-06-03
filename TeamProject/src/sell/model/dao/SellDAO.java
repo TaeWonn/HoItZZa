@@ -324,7 +324,7 @@ public class SellDAO {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, interest);
+			ps.setString(1,interest);
 			
 			rs = ps.executeQuery();
 			

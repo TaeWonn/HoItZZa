@@ -79,8 +79,8 @@
 						<div id="interest_List1">
 						<!-- 1차 분류 -->
 						<select  name="interest1" class="selectBox" >
-						  <option selected>관심사</option>
-						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option selected disabled>관심사</option>
+						  <option value="A">패션의류/잡화</option>
 						  <option value="B">뷰티</option>
 						  <option value="C">출산/유아동</option>
 						  <option value="D">식품</option>
@@ -97,8 +97,8 @@
 						  <option value="O">헬스/건강식품</option>
 						</select>
 						<select  name="interest2" class="selectBox" >
-						  <option selected>관심사</option>
-						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option selected disabled>관심사</option>
+						  <option value="A">패션의류/잡화</option>
 						  <option value="B">뷰티</option>
 						  <option value="C">출산/유아동</option>
 						  <option value="D">식품</option>
@@ -115,8 +115,8 @@
 						  <option value="O">헬스/건강식품</option>
 						</select>
 						<select name="interest3" class="selectBox" >
-						  <option selected>관심사</option>
-						  <option value="A">패션의류/잡화ㅣ</option>
+						  <option selected disabled>관심사</option>
+						  <option value="A">패션의류/잡화</option>
 						  <option value="B">뷰티</option>
 						  <option value="C">출산/유아동</option>
 						  <option value="D">식품</option>
