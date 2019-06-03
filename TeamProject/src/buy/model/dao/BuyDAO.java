@@ -288,7 +288,7 @@ public class BuyDAO {
 			
 			rs = ps.executeQuery();
 			
-			while(rs.next()) {
+			while(rs.next()) { 
 				FileTable t = new FileTable();
 				t.setBoardNo(rs.getString("board_no"));
 				t.setOriginalFileName(rs.getString("original_file_name"));
