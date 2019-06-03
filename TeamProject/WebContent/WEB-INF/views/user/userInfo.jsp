@@ -8,13 +8,19 @@
 
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
+	User u=(User)request.getAttribute("user");
+ 	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
+	List<Board> interest1BoardList=(List<Board>)request.getAttribute("interestCategoryList1");
+	List<Board> interest2BoardList=(List<Board>)request.getAttribute("interestCategoryList2");
+	List<Board> interest3BoardList=(List<Board>)request.getAttribute("interestCategoryList3"); 
 
-	List<Board> interestBBoardList=(List<Board>)request.getAttribute("Binterest");
-	List<Board> interestSBoardList=(List<Board>)request.getAttribute("Sinterest");
-	List<Board> interest1BoardList=(List<Board>)request.getAttribute("1BoardList");
-	List<Board> interest2BoardList=(List<Board>)request.getAttribute("2BoardList");
-	List<Board> interest3BoardList=(List<Board>)request.getAttribute("3BoardList");
+	/* String[] interestArr=new String[3];
+	for(int i=0;i<u.getInterest().length;i++){
+		interestArr[i]=u.getInterest()[i];
+	} */
+	String [] interestArr = u.getInterest();
 
+	
 
 %>
 
@@ -24,7 +30,7 @@
 <article>
 
 <div id="viewMain">
-	<span id="h1">  <%--  <%=userIdd %>  --%>  님의 개인 페이지</span>
+	<span id="h1"><%=userLoggedIn.getUserId() %>님의 개인 페이지</span>
 </div>
 
 <div id="infoList">
@@ -32,74 +38,43 @@
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>
-			<td><input type="text" value="유저이름" name="userId" readonly /></td>
+			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userId" readonly /></td>
 		</tr>
 		<tr>
 			<th>포인트</th>
-			<td><input type="text" value="소지포인트" readonly /></td>
+			<td><input type="text" value="0" readonly /></td>
 		</tr>
 		<tr>
 			<th>연락처</th>
-			<td><input type="text" value="전화번호" name="phone" /></td>
+			<td><input type="text" value="<%=userLoggedIn.getPhone() %>" name="phone" /></td>
 		</tr>
 		<tr>
 			<th>비밀번호</th>
 			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(' <%-- <%=userIdd%>'   --%>);" >변경하기</button>
+			<button class="btn" onclick="changeUserPwd('<%=userLoggedIn.getUserId()%>');" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
 			<th>주소</th>
 			<td>
-				<input type="text" value=""  name="addr1" readonly/>
-				<input type="text" value=""  name="addr2" placeholder="상세주소"/>
+				<input type="text" value="<%=request.getParameter("addr1")%>"  name="addr1" readonly/>
+				<input type="text" value="<%=request.getParameter("addr2")%>"  name="addr2" placeholder="상세주소"/>
 				<button class="btn" onclick="searchAddr();">주소찾기</button>
 			</td>
 				
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><input type="email" value="user이메일주소" name="email"/></td>
+			<td><input type="email" value="<%=userLoggedIn.getEmail() %>" name="email"/></td>
 		</tr>
 		<tr>
 			<th>관심품목</th>
 			<td>
-		<%-- 	  <%for(int i=0;i<interestArr.length;i++){
-				String arr=""; %>  --%>
-			<select name="interest <%--  <%=i+1%> --%>" class="interestBo">
+			<%for(int i=0;i<interestArr.length;i++){
+				String arr=""; %>
+			<select name="interest<%=i+1%>" class="interestBo">
 				<option selected >
-				<%--  <%if(interestArr[i].equals("A")){
-		 		arr="패션의류/잡화";
-				}else if(interestArr[i].equals("B")){
-					arr="뷰티";
-				}else if(interestArr[i].equals("C")){
-					arr="출산/유아동";
-				}else if(interestArr[i].equals("D")){
-					arr="식품";
-				}else if(interestArr[i].equals("E")){
-					arr="주방용품";
-				}else if(interestArr[i].equals("F")){
-					arr="생활용품";
-				}else if(interestArr[i].equals("G")){
-					arr="홈인테리어";
-				}else if(interestArr[i].equals("H")){
-					arr="가전디지털";
-				}else if(interestArr[i].equals("I")){
-					arr="스포츠/레저";
-				}else if(interestArr[i].equals("J")){
-					arr="자동차 용품";
-				}else if(interestArr[i].equals("K")){
-					arr="도서/음반/DVD";
-				}else if(interestArr[i].equals("L")){
-					arr="완구/취미";
-				}else if(interestArr[i].equals("M")){
-					arr="문구/오피스";
-				}else if(interestArr[i].equals("N")){
-					arr="반려동물용품";
-				}else{
-					arr="헬스/건강식품";
-				}%>  --%>
-				<%--  <%=arr %> --%>
+				<%=interestArr[i] %>
 				</option>
 				  <option value="A">패션의류/잡화</option>
 				  <option value="B">뷰티</option>
@@ -117,7 +92,7 @@
 				  <option value="N">반려동물용품</option>
 				  <option value="O">헬스/건강식품</option>
 				 </select>
-				 <%-- } --%>
+				 <%} %>
 			</td>
 			
 		</tr>
@@ -125,7 +100,7 @@
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" value="탈퇴" class="btnGroup" />
+			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=userLoggedIn.getUserId() %>');" />
 			</td>
 		</tr>
 	</table>
@@ -134,7 +109,6 @@
 
 <div id="interestBoard">
 	<h3>관심글</h3>	
-	<p id="p1">판매글</p>
 	<table id="interestSellBoard">
 	<tr>
 		<th><nobr>번호</nobr></th>
@@ -143,55 +117,55 @@
 		<th><nobr>조회수</nobr></th>
 	</tr>
 	 <%/* if(interestSBoardList!=null){  */
-		for(int i=1;i<=5;i++){%>
+		for(int i=1;i<=14;i++){%>
 		<tr>
 		<td><nobr><%-- <%=b.getBoardNo() %> --%> <%=i %></nobr></td>
-		<td><nobr><%-- <%=b.getBoardTitle() %> --%><%=i %>번 가방 팝니다</nobr></td>
+		<td><nobr><%-- <%=b.getBoardTitle() %> --%><%= i<7? (i+"번가방 팝니다!"):(i+"번가방 삽니다!") %></nobr></td>
 		<td><nobr><%-- <%=b.getBoardWriter() %> --%><%=i %>번째작성</nobr></td>
 		<td><nobr><%-- <%=b.getBoardReadCounter()%> --%><%=i %></nobr></td>
 		</tr>
 	<% /* } */ } %>
 	</table>
-	<p id="p2">구매글</p>
-	<!-- sellboard -->
-	<table id="interestBuyBoard">
-	<tr>
-		<th><nobr>번호</nobr></th>
-		<th><nobr>제목</nobr></th>
-		<th><nobr>작성자</nobr></th>
-		<th><nobr>조회수</nobr></th>
-	</tr>
-	 <%/* if(interestSBoardList!=null){  */
-		for(int i=1;i<=5;i++){%>
-		<tr>
-		<td><nobr><%-- <%=b.getBoardNo() %> --%> <%=i %></nobr></td>
-		<td><nobr><%-- <%=b.getBoardTitle() %> --%><%=i %>번 가방 삽니다</nobr></td>
-		<td><nobr><%-- <%=b.getBoardWriter() %> --%><%=i %>번째작성</nobr></td>
-		<td><nobr><%-- <%=b.getBoardReadCounter()%> --%><%=i %></nobr></td>
-		</tr>
-	<% /* } */ } %>
-	</table>
+	<div id="pageBar">
+		페이지바
+	</div>
 	
 </div>
 
-<div id="interestBoardAll">
-	관심사  연관 글
-	<div id="first" class="list3">
-	첫번째 관심품목명
-		<table>
+<%-- <div id="interestBoardAll">
+	<p>관심사 추천 글</p>
+		<table id="recommendBoard">
+		
 		<tr>
-
+		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
+			<th><nobr><%=interestArr[0] %></nobr></th>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
+			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<%} %>
 		</tr>
+		<tr>
+		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
+			<th><nobr><%=interestArr[1] %></nobr></th>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/냥챗 아이콘.jpg" alt="" /><br />
+			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<%} %>
+		</tr>
+		<tr>
+		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
+			<th><nobr><%=interestArr[2] %></nobr></th>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><br />
+			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<%} %>
+		</tr>
+		
+		
 		</table>
 	</div>
-	<div id="second" class="list3">
-		두번째 관심품목
-	</div>
-	<div id="third" class="list3">
-		세번쨰 관심품목
-	</div>
 
-</div>
+</div> --%>
 
 
 
@@ -218,7 +192,13 @@ function searchAddr(){
 //비밀번호 변경페이지로 이동
 function changeUserPwd(userId){
 	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+userId;
+
 }
+
+function deleteUser(userId){
+	location.href="<%=request.getContextPath()%>/views/user/deleteUser?userId="+userId;
+}
+
 
 </script>
 

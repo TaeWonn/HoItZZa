@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import buy.model.vo.Buy;
+import file.model.vo.FileTable;
 import free.model.vo.Free;
 
 public class FreeDAO {
@@ -87,10 +89,10 @@ public class FreeDAO {
 		try {
 			ps = conn.prepareStatement(sql);
 
-			ps.setString(1, f.getBoardTitle());
-			ps.setString(2, f.getBoardCodeNo());
-			ps.setString(3, f.getBoardContent());
-			ps.setString(4, f.getBoardDeal());
+			ps.setString(1, f.getBoardNo());
+			ps.setString(2, f.getBoardTitle());
+			ps.setString(3, f.getBoardWriter());
+			ps.setString(4, f.getBoardWriter());
 			
 			result =ps.executeUpdate();
 		} catch (Exception e) {
@@ -98,6 +100,28 @@ public class FreeDAO {
 		} finally {
 			close(ps);
 		}
+		return result;
+	}
+
+	public int insertFileTable(Connection conn, FileTable t) {
+		int result = 0;
+		String sql = prop.getProperty("insertFileTable");
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, t.getBoardNo());
+			ps.setString(2, t.getOriginalFileName());
+			ps.setString(3, t.getRenamedFileName());
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		
 		return result;
 	}
 }
