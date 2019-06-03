@@ -45,7 +45,7 @@
 			<td><input type="text" value="<%=userLoggedIn.getPhone() %>" name="phone" /></td>
 		</tr>
 		<tr>
-			<th>비밀번호</th>
+			<th>비밀번호</th> 
 			<td><input type="password" value="현재비밀번호" readonly />
 			<button class="btn" onclick="changeUserPwd('<%=userLoggedIn.getUserId()%>');" >변경하기</button>
 			</td>
