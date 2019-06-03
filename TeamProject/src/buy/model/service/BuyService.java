@@ -43,9 +43,9 @@ public class BuyService {
 		return b;
 	}
 
-	public String selectOneBoardNo(Buy b) {
+	public String selectOneBoardNo() {
 		Connection conn = getConnection();
-		String boardNo = new BuyDAO().selectOneBoardNo(conn, b);
+		String boardNo = new BuyDAO().selectOneBoardNo(conn);
 		close(conn);
 		return boardNo;
 	}

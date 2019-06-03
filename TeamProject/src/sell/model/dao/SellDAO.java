@@ -274,7 +274,7 @@ public class SellDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNo());
+			ps.setInt(5, c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {

@@ -137,7 +137,7 @@ public class BuyDAO {
 		return b;
 	}
 
-	public String selectOneBoardNo(Connection conn, Buy b) {
+	public String selectOneBoardNo(Connection conn) {
 		//시퀀스 현재 번호 가져오기
 		String boardNo = null;
 		String sql = prop.getProperty("selectOneBoardNo");
@@ -234,7 +234,7 @@ public class BuyDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNo());
+			ps.setInt(5, c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {

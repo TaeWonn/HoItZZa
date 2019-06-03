@@ -58,8 +58,41 @@ public class AdminUserFinder extends HttpServlet {
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
 		int pageBarSize = 5;
+		int pageStart = ((cPage-1)/pageBarSize)*numPerPage +1;
+		int pageEnd = pageStart + pageBarSize -1;
+		int pageNo = pageStart ;
 		
+		String pageBar = "";
 		
+		if(pageNo ==1) {
+		}else {
+			pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+(pageNo-1)
+					+"&numPerPage="+numPerPage+"&searchType="+searchType+"&searchKeyword"+searchKeyword
+					+"'>[이전]</a>";
+		}
+		
+		while(pageNo <= pageEnd && pageNo <= totalPage) {
+			if(cPage == pageNo) {
+				pageBar += "<span>"+pageNo+"</span>";
+			}else {
+				pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+pageNo+"&numPerPage="+
+						numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		
+		if(pageNo > totalPage) {
+		}else {
+			pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+pageNo+"&numPerPage="
+					+numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>[다음]</a>";
+		}
+		
+		request.setAttribute("cPage",cPage );
+		request.setAttribute("numPerPage", numPerPage);
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("userList", userList);
+		request.setAttribute("searchType", searchType);
+		request.setAttribute("searchKeyword", searchKeyword);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/viewUserList.jsp")
 				.forward(request, response);

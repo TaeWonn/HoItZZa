@@ -24,7 +24,6 @@ public class BoardDeleteServlet extends HttpServlet {
 		
 		int result = new BuyService().buyDelete(boardNo);
 		
-		
 		String msg = "";
 		String loc = "/buy/buyList";
 				

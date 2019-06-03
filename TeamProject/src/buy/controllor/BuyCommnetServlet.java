@@ -27,7 +27,7 @@ public class BuyCommnetServlet extends HttpServlet {
 		int commentNoRef = Integer.parseInt(request.getParameter("commentNoRef"));
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
-		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel);
+		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel, commentNoRef);
 		int result = new BuyService().insertComment(c);
 		
 		String msg = "";

@@ -1,6 +1,8 @@
 package sell.controllor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,8 +55,16 @@ public class SellWriteEndServlet extends HttpServlet {
 		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		String boardWriter = multiReq.getParameter("boardWriter");
 		
-		String originalFileName = multiReq.getOriginalFileName("upFile");
-		String renamedFileName = multiReq.getFilesystemName("upFile");
+		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
+		
+		List<String> fileNameList = new ArrayList<>();
+		List<String> newFileNameList = new ArrayList<>();
+		for(int i=0;i<fileCount;i++) {
+			String fileName = multiReq.getOriginalFileName("upFile"+i);
+			String newFileName = multiReq.getFilesystemName("upFile"+i);
+			fileNameList.add(fileName);
+			newFileNameList.add(newFileName);
+		}
 		
 		boardContent =boardContent.replaceAll("<", "&lt;")
 								.replaceAll(">", "&gt;");
@@ -69,29 +79,28 @@ public class SellWriteEndServlet extends HttpServlet {
 		int result = new SellService().insertSell(s);
 		String boardNo = new SellService().selectOneBoardNo();
 		
-		FileTable t = new FileTable();
-		t.setBoardNo(boardNo);
-		t.setOriginalFileName(originalFileName);
-		t.setRenamedFileName(renamedFileName);
+		for(int i =0;i<fileCount;i++) {
+			FileTable t = new FileTable();
+			t.setBoardNo(boardNo);
+			t.setOriginalFileName(fileNameList.get(i));
+			t.setRenamedFileName(newFileNameList.get(i));
+			
+			new SellService().insertFileTable(t);
+		}
 		
-		int res = new SellService().insertFileTable(t);
 		
-		String view ="";
+		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "";
 		if(result> 0) {
-			view ="/WEB-INF/views/sell/sellComplete.jsp";
-		}else if(res == 0) {
-			view = "/WEB-INF/views/common/msg.jsp";
-			msg = "파일 업로딩 오류";
-			loc = "/sell/sellList"; 
-		} else {
+			msg ="글 등록완료";
+			loc ="/sell/sellView?boardNo="+boardNo;
+		}else {
 			msg = "글 등록 실패";
 			loc = "/sell/sellList";
-			view = "/WEB-INF/views/common/msg.jsp";
-			request.setAttribute("msg", msg);
-			request.setAttribute("loc", loc);
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view)
 				.forward(request, response);
 		

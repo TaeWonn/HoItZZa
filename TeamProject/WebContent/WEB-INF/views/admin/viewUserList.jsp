@@ -103,7 +103,7 @@ div#search-gender_find {
 		</div>
 		
 		<div id="sub">
-		<form action="<%=request.getContextPath()%>/admin/userFinder">
+		<form action="<%=request.getContextPath()%>/admin/userFinder" id="submit">
 			<input type="hidden" name="searchType" />
 			<input type="hidden" name="searchKeyword" />
 		</form>

@@ -1,5 +1,7 @@
 package comment.model.vo;
 
+import java.sql.Date;
+
 public class Comment {
 
 	private int commentNo;
@@ -7,22 +9,51 @@ public class Comment {
 	private String boardNo;
 	private String commentWriter;
 	private int commentLevel;
+	private int commentNoRef;
+	private Date commentDate;
 	
+	public Date getCommentDate() {
+		return commentDate;
+	}
+
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
+	}
+
 	public Comment() {}
 	
-	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel) {
+	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, int commentNoRef) {
 		this.commentContent = commentContent;
 		this.boardNo = boardNo;
 		this.commentWriter = commentWriter;
 		this.commentLevel = commentLevel;
 	}
 	
-	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel) {
+	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,int commentNoRef
+				,Date commentDate) {
 		this.commentNo = commentNo;
 		this.commentContent = commentContent;
 		this.boardNo = boardNo;
 		this.commentWriter = commentWriter;
 		this.commentLevel = commentLevel;
+		this.commentNoRef = commentNoRef;
+		this.commentDate = commentDate;
+	}
+
+	public String getCommentWriter() {
+		return commentWriter;
+	}
+
+	public void setCommentWriter(String commentWriter) {
+		this.commentWriter = commentWriter;
+	}
+
+	public int getCommentNoRef() {
+		return commentNoRef;
+	}
+
+	public void setCommentNoRef(int commentNoRef) {
+		this.commentNoRef = commentNoRef;
 	}
 
 	public int getCommentNo() {
@@ -68,7 +99,8 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", commentContent=" + commentContent + ", boardNo=" + boardNo
-				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + "]";
+				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + "commentNoRef="
+				+ commentNoRef + "]";
 	}
 	
 	
