@@ -20,7 +20,7 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 </div>
 
 <div id="infoList">
-<form action="<%=request.getContextPath()%>/user/updateInfo" method="post">
+<form action="<%=request.getContextPath()%>/views/user/updateInfo" method="post">
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>

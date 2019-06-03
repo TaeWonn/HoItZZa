@@ -4,8 +4,6 @@
 
 <%
 	//세션 객체로부터 저장된 로그인 사용자 정보 가져오기
-
-
 	User userLoggedIn = (User)session.getAttribute("userLoggedIn");
 	
 	//쿠키 처리
@@ -71,7 +69,6 @@
 #head-container {
 	background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
 } 
-
 </style>
 </head>
 <body>

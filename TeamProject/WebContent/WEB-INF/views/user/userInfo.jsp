@@ -1,5 +1,3 @@
-
-<%@page import="java.util.Date"%>
 <%@page import="board.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +5,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <%
+<<<<<<< HEAD
 	String pageBar = (String) request.getAttribute("pageBar");
 	User u=(User)request.getAttribute("user");
  	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
@@ -22,39 +21,59 @@
 
 	
 
+=======
+List<Board> suggestionBoardList=(List<Board>)request.getAttribute("");
+List<Board> reportBoardList=(List<Board>)request.getAttribute("");
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 %>
-
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/admin/adminInfo.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/userInfo.css" />
-
 <article>
 
 <div id="viewMain">
+<<<<<<< HEAD
 	<span id="h1"><%=userLoggedIn.getUserId() %>님의 개인 페이지</span>
+=======
+	<span id="h1">관리자</span>
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 </div>
 
 <div id="infoList">
-<form action="<%=request.getContextPath() %>/views/user/updateInfo" method="post">
+<form action="<%=request.getContextPath()%>/views/user/updateInfo" method="post">
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>
+<<<<<<< HEAD
 			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userId" readonly /></td>
+=======
+			<td><input type="text" value="관리자 아이디" name="userId" readonly  /></td>
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 		</tr>
 		<tr>
+<<<<<<< HEAD
 			<th>포인트</th>
 			<td><input type="text" value="0" readonly /></td>
+=======
+			<th>비밀번호</th>			
+			<td><input type="password" value="현재비밀번호" readonly />
+			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%=userIdd%>);" >변경하기</button>
+			</td>
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 		</tr>
 		<tr>
 			<th>연락처</th>
 			<td><input type="text" value="<%=userLoggedIn.getPhone() %>" name="phone" /></td>
 		</tr>
 		<tr>
+<<<<<<< HEAD
 			<th>비밀번호</th>
 			<td><input type="password" value="현재비밀번호" readonly />
 			<button class="btn" onclick="changeUserPwd('<%=userLoggedIn.getUserId()%>');" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
+=======
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 			<th>주소</th>
 			<td>
 				<input type="text" value="<%=request.getParameter("addr1")%>"  name="addr1" readonly/>
@@ -67,6 +86,7 @@
 			<th>이메일</th>
 			<td><input type="email" value="<%=userLoggedIn.getEmail() %>" name="email"/></td>
 		</tr>
+<<<<<<< HEAD
 		<tr>
 			<th>관심품목</th>
 			<td>
@@ -96,26 +116,39 @@
 			</td>
 			
 		</tr>
+=======
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 		<tr id="pad">
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
+<<<<<<< HEAD
 			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=userLoggedIn.getUserId() %>');" />
+=======
+			<input type="button" value="회원관리" class="btnGroup" onclick="viewUser();" />
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 			</td>
 		</tr>
 	</table>
 </form>
 </div>
 
+<<<<<<< HEAD
 <div id="interestBoard">
 	<h3>관심글</h3>	
 	<table id="interestSellBoard">
+=======
+<div id="Board">
+	<div id="suggestionBoard" class="boardTitle">
+	<p>건의게시판</p>
+	<table>
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 	<tr>
-		<th><nobr>번호</nobr></th>
-		<th><nobr>제목</nobr></th>
-		<th><nobr>작성자</nobr></th>
-		<th><nobr>조회수</nobr></th>
+	<th>작성자</th>
+	<th>제목</th>
+	<th>작성일</th>
 	</tr>
+<<<<<<< HEAD
 	 <%/* if(interestSBoardList!=null){  */
 		for(int i=1;i<=14;i++){%>
 		<tr>
@@ -128,10 +161,42 @@
 	</table>
 	<div id="pageBar">
 		페이지바
+=======
+	 <%for(int i=1;i<=5;i++){ %>
+	<tr>
+		<td><nobr>나는 <%=i %>번째 유저</nobr></td>
+		<td><nobr>이것좀 고쳐주시면 감사하겠습니다 오버플로우를 왜 안먹을까요<%=i %></nobr></td>
+		<td><nobr>2019/03/0<%=i %></nobr></td>
+	</tr>
+	 <%}%>
+	</table>
+	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%=userIdd%>)">건의게시판 바로가기</button>
+	<%-- <button type="button" id="move1"onclick="moveSBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 	</div>
 	
+	<div id="reportBoard"  class="boardTitle">
+	<p>신고게시판</p>
+	<table>
+	<tr>
+	<th>작성자</th>
+	<th>제목</th>
+	<th>작성일</th>
+	</tr>
+	 <%for(int i=1;i<=5;i++){ %>
+	<tr>
+		<td><nobr>나는 <%=i %>번째 유저</nobr></td>
+		<td><nobr><%=i %>그놈새끼 나쁜새끼 사기꾼새끼 신고합니다.</nobr></td>
+		<td><nobr>2019/03/0<%=i %></nobr></td>
+	</tr>
+	 <%}%>
+	</table>
+	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%=userIdd%>)">신고게시판 바로가기</button>
+	<%-- <button type="button" id="move2"onclick="moveRBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
+	</div>
 </div>
 
+<<<<<<< HEAD
 <%-- <div id="interestBoardAll">
 	<p>관심사 추천 글</p>
 		<table id="recommendBoard">
@@ -175,8 +240,11 @@
 
 
 
+=======
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 
 </article>
+
 <script>
 function searchAddr(){
 	 new daum.Postcode({
@@ -189,17 +257,39 @@ function searchAddr(){
 		  }
 		}).open();
 }
+//관리자가 유저 목록 확인을 위한 함수
+function viewUser(){
+	//admin 외의 접근을 막기 위해 아이디값 보냄
+	location.href="<%=request.getContextPath()%>/views/admin/viewUserList?userId=<%=userIdd%>";
+}
 //비밀번호 변경페이지로 이동
 function changeUserPwd(userId){
+<<<<<<< HEAD
 	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+userId;
 
+=======
+	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+<%=userIdd%>;
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 }
+<<<<<<< HEAD
 
 function deleteUser(userId){
 	location.href="<%=request.getContextPath()%>/views/user/deleteUser?userId="+userId;
 }
 
 
+=======
+function moveSBoard(userId){
+	location.href="<%=request.getContextPath()%>/views/opinion/suggestionBoard?userId="+userId;
+}
+function moveRBoard(userId){
+	location.href="<%=request.getContextPath()%>/views/opinion/reportBoard?userId="+userId;
+}
+>>>>>>> branch 'DaHee' of https://github.com/TaeWonn/HoItZZa.git
 </script>
+
+
+
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
