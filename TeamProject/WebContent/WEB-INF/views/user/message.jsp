@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,8 +20,7 @@ div#search-content{
 	display:none;
 	<%}%>
 }
-display:none;
-}
+
 </style>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/message.css" />
@@ -49,7 +47,7 @@ display:none;
 					<button type="button" class="btn btn-secondary"  onclick="reply(<%=userLoggedIn.getUserId() %>);">답장</button>
 				</td>
 			</tr>
-			<%} %>
+		<%} %>
 		</tbody>
 	</table>
 	<br>
