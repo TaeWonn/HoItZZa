@@ -70,14 +70,14 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		boardContent =boardContent.replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
 		
-		Sell s = new Sell();
-		s.setBoardNo(boardNo);
-		s.setBoardTitle(boardTitle);
-		s.setBoardContent(boardContent);
-		s.setBoardDeal(boardDeal);
-		s.setBoardCodeNo(boardCodeNo);
+		Buy b = new Buy();
+		b.setBoardTitle(boardTitle);
+		b.setBoardContent(boardContent);
+		b.setBoardWriter(boardWriter);
+		b.setBoardDeal(boardDeal);
+		b.setBoardCodeNo(boardCodeNo);
 		
-		int result = new SellService().updateSell(s);
+		int result = new BuyService().insertBoard(b);
 		
 		if(f != null) {
 			FileTable t = new FileTable();
@@ -93,7 +93,7 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 				t.setBoardNo(boardNo);
 				t.setOriginalFileName(fname);
 				t.setRenamedFileName(newfname);
-				new SellService().insertFileTable(ft);
+				new BuyService().insertFileTable(ft);
 				
 			}
 		}
@@ -105,7 +105,7 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		String loc = "";
 		if(result > 0) {
 			msg = "게시글변경완료";
-			loc = "/sell/sellView?boardNo="+s.getBoardNo();
+			loc = "/sell/sellView?boardNo="+b.getBoardNo();
 		}else {
 			msg = "변경중 오류 발생";
 			loc = "/";
@@ -115,11 +115,6 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-				.forward(request, response);
-		
-		
-		request.setAttribute("sell", s);
-		request.getRequestDispatcher("/WEB-INF/views/sell/sellModified.jsp")
 				.forward(request, response);
 	}
 
