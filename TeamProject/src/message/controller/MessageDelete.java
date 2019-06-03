@@ -42,7 +42,7 @@ public class MessageDelete extends HttpServlet {
 		}else {
 			msg="삭제에 실패했습니다.";
 		}
-		
+		 
 		request.setAttribute("loc", loc);
 		request.setAttribute("msg", msg);
 		
