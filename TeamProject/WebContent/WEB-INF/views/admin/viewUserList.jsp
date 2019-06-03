@@ -16,12 +16,18 @@ div#search-userId_find {
 	display: <%=searchType == null || "userId_find".equals(searchType) ? "inline-block" : "none"%>
 }
 div#search-userName_find {
+	<%if(searchType!=null){%>
+	display:inline-block;
+	<%}else{%>
 	display:none;
-	<%-- display: <%=searchType == null || "userName_find".equals(searchType) ? "inline-block" : "none"%> --%>
-	}
+	<%}%>
+}
 div#search-gender_find {
-	<%-- display: <%=searchType == null || "gender_find".equals(searchType) ? "inline-block" : "none"%> --%>
+	<%if(searchType!=null){%>
+	display:inline-block;
+	<%}else{%>
 	display:none;
+	<%}%>
 }
 </style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/viewUserList.css" />

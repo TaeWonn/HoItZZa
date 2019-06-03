@@ -11,9 +11,9 @@
 		
 		<table id="sellList">
 		<colgroup>
-	        <col width="30px">
-
+	        <col width="20px">
 	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="25px">
    		</colgroup>
 
 		<thead>
@@ -40,9 +40,9 @@
 		
 		<table id="buyList">
 		<colgroup>
-	        <col width="30px">
-
+	        <col width="20px">
 	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="25px">
    		</colgroup>
 		<thead>
 		<tr >
@@ -70,9 +70,10 @@
 		<span class="title">자유게시판</span>
 		<table id="jayuList1">
 		<colgroup>
-	        <col width="30px">
+	        <col width="20px">
 
 	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="20px">
    		</colgroup>
 		<thead>
 		<tr >
@@ -97,9 +98,10 @@
 		
 		<table id="jayuList2">
 		<colgroup>
-	        <col width="30px">
+	        <col width="20px">
 
 	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="20px">
    		</colgroup>
 		<thead>
 		<tr >
@@ -128,6 +130,7 @@
 	        <col width="20px">
 
 	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="20px">
    		</colgroup>
 		<thead>
 		<tr >
@@ -152,6 +155,12 @@
 		
 		
 		<table id="jayuList4">
+		<colgroup>
+	        <col width="20px">
+
+	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+	        <col width="20px">
+   		</colgroup>
 		<thead>
 		<tr>
 		<th  colspan="3" style="font-size: 20px;">연예/미디어 게시판</th>
