@@ -83,7 +83,8 @@ public class AdminListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		
 		request.setAttribute("userList", userList);
-		request.getRequestDispatcher("/WEB-INF/views/admin/adminList.jsp")
+		
+		request.getRequestDispatcher("/WEB-INF/views/admin/viewUserList.jsp")
 			.forward(request, response);
 		
 	}

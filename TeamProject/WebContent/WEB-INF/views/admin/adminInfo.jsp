@@ -20,7 +20,7 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 </div>
 
 <div id="infoList">
-<form action="<%=request.getContextPath()%>/views/user/updateInfo" method="post">
+<form action="<%=request.getContextPath()%>/user/updateInfo" method="post">
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>
@@ -122,16 +122,16 @@ function searchAddr(){
 //관리자가 유저 목록 확인을 위한 함수
 function viewUser(){
 	//admin 외의 접근을 막기 위해 아이디값 보냄
-	location.href="<%=request.getContextPath()%>/views/admin/viewUserList?userId=<%--<%=userIdd%> --%>";
+	location.href="<%=request.getContextPath()%>/admin/adminList";
 }
 
 //비밀번호 변경페이지로 이동
 function changeUserPwd(userId){
-	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+<%--<%=userIdd%>--%>;
+	location.href="<%=request.getContextPath()%>/user/updatePwd?userId="<%--<%=userIdd%>--%>;
 }
 
 function moveSBoard(userId){
-	location.href="<%=request.getContextPath()%>/views/opinion/suggestionBoard?userId="+userId;
+	location.href="<%=request.getContextPath()%>/opinion/suggestionBoard?userId="+userId;
 }
 function moveRBoard(userId){
 	location.href="<%=request.getContextPath()%>/views/opinion/reportBoard?userId="+userId;

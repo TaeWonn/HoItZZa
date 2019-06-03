@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-List<User>userList=(List<User>)request.getAttribute("userList");
+List<User> userList=(List<User>)request.getAttribute("userList");
 String searchType=(String)request.getAttribute("searchType");
 String searchKeyword=(String)request.getAttribute("searchKeyword");
 int numPerPage=10;
@@ -13,15 +13,13 @@ String pageBar=(String)request.getAttribute("pageBar");
 %>
 <style>
 div#search-userId_find {
-	display: <%=searchType == null || "userId_find".equals(searchType) ? "inline-block" : "none"%>
+    display: <%=searchType == null || "userId_find".equals(searchType) ? "inline-block" : "none"%>
 }
 div#search-userName_find {
-	display:none;
-	<%-- display: <%=searchType == null || "userName_find".equals(searchType) ? "inline-block" : "none"%> --%>
-	}
+    display:none;
+}
 div#search-gender_find {
-	<%-- display: <%=searchType == null || "gender_find".equals(searchType) ? "inline-block" : "none"%> --%>
-	display:none;
+    display:none;
 }
 </style>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/viewUserList.css" />
@@ -40,14 +38,14 @@ div#search-gender_find {
 		</tr>
 	</thead>
 	<tbody>
-	<%/* for(int i=0;i<userList.size();i++){ */for(int i=1;i<16;i++){ %>
+	<%for(int i=0;i<userList.size();i++){ %>
 		<tr>
-			<td><nobr><%-- <%=userList.get(i).getUserId() %> --%>user<%=i %></nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getName() %> --%>유저</nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getGender().equals("M")?"남":"여" %> --%>여성</nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getSsn() %> --%>999999-1111111</nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getEmail() %> --%>female<%=i %>@naver.com</nobr></td>
-			<td><nobr> <%-- <%=userList.get(i).getPhone() %> --%>010-1234-1234</nobr></td>		
+			<td><nobr><%=userList.get(i).getUserId() %></nobr></td>
+			<td><nobr>  <%=userList.get(i).getName() %></nobr></td>
+			<td><nobr>  <%=userList.get(i).getGender().equals("m")?"남":"여" %></nobr></td>
+			<td><nobr>  <%=userList.get(i).getSsn() %></nobr></td>
+			<td><nobr>  <%=userList.get(i).getEmail() %></nobr></td>
+			<td><nobr>  <%=userList.get(i).getPhone() %></nobr></td>		
 		</tr>
 	<% }%>	
 	
