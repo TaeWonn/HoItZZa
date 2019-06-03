@@ -106,7 +106,7 @@ public class UserDAO {
 				u.setSsn(rs.getString("ssn"));
 				u.setEmail(rs.getString("email"));
 				u.setPhone(rs.getString("phone"));
-				u.setAddr(rs.getString("address"));
+				u.setAddr(rs.getString("addr"));
 				u.setPoint(rs.getInt("point"));
 				String interestStr = rs.getString("interest");
 				String [] interest = interestStr.split(",");

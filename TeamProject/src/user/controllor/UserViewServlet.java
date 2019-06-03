@@ -57,74 +57,72 @@ public class UserViewServlet extends HttpServlet {
 			// 바로 개인정보 페이지로 이동한다.
 			view = "/WEB-INF/views/user/userInfo.jsp";
 			
-//			// 이용자가 있을 경우에만 개인화 리스트를 받아온다.
+			// 이용자가 있을 경우에만 개인화 리스트를 받아온다.
 //			List<Sell> interestSellListByUser = new SellService().selectInterestSellListByUser(userId);
 //			List<Buy> interestBuyListByUser = new BuyService().selectInterestBuyListByUser(userId);
 //			List<Sell> interestCategoryList1 = new SellService().selectInterestSellListByCategory(u.getInterest()[0]);
 //			List<Sell> interestCategoryList2 = new SellService().selectInterestSellListByCategory(u.getInterest()[1]);
 //			List<Sell> interestCategoryList3 = new SellService().selectInterestSellListByCategory(u.getInterest()[2]);
 //			
-//			// 관심글을 판매/구매 게시판 별로 받아와서 부모 클래스인 Board객체의 리스트로 합친다.
-//			List<Board> list = new ArrayList<>();
+			// 관심글을 판매/구매 게시판 별로 받아와서 부모 클래스인 Board객체의 리스트로 합친다.
+			List<Board> list = new ArrayList<>();
 //			list.add((Board)interestSellListByUser);
 //			list.add((Board)interestBuyListByUser);
-//			
-//			// 전체 게시글 수, 전체 페이지 수 구하기
-//			int totalCnt = list.size();
-//			int totalPage = (int)Math.ceil((double)totalCnt/numPerPage);
-//
-//			// 페이지바 구성
-//			String pageBar = "";
-//			int pageBarSize = 5;
-//			
-//			// 시작페이지 번호 세팅
-//			int pageStart = ((cPage-1)/pageBarSize) * pageBarSize + 1;
-//			
-//			// 종료페이지 번호 세팅
-//			int pageEnd = pageStart + pageBarSize - 1;
-//			int pageNo = pageStart;
-//			
-//			// [prev] section
-//			if(pageNo == 1)
-//				pageBar += "<span>[prev]</span>";
-//			else {
-//				pageBar += "<a href'"+request.getContextPath()
-//							+  "/views/user/userInfo?scPage="+pageNo+"'>"
-//							+  pageNo + "</a>";
-//			}
-//			
-//			// pageNo section
-//			while(pageNo <= pageEnd && pageNo<=totalPage) {
-//				while(!(pageNo>pageEnd || pageNo>totalPage)) {
-//					if(cPage == pageNo) 
-//						pageBar += "<span class='scPage'>"+pageNo+"</span>";
-//					else {
-//						pageBar += "<a href'"+request.getContextPath()
-//									+  "/views/user/userInfo?scPage="+pageNo+"'>"
-//									+  pageNo + "</a>";
-//					}
-//					
-//					pageNo++;
-//				}
-//			}
-//			
-//			// [next] section
-//			if(pageNo>totalPage) 
-//				pageBar += "<span>[next]</span>";
-//			else {
-//				pageBar += "<a href'"+request.getContextPath()
-//							+  "/views/user/userInfo?scPage="+pageNo+"'>"
-//							+  pageNo + "</a>";
-//			}
+			
+			// 전체 게시글 수, 전체 페이지 수 구하기
+			int totalCnt = list.size();
+			int totalPage = (int)Math.ceil((double)totalCnt/numPerPage);
+
+			// 페이지바 구성
+			String pageBar = "";
+			int pageBarSize = 5;
+			
+			// 시작페이지 번호 세팅
+			int pageStart = ((cPage-1)/pageBarSize) * pageBarSize + 1;
+			
+			// 종료페이지 번호 세팅
+			int pageEnd = pageStart + pageBarSize - 1;
+			int pageNo = pageStart;
+			
+			// [prev] section
+			if(pageNo == 1)
+				pageBar += "<span>[prev]</span>";
+			else {
+				pageBar += "<a href'"+request.getContextPath()
+							+  "/views/user/userInfo?scPage="+pageNo+"'>"
+							+  pageNo + "</a>";
+			}
+			
+			// pageNo section
+			while(pageNo <= pageEnd && pageNo<=totalPage) {
+				while(!(pageNo>pageEnd || pageNo>totalPage)) {
+					if(cPage == pageNo) 
+						pageBar += "<span class='scPage'>"+pageNo+"</span>";
+					else {
+						pageBar += "<a href'"+request.getContextPath()
+									+  "/views/user/userInfo?scPage="+pageNo+"'>"
+									+  pageNo + "</a>";
+					}
+					
+					pageNo++;
+				}
+			}
+			
+			// [next] section
+			if(pageNo>totalPage) 
+				pageBar += "<span>[next]</span>";
+			else {
+				pageBar += "<a href'"+request.getContextPath()
+							+  "/views/user/userInfo?scPage="+pageNo+"'>"
+							+  pageNo + "</a>";
+			}
 			String [] addrArr = u.getAddr().split(",");
 			if(addrArr.length > 2) {
 				msg += "</br> 주소 정보에 오류가 있습니다.";
 			}
 			System.out.println("서블릿"+u);
 			request.setAttribute("user", u);
-			request.setAttribute("addr1", addrArr[0]);
-			request.setAttribute("addr2", addrArr[1]);
-//			request.setAttribute("pageBar", pageBar);
+			request.setAttribute("pageBar", pageBar);
 //			request.setAttribute("interestBoardList", list);
 //			request.setAttribute("firstInterestList", interestCategoryList1);
 //			request.setAttribute("secondInterestList", interestCategoryList2);
