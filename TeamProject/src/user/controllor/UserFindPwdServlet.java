@@ -7,16 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.tribes.MembershipService;
-
 import user.model.service.UserService;
 import user.model.vo.User;
 
 /**
- * Servlet implementation class UserUpdatePasswordEndServlet
+ * Servlet implementation class UserFindPwdServlet
  */
-@WebServlet("/views/user/updatePwdEnd")
-public class UserUpdatePasswordEndServlet extends HttpServlet {
+@WebServlet("/views/user/findPwd")
+public class UserFindPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,33 +23,35 @@ public class UserUpdatePasswordEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("findUserPwd_Id");
-		String password = request.getParameter("changePwd");
-
-		System.out.println("@userFindPwdServlet:userId="+userId+", password="+password);
-
+		String name = request.getParameter("findUserPwd_name");
+		String ssn = request.getParameter("findUserPwd_ssn_1") + request.getParameter("findUserPwd_ssn_2");
+		
 		User u = new User();
 		u.setUserId(userId);
-		u.setPassword(password);
-
+		u.setName(name);
+		u.setSsn(ssn);
+		
 		// 2. 업무 로직
-		int result = new UserService().updatePassword(u);
-
+		Boolean isUser = new UserService().findUserPwd(u);
+		
 		// 3. view단 처리
 		String view = "/WEB-INF/views/common/msg.jsp";
-		String msg = "";
-		String loc = "";
-		if(result>0) {
-			msg = "비밀번호가 성공적으로 변경되었습니다.";
-			loc = "/";
+		String msg = "test";
+		String loc = "/";
+
+		if(!isUser) {
+			msg = "일치하는 회원 정보가 존재하지 않습니다.";
+			loc = "/views/user/findId_pwd";
 		}
 		else {
-			msg = "비밀번호 변경에 실패하였습니다.";
-			loc = "/WEB-INF/views/user/updatePwd";
+			msg = "비밀번호를 새로 설정해주세요.";
+			loc = "/views/user/updatePwdEnd";
 		}
-
+		
+		request.setAttribute("userId", userId);
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
-
+		
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

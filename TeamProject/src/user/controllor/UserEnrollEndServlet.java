@@ -29,7 +29,7 @@ public class UserEnrollEndServlet extends HttpServlet {
 		String password = request.getParameter("userPwd");
 		String name = request.getParameter("userName");
 		String gender = request.getParameter("gender");
-		String ssn = request.getParameter("ssn_1").trim() + request.getParameter("ssn_2").trim();
+		String ssn = request.getParameter("ssn_1").trim() +"-" + request.getParameter("ssn_2").trim();
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone_1").trim()
 					 + request.getParameter("phone_2").trim()
