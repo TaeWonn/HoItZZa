@@ -36,6 +36,7 @@
 			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userId" readonly /></td>
 		</tr>
 		<tr>
+		
 			<th>포인트</th>
 			<td><input type="text" value="0" readonly /></td>
 		</tr>
