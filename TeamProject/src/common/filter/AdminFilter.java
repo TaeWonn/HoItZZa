@@ -41,8 +41,10 @@ public class AdminFilter implements Filter {
 		HttpSession session = hreq.getSession();
 		User userLoggedIn = (User)session.getAttribute("userLoggedIn");
 		
-		String reqUserId = hreq.getParameter("userId");
-		
+		String reqUserId =  null;
+		if(userLoggedIn != null) {
+			reqUserId = userLoggedIn.getUserId();
+		}
 		if(userLoggedIn == null||
 				reqUserId == null ||
 				!reqUserId.equals("admin")) {

@@ -360,8 +360,8 @@ public class SellDAO {
 			rs= ps.executeQuery();
 			while(rs.next()) {
 				Comment c = new Comment();
-				c.setCommentContent(rs.getString("comment_comment"));
 				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommentContent(rs.getString("comment_content"));//컬럼명이 잘못되어 있어서 수정
 				c.setCommnetWriter(rs.getString("comment_writer"));
 				c.setBoardNo(boardNo);
 				

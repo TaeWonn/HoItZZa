@@ -242,7 +242,7 @@ public class UserDAO {
 			if(rs.next())
 				userId = rs.getString("user_Id");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		} finally {
 			close(ps);
 			close(rs);

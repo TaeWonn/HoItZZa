@@ -4,8 +4,6 @@
 
 <%
 	//세션 객체로부터 저장된 로그인 사용자 정보 가져오기
-
-
 	User userLoggedIn = (User)session.getAttribute("userLoggedIn");
 	
 	//쿠키 처리
@@ -71,7 +69,6 @@
 #head-container {
 	background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
 } 
-
 </style>
 </head>
 <body>
@@ -115,8 +112,8 @@
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span></li>
-					<li><span><a href="<%=request.getContextPath()%>/views/admin/adminInfo">관리자 페이지</a></span></li>
-					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/admin/adminInfo">관리자 페이지</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/user/userLogout">로그아웃</a></span></li>
 				</ul>
 			</div>	
 			
@@ -127,7 +124,7 @@
 					id="user_profile_photo" />
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
-						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userId%>">내정보
+						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보
 								보기</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/">현재 포인트</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
