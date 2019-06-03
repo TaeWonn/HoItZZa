@@ -16,6 +16,7 @@ div#interestBoardAll{position:absolute;top:540px;}
 table#userInfoTable select.interestBo{width:105px;}
 table#userInfoTable td,th{padding:6px;}
 table#userInfoTable th{width:80px;}
+table#userInfoTable input.btn{padding:0px;width:80px;border: 1px solid;background: lightblue;}
 table#userInfoTable button.btn{padding:0px;width:80px;border: 1px solid;background: lightblue;}
 table#userInfoTable #addrBox{width:230px;}
 table#userInfoTable{position:absolute;top:7px;}

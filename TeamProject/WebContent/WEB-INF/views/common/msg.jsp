@@ -9,7 +9,10 @@
 	
 %>
 <script>
+	<%if(msg!=null){%>
 	alert("<%=msg%>");
+	<%}%>
+	
 	<%=close%>
 	location.href = "<%=loc%>";
 </script>

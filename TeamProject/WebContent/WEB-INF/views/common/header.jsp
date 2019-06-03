@@ -108,10 +108,10 @@
 				} else if(userLoggedIn.getUserId().equals("admin")){%>
 				<div id="login-container">
 
-				<span id="hi">관리자님 안녕하세요!</span><img src="images/profile.png" alt=""
+				<span id="hi">관리자님 안녕하세요!</span><img src="<%=request.getContextPath() %>/images/user.svg" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
-					<li><span><a href="<%=request.getContextPath()%>/views/user/message">내쪽지함</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/admin/adminInfo">관리자 페이지</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/user/userLogout">로그아웃</a></span></li>
 				</ul>
@@ -120,10 +120,10 @@
 			<%}else{%>
 			<div id="login-container">
 				<div id="contnet">
-				<span id="hi"><%=userLoggedIn.getUserId() %>님 안녕하세요!</span> <img src="images/profile.png" alt=""
+				<span id="hi"><%=userLoggedIn.getName() %>님 안녕하세요!</span> <img src="<%=request.getContextPath() %>/images/user.svg" alt=""
 					id="user_profile_photo" />
 				<ul id="link">
-					<li><span><a href="<%=request.getContextPath()%>/">내쪽지함</a></span>
+					<li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보
 								보기</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/">현재 포인트</a></span></li>

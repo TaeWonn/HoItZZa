@@ -1,3 +1,4 @@
+<%@page import="message.model.vo.Message"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +7,7 @@
 	String pageBar=(String)request.getAttribute("pageBar");
 	String searchKeyword=(String)request.getAttribute("searchKeyword");
 	String searchType=(String)request.getAttribute("searchType");
+	List<Message> list=(List<Message>)request.getAttribute("msgList");
 	
 
 %>
@@ -37,17 +39,17 @@ div#search-content{
 			</tr>
 		</thead>
 		<tbody>
-		<%for(int i=1;i<=11;i++){ %>
+		<%if(list!=null){for(int i=0;i<list.size();i++){ %>
 			<tr>
-				<th scope="row">festa<%=i %></th>
-				<td>Sparta!<%=i %></td>
-				<td>2019/02/<%= i<10?("0"+i):i %></td>
+				<th scope="row"><nobr><%=list.get(i).getSender() %></nobr></th>
+				<td><nobr><%= list.get(i).getContent()%></nobr></td>
+				<td><nobr><%=list.get(i).getNoteDate() %></nobr></td>
 				<td>
-					<button type="button" class="btn btn-secondary"  onclick="deletemsg(<%=userLoggedIn.getUserId() %>);">삭제</button>
-					<button type="button" class="btn btn-secondary"  onclick="reply(<%=userLoggedIn.getUserId() %>);">답장</button>
+					<button type="button" class="btn btn-secondary"  onclick="reply('<%=userLoggedIn.getUserId() %>','<%=list.get(i).getSender()%>');">답장</button>
+					<button type="button" class="btn btn-secondary"  onclick="deletemsg('<%=list.get(i).getMessageNo()%>','<%=list.get(i).getRecipient()%>');">삭제</button>
 				</td>
 			</tr>
-		<%} %>
+		<%}}%>
 		</tbody>
 	</table>
 	<br>
@@ -92,13 +94,16 @@ div#search-content{
 </article>
 
 <script>
-function deletemsg(sender,recipient){
+function deletemsg(msgNo,userId){
 	//사용자가 recipient, 보낸사람이 sender
-	location.href="<%=request.getContextPath()%>/views/user/messageDelete?senderId="+sender+"&recipient="+receiver;
+	var bool=confirm('정말 삭제하시겠습니까?');
+	if(bool){
+	location.href="<%=request.getContextPath()%>/views/message/messageDelete?msgNo="+msgNo+"&userId="+userId;		
+	}
 }
 function reply(sender,recipient){
 	//사용자가 sender, 받는사람이 recipient
-	location.href="<%=request.getContextPath()%>/views/user/messageReply?senderId="+sender+"&recipient="+receiver;	
+	location.href="<%=request.getContextPath()%>/views/message/messageReply?senderId="+sender+"&recipient="+receiver;	
 }
 
 $('#searchType').change(function() {
@@ -107,8 +112,6 @@ $('#searchType').change(function() {
 	$('#search-' + value).css('display', 'inline-block');
 	
 	$('input[name=searchType]').val(value);
-	
-	
 });
 function insertKeyword(obj){
 	 $('input[name=searchKeyword]').val(obj.value);
