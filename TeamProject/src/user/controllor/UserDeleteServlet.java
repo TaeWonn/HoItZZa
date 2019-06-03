@@ -13,7 +13,7 @@ import user.model.service.UserService;
 /**
  * Servlet implementation class UserDeleteServlet
  */
-@WebServlet("/user/userDelete")
+@WebServlet("/views/user/deleteUser")
 public class UserDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class UserDeleteServlet extends HttpServlet {
 			if(session != null) {
 				session.invalidate();
 			}
-			loc = "/user/logout";
+			loc = "/views/user/logout";
 		}
 		else {
 			msg = "회원정보 삭제에 실패했습니다.";
