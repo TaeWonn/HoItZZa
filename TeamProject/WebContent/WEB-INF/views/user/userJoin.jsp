@@ -41,8 +41,8 @@
 					<tr>
 						<th>성별</th>
 						<td>
-						<input type="radio" name="gender" class="gender" value="M" /><label for="gender">여성</label>&nbsp;&nbsp;
-						<input type="radio" name="gender" class="gender" value="F" /><label for="gender">남성</label>
+						<input type="radio" name="gender" class="gender" value="F" /><label for="gender">여성</label>&nbsp;&nbsp;
+						<input type="radio" name="gender" class="gender" value="M" /><label for="gender">남성</label>
 						</td>
 					</tr>
 					<tr>
@@ -243,7 +243,7 @@ function validate(){
 	  alert('입력하신 비밀번호와 비밀번호 확인 부분이 동일하지 않습니다. 다시 입력해주세요');
 	  result=false;
   }
-  
+  return result;
 }
 
 //form제출

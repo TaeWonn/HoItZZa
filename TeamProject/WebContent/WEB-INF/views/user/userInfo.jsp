@@ -7,14 +7,15 @@
 
 <%
 	//String pageBar = (String) request.getAttribute("pageBar");
-	User user=(User)request.getAttribute("user");
-  	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
+	User u=(User)request.getAttribute("user");
+	System.out.println(u);
+  	/* List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
 	List<Board> interest1BoardList=(List<Board>)request.getAttribute("interestCategoryList1");
 	List<Board> interest2BoardList=(List<Board>)request.getAttribute("interestCategoryList2");
-	List<Board> interest3BoardList=(List<Board>)request.getAttribute("interestCategoryList3"); 
- 
+	List<Board> interest3BoardList=(List<Board>)request.getAttribute("interestCategoryList3");  */
 	String[] interestArr=userLoggedIn.getInterest();
-	
+ 
+	String[] addrArr = userLoggedIn.getAddr().split(",");
 
 %>
 
@@ -32,7 +33,7 @@
 	<table id="userInfoTable">
 		<tr>
 			<th>이름</th>
-			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userId" readonly /></td>
+			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userName" readonly /></td>
 		</tr>
 		<tr>
 			<th>포인트</th>
@@ -44,15 +45,15 @@
 		</tr>
 		<tr>
 			<th>비밀번호</th> 
-			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="changeUserPwd('<%=userLoggedIn.getUserId()%>');" >변경하기</button>
+			<td>
+			<input type="button" value="변경하기" class="btn" onclick="return changeUserPwd('<%=userLoggedIn.getUserId()%>','<%=userLoggedIn.getName() %>','<%=userLoggedIn.getSsn() %>');"  />
 			</td>
 		</tr>
 		<tr>
 			<th>주소</th>
 			<td>
-				<input type="text" value=""  name="addr1" readonly/>
-				<input type="text" value=""  name="addr2" placeholder="상세주소"/>
+				<input type="text" value="<%=addrArr[0] %>"  name="addr1" readonly/>
+				<input type="text" value="<%=addrArr[1] %>"  name="addr2" placeholder="상세주소"/>
 				<button class="btn" onclick="searchAddr();">주소찾기</button>
 			</td>
 				
@@ -93,7 +94,7 @@
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=userLoggedIn.getUserId() %>');" />
+			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=userLoggedIn.getUserId()%>,<%=userLoggedIn.getSsn()%>,<%=userLoggedIn.getName()%>');" />
 			</td>
 		</tr>
 	</table>
@@ -182,13 +183,22 @@ function searchAddr(){
 		}).open();
 }
 //비밀번호 변경페이지로 이동
-function changeUserPwd(userId){
-	location.href="<%=request.getContextPath()%>/views/user/updatePwd?userId="+userId;
-
+function changeUserPwd(userId,name,ssn){
+	console.log(userId);
+	console.log(typeof ssn);
+	var ssn1=ssn.substring(0,6);
+	console.log(ssn1);
+	var ssn2=ssn.substring(6);
+	console.log(ssn2);
+	location.href="<%=request.getContextPath()%>/views/user/updatePwd?findUserPwd_Id="+userId+"&findUserPwd_name="+name+"&findUserPwd_ssn_1="+ssn1+"&findUserPwd_ssn_2="+ssn2;
+	return false;
 }
 
 function deleteUser(userId){
+	var bool=confirm('정말 탈퇴하시겠습니까??');
+	if(bool){
 	location.href="<%=request.getContextPath()%>/views/user/deleteUser?userId="+userId;
+	}
 }
 
 

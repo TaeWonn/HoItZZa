@@ -22,13 +22,15 @@ div#search-content{display:none;}
         font-size: 18px;
         position:absolute;
         table-layout:fixed;
-        text-overflow:ellipsis;
         }
-    .table th{font-size: 15px;vertical-align: baseline;}
+    .table th{font-size: 15px;vertical-align: baseline;text-overflow: ellipsis;overflow: hidden;}
     .table th,td{padding:2px;}
-    .table td{    max-height: 20px;
+    .table td{  max-width:200px; 
+    			max-height: 20px;
    				 padding: 4px;
     			vertical-align: unset;
+    			text-overflow: ellipsis;
+    			overflow: hidden;
     			}
     .table th{padding:10px;}
 
