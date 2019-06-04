@@ -127,7 +127,8 @@
 					<li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보
 								보기</a></span></li>
-					<li><span><a href="<%=request.getContextPath()%>/">현재 포인트</a></span></li>
+					<li><span>현재 포인트  <%=userLoggedIn.getPoint() %>P</span><br />
+					<span><a href="<%=request.getContextPath()%>/views/point/pointView?userId=<%=userLoggedIn.getUserId()%>" >충전하기</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
 				</ul>
 				</div>
