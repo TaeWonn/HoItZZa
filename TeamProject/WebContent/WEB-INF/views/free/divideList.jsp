@@ -42,7 +42,7 @@
 </head>
 <body>  
 <body>
-	<h2>잡담게시판</h2>
+	<h2>나눔게시판</h2>
 
     <table class="table">
         <thead class="thead-light">

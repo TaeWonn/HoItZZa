@@ -34,10 +34,15 @@
     }
     .thead-light{
     font-size : 17px;}
+    
+    h2{
+    text-align: center;
+    }
     </style>
 </head>
 <body>  
 <body>
+	<h2>연예/미디어</h2>
 
     <table class="table">
         <thead class="thead-light">
@@ -56,14 +61,19 @@
             <th scope="row">작성자명</th>
             <td>Mark</td>
             <td>Otto</td>
-            <td></td>
-            <td></td>
+            <td>2019-06-24</td>
+            <td>5</td>
      </tr>
                 <% } %>
         </tbody>
         
       </table>
 
+<%-- <%if(memberLoggedIn != null){ %>
+		<input type="button" value="글쓰기" 
+			   id="btn-add"
+			   onclick="location.href='<%=request.getContextPath()%>/board/boardForm'"/>
+	<% } %> --%>
 </body>
 </html>
 
