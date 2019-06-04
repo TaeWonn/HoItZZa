@@ -19,6 +19,9 @@ public class MessageFinderServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 핸들링
+		String searchType=request.getParameter("searchType");
+		String searchKeyword=request.getParameter("searchKeyword");
+		String userId=request.getParameter("userId");
 		
 		
 		//업무로직
