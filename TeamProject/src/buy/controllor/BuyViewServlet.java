@@ -37,7 +37,7 @@ public class BuyViewServlet extends HttpServlet {
 		}
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
-		
+		 
 		
 		List<Comment> clist = new BuyService().commentList(boardNo);
 		
