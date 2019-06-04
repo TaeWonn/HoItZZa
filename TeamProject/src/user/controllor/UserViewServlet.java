@@ -119,7 +119,7 @@ public class UserViewServlet extends HttpServlet {
 			String [] addrArr = u.getAddr().split(",");
 			if(addrArr.length > 2) {
 				msg += "</br> 주소 정보에 오류가 있습니다.";
-			}
+			} 
 			System.out.println("서블릿"+u);
 			request.setAttribute("user", u);
 			request.setAttribute("pageBar", pageBar);
