@@ -31,9 +31,6 @@ public class SellViewServlet extends HttpServlet {
 		
 		List<FileTable> ft = new SellService().selectFiles(boardNo);
 		
-		//경고 횟수 가져오기
-		
-		
 		if(s == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
 			request.setAttribute("loc", "/sell/sellList");

@@ -35,6 +35,7 @@ public class BuyViewServlet extends HttpServlet {
 					.forward(request, response);
 			return;
 		}
+		
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
 		 

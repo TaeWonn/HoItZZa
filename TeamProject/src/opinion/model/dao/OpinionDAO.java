@@ -65,10 +65,8 @@ public class OpinionDAO {
 				o.setBoardNo(rs.getString("board_no"));
 				o.setBoardTitle(rs.getString("board_title"));
 				o.setBoardContent(rs.getString("board_content"));
-				o.setBoardCodeNo(rs.getString("board_code_no"));
 				o.setBoardDate(rs.getDate("board_date"));
-				o.setBoardDeal(rs.getString("board_deal"));
-				o.setBoardReadCounter(rs.getInt("board_read_count"));
+				o.setBoardReadCount(rs.getInt("board_read_count"));
 				o.setBoardWriter(rs.getString("board_writer"));
 				
 				opinion.add(o);
@@ -90,9 +88,8 @@ public class OpinionDAO {
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, o.getBoardTitle());
-			ps.setString(2, o.getBoardCodeNo());
-			ps.setString(3, o.getBoardContent());
-			ps.setString(4, o.getBoardDeal());
+			ps.setString(2, o.getBoardContent());
+			ps.setString(3, o.getBoardWriter());
 			
 			result =ps.executeUpdate();
 		} catch (Exception e) {

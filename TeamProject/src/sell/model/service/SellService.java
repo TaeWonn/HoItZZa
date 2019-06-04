@@ -148,4 +148,18 @@ public class SellService {
 		return listCnt;
 	}
 
+	public List<Sell> sellFind(String searchType, String searchKeyword, int cPage, int numPerPage) {
+		Connection conn =getConnection();
+		List<Sell> sList = new SellDAO().sellFind(conn, searchType, searchKeyword, cPage, numPerPage);
+		close(conn);
+		return sList;
+	}
+
+	public int sellFindContents(String searchType, String searchKeyword) {
+		Connection conn = getConnection();
+		int count = new SellDAO().findContents(conn, searchType, searchKeyword);
+		close(conn);
+		return count;
+	}
+
 }

@@ -422,4 +422,87 @@ public class SellDAO {
 		return wList;
 	}
 
+	public List<Sell> sellFind(Connection conn, String searchType, String searchKeyword, int cPage, int numPerPage) {
+		List<Sell> sList = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "";
+		switch(searchType) {
+		case "sellTitle_find":
+			query ="titleFind";
+			break;
+		case "sellContent_find":
+			query ="contentFind";
+			break;
+		case "sellWriter_find":
+			query ="writerFind";
+			break;
+			
+		}
+		String sql = prop.getProperty(query);
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			ps.setInt(2, (cPage-1)*numPerPage+1);
+			ps.setInt(3, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Sell s = new Sell();
+				s.setBoardNo(rs.getString("board_no"));
+				s.setBoardTitle(rs.getString("board_title"));
+				s.setBoardWriter(rs.getString("board_writer"));
+				s.setBoardContent(rs.getString("board_content"));
+				s.setBoardCodeNo(rs.getString("board_code_no"));
+				s.setBoardDeal(rs.getString("board_deal"));
+				s.setBoardDate(rs.getDate("board_date"));
+				s.setBoardReadCounter(rs.getInt("board_read_count"));
+				sList.add(s);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return sList;
+	}
+
+	public int findContents(Connection conn, String searchType, String searchKeyword) {
+		int count =0;
+		String query="";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		switch(searchType) {
+		case "sellTitle_find":
+			query = "titleCotents";
+			break;
+		case "sellContent_find":
+			query = "contentContents";
+			break;
+		case "sellWriter_find":
+			query = "writerContents";
+			break;
+		}
+		String sql= prop.getProperty(query);
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs = ps.executeQuery();
+			if(rs.next())
+				count = rs.getInt("cnt");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return count;
+	}
+	
+	
+
 }
