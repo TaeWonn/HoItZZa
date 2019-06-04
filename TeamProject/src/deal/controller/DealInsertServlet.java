@@ -1,4 +1,4 @@
-package user.controllor;
+package deal.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,23 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.model.service.UserService;
-import user.model.vo.User;
-
 /**
- * Servlet implementation class UserUpdatePassword
+ * Servlet implementation class DealInsertServlet
  */
-@WebServlet("/views/user/updatePwd")
-public class UserUpdatePassword extends HttpServlet {
+@WebServlet("/deal/dealInsert")
+public class DealInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = ((User)request.getSession().getAttribute("userLoggedIn")).getUserId();
-		request.setAttribute("userId", userId);
-		request.getRequestDispatcher("/WEB-INF/views/user/updatePwd.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
