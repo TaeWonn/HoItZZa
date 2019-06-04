@@ -39,4 +39,32 @@ public class MessageService {
 		return list;
 	}
 
+	public List<Message> selectMsgByIdForSend(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		List<Message> list=new MessageDAO().selectMsgByIdForSend(conn,userId,searchKeyword);
+		close(conn);
+		return list;
+	}
+
+	public List<Message> selectMsgByContentForSend(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		List<Message> list=new MessageDAO().selectMsgByContentForSend(conn,userId,searchKeyword);
+		close(conn);
+		return list;
+	}
+
+	public List<Message> selectMsgByIdForReceive(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		List<Message> list=new MessageDAO().selectMsgByIdForReceive(conn,userId,searchKeyword);
+		close(conn);
+		return list;
+	}
+
+	public List<Message> selectMsgByContentForReceive(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		List<Message> list=new MessageDAO().selectMsgByContentForReceive(conn,userId,searchKeyword);
+		close(conn);
+		return list;
+	}
+
 }

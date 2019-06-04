@@ -57,7 +57,7 @@
 			<td>50000 Point</td>
 			<td><input type="radio" name="point" id="" value="50000" onchange="setVal(this)" /></td>
 		</tr>
-		<form action="<%=request.getContextPath() %>/views/pointChargeEnd" method="post">
+		<form action="<%=request.getContextPath() %>/views/point/pointChargeEnd" method="post">
 		<tr>
 			<td colspan="2">
 			<input type="hidden" name="userId" value="<%=userLoggedIn.getUserId()%>" />

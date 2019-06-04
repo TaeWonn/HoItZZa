@@ -109,7 +109,7 @@ public class MessageDAO {
 		List<Message>list=new ArrayList<>();
 		ResultSet rset=null;
 		PreparedStatement pstmt=null;
-		String sql="select * from note where sender=?";
+		String sql=prop.getProperty("selectMessageList2");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -131,7 +131,126 @@ public class MessageDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("MSGDAO@"+list);
+		return list;
+	}
+
+	public List<Message> selectMsgByIdForSend(Connection conn, String userId, String searchKeyword) {
+		List<Message>list=new ArrayList<>();
+		ResultSet rset=null;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("selectMsgByIdForSend");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, searchKeyword);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Message m =new Message();
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public List<Message> selectMsgByContentForSend(Connection conn, String userId, String searchKeyword) {
+		List<Message>list=new ArrayList<>();
+		ResultSet rset=null;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("selectMsgByContentForSend");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Message m =new Message();
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public List<Message> selectMsgByIdForReceive(Connection conn, String userId, String searchKeyword) {
+		List<Message>list=new ArrayList<>();
+		ResultSet rset=null;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("selectMsgByIdForReceive");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, searchKeyword);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Message m =new Message();
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public List<Message> selectMsgByContentForReceive(Connection conn, String userId, String searchKeyword) {
+		List<Message>list=new ArrayList<>();
+		ResultSet rset=null;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("selectMsgByContentForReceive");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Message m =new Message();
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 		return list;
 	}
 
