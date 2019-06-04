@@ -137,7 +137,7 @@ public class BuyDAO {
 		return b;
 	}
 
-	public String selectOneBoardNo(Connection conn, Buy b) {
+	public String selectOneBoardNo(Connection conn) {
 		//시퀀스 현재 번호 가져오기
 		String boardNo = null;
 		String sql = prop.getProperty("selectOneBoardNo");
@@ -234,7 +234,7 @@ public class BuyDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNo());
+			ps.setInt(5, c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -288,7 +288,7 @@ public class BuyDAO {
 			
 			rs = ps.executeQuery();
 			
-			while(rs.next()) {
+			while(rs.next()) { 
 				FileTable t = new FileTable();
 				t.setBoardNo(rs.getString("board_no"));
 				t.setOriginalFileName(rs.getString("original_file_name"));
@@ -343,6 +343,9 @@ public class BuyDAO {
 				c.setCommentContent(rs.getString("comment_content"));
 				c.setCommentNo(rs.getInt("comment_no"));
 				c.setCommnetWriter(rs.getString("comment_writer"));
+				c.setCommentLevel(rs.getInt("comment_level"));
+				c.setCommentNoRef(rs.getInt("comment_no_ref"));
+				c.setCommentDate(rs.getDate("comment_date"));
 				c.setBoardNo(boardNo);
 			}
 		} catch(Exception e) {
@@ -396,7 +399,7 @@ public class BuyDAO {
 		return point;
 	}
 
-	public int buying(Connection conn, int price, int point) {
+	public int buying(Connection conn, int price, int point, String userId) {
 		int result =0;
 		String sql = prop.getProperty("buying");
 		PreparedStatement ps = null;
@@ -413,6 +416,184 @@ public class BuyDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public List<Integer> warningCntList(Connection conn, List<Buy> buy) {
+		List<Integer> wList = new ArrayList<>();
+		String sql = prop.getProperty("warningCntList");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			for(int i=0; i<buy.size();i++) {
+				ps.setString(1, buy.get(i).getBoardWriter());
+				
+				rs= ps.executeQuery();
+				if(rs.next())
+					wList.add(rs.getInt("cnt"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return wList;
+	}
+
+	public List<Buy> titleFind(Connection conn, String searchKeyword,int cPage, int numPerPage) {
+		List<Buy> bList = new ArrayList<>();
+		String sql = prop.getProperty("titleFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			ps.setInt(2, (cPage-1)*numPerPage +1 );
+			ps.setInt(3, cPage*numPerPage);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Buy b= new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				b.setBoardContent(rs.getString("board_writer"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardReadCounter(rs.getInt("board_read_count"));
+				b.setBoardDate(rs.getDate("board_date"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return bList;
+	}
+
+	public List<Buy> contentFind(Connection conn, String searchKeyword,int cPage, int numPerPage) {
+		List<Buy> bList = new ArrayList<>();
+		String sql = prop.getProperty("contentFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			ps.setInt(2, (cPage-1)*numPerPage +1 );
+			ps.setInt(3, cPage*numPerPage);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Buy b= new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				b.setBoardContent(rs.getString("board_writer"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardReadCounter(rs.getInt("board_read_count"));
+				b.setBoardDate(rs.getDate("board_date"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return bList;
+	}
+
+	public List<Buy> writerFind(Connection conn, String searchKeyword,int cPage, int numPerPage) {
+		List<Buy> bList = new ArrayList<>();
+		String sql = prop.getProperty("writerFind");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			ps.setInt(2, (cPage-1)*numPerPage +1 );
+			ps.setInt(3, cPage*numPerPage);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Buy b= new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				b.setBoardContent(rs.getString("board_writer"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardReadCounter(rs.getInt("board_read_count"));
+				b.setBoardDate(rs.getDate("board_date"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return bList;
+	}
+
+	public int titleCotents(Connection conn, String searchKeyword) {
+		int cnt = 0;
+		String sql = prop.getProperty("titleContents");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs= ps.executeQuery();
+			if(rs.next())
+				cnt = rs.getInt("cnt");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return cnt;
+	}
+
+	public int contentCotents(Connection conn, String searchKeyword) {
+		int cnt = 0;
+		String sql = prop.getProperty("contentCount");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs= ps.executeQuery();
+			if(rs.next())
+				cnt = rs.getInt("cnt");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return cnt;
+	}
+
+	public int writerCotents(Connection conn, String searchKeyword) {
+		int cnt = 0;
+		String sql = prop.getProperty("writerCotents");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+searchKeyword+"%");
+			rs= ps.executeQuery();
+			if(rs.next())
+				cnt = rs.getInt("cnt");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return cnt;
 	}
 
 }

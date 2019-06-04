@@ -30,9 +30,6 @@ public class BoardModifiedServlet extends HttpServlet {
 		
 		Buy b = new BuyService().selectOneBuy(boardNo);
 		
-		List<FileTable> flist = new BuyService().selectFileList(boardNo);
-		
-		request.setAttribute("flist", flist);
 		request.setAttribute("buy", b);
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyModifiedEnd.jsp")
 				.forward(request, response);

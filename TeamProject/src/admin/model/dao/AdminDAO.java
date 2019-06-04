@@ -159,6 +159,7 @@ public class AdminDAO {
 				u.setEmail(rs.getString("email"));
 				u.setGender(rs.getString("gender"));
 				u.setJoin_date(rs.getDate("join_date"));
+				u.setSsn(rs.getString("ssn"));
 				u.setName(rs.getString("name"));
 				u.setPhone(rs.getString("phone"));
 				u.setPoint(rs.getInt("point"));
@@ -190,6 +191,7 @@ public class AdminDAO {
 				u.setEmail(rs.getString("email"));
 				u.setGender(rs.getString("gender"));
 				u.setJoin_date(rs.getDate("join_date"));
+				u.setSsn(rs.getString("ssn"));
 				u.setName(rs.getString("name"));
 				u.setPhone(rs.getString("phone"));
 				u.setPoint(rs.getInt("point"));
@@ -220,6 +222,7 @@ public class AdminDAO {
 				u.setUserId(rs.getString("user_id"));
 				u.setEmail(rs.getString("email"));
 				u.setGender(rs.getString("gender"));
+				u.setSsn(rs.getString("ssn"));
 				u.setJoin_date(rs.getDate("join_date"));
 				u.setName(rs.getString("name"));
 				u.setPhone(rs.getString("phone"));

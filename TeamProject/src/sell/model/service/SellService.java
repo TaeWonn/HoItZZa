@@ -141,4 +141,11 @@ public class SellService {
 		return result;
 	}
 
+	public List<Integer> warningListCnt(List<Sell> sell) {
+		Connection conn = getConnection();
+		List<Integer> listCnt = new SellDAO().warningListCnt(conn, sell); 
+		close(conn);
+		return listCnt;
+	}
+
 }
