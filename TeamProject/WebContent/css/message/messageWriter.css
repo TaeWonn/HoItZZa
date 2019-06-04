@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+article#messageWritePage{background:rgba(188,178,178,0.4); width:100%;height: 100%;text-align: center;}
+article#messageWritePage h2{background:linear-gradient( to bottom, black, darkgray);text-align: center;width:100%;color:white;text-shadow: 1px 0.5px  white;}
+table#messageWriteTable{width:300px;background: white;display: inline-block;}
+table#messageWriteTable td{padding:15px;}
+table#messageWriteTable h3{margin:0}
+table#messageWriteTable textarea{margin:0;width: 265px;border: 1px solid #3e9b86;resize: none;}
+table#messageWriteTable span{font-size:15px;color:darkgray;}
+table#messageWriteTable input[type=button]{cursor:pointer;border:none;left:30px;background: white;font-size:20px;position:relative;}
+table#messageWriteTable input[type=submit]{cursor:pointer;border:none;background: white; color:#4feeda;font-size:20px;position:relative;left:105px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

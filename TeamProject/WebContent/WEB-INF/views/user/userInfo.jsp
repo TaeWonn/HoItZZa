@@ -45,9 +45,7 @@
 		</tr>
 		<tr>
 			<th>비밀번호</th> 
-			<td>
-			<input type="button" value="변경하기" class="btn" onclick="return changeUserPwd('<%=userLoggedIn.getUserId()%>','<%=userLoggedIn.getName() %>','<%=userLoggedIn.getSsn() %>');"  />
-			</td>
+			<td><input type="button" value="변경하기" class="btn" onclick="return changeUserPwd('<%=userLoggedIn.getUserId()%>','<%=userLoggedIn.getName() %>','<%=userLoggedIn.getSsn() %>');"  /></td>
 		</tr>
 		<tr>
 			<th>주소</th>
@@ -200,7 +198,8 @@ function deleteUser(userId){
 	location.href="<%=request.getContextPath()%>/views/user/deleteUser?userId="+userId;
 	}
 }
-
+//주소창에 파라미터 값 숨기기
+history.replaceState({}, null, location.pathname);
 
 </script>
 

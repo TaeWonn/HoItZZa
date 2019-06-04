@@ -8,7 +8,7 @@
 
 List<Board> suggestionBoardList=(List<Board>)request.getAttribute("");
 List<Board> reportBoardList=(List<Board>)request.getAttribute("");
-
+String[] addrArr = userLoggedIn.getAddr().split(",");
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/admin/adminInfo.css" />
@@ -28,26 +28,26 @@ List<Board> reportBoardList=(List<Board>)request.getAttribute("");
 		</tr>
 		<tr>
 			<th>비밀번호</th>			
-			<td><input type="password" value="현재비밀번호" readonly />
-			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%--<%=userIdd%>--%>);" >변경하기</button>
+			<td>
+			<button class="btn" onclick="searchAddr(); " onclick="changeUserPwd(<%=userLoggedIn.getUserId()%>);" >변경하기</button>
 			</td>
 		</tr>
 		<tr>
 			<th>연락처</th>
-			<td><input type="text" value="전화번호" name="phone" /></td>
+			<td><input type="text" value="<%=userLoggedIn.getPhone() %>" name="phone" /></td>
 		</tr>
 		<tr>
 			<th>주소</th>
 			<td>
-				<input type="text" value=""  name="addr1" readonly/>
-				<input type="text" value=""  name="addr2" placeholder="상세주소"/>
+				<input type="text" value="<%=addrArr[0] %>"  name="addr1" readonly/>
+				<input type="text" value="<%=addrArr[1] %>"  name="addr2" placeholder="상세주소"/>
 				<button class="btn" onclick="searchAddr();">주소찾기</button>
 			</td>
 				
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><input type="email" value="user이메일주소" name="email"/></td>
+			<td><input type="email" value="<%=userLoggedIn.getEmail() %>" name="email"/></td>
 		</tr>
 		<tr id="pad">
 			<th></th>
