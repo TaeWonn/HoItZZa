@@ -31,7 +31,7 @@ public class OpinionWriteEndServlet extends HttpServlet {
 		o.setBoardWriter(boardWriter);
 		
 		int result = new OpinionService().insertBoard(o);
-		String boardNo = new OpinionService().selectSeq();
+		String boardNo = "OT_"+ new OpinionService().selectSeqCurr();
 		
 		String msg = "";
 		String loc = "";

@@ -33,4 +33,11 @@ public class OpinionService {
 		close(conn);
 		return result;
 	}
+
+	public int selectSeqCurr() {
+		Connection conn = getConnection();
+		int seq = new OpinionDAO().selectSeqCurr(conn);
+		close(conn);
+		return seq;
+	}
 }

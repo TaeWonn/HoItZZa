@@ -99,4 +99,23 @@ public class OpinionDAO {
 		}
 		return result;
 	}
+
+	public int selectSeqCurr(Connection conn) {
+		int seq = 0;
+		String sql = prop.getProperty("selectSeqCurr");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next())
+				seq = rs.getInt("seq");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return seq;
+	}
 }
