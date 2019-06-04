@@ -16,7 +16,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class PointChargeServlet
  */
-@WebServlet("/views/point/pointCharge")
+@WebServlet("/views/point/pointView")
 public class PointChargeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -82,7 +82,6 @@ public class PointChargeServlet extends HttpServlet {
 			request.setAttribute("numPerPage", numPerPage);
 			request.setAttribute("pageBar", pageBar);
 			request.setAttribute("chargeList", list);
-			
 		}
 		
 		request.getRequestDispatcher(view)

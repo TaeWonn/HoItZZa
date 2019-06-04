@@ -13,7 +13,7 @@ import point.model.vo.Point;
 /**
  * Servlet implementation class PointChargeEndServlet
  */
-@WebServlet("/views/point/pointChargeEnd")
+@WebServlet("/views/pointChargeEnd")
 public class PointChargeEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,10 @@ public class PointChargeEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
 		String chargeWriter = request.getParameter("userId");
-		int chargeMoney = Integer.parseInt(request.getParameter("chargeMoney"));
+		int chargeMoney = 0;
+		try {
+			chargeMoney = Integer.parseInt(request.getParameter("chargeMoney"));
+		} catch(NumberFormatException e) {}
 		
 		Point p = new Point();
 		p.setChargeWriter(chargeWriter);
