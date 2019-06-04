@@ -122,6 +122,7 @@ tr#p-tag td P{
 						<p>&nbsp;&nbsp;┖ 삭제한 게시글에경우 복구처리를하지 않습니다.</p>
 					</td>
 				</tr>
+				
 				<tr id="p-tag">
 					<td>7<p><br /><br /></p></td>
 					<td>결제/충전/환불<p><br /><br /></p></td>
