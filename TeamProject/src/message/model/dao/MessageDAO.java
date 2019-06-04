@@ -55,7 +55,6 @@ public class MessageDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
 		return list;
 	}
 
@@ -81,6 +80,59 @@ public class MessageDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int writeMessage(Connection conn, String sender, String receiver, String content) {
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("writeMessage");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, sender);
+			pstmt.setString(2, receiver);
+			pstmt.setString(3, content);
+			
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("MessageWriteDAO@result = "+result);
+		return result;
+	}
+
+	public List<Message> selectMessageList2(Connection conn, String userId) {
+		List<Message>list=new ArrayList<>();
+		ResultSet rset=null;
+		PreparedStatement pstmt=null;
+		String sql="select * from note where sender=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Message m =new Message();
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("MSGDAO@"+list);
+		return list;
 	}
 
 }

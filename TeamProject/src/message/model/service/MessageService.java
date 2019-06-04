@@ -25,4 +25,18 @@ public class MessageService {
 		return result;
 	}
 
+	public int writeMessage(String sender, String receiver, String content) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().writeMessage(conn,sender,receiver,content);
+		close(conn);
+		return result;
+	}
+
+	public List<Message> selectMessageList2(String userId) {
+		Connection conn=getConnection();
+		List<Message> list=new MessageDAO().selectMessageList2(conn,userId);
+		close(conn);
+		return list;
+	}
+
 }
