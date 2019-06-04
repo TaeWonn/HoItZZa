@@ -79,7 +79,7 @@ text-align: center;
             <td><a href="<%=request.getContextPath()%>/buy/buyView?boardNo=<%= b.getBoardNo() %>" style="text-decoration:none; color: black;">
             <%=b.getBoardTitle() %> </a></td>
             <td><%=b.getBoardDate() %></td>
-            <td><%=b.getBoardCodeNo() %></td>
+            <td><%=b.getBoardCodeNo() %></td> 
      </tr>
                 <% } %>
         </tbody>
