@@ -79,7 +79,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		b.setBoardContent(boardContent);
 		b.setBoardWriter(boardWriter);
 		b.setBoardDeal(boardDeal);
-		b.setBoardCodeNo(boardCodeNo);
+		b.setBoardCodeNo(boardCodeNo); 
 		
 		int result = new BuyService().insertBoard(b);
 		String boardNo = new BuyService().selectOneBoardNo();
