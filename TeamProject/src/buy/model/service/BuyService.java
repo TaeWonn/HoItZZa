@@ -1,6 +1,9 @@
 package buy.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -9,9 +12,6 @@ import buy.model.dao.BuyDAO;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
-import sell.model.dao.SellDAO;
-import sell.model.service.SellService;
-import sell.model.vo.Sell;
 
 public class BuyService {
 
@@ -199,6 +199,25 @@ public class BuyService {
 		int cnt = new BuyDAO().writerCotents(conn, searchKeyword);
 		close(conn);
 		return cnt;
+	}
+
+	///////////////////////////////////////////////////////////////
+	
+	
+	public List<String> selectCategory(String category1) {
+		Connection conn = getConnection();
+		List<String> list = new BuyDAO().selectCategory(conn, category1);
+		close(conn);
+		
+		return list;
+	}
+
+	public List<String> selectCategoryNo(String category2) {
+		Connection conn = getConnection();
+		List<String> list = new BuyDAO().selectCategoryNo(conn, category2);
+		close(conn);
+		
+		return list;
 	}
 
 }

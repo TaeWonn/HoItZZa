@@ -127,7 +127,11 @@
 					<li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span>
 						&nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보
 								보기</a></span></li>
-					<li><span><a href="<%=request.getContextPath()%>/">현재 포인트</a></span></li>
+					<li><span>포인트 :  <%=userLoggedIn.getPoint() %>P</span></li>
+					<li>
+					<span id="pullPoint"><a href="<%=request.getContextPath()%>/views/point/pointCharge?userId=<%=userLoggedIn.getUserId()%>" >충전하기</a></span>&nbsp;&nbsp;
+					<span id="changePoint"><a href="<%=request.getContextPath()%>/views/point/pointCharge?userId=<%=userLoggedIn.getUserId()%>" >환전하기</a></span>
+					</li>
 					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
 				</ul>
 				</div>
@@ -151,11 +155,10 @@
 					<li><a href="">건의 게시판</a></li>
 					<li><a href="">신고 게시판</a></li>
 				</ul>
-				<p id="board_title">협력사</p>
+				<p id="board_title">기타</p>
 				<ul class="boardList">
-					<li><a href="">이게 중고다!</a></li>
-					<li><a href="">나는 중고다 </a></li>
-					<li><a href="">중고라나? </a></li>
+					<li><a href="/views/etc/fleamarket">협력사 모아보기</a></li>
+					<li><a href="/views/etc/QnA">QnA </a></li>
 				</ul>
 
 

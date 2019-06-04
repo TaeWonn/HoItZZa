@@ -11,14 +11,18 @@ body{
  input:radio{
     width: 20px;
 }
-.custom-select{
-    width: 500px;
+#category1{
+    width: 240px;
     margin: 7px;
     margin-left : 7.5%;
 }
+#category2{
+    width: 240px;
+    margin: 7px;
+}
 .alert-light{
     border: 0.5px solid;
-    width: 500px;
+    width: 495px;
     margin: 7px;
     height: 40px;
     margin-left : 7.5%;
@@ -27,12 +31,13 @@ body{
     background: lightgray;
     font-size: 17px;
     color : black;
-    width: 250px;
+    width: 240px;
 }
 #boardDeal{
-margin-left : 25px;
-margin-top : -6px;
-width: 210px;
+position : relative;
+top : -7px;
+left :5px;
+width: 240px;
 border: 1px solid red;
 }
 #boardContent{

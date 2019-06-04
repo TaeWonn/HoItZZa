@@ -30,12 +30,28 @@
         </select>
 
         <br>
-
-        <select class="custom-select" id="inputGroupSelect02" name="kategory">
+		<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
                 <option selected>카테고리 선택</option>
-                <option value="1">식품</option>
-                <option value="2">가전</option>
-                <option value="3">패션</option>
+                <option value="A">패션의류/잡화</option>
+                <option value="B">뷰티</option>
+                <option value="C">출산/유아농</option>
+                <option value="D">식품</option>
+                <option value="E">주방용품</option>
+                <option value="F">생활용품</option>
+                <option value="G">홈인테리어</option>
+                <option value="H">가전디지털</option>
+                <option value="I">스포츠/레저</option>
+                <option value="G">자동차용품</option>
+                <option value="K">도서/음반/DVD</option>
+                <option value="L">완구/취미</option>
+                <option value="M">문구/오피스</option>
+                <option value="N">반려동물용품</option>
+                <option value="O">헬스/건강식품</option>
+        </select>
+        <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
+                <option selected>세부 카테고리</option>
+                
+              
         </select>
         <br>
         <!-- <div id="img-viewer-container">
@@ -117,6 +133,62 @@ fileTarget.on('change', function(){ // 값이 변경되면
   // 추출한 파일명 삽입
   $(this).siblings('.upload-name').val(filename);
 });
+
+
+function chageSelect(){
+	
+	
+	var category1 = $("#category1").val();
+			$.ajax({
+				
+				url: "<%=request.getContextPath()%>/buy/buycategory",
+				data: "category1="+category1,//파라미터직렬화
+				success: function(data){
+					console.log(data);
+					
+					//넘어온 csv데이터가, 공백인경우
+					if(data.trim().length == 0){
+						console.log("공백넘어옴");
+					}
+					else{
+						var nameArr = data.split(",");
+						$("#category2").empty();
+						for(var i=0; i<nameArr.length; i++){
+							var option = $("<option>"+nameArr[i]+"</option>");
+			                $("#category2").append(option);
+
+						}	
+						
+					}
+				}
+			});//end of ajax
+			
+}
+			
+			
+			function chageSelect2(){
+				var category2 = $("#category2 option:selected").text().toString();
+						$.ajax({
+							url: "<%=request.getContextPath()%>/buy/buycategory2",
+							data: "category2="+category2,//파라미터직렬화
+							success: function(data){
+								console.log(data);
+								
+								//넘어온 csv데이터가, 공백인경우
+								if(data.trim().length == 0){
+									console.log("공백넘어옴");
+								}
+								else{
+									
+									$("#category2 option:selected").val(data);								
+								
+								}
+								
+							}
+						});//end of ajax
+			
+}	
+
 
 
 

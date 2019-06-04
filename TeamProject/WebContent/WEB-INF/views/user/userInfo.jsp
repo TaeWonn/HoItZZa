@@ -37,7 +37,7 @@
 		</tr>
 		<tr>
 			<th>포인트</th>
-			<td><input type="text" value="0" readonly /></td>
+			<td><input type="text" value="<%=userLoggedIn.getPoint()%>" readonly /></td>
 		</tr>
 		<tr>
 			<th>연락처</th>
