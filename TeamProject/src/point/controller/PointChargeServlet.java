@@ -32,7 +32,7 @@ public class PointChargeServlet extends HttpServlet {
 		
 		// 2. 업무 로직
 		List<Point> list = new PointService().selectChargeListById(userId);
-		
+		System.out.println("list="+list+", list.size="+list.size());
 		int totalContents = list.size();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		int pageBarSize = 10;
@@ -50,12 +50,12 @@ public class PointChargeServlet extends HttpServlet {
 					+ "&numPerPage="+numPerPage+"'>[이전]</a>";
 		}
 		
-		// pageNo section
-		while(pageNo <= pageEnd && pageNo <= totalPage) {
-			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
-					+ "cPage="+(pageNo-1)
-					+ "&numPerPage="+numPerPage+"'>[이전]</a>";
-		}
+//		// pageNo section
+//		while(pageNo <= pageEnd && pageNo <= totalPage) {
+//			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
+//					+ "cPage="+(pageNo-1)
+//					+ "&numPerPage="+numPerPage+"'>[이전]</a>";
+//		}
 		
 		// section [next]
 		if(pageNo>totalPage) {}
