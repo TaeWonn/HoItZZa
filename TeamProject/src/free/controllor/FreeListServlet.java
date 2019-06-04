@@ -71,7 +71,7 @@ public class FreeListServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("free", free);
 		
-		request.getRequestDispatcher("/WEB-INF/views/free/freeList.jsp");
+		request.getRequestDispatcher("/WEB-INF/views/free/freeList.jsp").forward(request, response);
 	}
 
 	/**

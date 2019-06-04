@@ -21,7 +21,7 @@ public class FreeDAO {
 	private Properties prop = new Properties();
 	
 	public FreeDAO() {
-		String filePath = getClass().getResource("/free/free-query.properteis").getPath();
+		String filePath = getClass().getResource("/sql/free/free-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
