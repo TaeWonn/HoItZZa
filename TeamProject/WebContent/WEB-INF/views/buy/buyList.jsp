@@ -56,9 +56,9 @@ text-align: center;
 <body>  
 <body>
 		<br>
-	<H3 style="text-align: center;">판매게시판</H3>
+	<H3 style="text-align: center;">구매게시판</H3>
 
-
+ 
 
     <table class="table">
         <thead class="thead-light">
