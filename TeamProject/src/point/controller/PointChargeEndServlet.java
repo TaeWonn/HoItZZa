@@ -13,7 +13,7 @@ import point.model.vo.Point;
 /**
  * Servlet implementation class PointChargeEndServlet
  */
-@WebServlet("/views/pointChargeEnd")
+@WebServlet("/views/point/pointChargeEnd")
 public class PointChargeEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

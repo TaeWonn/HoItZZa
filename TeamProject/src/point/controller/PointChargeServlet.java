@@ -16,7 +16,7 @@ import user.model.vo.User;
 /**
  * Servlet implementation class PointChargeServlet
  */
-@WebServlet("/views/point/pointView")
+@WebServlet("/views/point/pointCharge")
 public class PointChargeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
