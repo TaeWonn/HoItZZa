@@ -595,9 +595,6 @@ public class BuyDAO {
 		}
 		return cnt;
 	}
-
-	
-	///////////////////////////////////////////////////////////////////////////////////
 	
 	
 	public List<String> selectCategory(Connection conn, String category1) {
