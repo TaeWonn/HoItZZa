@@ -155,11 +155,10 @@
 					<li><a href="">건의 게시판</a></li>
 					<li><a href="">신고 게시판</a></li>
 				</ul>
-				<p id="board_title">etc</p>
+				<p id="board_title">기타</p>
 				<ul class="boardList">
 					<li><a href="/views/etc/fleamarket">협력사 모아보기</a></li>
 					<li><a href="/views/etc/QnA">QnA </a></li>
-					<li>made by HoitZZa</li>
 				</ul>
 
 
