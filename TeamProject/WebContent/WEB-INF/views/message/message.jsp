@@ -93,20 +93,20 @@ div#search-content{
 
 			<input type="search" onchange="insertKeyword(this);" 
 				 size="25" placeholder="검색할 아이디를 입력하세요" 
-				value='<%="memberId".equals(searchType)?searchKeyword:"" %>' /> 
+				value='<%="userId".equals(searchType)?searchKeyword:"" %>' /> 
 				<input type="button" value="검색" onclick="submit2();"/>
 		</div>
 		<div id="search-content">
 
 			<input type="search" onchange="insertKeyword(this);" 
-				value='<%="memberName".equals(searchType)?searchKeyword:"" %>'
+				value='<%="content".equals(searchType)?searchKeyword:"" %>'
 				size="25" placeholder="검색할 내용을 입력하세요" />
 			<input type="button" value="검색" onclick="submit2();"/>
 
 		</div>
 		
 		<div id="sub">
-		<form action="<%=request.getContextPath()%>/views/message/messageFinder" id="submit2">
+		<form action="<%=request.getContextPath()%>/views/message/messageFinder" id="submit2" method="post">
 			<input type="hidden" name="searchType" />
 			<input type="hidden" name="searchKeyword" />
 			<input type="hidden" name="userId" value="<%=userLoggedIn.getUserId()%>"/>
@@ -151,8 +151,7 @@ function insertKeyword(obj){
 }
 function submit2(){
 	$('input[name=searchType]').val($('#searchType').val());	
-	console.log('확인'+$('input[name=searchType]').val()+","+$('input[name=searchType]').val());
-	//$('#submit2').submit();  
+	$('#submit2').submit();  
 }
 
 function submit(){
