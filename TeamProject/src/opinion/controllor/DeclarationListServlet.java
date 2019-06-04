@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import opinion.model.service.OpinionService;
-import opinion.model.vo.Opinion;
+import opinion.model.vo.*;
 
 /**
- * Servlet implementation class OpinionListServlet
+ * Servlet implementation class DeclarationListServlet
  */
-@WebServlet("/opinion/opinionList")
-public class OpinionListServlet extends HttpServlet {
+@WebServlet("/opinion/declarationList")
+public class DeclarationListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,54 +25,56 @@ public class OpinionListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cPage = 1;
 		int numPerPage =10;
-		
 		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
+			cPage = Integer.parseInt(request.getParameter("cpage"));
 		} catch(NumberFormatException e) {
 		}
 		try {
-			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
+			numPerPage = Integer.parseInt(request.getParameter("numPerpage"));
 		} catch(NumberFormatException e) {
 		}
 		
-		List<Opinion> oList = new OpinionService().selectAllOpinionList();
-		List<Integer> waringCnt = new OpinionService().OpinionWarningCnt(oList);
+		List<Opinion> olist = new OpinionService().selectDeclarationList(cPage,numPerPage);
+		List<Integer> wCnt = new OpinionService().OpinionWarningCnt(olist);
 		
-		int totalContents = new OpinionService().selectOpinionCount();
+		int totalContents = new OpinionService().selectDeclarationCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
-
-		int pageBarSize = 5;
-		int pageStart = ((cPage-1)*numPerPage) *pageBarSize +1;
-		int pageEnd = pageStart + pageBarSize -1;
 		
-		int pageNo = pageStart ;
+		int pageBarSize = 5;
+		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize +1;
+		int pageEnd = pageStart +pageBarSize -1;
+		
+		int pageNo = pageStart;
 		String pageBar = "";
+		
 		if(pageNo ==1) {
 		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage="+(pageNo-1)+
-					"&numPerPage="+numPerPage+"'>[이전]</a>";
+			pageBar += "<a href'"+request.getContextPath()+"/opinion/declaration?cPage="+(pageNo-1)+
+					"numPerPage="+numPerPage+"'>[이전]</a>";
 		}
 		
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
-			if(cPage == pageNo) {
-				pageBar += "<span>"+pageNo+"</span>";
+			if(pageNo == cPage) {
+				pageBar+= "<span>"+pageNo+"</span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage"+pageNo+
+				pageBar += "<a href='"+request.getContextPath()+"/opinion/declaration?cPage="+pageNo+
 						"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
-			pageNo ++;
-		}
-		if(pageNo > totalPage) {
-		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionLisr?cPage="+pageNo+
-					"&numPerPage="+numPerPage+"'>[다음]</a>";
+			pageNo++;
 		}
 		
+		if(pageNo > totalPage) {
+		}else {
+			pageBar +="<a href='"+request.getContextPath()+"/opinion/declaration?cPage="+pageNo+
+					"&numPerPage="+numPerPage+"'>[다음]</a>";
+		}
+		request.setAttribute("oList", olist);
+		request.setAttribute("warningCnt", wCnt);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
-		request.setAttribute("PageBar", pageBar);
-		request.setAttribute("oList", oList);
-		request.getRequestDispatcher("/WEB-INF/views/opinion/opinionList.jsp")
+		request.setAttribute("pageBar", pageBar);
+		
+		request.getRequestDispatcher("/WEB-INF/views/opinion/declaration.jsp")
 				.forward(request, response);
 	}
 
