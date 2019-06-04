@@ -80,7 +80,6 @@ public class SellDAO {
 			close(rs);
 			close(ps);
 		}
- 		 System.out.println("sellDAO@ ="+sell);
 		return sell;
 	}
 
@@ -363,6 +362,8 @@ public class SellDAO {
 				c.setCommentContent(rs.getString("comment_comment"));
 				c.setCommentNo(rs.getInt("comment_no"));
 				c.setCommnetWriter(rs.getString("comment_writer"));
+				c.setCommentDate(rs.getDate("comment_date"));
+				c.setCommentNoRef(rs.getInt("comment_no_ref"));
 				c.setBoardNo(boardNo);
 				
 				clist.add(c);
@@ -392,6 +393,33 @@ public class SellDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public List<Integer> warningListCnt(Connection conn, List<Sell> sell) {
+		List<Integer> wList = new ArrayList<>();
+		String sql = prop.getProperty("warningListCnt");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			for(int i=0; i<wList.size(); i++) {
+				ps.setString(1, sell.get(i).getBoardWriter());
+				
+				rs = ps.executeQuery();
+				if(rs.next()) 
+					wList.add(rs.getInt("cnt"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		
+		return wList;
 	}
 
 }

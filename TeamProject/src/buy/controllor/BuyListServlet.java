@@ -37,6 +37,8 @@ public class BuyListServlet extends HttpServlet {
 		
 		List<Buy> buy = new BuyService().selectAllBuyList();
 		
+		List<Integer> warningCntList = new BuyService().warningCntList(buy);
+		
 		int totalContents = new BuyService().selectBuyCount();
 		
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
@@ -77,6 +79,8 @@ public class BuyListServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("buy", buy);
 		
+		
+		request.setAttribute("warningCntList", warningCntList);
 		
 		
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyList.jsp")

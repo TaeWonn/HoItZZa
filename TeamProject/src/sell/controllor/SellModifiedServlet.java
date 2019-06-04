@@ -29,9 +29,6 @@ public class SellModifiedServlet extends HttpServlet {
 		
 		Sell s = new SellService().selectOneSell(boardNo);
 		
-		List<FileTable> flist = new BuyService().selectFileList(boardNo);
-		
-		request.setAttribute("flist", flist);
 		request.setAttribute("sell", s);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellModifiedEnd.jsp")
 				.forward(request, response);

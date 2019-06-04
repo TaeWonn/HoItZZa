@@ -1,6 +1,7 @@
 package sell.controllor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -36,6 +37,9 @@ public class SellListServlet extends HttpServlet {
 		
 		List<Sell> sell = new SellService().selectAllSellList();
 		
+		//경고 횟수 가져오기
+		List<Integer> warningCntList = new SellService().warningListCnt(sell);
+		
 		int totalContents = new SellService().selectSellCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
@@ -44,10 +48,6 @@ public class SellListServlet extends HttpServlet {
 		
 		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize +1;
 		int pageEnd = pageStart+pageBarSize-1;
-		System.out.println("totalContents =" + totalContents);
-		System.out.println("totalPage = "+totalPage);
-		System.out.println("page Start= "+pageStart);
-		System.out.println("pageEnd = " + pageEnd);
 		
 		int pageNo = pageStart;
 		
@@ -82,9 +82,8 @@ public class SellListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("PageBar", pageBar);
 		
-		 System.out.println("sellListServlet-0----");
-		
 		request.setAttribute("sell", sell);
+		request.setAttribute("warningCntList", warningCntList);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellList.jsp")
 				.forward(request, response);
 		
