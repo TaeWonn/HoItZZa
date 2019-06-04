@@ -45,10 +45,6 @@ public class OpinionWriteEndServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 		
-		if(result >0) {
-			
-		}
-		
 	}
 
 	/**
