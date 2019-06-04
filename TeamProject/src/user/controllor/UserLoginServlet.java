@@ -79,7 +79,7 @@ public class UserLoginServlet extends HttpServlet {
 			System.out.println("Session Object ID: "+session.getId());
 			System.out.println("Session Max Interval: " + session.getMaxInactiveInterval());
 			
-			session.setMaxInactiveInterval(5*60);
+			session.setMaxInactiveInterval(20*60);
 			
 			// 로그인 성공시 아이디 저장 쿠키 처리
 			System.out.println("saveId@UserLoginServlet: " + saveId);

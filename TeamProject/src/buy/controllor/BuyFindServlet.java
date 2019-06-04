@@ -1,4 +1,4 @@
-package admin.controllor;
+package buy.controllor;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.AdminService;
-import user.model.vo.User;
+import buy.model.service.BuyService;
+import buy.model.vo.Buy;
 
 /**
- * Servlet implementation class AdminUserFinder
+ * Servlet implementation class BuyFindServlet
  */
-@WebServlet("/admin/userFinder")
-public class AdminUserFinder extends HttpServlet {
+@WebServlet("/buy/buyFind")
+public class BuyFindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,8 +25,9 @@ public class AdminUserFinder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
+		
 		int cPage = 1;
-		int numPerPage = 10;
+		int numPerPage =10;
 		
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -37,21 +38,20 @@ public class AdminUserFinder extends HttpServlet {
 		} catch(NumberFormatException e) {
 		}
 		
-		int totalContents = 0;
-		List<User> userList = null;
-		
+		List<Buy> bList = null;
+		int totalContents = 1;
 		switch(searchType) {
-		case "userId_find":
-			userList = new AdminService().userIdFind(searchKeyword);
-			totalContents = new AdminService().userIdCotents(searchKeyword);
+		case "buyTitle_find":
+			bList = new BuyService().titleFind(searchKeyword,cPage, numPerPage);
+			totalContents = new BuyService().titleCotents(searchKeyword);
 			break;
-		case "userName_find":
-			userList = new AdminService().userNameFind(searchKeyword);
-			totalContents = new AdminService().userNameCotents(searchKeyword);
+		case "buyCotent_find":
+			bList = new BuyService().contentFind(searchKeyword,cPage, numPerPage);
+			totalContents = new BuyService().contentCotents(searchKeyword);
 			break;
-		case "gender_find" :
-			userList = new AdminService().genderFind(searchKeyword);
-			totalContents = new AdminService().genderCotents(searchKeyword);
+		case "buyWriter_find":
+			bList = new BuyService().writerFind(searchKeyword,cPage, numPerPage);
+			totalContents = new BuyService().writerCotents(searchKeyword);
 			break;
 		}
 		
@@ -60,41 +60,39 @@ public class AdminUserFinder extends HttpServlet {
 		int pageBarSize = 5;
 		int pageStart = ((cPage-1)/pageBarSize)*numPerPage +1;
 		int pageEnd = pageStart + pageBarSize -1;
-		int pageNo = pageStart ;
+		int pageNo = pageStart;
 		
 		String pageBar = "";
-		
-		if(pageNo ==1) {
+		if(pageNo == 1) {
 		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+(pageNo-1)
-					+"&numPerPage="+numPerPage+"&searchType="+searchType+"&searchKeyword"+searchKeyword
-					+"'>[이전]</a>";
+			pageBar += "<a href='"+request.getContextPath()+"/buy/buyFind?cPage="+(pageNo-1)+"&numPerPage="
+					+numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>[이전]</a>";
 		}
-		
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
 			if(cPage == pageNo) {
 				pageBar += "<span>"+pageNo+"</span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+pageNo+"&numPerPage="+
-						numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>"+pageNo+"</a>";
+				pageBar += "<a href='"+request.getContextPath()+"/buy/buyFind?cPage="+pageNo+"&numPerPage="+
+						numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>"+pageNo
+						+"</a>";
 			}
-			pageNo++;
+			pageNo ++;
 		}
 		
 		if(pageNo > totalPage) {
 		}else {
-			pageBar += "<a href='"+request.getContextPath()+"/admin/userFinder?cPage="+pageNo+"&numPerPage="
+			pageBar += "<a href='"+request.getContextPath()+"/buy/buyFind?cPage="+pageNo+"&numPerPage"
 					+numPerPage+"&searchType="+searchType+"&searchKeyword="+searchKeyword+"'>[다음]</a>";
 		}
 		
 		request.setAttribute("cPage",cPage );
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("userList", userList);
+		request.setAttribute("buyList", bList);
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("searchKeyword", searchKeyword);
 		
-		request.getRequestDispatcher("/WEB-INF/views/admin/viewUserList.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/buy/buyList.jsp")
 				.forward(request, response);
 	}
 
@@ -102,7 +100,6 @@ public class AdminUserFinder extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

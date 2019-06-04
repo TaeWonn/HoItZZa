@@ -2,6 +2,9 @@ package buy.controllor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +42,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 			return;
 		}
 		
-String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
+		String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		
 		int maxPostSize = 1024 * 1024 * 30;
 		
@@ -51,21 +54,22 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		
 		
 		
-		String boardNo = multiReq.getParameter("boardNo");
 		String boardTitle = multiReq.getParameter("boardTitle");
 		String boardContent = multiReq.getParameter("boardContent");
 		String boardWriter = multiReq.getParameter("boardWriter");
 		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		String boardDeal = multiReq.getParameter("boardDeal");
-		String renamedFileNameOld = multiReq.getParameter("renamedFileNameOld");
 		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
+		File f = multiReq.getFile("upFile");
 		
-		String fileName = multiReq.getOriginalFileName("upFile0");
-		String newFileName = multiReq.getFilesystemName("upFile0");
-		
-		
-		String delFile = multiReq.getParameter("delFile");
-		File f = multiReq.getFile("upFile0");
+		List<String> fileNameList = new ArrayList<>();
+		List<String> fileNewNameList = new ArrayList<>();
+		for(int i =0; i<fileCount; i++) {
+			String fileName = multiReq.getOriginalFileName("upFile"+i);
+			String newFileName = multiReq.getFilesystemName("upFile"+i);
+			fileNameList.add(fileName);
+			fileNewNameList.add(newFileName);
+		}
 		
 		boardContent =boardContent.replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
@@ -75,40 +79,27 @@ String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
 		b.setBoardContent(boardContent);
 		b.setBoardWriter(boardWriter);
 		b.setBoardDeal(boardDeal);
-		b.setBoardCodeNo(boardCodeNo);
+		b.setBoardCodeNo(boardCodeNo); 
 		
 		int result = new BuyService().insertBoard(b);
+		String boardNo = new BuyService().selectOneBoardNo();
 		
-		if(f != null) {
+		for(int i=0;i<fileCount;i++) {
 			FileTable t = new FileTable();
 			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileName);
-			t.setRenamedFileName(newFileName);
+			t.setOriginalFileName(fileNameList.get(i));
+			t.setRenamedFileName(fileNewNameList.get(i));
 			new SellService().insertFileTable(t);
-			for(int i=1; i<fileCount;i++) {
-				String fname = multiReq.getOriginalFileName("upFile"+i);
-				String newfname = multiReq.getFilesystemName("upFile"+i);
-				
-				FileTable ft = new FileTable();
-				t.setBoardNo(boardNo);
-				t.setOriginalFileName(fname);
-				t.setRenamedFileName(newfname);
-				new BuyService().insertFileTable(ft);
-				
-			}
-		}
-		if(delFile != null) {
-			boolean bool = new File(saveDirectory+"/"+renamedFileNameOld).delete();
 		}
 		
 		String msg = "";
 		String loc = "";
 		if(result > 0) {
 			msg = "게시글변경완료";
-			loc = "/sell/sellView?boardNo="+b.getBoardNo();
+			loc = "/buy/buyView?boardNo="+boardNo;
 		}else {
 			msg = "변경중 오류 발생";
-			loc = "/";
+			loc = "/buy/buyList";
 		}
 		
 		

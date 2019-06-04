@@ -33,6 +33,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.0.js"></script>
+
 <title>SellBar - Flea Market For U</title>
 
 <!-- 부트스트랩 -->
@@ -113,7 +114,7 @@
 				<ul id="link">
 					<li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span></li>
 					<li><span><a href="<%=request.getContextPath()%>/admin/adminInfo">관리자 페이지</a></span></li>
-					<li><span><a href="<%=request.getContextPath()%>/user/userLogout">로그아웃</a></span></li>
+					<li><span><a href="<%=request.getContextPath()%>/views/user/userLogout">로그아웃</a></span></li>
 				</ul>
 			</div>	
 			
@@ -140,7 +141,7 @@
 				</ul>
 				<p id="board_title">자유게시판</p>
 				<ul class="boardList">
-					<li><a href="">잡담 게시판</a></li>
+					<li><a href="<%=request.getContextPath()%>/free/freeList">잡담 게시판</a></li>
 					<li><a href="">유용한 생활지식</a></li>
 					<li><a href="">연예/미디어</a></li> 
 					<li><a href="">나눔 게시판</a></li>
@@ -251,5 +252,8 @@
 				checkLogin();
 			}
 		}
+		
+		//주소창에 파라미터 값 숨기기
+		history.replaceState({}, null, location.pathname);
 	</script>
 	<section id="content">

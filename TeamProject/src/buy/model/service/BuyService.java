@@ -43,9 +43,9 @@ public class BuyService {
 		return b;
 	}
 
-	public String selectOneBoardNo(Buy b) {
+	public String selectOneBoardNo() {
 		Connection conn = getConnection();
-		String boardNo = new BuyDAO().selectOneBoardNo(conn, b);
+		String boardNo = new BuyDAO().selectOneBoardNo(conn);
 		close(conn);
 		return boardNo;
 	}
@@ -141,15 +141,64 @@ public class BuyService {
 		return point;
 	}
 
-	public int buying(int price, int point) {
+	public int buying(int price, int point, String userId) {
 		Connection conn = getConnection();
-		int result = new BuyDAO().buying(conn, price, point);
+		int result = new BuyDAO().buying(conn, price, point, userId);
 		if(result > 0)
 			commit(conn);
 		else
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public List<Integer> warningCntList(List<Buy> buy) {
+		Connection conn = getConnection();
+		List<Integer> wList = new BuyDAO().warningCntList(conn, buy);
+		close(conn);
+		return wList;
+	}
+
+	public List<Buy> titleFind(String searchKeyword,int cPage,int numPerPage) {
+		Connection conn = getConnection();
+		List<Buy> bList = new BuyDAO().titleFind(conn,searchKeyword,cPage, numPerPage);
+		close(conn);
+		return bList;
+	}
+
+	public List<Buy> contentFind(String searchKeyword,int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Buy> bList = new BuyDAO().contentFind(conn, searchKeyword,cPage, numPerPage);
+		close(conn);
+		return bList;
+	}
+
+	public List<Buy> writerFind(String searchKeyword,int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Buy> bList = new BuyDAO().writerFind(conn, searchKeyword,cPage, numPerPage);
+		close(conn);
+		return bList;
+	}
+
+	public int titleCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int cnt = new BuyDAO().titleCotents(conn, searchKeyword);
+		close(conn);
+		return cnt;
+	}
+
+	public int contentCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int cnt = new BuyDAO().contentCotents(conn, searchKeyword);
+		close(conn);
+		return cnt;
+	}
+
+	public int writerCotents(String searchKeyword) {
+		Connection conn = getConnection();
+		int cnt = new BuyDAO().writerCotents(conn, searchKeyword);
+		close(conn);
+		return cnt;
 	}
 
 }

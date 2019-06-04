@@ -1,37 +1,37 @@
-package sell.controllor;
+package message.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import buy.model.service.BuyService;
-import file.model.vo.FileTable;
-import sell.model.service.SellService;
-import sell.model.vo.Sell;
-
 /**
- * Servlet implementation class SellModifiedServlet
+ * Servlet implementation class WriteMessage
  */
-@WebServlet("/sell/sellModified")
-public class SellModifiedServlet extends HttpServlet {
+@WebServlet("/views/message/messageReply")
+public class ReplyMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardNo = request.getParameter("boardNo");
+		String senderId=request.getParameter("senderId");
+		String receiver=request.getParameter("recipient");
+		System.out.println("보내는 이 : "+senderId);
+		System.out.println("받는 이 : "+receiver);
 		
-		Sell s = new SellService().selectOneSell(boardNo);
+		//보내는이, 받는이만 적어서 작성화면으로 전송
+		request.setAttribute("senderId", senderId);
+		request.setAttribute("receiver", receiver);
+		request.getRequestDispatcher("/WEB-INF/views/message/messageWrite.jsp").forward(request, response);
 		
-		request.setAttribute("sell", s);
-		request.getRequestDispatcher("/WEB-INF/views/sell/sellModifiedEnd.jsp")
-				.forward(request, response);
+		
+		
+		
+		
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class BuyingServlet extends HttpServlet {
 			return;
 		}
 		
-		int result = new BuyService().buying(price, point);
+		int result = new BuyService().buying(price, point, userId);
 		
 		String msg = "";
 		if(result > 0) {

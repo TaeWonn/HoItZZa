@@ -6,7 +6,7 @@ article{height: 743px;width:652px;position:relative;left:171px;text-align: cente
  div#pageBar{right:177px; position:absolute;top:645px; width:300px;height: 30px;display:inline-block; }
  
  /*검색창*/
-div#search-container{position:relative;top:620px;width:100%;left:-50px;}
+div#search-container{position:relative;top:610px;width:100%;left:-72px;}
 div#search-container input[type=search]{width:220px;}
 div#search-container input[type=button]{width:50px;}
 div#search-container input[type=radio]{width:30px;}

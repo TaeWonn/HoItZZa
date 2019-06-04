@@ -32,40 +32,12 @@ public class BuyModifiedEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "게시판 파일업로드 오류");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-				.forward(request, response);
-			return;
-		}
-		String saveDirectory = getServletContext().getRealPath("/")+"upload/buy";
 		
-		int maxPostSize = 1024 * 1024 * 30;
-		
-		FileRenamePolicy policy 
-			= new SellBarFileRenamePolicy();
-		
-		MultipartRequest multiReq = new MultipartRequest(request, saveDirectory,
-				maxPostSize, "UTF-8", policy);
-		
-		
-		
-		String boardNo = multiReq.getParameter("boardNo");
-		String boardTitle = multiReq.getParameter("boardTitle");
-		String boardContent = multiReq.getParameter("boardContent");
-		String boardWriter = multiReq.getParameter("boardWriter");
-		String boardCodeNo = multiReq.getParameter("boardCodeNo");
-		String boardDeal = multiReq.getParameter("boardDeal");
-		String renamedFileNameOld = multiReq.getParameter("renamedFileNameOld");
-		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
-		
-		String fileName = multiReq.getOriginalFileName("upFile0");
-		String newFileName = multiReq.getFilesystemName("upFile0");
-		
-		
-		String delFile = multiReq.getParameter("delFile");
-		File f = multiReq.getFile("upFile0");
+		String boardNo = request.getParameter("boardNo");
+		String boardTitle = request.getParameter("boardTitle");
+		String boardContent = request.getParameter("boardContent");
+		String boardCodeNo = request.getParameter("boardCodeNo");
+		String boardDeal = request.getParameter("boardDeal");
 		
 		Buy b = new Buy();
 		b.setBoardNo(boardNo);
@@ -76,27 +48,6 @@ public class BuyModifiedEndServlet extends HttpServlet {
 		
 		int result = new BuyService().updateBuy(b);
 		
-		if(f != null) {
-			FileTable t = new FileTable();
-			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileName);
-			t.setRenamedFileName(newFileName);
-			new SellService().insertFileTable(t);
-			for(int i=1; i<fileCount;i++) {
-				String fname = multiReq.getOriginalFileName("upFile"+i);
-				String newfname = multiReq.getFilesystemName("upFile"+i);
-				
-				FileTable ft = new FileTable();
-				t.setBoardNo(boardNo);
-				t.setOriginalFileName(fname);
-				t.setRenamedFileName(newfname);
-				new BuyService().insertFileTable(ft);
-				
-			}
-		}
-		if(delFile != null) {
-			boolean bool = new File(saveDirectory+"/"+renamedFileNameOld).delete();
-		}
 		
 		String msg = "";
 		String loc = "";
