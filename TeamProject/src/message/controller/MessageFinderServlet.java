@@ -29,19 +29,21 @@ public class MessageFinderServlet extends HttpServlet {
 		String searchKeyword=request.getParameter("searchKeyword");
 		String userId=request.getParameter("userId");
 		String senRec=request.getParameter("senRec");
+		System.out.println(searchType);
+		System.out.println(searchKeyword);
+		System.out.println(userId);
+		System.out.println(senRec);
 		List<Message> list=new ArrayList<>();
 	
 		
 		//업무로직
 		//보낸 메시지함에서 검색할때
 		if(senRec.equals("send")) {
-			//받는사람 아이디로 검색할 경우
+			//받은사람 아이디로 검색할 경우
 			if(searchType.equals("userId")) {
-				System.out.println("받는사람 아이디지");
 				list=new MessageService().selectMsgByIdForSend(userId,searchKeyword);
 			}else {
 				//내용으로 검색한 경우
-				System.out.println("받는사람 내용");
 				list=new MessageService().selectMsgByContentForSend(userId,searchKeyword);
 			}
 		}else {
@@ -49,7 +51,7 @@ public class MessageFinderServlet extends HttpServlet {
 			//보낸사람 아이디로 검색한 경우
 			if(searchType.equals("userId")) {
 				 list=new MessageService().selectMsgByIdForReceive(userId,searchKeyword);
-				
+			
 			}else {
 				//내용으로 검색한 경우
 				list=new MessageService().selectMsgByContentForReceive(userId,searchKeyword);
@@ -64,7 +66,7 @@ public class MessageFinderServlet extends HttpServlet {
 		
 		
 		if(list!=null) {
-			view="/views/message/myMessage?userId="+userId;
+			view="/WEB-INF/views/message/message.jsp";
 			request.setAttribute("msgList", list);
 			request.setAttribute("searchType", searchType);
 			request.setAttribute("searchKeyword", searchKeyword);
