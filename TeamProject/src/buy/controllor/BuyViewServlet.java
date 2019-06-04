@@ -16,7 +16,7 @@ import comment.model.vo.Comment;
 /**
  * Servlet implementation class BuyViewServlet
  */
-@WebServlet("/but/buyView")
+@WebServlet("/buy/buyView")
 public class BuyViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,12 +38,13 @@ public class BuyViewServlet extends HttpServlet {
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
 		
+		
 		List<Comment> clist = new BuyService().commentList(boardNo);
 		
 		request.setAttribute("cList", clist);
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("buy", b);
-		request.getRequestDispatcher("/WEB-INF/views/buy/buyList.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
 				.forward(request, response);
 	}
 

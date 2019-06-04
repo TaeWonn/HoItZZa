@@ -140,7 +140,7 @@
 				</ul>
 				<p id="board_title">자유게시판</p>
 				<ul class="boardList">
-					<li><a href="">잡담 게시판</a></li>
+					<li><a href="<%=request.getContextPath()%>/free/freeList">잡담 게시판</a></li>
 					<li><a href="">유용한 생활지식</a></li>
 					<li><a href="">연예/미디어</a></li> 
 					<li><a href="">나눔 게시판</a></li>
