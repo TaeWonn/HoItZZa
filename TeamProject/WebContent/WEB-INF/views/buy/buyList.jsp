@@ -60,7 +60,7 @@ text-align: center;
 		<br>
 	<H3 style="text-align: center;">구매게시판</H3>
 
-
+ 
 
     <table class="table">
         <thead class="thead-light">
