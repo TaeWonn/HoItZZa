@@ -595,5 +595,71 @@ public class BuyDAO {
 		}
 		return cnt;
 	}
+	
+	
+	public List<String> selectCategory(Connection conn, String category1) {
+		List<String> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		
+		String query = prop.getProperty("selectCategory");
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성함
+			pstmt = conn.prepareStatement(query);
+			//쿼리문 완성작업
+			pstmt.setString(1,category1);
+			//쿼리문실행
+			//pstmt에 이제 완성된 쿼리를 가지고 있기때문에 파라미터없이 실행한다.
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				list.add(rset.getString("subject_name"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public List<String> selectCategoryNo(Connection conn, String category2) {
+		List<String> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		System.out.println("엥"+category2);
+		
+		String query = prop.getProperty("selectCategoryNo");
+		System.out.println("쿼리임"+query);
+		try {
+			//미완성쿼리문을 가지고 객체생성함
+			pstmt = conn.prepareStatement(query);
+			//쿼리문 완성작업
+			pstmt.setString(1,category2);
+			//쿼리문실행
+			//pstmt에 이제 완성된 쿼리를 가지고 있기때문에 파라미터없이 실행한다.
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				list.add(rset.getString("subject_no"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 }

@@ -50,7 +50,7 @@ public class UserViewServlet extends HttpServlet {
 			msg = "해당 회원이 없습니다.";
 			loc = "/";
 			request.setAttribute("msg", msg);
-			request.setAttribute("loc", loc);
+			request.setAttribute("loc", loc); 
 		}
 		else {
 			// 이용자가 있는 경우에는 메세지 페이지를 거치지 않고

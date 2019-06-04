@@ -63,7 +63,7 @@ public class FreeListServlet extends HttpServlet {
 		if(pageNo > totalPage) {}
 		else {
 			pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+
-					"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
+					"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
 		
 		request.setAttribute("cPage", cPage);

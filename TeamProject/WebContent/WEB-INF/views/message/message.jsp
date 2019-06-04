@@ -34,7 +34,7 @@ div#search-content{
 	<h2 id="title2" >쪽지함</h2>
 	<form action="<%=request.getContextPath()%>/views/message/myMessage2" method="post" id="sub" >
 		<div id="senRec">
-		<select name="senRec" id="searchType" onchange="submit();">
+		<select name="senRec"  onchange="submit();">
 				<option value="receive"
 					<%="receive".equals(senRec) ? "selected" : ""%>>받은 쪽지함</option>
 				<option value="send"
@@ -93,22 +93,24 @@ div#search-content{
 
 			<input type="search" onchange="insertKeyword(this);" 
 				 size="25" placeholder="검색할 아이디를 입력하세요" 
-				value='<%="memberId".equals(searchType)?searchKeyword:"" %>' /> 
-				<input type="button" value="검색" onclick="submit();"/>
+				value='<%="userId".equals(searchType)?searchKeyword:"" %>' /> 
+				<input type="button" value="검색" onclick="submit2();"/>
 		</div>
 		<div id="search-content">
 
 			<input type="search" onchange="insertKeyword(this);" 
-				value='<%="memberName".equals(searchType)?searchKeyword:"" %>'
+				value='<%="content".equals(searchType)?searchKeyword:"" %>'
 				size="25" placeholder="검색할 내용을 입력하세요" />
-			<input type="button" value="검색" onclick="submit();"/>
+			<input type="button" value="검색" onclick="submit2();"/>
 
 		</div>
 		
 		<div id="sub">
-		<form action="<%=request.getContextPath()%>/views/message/messageFinder">
+		<form action="<%=request.getContextPath()%>/views/message/messageFinder" id="submit2" method="post">
 			<input type="hidden" name="searchType" />
 			<input type="hidden" name="searchKeyword" />
+			<input type="hidden" name="userId" value="<%=userLoggedIn.getUserId()%>"/>
+			<input type="hidden" name="senRec" value="<%=senRec!=null?senRec:"receive" %>" />
 		</form>
 		</div>
 		
@@ -147,9 +149,9 @@ $('#searchType').change(function() {
 function insertKeyword(obj){
 	 $('input[name=searchKeyword]').val(obj.value);
 }
-function submit(){
+function submit2(){
 	$('input[name=searchType]').val($('#searchType').val());	
-	$('#submit').submit();  
+	$('#submit2').submit();  
 }
 
 function submit(){

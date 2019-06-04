@@ -11,10 +11,10 @@ import opinion.model.service.OpinionService;
 import opinion.model.vo.Opinion;
 
 /**
- * Servlet implementation class OpinionWriteEndServlet
+ * Servlet implementation class DeclarationWriteEndServlet
  */
-@WebServlet("/opinion/opinionWriteEnd")
-public class OpinionWriteEndServlet extends HttpServlet {
+@WebServlet("/opinion/declarationWriteEnd")
+public class DeclarationWriteEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,29 +22,30 @@ public class OpinionWriteEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardTitle = request.getParameter("boardTitle");
-		String boardContent = request.getParameter("boardContent");
 		String boardWriter = request.getParameter("boardWriter");
+		String boardContent = request.getParameter("boardContent");
 		
 		Opinion o = new Opinion();
 		o.setBoardTitle(boardTitle);
 		o.setBoardContent(boardContent);
 		o.setBoardWriter(boardWriter);
 		
-		int result = new OpinionService().insertBoard(o);
-		String boardNo = "OT_"+ new OpinionService().selectSeqCurr();
+		int result = new OpinionService().insertDeclaration(o);
 		
 		String msg = "";
-		String loc = "";
-		if(result>0) {
-			msg = "글 등록 완료";
-			loc = "/opinion/opinionView?boardNo=";
+		String loc ="";
+		if(result > 0) {
+			msg ="글 등록 완료";
+			loc ="/opinion/declarationList";
 		}else {
-			msg ="";
-			loc ="/";
+			msg ="글등록실패";
+			loc ="/opinion/declarationList";
 		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
-		
 	}
 
 	/**

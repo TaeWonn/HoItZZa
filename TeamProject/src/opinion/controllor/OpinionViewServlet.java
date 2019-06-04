@@ -11,39 +11,33 @@ import opinion.model.service.OpinionService;
 import opinion.model.vo.Opinion;
 
 /**
- * Servlet implementation class OpinionWriteEndServlet
+ * Servlet implementation class OpinionViewServlet
  */
-@WebServlet("/opinion/opinionWriteEnd")
-public class OpinionWriteEndServlet extends HttpServlet {
+@WebServlet("/opinion/opinionView")
+public class OpinionViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardTitle = request.getParameter("boardTitle");
-		String boardContent = request.getParameter("boardContent");
-		String boardWriter = request.getParameter("boardWriter");
+		String boardNo = request.getParameter("boardNo");
 		
-		Opinion o = new Opinion();
-		o.setBoardTitle(boardTitle);
-		o.setBoardContent(boardContent);
-		o.setBoardWriter(boardWriter);
+		Opinion o = new OpinionService().selectOneBoard(boardNo);
 		
-		int result = new OpinionService().insertBoard(o);
-		String boardNo = "OT_"+ new OpinionService().selectSeqCurr();
-		
-		String msg = "";
-		String loc = "";
-		if(result>0) {
-			msg = "글 등록 완료";
-			loc = "/opinion/opinionView?boardNo=";
-		}else {
-			msg ="";
-			loc ="/";
+		if(o ==null) {
+			request.setAttribute("msg", "게시글이 존재하지않습니다");
+			request.setAttribute("loc", "/opinion/opinionList");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
+			.forward(request, response);
+			return;
 		}
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-				.forward(request, response);
+		int warningCnt = new OpinionService().selectWarningCnt(o.getBoardWriter());
+		
+		request.setAttribute("opinion", o);
+		request.setAttribute("warningCnt", warningCnt);
+		request.getRequestDispatcher("/WEB-INF/views/opinion/opinionView.jsp")
+			.forward(request, response);
 		
 	}
 

@@ -1,4 +1,4 @@
-package point.controller;
+package opinion.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import opinion.model.service.OpinionService;
+import opinion.model.vo.Opinion;
+
 /**
- * Servlet implementation class PointChargeServlet
+ * Servlet implementation class DeclarationViewServlet
  */
-@WebServlet("/views/point/pointView")
-public class PointViewServlet extends HttpServlet {
+@WebServlet("/opinion/declaration")
+public class DeclarationViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String boardNo = request.getParameter("boardNo");
+		
+		Opinion o = new OpinionService().selectOneBoard(boardNo);
+		
+		if(o == null) {
+			request.setAttribute("msg", "게시글이 존재하지않습니다");
+			request.setAttribute("loc", "/opinion/declarationList");
+			request.getRequestDispatcher("/WEV-INF/views/common/msg.jsp")
+					.forward(request, response);
+			return;
+		}
+		
+		request.setAttribute("declaration", o);
+		request.getRequestDispatcher("/WEB-INF/views/opinion/declarationView.jsp")
+			.forward(request, response);
 		
 	}
 

@@ -1,27 +1,28 @@
-package faq.controllor;
+package free.controllor;
 
- import java.io.IOException;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- /**
- * Servlet implementation class FaqListServlet
+/**
+ * Servlet implementation class DivideListServlet
  */
-@WebServlet("/views/faq/faqList")
-public class FaqListServlet extends HttpServlet {
+@WebServlet("/free/divideList")
+public class DivideListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
- 	/**
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/faq/faqList.jsp").forward(request, response);
-	} 
+		request.getRequestDispatcher("/WEB-INF/views/free/divideList.jsp")
+			   .forward(request, response);
+	}
 
- 	/**
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,4 +30,4 @@ public class FaqListServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
- }
+}
