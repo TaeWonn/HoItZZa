@@ -12,6 +12,7 @@ import free.model.vo.Free;
 import static common.JDBCTemplate.*;
 
 import sell.model.vo.Sell;
+import user.model.vo.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -193,6 +194,29 @@ public class IndexDAO {
 			close(pstmt);
 		}
 		return fList2;
+	}
+	public User selectUser(Connection conn, String userId) {
+		User user=new User();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectUser");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				user.setPoint(rset.getInt("point"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return user;
 	}
 
 

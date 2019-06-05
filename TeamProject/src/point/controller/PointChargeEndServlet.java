@@ -40,8 +40,8 @@ public class PointChargeEndServlet extends HttpServlet {
 		String msg = "";
 		String loc = "";
 		if(result>0) {
-			msg = chargeMoney + "포인트를 충전했습니다!";
-			loc = "/";
+			msg = chargeMoney + "포인트를 충전했습니다!다시 로그인해 주세요!";
+			loc = "/views/user/userLogout";
 		}
 		else {
 			msg = "포인트 충전에 실패했습니다.";
