@@ -28,10 +28,10 @@ public class FreeListServlet extends HttpServlet {
 		int numPerPage = 10;
 		
 		try {
-			numPerPage = Integer.parseInt(request.getParameter("cPage"));
+			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
 		
-		List<Free> free = new FreeService().selectAllFreeList();
+		List<Free> free = new FreeService().selectAllFreeList(cPage, numPerPage);
 		
 		int totalContents = new FreeService().selectFreeCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);

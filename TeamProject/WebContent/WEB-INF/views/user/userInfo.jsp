@@ -16,18 +16,14 @@
 	String[] interestArr=userLoggedIn.getInterest();
  
 	String[] addrArr = userLoggedIn.getAddr().split(",");
-
 %>
 <style>
-
 table#interestSellBoard2{position:absolute;width:312px;padding:0px;border:1px solid; border-collapse: collapse;
 				top:40px; table-layout:fixed;}
 table#interestSellBoard2 th{max-width:76px;border:1px solid;text-align: center;background: lightgray;text-overflow:ellipsis;}
 table#interestSellBoard2 td{max-width:120px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 table#interestSellBoard2 th,td{overflow:hidden;}
 table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
-
-
 </style>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -218,7 +214,6 @@ function changeUserPwd(userId,name,ssn){
 	location.href="<%=request.getContextPath()%>/views/user/updatePwd?findUserPwd_Id="+userId+"&findUserPwd_name="+name+"&findUserPwd_ssn_1="+ssn1+"&findUserPwd_ssn_2="+ssn2;
 	return false;
 }
-
 function deleteUser(userId){
 	var bool=confirm('정말 탈퇴하시겠습니까??');
 	if(bool){
@@ -227,7 +222,6 @@ function deleteUser(userId){
 }
 //주소창에 파라미터 값 숨기기
 history.replaceState({}, null, location.pathname);
-
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

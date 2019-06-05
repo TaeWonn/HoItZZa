@@ -26,7 +26,7 @@ public class FreeDeleteServlet extends HttpServlet {
 		int result = new FreeService().freeDelete(boardNo);
 		
 		String msg = "";
-		String loc = "/free/freeLisg";
+		String loc = "/free/freeList";
 				
 		if(result > 0) {
 			msg = "삭제완료";
