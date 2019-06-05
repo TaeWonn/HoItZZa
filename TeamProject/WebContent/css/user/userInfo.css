@@ -1,17 +1,10 @@
 @charset "UTF-8";
-
 article{width:652px;position:relative;left:171px;height: 743px;}
 div#viewMain{width:100%;text-align: center;position:absolute;margin-top:40px;height: 50px;}
 span#h1{font-size: 40px;position: absolute;right:130px;top:-50px;}
 div#infoList{position: absolute;top:55px;width:320px;height:460px;left:5px;background:lightgray;}
 div#interestBoard{position:absolute;left:333px;top:40px;width:285px;height:450px;}
 div#interestBoardAll{position:absolute;top:540px;}
-
-
-
-
-
-
 /*개인정보 테이블 관련 css*/
 table#userInfoTable select.interestBo{width:105px;}
 table#userInfoTable td,th{padding:6px;}
@@ -25,54 +18,27 @@ table#userInfoTable input{width:175px;}
 div#interestBoard h3{position:absolute;left:101px;top:4px;font-size: 27px;}
 div#interestBoard #p1{position: absolute; top:40px;}
 div#interestBoard #p2{position: absolute; top:268px;}
-
-
-
 /*관심 게시글 판매*/
 table#interestSellBoard{position:absolute;max-width:220px;padding:0px;border:1px solid; border-collapse: collapse;
-				top:40px; table-layout:fixed;}
+                top:40px; table-layout:fixed;}
 table#interestSellBoard th{max-width:76px;border:1px solid;text-align: center;background: lightgray;text-overflow:ellipsis;}
 table#interestSellBoard td{max-width:120px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 table#interestSellBoard th,td{overflow:hidden;}
 table#interestSellBoard tr{max-height: 10px; overflow: hidden;}
-
-
-
-
-
-
-
 /* 
 table#interestBuyBoard{position:absolute;max-width:220px;padding:0px;border:1px solid; border-collapse: collapse;
-				top:302px; table-layout:fixed;}
+                top:302px; table-layout:fixed;}
 table#interestBuyBoard th{max-width:70px;border:1px solid;text-align: center;background: lightgray;text-overflow:ellipsis;}
 table#interestBuyBoard td{max-width:98px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 table#interestBuyBoard th,td{overflow:hidden;}
 table#interestBuyBoard tr{max-height: 10px; overflow: hidden;}
-
  */
-
-
-
 div#interestBoardAll .list3{margin-bottom: 18px; }
-
-
-
-div#pageBar{position:absolute;width:100%;height: 20px;top:450px;text-align: center;left:23px;}
-
+div#pageBar{position:absolute;width:100%;height: 20px;top:460px;text-align: center;left:23px;}
 /* 추천 게시글 */ 
 table#recommendBoard{table-layout: fixed;}
-
 table#recommendBoard span{font-size: 13px;text-overflow:ellipsis; overflow: hidden;}
 table#recommendBoard td{max-width:105px; padding-right:30px;text-overflow:ellipsis; overflow: hidden;}
 table#recommendBoard th{max-width:130px; text-overflow:ellipsis; overflow: hidden;}
 table#recommendBoard img{width:65px;height: 28px;}
-
 div#interestBoardAll p{position:relative;left:30px;font-size: 18px;font-family: "맑은 고딕",cursive;}
-
-
-
-
-
-
-

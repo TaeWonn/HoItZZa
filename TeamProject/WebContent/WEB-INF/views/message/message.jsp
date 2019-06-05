@@ -53,11 +53,11 @@ div#search-content{
 				<th scope="col"></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tableBody">
 		<%if(senRec==null||senRec.equals("receive")){for(int i=0;i<list.size();i++){ %>
 			<tr>
-				<th scope="row"><nobr><%=list.get(i).getSender() %></nobr></th>
-				<td><nobr><%= list.get(i).getContent()%></nobr></td>
+				<th scope="row" onclick="msgView('<%=list.get(i).getMessageNo()%>');"><nobr><%=list.get(i).getSender() %></nobr></th>
+				<td onclick="msgView('<%=list.get(i).getMessageNo()%>');"><nobr><%= list.get(i).getContent()%></nobr></td>
 				<td><nobr><%=list.get(i).getNoteDate() %></nobr></td>
 				<td>
 					<button type="button" class="btn btn-secondary"  onclick="reply('<%=userLoggedIn.getUserId() %>','<%=list.get(i).getSender()%>');">답장</button>
@@ -134,7 +134,7 @@ function reply(sender,recipient){
 	//사용자가 sender, 받는사람이 recipient
 	var url="<%=request.getContextPath()%>/views/message/messageReply?senderId="+sender+"&recipient="+recipient;
 	var title="쪽지 보내기";
-	var specs="width=460px, height=500px, left=500px, top=200px";
+	var specs="width=400px, height=450px, left=500px, top=200px";
 	var popup=open(url, title,specs);
 
 }
@@ -158,8 +158,14 @@ function submit(){
 	$('#sub').submit();
 }
 
-//주소창에 파라미터 값 숨기기
-history.replaceState({}, null, location.pathname);
+//쪽지 내용 보기
+function msgView(msgNo){
+	var url="<%=request.getContextPath()%>/views/user/msgView?msgNo="+msgNo;
+	var title="쪽지 보기";
+	var specs="width=400px, height=450px, left=500px, top=200px";
+	var popup=open(url, title,specs);
+}
+
 
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

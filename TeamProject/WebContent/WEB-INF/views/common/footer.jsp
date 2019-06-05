@@ -5,7 +5,7 @@
 
 <style>
 #footer{
-background-image: url('<%=request.getContextPath()%>/images/leo.jpg');
+background-image: url('<%=request.getContextPath()%>/images/footer.jpg');
 
 } 
 </style>
@@ -14,7 +14,6 @@ background-image: url('<%=request.getContextPath()%>/images/leo.jpg');
 
 <div id="footer">
 
-	<p id="text">footer.copyright</p>
 	
 </div>
     

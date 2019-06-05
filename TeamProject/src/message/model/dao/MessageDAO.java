@@ -254,4 +254,32 @@ public class MessageDAO {
 		return list;
 	}
 
+	public Message selectMessage(Connection conn, int msgNo) {
+		Message m=new Message();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectMessage");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, msgNo);
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m.setMessageNo(rset.getInt("msg_no"));
+				m.setSender(rset.getString("sender"));
+				m.setRecipient(rset.getString("reci1pient"));
+				m.setContent(rset.getString("content"));
+				m.setNoteDate(rset.getDate("note_date"));
+				m.setNoteDel(rset.getString("note_del"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
+
 }

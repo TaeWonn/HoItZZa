@@ -67,4 +67,11 @@ public class MessageService {
 		return list;
 	}
 
+	public Message selectMessage(int msgNo) {
+		Connection conn=getConnection();
+		Message m=new MessageDAO().selectMessage(conn,msgNo);
+		close(conn);
+		return m;
+	}
+
 }

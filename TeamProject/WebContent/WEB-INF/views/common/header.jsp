@@ -254,9 +254,12 @@
 			}
 		}
 		
+<<<<<<< HEAD
 		//주소창에 파라미터 값 숨기기
 		history.replaceState({}, null, location.pathname);
 		
 		
+=======
+>>>>>>> refs/remotes/origin/YeRim
 	</script>
 	<section id="content">

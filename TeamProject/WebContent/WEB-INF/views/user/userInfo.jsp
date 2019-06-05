@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <%
-	//String pageBar = (String) request.getAttribute("pageBar");
+	String pageBar = (String) request.getAttribute("pageBar");
 	User u=(User)request.getAttribute("user");
 	System.out.println(u);
   	/* List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
@@ -64,10 +64,8 @@
 			<th>관심품목</th>
 			<td>
 			<%for(int i=0;i<interestArr.length;i++){%>
-			<select name="interest<%=i+1%>" class="interestBo">
-				<option selected >
-				<%=interestArr[i] %>
-				</option>
+			<select name="interest<%=i+1%>" class="interestBo" >
+			<option value="" selected><%=interestArr[i] %></option>
 				  <option value="A">패션의류/잡화</option>
 				  <option value="B">뷰티</option>
 				  <option value="C">출산/유아동</option>
@@ -86,7 +84,6 @@
 				 </select>
 				 <%} %>
 			</td>
-			
 		</tr>
 		<tr id="pad">
 			<th></th>
@@ -118,8 +115,8 @@
 		</tr>
 	<% /* } */ } %>
 	</table>
-	<div id="pageBar">
-		페이지바
+	<div id="pageBar" style="top:460px;">
+		<%=pageBar %>
 	</div>
 	
 </div>
