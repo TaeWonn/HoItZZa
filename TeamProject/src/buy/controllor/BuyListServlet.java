@@ -27,15 +27,19 @@ public class BuyListServlet extends HttpServlet {
 		int cPage =1;
 		int numPerPage =10;
 		try {
-			cPage =Integer.parseInt(request.getParameter("cPage"));
+			String c = request.getParameter("cPage");
+			System.out.println("String c = "+c);
+			cPage =Integer.parseInt(c);
 		} catch (NumberFormatException e) {
+			System.out.println("catch cPage = "+cPage);
 		}
 		try {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
 		} catch (NumberFormatException e) {
+			System.out.println("numPerPage");
 		}
 		
-		List<Buy> buy = new BuyService().selectAllBuyList();
+		List<Buy> buy = new BuyService().selectAllBuyList(cPage, numPerPage);
 		
 		List<Integer> warningCntList = new BuyService().warningCntList(buy);
 		
@@ -64,6 +68,7 @@ public class BuyListServlet extends HttpServlet {
 				pageBar += "<a href='"+request.getContextPath()+"/buy/buyList?cPage="+pageNo+
 							"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
+			
 			pageNo ++;
 		}
 		

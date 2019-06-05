@@ -86,4 +86,15 @@ public class OpinionService {
 		close(conn);
 		return result;
 	}
+
+	public void increaseReadCount(String boardNo) {
+		Connection conn = getConnection();
+		int result = new OpinionDAO().increaseReadCount(conn, boardNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		
+	}
 }
