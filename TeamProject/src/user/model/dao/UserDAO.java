@@ -84,6 +84,62 @@ public class UserDAO {
 		
 		return isUsable;
 	}
+	
+	public String[] selectCategory(Connection conn, String [] interest) {
+		String [] categoryNames = new String[3];
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectCategory");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, interest[0]);
+			ps.setString(2, interest[1]);
+			ps.setString(3, interest[2]);
+			
+			rs = ps.executeQuery();
+			
+			int i = 0;
+			while(rs.next()) {
+				categoryNames[i] = rs.getString("SUBJECT_NAME");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		return categoryNames;
+	}
+	
+	public String[] selectCategoryNo(Connection conn, String [] interest) {
+		String [] categoryNos = new String[3];
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectCategoryNo");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, interest[0]);
+			ps.setString(2, interest[1]);
+			ps.setString(3, interest[2]);
+			
+			rs = ps.executeQuery();
+			
+			int i = 0;
+			while(rs.next()) {
+				categoryNos[i] = rs.getString("SUBJECT_No");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+			close(rs);
+		}
+		return categoryNos;
+	}
 
 	public User selectOne(Connection conn, String userId) {
 		User u = null;
@@ -109,7 +165,7 @@ public class UserDAO {
 				u.setAddr(rs.getString("addr"));
 				u.setPoint(rs.getInt("point"));
 				String interestStr = rs.getString("interest");
-				String [] interest = interestStr.split(",");
+				String [] interest = selectCategory(conn, interestStr.split(","));
 				u.setInterest(interest);
 				u.setJoin_date(rs.getDate("join_date"));
 			}

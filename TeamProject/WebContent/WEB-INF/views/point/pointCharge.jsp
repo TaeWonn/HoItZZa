@@ -4,8 +4,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<Point> pointList=(List<Point>)request.getAttribute("list");
-	String pageBar=(String)request.getAttribute("pageBar");
+    List<Point> pointList=(List<Point>)request.getAttribute("list");
+    String pageBar=(String)request.getAttribute("pageBar");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/point/pointCharge.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.0.js"></script>
@@ -100,13 +100,12 @@
 	<div id="pageBar">
 		<%=pageBar!=null?pageBar:"" %>
 	</div>
+
 </article>
 <script>
 function setVal(obj){
-	console.log(obj.value);
-	$('input[name=chargeMoney]').val(obj.value);
+    console.log(obj.value);
+    $('input[name=chargeMoney]').val(obj.value);
 }
-
-
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

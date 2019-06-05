@@ -35,11 +35,9 @@ public class PointChargeServlet extends HttpServlet {
 		// 현재 페이지의 충전 내역
 		List<Point> list = new PointService().selectChargeListById(userId);
 		System.out.println("list="+list+", list.size="+list.size());
-		int size=list.size();
-		System.out.println(size);
 		
 		// 전체 페이지수 구하기
-		int totalContents = size;
+		int totalContents = list.size();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
 		// 페이지바 구성
