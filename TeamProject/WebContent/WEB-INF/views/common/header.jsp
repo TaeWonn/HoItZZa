@@ -123,8 +123,7 @@
                id="user_profile_photo" />
             <ul id="link">
                <li><span><a href="<%=request.getContextPath()%>/views/message/myMessage?userId=<%=userLoggedIn.getUserId()%>">내쪽지함</a></span>
-                  &nbsp;&nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보
-                        보기</a></span></li>
+                  &nbsp; &nbsp;<span><a href="<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userLoggedIn.getUserId()%>">내정보</a></span></li>
                <li><span id="userPoint">포인트 :  <%=userLoggedIn.getPoint() %>P</span></li>
                <li>
                <span id="pullPoint"><a href="<%=request.getContextPath()%>/views/point/pointCharge?userId=<%=userLoggedIn.getUserId()%>" >충전하기</a></span>&nbsp;&nbsp;
@@ -155,8 +154,8 @@
             </ul>
             <p id="board_title">기타</p>
             <ul class="boardList">
-               <li><a href=">/others/partnerList">협력사 모아보기</a></li>
-               <li><a href="/others/faqList">QnA </a><br><br></li>
+               <li><a href="<%=request.getContextPath()%>/others/partnerList">협력사 모아보기</a></li>
+               <li><a href="<%=request.getContextPath()%>/others/faqList">QnA </a><br><br></li>
             </ul>
 
 

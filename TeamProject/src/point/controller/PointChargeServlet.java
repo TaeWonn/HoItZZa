@@ -35,12 +35,17 @@ public class PointChargeServlet extends HttpServlet {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
 		
+		try {
+			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
+		}catch(NumberFormatException e) {}
+		
 		// 2. 업무 로직
 		// 현재 페이지의 충전 내역
 		List<Point> list = new PointService().selectChargeListById(userId, cPage, numPerPage);
 		
 		// 전체 페이지수 구하기
-		int totalContents = list.size();
+		int totalContents = new PointService().selectTotalContent(userId);
+		System.out.println("토탈 컨텐츠 수"+totalContents);
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
 		// 페이지바 구성
@@ -49,7 +54,7 @@ public class PointChargeServlet extends HttpServlet {
 		// 시작페이지 번호 세팅
 		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize+1;
 		// 종료페이지 번호 세팅
-		int pageEnd = pageStart + (pageBarSize-1);
+		int pageEnd = pageStart + pageBarSize-1;
 		int pageNo = pageStart;
 		
 		System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
@@ -60,12 +65,12 @@ public class PointChargeServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
 					+ "&cPage=" + (pageNo-1) + "'>[이전]</a>";
 		}
-		
 		// pageNo section
 		// pageNo<=pageEnd && pageNo<=totalPage
-		while(!(pageNo>pageEnd || pageNo > totalPage)) {
-			if(cPage == pageNo)
+		while(/*!(pageNo>pageEnd || pageNo > totalPage)*/pageNo<=pageEnd && pageNo<=totalPage) {
+			if(cPage == pageNo) {
 				pageBar += "<span class='cPage'>" + pageNo + "</span>";
+			}
 			else {
 				pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
 						+ "&cPage=" + pageNo + "'>"+pageNo+"</a>";

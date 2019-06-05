@@ -11,9 +11,9 @@ public class MessageService {
 	
 	public MessageService() {}
 
-	public List<Message> selectMessageList(String userId) {
+	public List<Message> selectMessageList(String userId, int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMessageList(conn,userId);
+		List<Message> list=new MessageDAO().selectMessageList(conn,userId,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -32,9 +32,9 @@ public class MessageService {
 		return result;
 	}
 
-	public List<Message> selectMessageList2(String userId) {
+	public List<Message> selectMessageList2(String userId, int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMessageList2(conn,userId);
+		List<Message> list=new MessageDAO().selectMessageList2(conn,userId,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -72,6 +72,20 @@ public class MessageService {
 		Message m=new MessageDAO().selectMessage(conn,msgNo);
 		close(conn);
 		return m;
+	}
+
+	public int selectTotalMessageReceiver(String userId) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectTotalMessageReceiver(userId,conn);
+		close(conn);
+		return result;
+	}
+
+	public int selectTotalMessagSender(String userId) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectTotalMessagSender(userId,conn);
+		close(conn);
+		return result;
 	}
 
 }

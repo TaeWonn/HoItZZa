@@ -27,7 +27,7 @@ public class MessageDAO {
 		
 	}
 
-	public List<Message> selectMessageList(Connection conn, String userId) {
+	public List<Message> selectMessageList(Connection conn, String userId, int cPage, int numPerPage) {
 		List<Message>list=new ArrayList<>();
 		ResultSet rset=null;
 		PreparedStatement pstmt=null;
@@ -37,6 +37,8 @@ public class MessageDAO {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, cPage);
+			pstmt.setInt(3, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -105,7 +107,7 @@ public class MessageDAO {
 		return result;
 	}
 
-	public List<Message> selectMessageList2(Connection conn, String userId) {
+	public List<Message> selectMessageList2(Connection conn, String userId, int cPage, int numPerPage) {
 		List<Message>list=new ArrayList<>();
 		ResultSet rset=null;
 		PreparedStatement pstmt=null;
@@ -113,7 +115,10 @@ public class MessageDAO {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, cPage);
+			pstmt.setInt(3, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -144,6 +149,8 @@ public class MessageDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, searchKeyword);
+			pstmt.setInt(3, cPage);
+			pstmt.setInt(4, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -174,6 +181,8 @@ public class MessageDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, "%"+searchKeyword+"%");
+			pstmt.setInt(3, cPage);
+			pstmt.setInt(4, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -204,6 +213,8 @@ public class MessageDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, searchKeyword);
+			pstmt.setInt(3, cPage);
+			pstmt.setInt(4, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -234,6 +245,8 @@ public class MessageDAO {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, "%"+searchKeyword+"%");
+			pstmt.setInt(3, cPage);
+			pstmt.setInt(4, numPerPage);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Message m =new Message();
@@ -280,6 +293,48 @@ public class MessageDAO {
 			close(pstmt);
 		}
 		return m;
+	}
+
+	public int selectTotalMessageReceiver(String userId, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectTotalMessageReceiver");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectTotalMessagSender(String userId, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectTotalMessagSender");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

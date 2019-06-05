@@ -29,4 +29,11 @@ public class PointService {
 		return result;
 	}
 
+	public int selectTotalContent(String userId) {
+		Connection conn=getConnection();
+		int result=new PointDAO().selectTotalContent(conn,userId);
+		close(conn);
+		return result;
+	}
+
 }
