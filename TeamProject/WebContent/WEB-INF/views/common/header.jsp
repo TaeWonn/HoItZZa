@@ -68,15 +68,13 @@
 
 <style>
 #head-container {
-	background-image: url("<%=request.getContextPath()%>/images/냥챗 아이콘.jpg");
+	background-image: url("<%=request.getContextPath()%>/images/header.jpg");
 } 
 </style>
 </head>
 <body>
 <header>
-	<div id="head-container">
-		<span id="sellBuy1">Sell&Buy</span>&nbsp;<br /> <span id="sellBuy2"><a
-			href="<%=request.getContextPath()%>">우리들의 쎌빠</a></span>
+	<div id="head-container" onclick="location.href='<%=request.getContextPath()%>'">
 	</div>
 	<hr />
 
@@ -146,9 +144,9 @@
 				<p id="board_title">자유게시판</p>
 				<ul class="boardList">
 					<li><a href="<%=request.getContextPath()%>/free/freeList">잡담 게시판</a></li>
-					<li><a href="">유용한 생활지식</a></li>
-					<li><a href="">연예/미디어</a></li> 
-					<li><a href="">나눔 게시판</a></li>
+					<li><a href="<%=request.getContextPath()%>/free/senseList">유용한 생활지식</a></li>
+					<li><a href="<%=request.getContextPath()%>/free/entertainList">연예/미디어</a></li> 
+					<li><a href="<%=request.getContextPath()%>/free/divideList">나눔 게시판</a></li>
 				</ul>
 				<p id="board_title">건의사항/신고</p>
 				<ul class="boardList">
@@ -157,8 +155,8 @@
 				</ul>
 				<p id="board_title">기타</p>
 				<ul class="boardList">
-					<li><a href="/views/etc/fleamarket">협력사 모아보기</a></li>
-					<li><a href="/views/etc/QnA">QnA </a></li>
+					<li><a href=">/others/partnerList">협력사 모아보기</a></li>
+					<li><a href="/others/faqList">QnA </a><br><br></li>
 				</ul>
 
 
@@ -256,7 +254,5 @@
 			}
 		}
 		
-		//주소창에 파라미터 값 숨기기
-		history.replaceState({}, null, location.pathname);
 	</script>
 	<section id="content">
