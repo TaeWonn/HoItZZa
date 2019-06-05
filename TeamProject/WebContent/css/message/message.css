@@ -3,7 +3,7 @@ article{height: 743px;width:652px;position:relative;left:171px;text-align: cente
   
  #title2{position:relative;left:-97px;}
  table tr:hover{background: #e9ecef;}
- div#pageBar{right:177px; position:absolute;top:645px; width:300px;height: 30px;display:inline-block; }
+ div#pageBar{right:177px; position:absolute;top:660px; width:300px;height: 30px;display:inline-block; }
  
  /*검색창*/
 div#search-container{position:relative;top:610px;width:100%;left:-72px;}

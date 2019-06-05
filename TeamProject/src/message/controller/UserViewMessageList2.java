@@ -27,10 +27,10 @@ public class UserViewMessageList2 extends HttpServlet {
 		//파라미터 핸들링
 				String userId=request.getParameter("userId");
 				String senRec=request.getParameter("senRec");
+				System.out.println("보낸거"+senRec);
 				List<Message> messageList=new ArrayList<>();
 				int numPerPage = 11;
-				int cPage = 1;
-				
+				int cPage=1;
 				try {
 					cPage = Integer.parseInt(request.getParameter("cPage"));
 				} catch (NumberFormatException e) {}
@@ -39,13 +39,17 @@ public class UserViewMessageList2 extends HttpServlet {
 					numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 				}catch(NumberFormatException e) {}
 				
+				System.out.println("cPage & numPerPage = "+cPage+","+numPerPage);
+				
 				int totalContents=0;
 				// 2. 업무 로직
-				if(senRec.equals("receive")||senRec==null) {
+				if(senRec.equals("receive") || senRec==null) {
 					messageList=new MessageService().selectMessageList(userId,cPage,numPerPage);
+					 System.out.println("리스트 확인 먼저"+messageList);
 					totalContents=new MessageService().selectTotalMessageReceiver(userId);
 				}else {
 					 messageList=new MessageService().selectMessageList2(userId,cPage,numPerPage);
+					 System.out.println("리스트 확인 먼저"+messageList);
 					 totalContents=new MessageService().selectTotalMessagSender(userId);
 				}
 				
@@ -66,7 +70,7 @@ public class UserViewMessageList2 extends HttpServlet {
 				// section [prev]
 				if(pageNo == 1) {}
 				else {
-					pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
+					pageBar += "<a href='"+request.getContextPath()+"/views/message/myMessage2?userId="+userId+"&senRec="+senRec
 							+ "&cPage=" + (pageNo-1) + "'>[이전]</a>";
 				}
 				// pageNo section
@@ -76,7 +80,7 @@ public class UserViewMessageList2 extends HttpServlet {
 						pageBar += "<span class='cPage'>" + pageNo + "</span>";
 					}
 					else {
-						pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
+						pageBar += "<a href='"+request.getContextPath()+"/views/message/myMessage2?userId="+userId+"&senRec="+senRec
 								+ "&cPage=" + pageNo + "'>"+pageNo+"</a>";
 					}
 					
@@ -86,12 +90,12 @@ public class UserViewMessageList2 extends HttpServlet {
 				// section [next]
 				if(pageNo>totalPage) {}
 				else {
-					pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
+					pageBar += "<a href='"+request.getContextPath()+"/views/message/myMessage2?userId="+userId+"&senRec="+senRec
 							+ "&cPage="+pageNo+ "'>[다음]</a>";
 				}
 				
 				
-				
+				System.out.println("리스트 확인 "+messageList);
 				String msg="";
 				String loc="";
 				String view="";
@@ -106,6 +110,7 @@ public class UserViewMessageList2 extends HttpServlet {
 				if(messageList!=null) {
 				request.setAttribute("msgList", messageList);
 				request.setAttribute("senRec", senRec);
+				request.setAttribute("pageBar", pageBar);
 				}else {
 					request.setAttribute("msg", msg);
 					request.setAttribute("loc", loc);
