@@ -254,5 +254,9 @@
 			}
 		}
 		
+		//주소창에 파라미터 값 숨기기
+		history.replaceState({}, null, location.pathname);
+		
+		
 	</script>
 	<section id="content">
