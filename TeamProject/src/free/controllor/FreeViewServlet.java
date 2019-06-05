@@ -27,6 +27,7 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 파라미터 핸들링
 		String boardNo = request.getParameter("boardNo");
 		
 		Free f = new FreeService().selectOneFree(boardNo);
