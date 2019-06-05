@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
@@ -38,7 +39,8 @@ public class BuyViewServlet extends HttpServlet {
 		
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
-		 
+		String ca = new BoardService().selectcategoryname(b.getBoardCodeNo());
+		b.setBoardCodeNo(ca);
 		
 		List<Comment> clist = new BuyService().commentList(boardNo);
 		

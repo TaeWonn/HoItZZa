@@ -7,26 +7,24 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
  
-</head>
-
-<body>
+<article id="article">
 
 
-	<form action="<%=request.getContextPath()%>/buy/buyWriteEnd"
+	<form action="<%=request.getContextPath()%>/board/boardWriteEnd"
 	 method="post" enctype="multipart/form-data">
 	
 		<h2 style="text-align: center">구매글 작성</h2>
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
-        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
+        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
 
 <!-- 거래방식 -->
     	<select class="custom-select" id="boardDeal" name="boardDeal">
 
-                <option value="1" selected>택배</option>
-                <option value="2">직거래</option>
+                <option value="택배" selected>택배</option>
+                <option value="직거래">직거래</option>
         </select>
 
         <br>
@@ -65,13 +63,13 @@
            <div class="filebox">
            			
 					
-	<input type="file" id="ex_img" onchange="loadImg(this);">			 
+	<input  type="file" id="ex_img" onchange="loadImg(this);" name="upFile">			 
     <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="file" id="ex_filename" class="upload-hidden" >
+    <input  type="file" id="ex_filename" class="upload-hidden" name="upFile">
     
   <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden" name="">
+  <input type="file" id="ex_filename" class="upload-hidden" name="upFile">
 </div>
           
                 <div id="buttons">
@@ -153,6 +151,7 @@ function chageSelect(){
 					else{
 						var nameArr = data.split(",");
 						$("#category2").empty();
+						$("#category2").append($("<option>"+"세부 카테고리"+"</option>"))
 						for(var i=0; i<nameArr.length; i++){
 							var option = $("<option>"+nameArr[i]+"</option>");
 			                $("#category2").append(option);
@@ -194,7 +193,7 @@ function chageSelect(){
 
 </script>
 
-</body>
+</article>
 </html>
 
 

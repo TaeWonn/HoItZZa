@@ -3,14 +3,13 @@
     <%@ page import="sell.model.vo.Sell, java.util.*" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<Sell> list = (List<Sell>)request.getAttribute("sell");
+	List<Sell> list = (List<Sell>)request.getAttribute("sellList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" />
-
-  <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" />    
+	<link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
  <style>
@@ -54,9 +53,9 @@ text-align: center;
     .thead-light{
     font-size : 14px;}
     </style>
-</head>
-<body>  
-<body>
+
+<article id="article">
+
 	<br>
 	<H3 style="text-align: center;">판매게시판</H3>
 
@@ -89,12 +88,12 @@ text-align: center;
 	<div id="pageBar">
 		<%=pageBar %>
 	</div>
-	<%-- <%if(memberLoggedIn != null){ %> --%>
+	<%if(userLoggedIn != null){ %> 
 		<input type="button" value="글쓰기" 
 			   id="btn-add"
 			   onclick="location.href='<%=request.getContextPath()%>/sell/sellWrite'"/>
-	<%-- <% } %> --%>
-</body>
+	 <% } %> 
+</article>
 </html>
 
 

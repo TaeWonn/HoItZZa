@@ -1,7 +1,9 @@
 package sell.controllor;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
+import com.sun.xml.internal.messaging.saaj.soap.MultipartDataContentHandler;
 
 import common.SellBarFileRenamePolicy;
 import file.model.vo.FileTable;
@@ -46,19 +49,40 @@ public class SellWriteEndServlet extends HttpServlet {
 		
 		MultipartRequest multiReq = new MultipartRequest(request, saveDirectory,
 				maxPostSize, "UTF-8", policy);
-		
-		
+
 		
 		String boardTitle = multiReq.getParameter("boardTitle");
 		String boardContent = multiReq.getParameter("boardContent");
 		String boardDeal = multiReq.getParameter("boardDeal");
-		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		String boardWriter = multiReq.getParameter("boardWriter");
+		String category1 = multiReq.getParameter("category1");
+		String category2 = multiReq.getParameter("category2");
+		String boardCodeNo = "";
 		
-		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
+		if(category2.equals(""))
+			boardCodeNo=category1;
+		else boardCodeNo=category2;
+		
+		
+		
+		File f = multiReq.getFile("upFile");
+		
+		
+		System.out.println("제목"+boardTitle);
+		System.out.println("내용"+boardContent);
+		System.out.println("거래방식"+boardDeal);
+		System.out.println("카테1"+category1);
+		System.out.println("카테2"+category2);
+		System.out.println("코드"+boardCodeNo);
+		System.out.println("작성자"+boardWriter);
+		
+		System.out.println("이미지 파일 네임 확인 "+multiReq.getOriginalFileName("upFile1"));
+		System.out.println("첨부파일 네임 확인 "+multiReq.getOriginalFileName("upFile"));
+		int fileCount = 1;
 		
 		List<String> fileNameList = new ArrayList<>();
 		List<String> newFileNameList = new ArrayList<>();
+		
 		for(int i=0;i<fileCount;i++) {
 			String fileName = multiReq.getOriginalFileName("upFile"+i);
 			String newFileName = multiReq.getFilesystemName("upFile"+i);
@@ -78,6 +102,7 @@ public class SellWriteEndServlet extends HttpServlet {
 		
 		int result = new SellService().insertSell(s);
 		String boardNo = new SellService().selectOneBoardNo();
+		
 		
 		for(int i =0;i<fileCount;i++) {
 			FileTable t = new FileTable();

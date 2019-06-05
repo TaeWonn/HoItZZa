@@ -116,4 +116,17 @@ public class BoardService {
 			rollback(conn);
 		return result;
 	}
+
+	//////////////////////////////////////////////////////////
+	
+	public String selectcategoryname(String boardCodeNo) {
+		Connection conn = getConnection();
+		String board = new BoardDAO().selectcategoryname(conn, boardCodeNo);
+		close(conn);
+		return board;
+	}
+	
+	
+	
+	
 }

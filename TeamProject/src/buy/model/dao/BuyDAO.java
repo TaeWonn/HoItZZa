@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import board.model.service.BoardService;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
@@ -72,6 +73,12 @@ public class BuyDAO {
 				b.setBoardReadCounter(rs.getInt("board_read_count"));
 				b.setBoardWriter(rs.getString("board_writer"));
 				
+				///////////////////////////////////////////////////////////////////////////
+				
+				String ca = new BoardService().selectcategoryname(b.getBoardCodeNo());
+				b.setBoardCodeNo(ca);
+				
+				////////////////////////////////////////////////////////////////////////////
 				buy.add(b);
 			}
 		} catch (Exception e) {

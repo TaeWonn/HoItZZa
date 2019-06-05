@@ -4,7 +4,9 @@
 <%@ page import="sell.model.vo.Sell, java.util.*,comment.model.vo.*" %>
 <%
 Sell b = (Sell)request.getAttribute("sell");
-List<Comment> commentList = (List<Comment>)request.getAttribute("clist");
+
+List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
+System.out.print(b.getBoardNo());
 %>
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -96,20 +98,21 @@ background-color: rgb(230, 234, 236)}
   	}
   	
     </style>
-</head>
 
-<body style="text-align: center;">
-    <h2 style="text-align: center;">구매 게시판</h2>
+<article id="article">
+
+    <h2 style="text-align: center;">판매 게시판</h2>
     <div id="div1">
         <form action="">
         <span id="boardTilte" name="boardTilte" ><%=b.getBoardTitle() %></span>
         <span id="k_span"><%=b.getBoardCodeNo() %></span>
     </div>
     <div class="ed_box">
-        <span class="id"><%=b.getBoardWriter() %></span>
+        <span class="id"><%=b.getBoardWriter()%></span>
         <span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span>
         <span class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
-        <a href="" id="message_href" >☏ 쪽지보내기</a>
+        <a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
+         id="message_href" >☏ 쪽지보내기</a>
             </span>     
         </div>
 
@@ -127,21 +130,129 @@ background-color: rgb(230, 234, 236)}
 <tr>
 <td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
 </tr>
-<tr>
-<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
-</tr>
 <td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
 </tr>
-        </table>
 </div>
+</table>
+<Br>
+
+<div id="comment-container" style="text-align: center;">
+	<div class="comment-editor">
+		<form action="<%=request.getContextPath()%>/sell/sellComment"
+			  name="boardCommentFrm"
+			  method="post">
+			<textarea name="boardCommentContent" 
+					  cols="60" rows="3"></textarea>
+			<button type="submit" id="btn-insert">등록</button>	  
+			<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>" />  
+			<input type="hidden" name="boardCommentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
+			<input type="hidden" name="boardCommentLevel" value="1" />
+			<input type="hidden" name="boardCommentRef" value="0" />
+		
+		</form>
+	</div>
+	
+	<!-- 댓글목록 테이블 -->
+	<table id="tbl-comment">
+	<%if(!commentList.isEmpty()) {
+		for(Comment bc: commentList){
+			if(bc.getCommentLevel()==1){
+	%>
+			<!-- 댓글인경우 -->
+			<tr class="level1">
+				<td>
+					<sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
+					<sub class="comment-date"><%=bc.getCommentDate() %></sub>
+					<br />
+					<%=bc.getCommentContent() %>
+					
+				</td>
+				<td>
+					<button class="btn-reply" value="<%=bc.getCommentNo() %>" >답글</button>
+					<%-- 삭제버튼 추가 --%>
+					<%if(userLoggedIn!=null 
+						&& ("admin".equals(userLoggedIn.getUserId()) 
+								|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
+					<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
+					<%} %>
+				</td>
+			</tr>
+	
+	<%			
+			}
+			else{
+	%>			
+			<!-- 대댓글인경우 -->	
+			<tr class="level2">
+				<td>
+					<sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
+					<sub class="comment-date"><%=bc.getCommentDate() %></sub>
+					<br />
+					<%=bc.getCommentContent() %>
+					
+				</td>
+				<td>
+				<%-- 삭제버튼 추가 --%>
+				<%if(userLoggedIn!=null 
+					&& ("admin".equals(userLoggedIn.getUserId()) 
+							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
+				<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
+				<%} %>
+				</td>
+			</tr>
+	<%			
+			}//end of if(bc.getBoardCommentLevel()==1)
+		
+		}//end of for
+		
+	}//end of if(!commentList.isEmpty())
+	%>
+	</table>
+	
+	
+</div>
+
+
+
        <div id="buttons">
-           <button type="button"  disabled>수정</button>
-           <button type="button" disabled>목록</button>
-          </div>              
+      <%--  <% if(userLoggedIn!=null && 
+        (b.getBoardWriter().equals(userLoggedIn.getUserId())
+        || "admin".equals(userLoggedIn.getUserId())) ){ %> --%>
+   
+       
+            <input type="button" value="수정" 
+            	   onclick="location.href='<%=request.getContextPath()%>/board/boardUpdate?boardNo=<%=b.getBoardNo()%>'"/>
+            <input type="button" value="삭제" onclick="deleteBoard();"/>
+     
+    
+    
+ <%--    <%} %>	 --%>
+           <button type="button" onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
+        </div>              
 
-</form>
 
-</body>
+
+<script>
+
+function reply(sender,recipient){
+	//사용자가 sender, 받는사람이 recipient
+	var url="<%=request.getContextPath()%>/views/message/messageReply?senderId="+sender+"&recipient="+recipient;
+	var title="쪽지 보내기";
+	var specs="width=460px, height=500px, left=500px, top=200px";
+	var popup=open(url, title,specs);
+
+}
+
+function deleteBoard(){
+	if(!confirm("정말 삭제하시겠습니까?")) return;
+	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
+	location.href="<%=request.getContextPath()%>/sell/sellDelete?boardNo=<%=b.getBoardNo()%>";
+}
+
+</script>
+
+
+</article>
 </html>
 
 

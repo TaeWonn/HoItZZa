@@ -15,8 +15,8 @@ import buy.model.service.BuyService;
 /**
  * Servlet implementation class JQueryAjaxAutoCompleteServlet
  */
-@WebServlet("/buy/buycategory")
-public class BuyKategoryServlet extends HttpServlet {
+@WebServlet("/buy/buycategory2")
+public class BuyCategoryServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 
@@ -24,21 +24,18 @@ public class BuyKategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("드롸지나");
-		
 		//1.encoding
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/csv; charset=UTF-8");
 		//2.parameter
-		String category1 = request.getParameter("category1");
-		System.out.println(category1);
+		String category2 = request.getParameter("category2");
 		
 		//3.업무로직
 		List<String> nameList = null;
 		String csv = "";
 
-		if(!category1.trim().isEmpty()) {//공백은 넘어올수 있음. length가 0일때 true리턴함.
-			nameList = new BuyService().selectCategory(category1);
+		if(!category2.trim().isEmpty()) {//공백은 넘어올수 있음. length가 0일때 true리턴함.
+			nameList = new BuyService().selectCategoryNo(category2);
 		
 			if(!nameList.isEmpty()){
 				for(int i=0; i< nameList.size(); i++){

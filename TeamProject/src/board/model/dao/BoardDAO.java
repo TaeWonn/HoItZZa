@@ -357,4 +357,33 @@ public class BoardDAO {
 		}
 		return result;
 	}
+
+	////////////////////////////////////////////////////////////////
+	
+	public String selectcategoryname(Connection conn, String boardCodeNo) {
+		String categoryname = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectcategoryname");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, boardCodeNo);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				categoryname = rset.getString("subject_name");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return categoryname;
+	}
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import board.model.service.BoardService;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.vo.Sell;
@@ -71,6 +72,13 @@ public class SellDAO {
 				s.setBoardReadCounter(rs.getInt("board_read_count"));
 				s.setBoardWriter(rs.getString("board_writer"));
 				
+				/////////////////////////////////////////////////////////////////////////
+				
+				String ca = new BoardService().selectcategoryname(s.getBoardCodeNo());
+				s.setBoardCodeNo(ca);
+				
+				///////////////////////////////////////////////////////////////////////////
+				
 				sell.add(s);
 			}
 			
@@ -89,6 +97,7 @@ public class SellDAO {
 		
 		PreparedStatement ps = null;
 		String sql = prop.getProperty("insertSell");
+		System.out.println(sql);
 		try {
 			ps = conn.prepareStatement(sql);
 			
@@ -121,6 +130,13 @@ public class SellDAO {
 				s.setBoardContent(rs.getString("board_content"));
 				s.setBoardWriter(rs.getString("board_writer"));
 				s.setBoardDeal(rs.getString("board_deal"));
+				s.setBoardDate(rs.getDate("board_date"));
+				s.setBoardCodeNo(rs.getString("board_code_No"));
+				
+				/////////////////////////////////////////////////////
+				
+				s.setBoardNo(rs.getString("board_no"));
+				//////////////////////////////////////////////
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -141,7 +157,7 @@ public class SellDAO {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				boardNo = rs.getString("boardNo");
+				boardNo = "s_"+rs.getInt("boardNo");
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.service.SellService;
@@ -28,8 +29,7 @@ public class SellViewServlet extends HttpServlet {
 		String boardNo = request.getParameter("boardNo");
 		
 		Sell s = new SellService().selectOneSell(boardNo);
-		
-		List<FileTable> ft = new SellService().selectFiles(boardNo);
+		//List<FileTable> ft = new SellService().selectFiles(boardNo);
 		
 		if(s == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
@@ -38,14 +38,21 @@ public class SellViewServlet extends HttpServlet {
 				.forward(request, response);
 			return;
 		}
-		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
+//		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
 		
 		List<Comment> clist = new SellService().commentList(boardNo);
 
+		////////////////////////////////////////카테고리 한글변환
+		
+		String ca = new BoardService().selectcategoryname(s.getBoardCodeNo());
+		s.setBoardCodeNo(ca);
+		
+		
 		request.setAttribute("cList", clist);
-		request.setAttribute("warningCnt", warningCnt);
+//		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("sell", s);
-		request.setAttribute("files", ft);
+		
+//		request.setAttribute("files", ft);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellView.jsp")
 				.forward(request, response);
 	}

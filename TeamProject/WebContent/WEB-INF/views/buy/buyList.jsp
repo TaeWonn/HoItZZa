@@ -6,7 +6,7 @@
 	List<Buy> list = (List<Buy>)request.getAttribute("buy");
 	String pageBar = (String)request.getAttribute("pageBar");
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
-    //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+   
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" />
 
@@ -54,9 +54,9 @@ text-align: center;
     .thead-light{
     font-size : 14px;}
     </style>
-</head>
-<body>  
-<body>
+    
+<article id="article">
+
 		<br>
 	<H3 style="text-align: center;">구매게시판</H3>
 
@@ -90,12 +90,12 @@ text-align: center;
 	<div id="pageBar">
 		<%=pageBar %>
 	</div>
-	<%-- <%if(memberLoggedIn != null){ %> --%>
+	<%if(userLoggedIn != null){ %> 
 		<input type="button" value="글쓰기" 
 			   id="btn-add"
 			   onclick="location.href='<%=request.getContextPath()%>/buy/buyWrite'"/>
-	<%-- <% } %> --%>
-</body>
+	 <% } %> 
+</article>
 </html>
 
 

@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
  
-</head>
 
-<body>
+
+<article id="article">
 
 
 	<form action="<%=request.getContextPath()%>/sell/sellWriteEnd"
@@ -19,13 +19,13 @@
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
-        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
+        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
 
 <!-- 거래방식 -->
     	<select class="custom-select" id="boardDeal" name="boardDeal">
-                <option value="1" selected>택배</option>
-                <option value="2">직거래</option>
+                <option value="택배" selected>택배</option>
+                <option value="직거래">직거래</option>
         </select>
 
         <br>
@@ -57,27 +57,32 @@
 						<img id="img-viewer" width=350/>
 					</div> -->
         <div contentEditable="true"  id="boardContent">
+        
         <img id="img-viewer" style="display: block;"/>
         
         </div>
+        
+        <input type="hidden" name="boardContent">
         <br>
            <div class="filebox">
            			
 					
-	<input type="file" id="ex_img" onchange="loadImg(this);">			 
+	<input type="file" id="ex_img" onchange="loadImg(this);" name="upFile1">			 
     <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="file" id="ex_filename" class="upload-hidden" >
+    <input multiple type="file" id="ex_filename" class="upload-hidden" name="upFile">
     
   <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
   <input type="file" id="ex_filename" class="upload-hidden" name="">
 </div>
-          
+    
                 <div id="buttons">
                   <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
                   <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
                 </div>
             </form>
+
+</article>
 
 <script>
 
@@ -89,13 +94,16 @@ function validate(){
 		return false;
 	}
 	//내용
-	var boardContent = $("[name=boardContent]").val();
+	var boardContent = $("#boardContent").text();
 	if(boardContent.trim().length == 0){
 		alert("내용을 입력하세요.");
 		return false;
 	}
 	
 	console.log("["+$("[name=boardContent]").val()+"]")
+	
+	$("[name=boardContent]").val($("#boardContent").text());
+
 	return true;
 }
 
@@ -152,6 +160,7 @@ function chageSelect(){
 					else{
 						var nameArr = data.split(",");
 						$("#category2").empty();
+						$("#category2").append($("<option>"+"세부 카테고리"+"</option>"))
 						for(var i=0; i<nameArr.length; i++){
 							var option = $("<option>"+nameArr[i]+"</option>");
 			                $("#category2").append(option);
@@ -193,7 +202,7 @@ function chageSelect(){
 
 </script>
 
-</body>
+
 </html>
 
 
