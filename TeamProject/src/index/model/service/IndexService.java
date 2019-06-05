@@ -8,6 +8,7 @@ import buy.model.vo.Buy;
 import free.model.vo.Free;
 import index.model.dao.IndexDAO;
 import sell.model.vo.Sell;
+import user.model.vo.User;
 public class IndexService {
 	
 	public IndexService() {}
@@ -52,6 +53,13 @@ public class IndexService {
 		List<Free>fList=new IndexDAO().selectNanumBoardList(conn);
 		close(conn);
 		return fList;
+	}
+
+	public User selectUser(String userId) {
+		Connection conn=getConnection();
+		User user=new IndexDAO().selectUser(conn,userId);
+		close(conn);
+		return user;
 	}
 	
 	

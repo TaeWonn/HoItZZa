@@ -1,17 +1,14 @@
-<%@page import="free.model.vo.Free"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="board.model.vo.Board, java.util.*"%>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+    pageEncoding="UTF-8"%>
+    <%@ page import="board.model.vo.Board, java.util.*" %>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<Free> list = (List<Free>)request.getAttribute("free");
+	List<Board> list = (List<Board>)request.getAttribute("list");
 	String pageBar = (String)request.getAttribute("pageBar");
-	System.out.println("pageBar@freeList.jsp="+pageBar);
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
 	//Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/index.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" />
 
 <!-- <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
@@ -63,35 +60,36 @@ div#pageBar .cPage {
 }
 </style>
 </head>
-<body>
+<body>  
 <body>
 	<h2>잡담게시판</h2>
 
-	<table class="table">
-		<thead class="thead-light">
-			<tr>
-				<th scope="col">글번호</th>
-				<th scope="col">작성자</th>
-				<th scope="col" id="title">제목</th>
-				<th scope="col">작성일</th>
-				<th scope="col">조회수</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(Free f : list){ %>
-			<tr>
-				<th scope="row"><%=f.getBoardNo() %></th>
-				<td><%=f.getBoardWriter() %></td>
-				<td><%=f.getBoardTitle() %></td>
-				<td><%=f.getBoardDate() %></td>
-				<td><%=f.getBoardReadCounter() %></td>
-			</tr>
-			<% } %>
-		</tbody>
-	</table>
-	<div id="pageBar"><%=pageBar %></div>
+    <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">글번호</th>
+            <th scope="col">작성자</th>
+            <th scope="col" id="title">제목</th>
+            <th scope="col">작성일</th>
+            <th scope="col">조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(int i=0; i<7; i++){ %>
+         
+          <tr>
+            <th scope="row">작성자명</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>2019-06-24</td>
+            <td>5</td>
+     </tr>
+                <% } %>
+        </tbody>
+        
+      </table>
 
-	<%-- <%if(memberLoggedIn != null){ %>
+<%-- <%if(memberLoggedIn != null){ %>
 		<input type="button" value="글쓰기" 
 			   id="btn-add"
 			   onclick="location.href='<%=request.getContextPath()%>/board/boardForm'"/>
@@ -100,4 +98,4 @@ div#pageBar .cPage {
 </html>
 
 
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>

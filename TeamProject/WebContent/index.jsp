@@ -43,7 +43,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(sellList!=null){for(int i=0;i<sellList.size();i++){%>
-		<tr onclick="boardView('<%=sellList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=sellList.get(i).getBoardNo()%>','/sell/sellView?boardNo=');">
 			<td class="board_no"><nobr><%= sellList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= sellList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= sellList.get(i).getBoardReadCounter()%></nobr></td>
@@ -71,7 +71,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(buyList!=null){for(int i=0;i<buyList.size();i++){%>
-		<tr onclick="boardView('<%=buyList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=buyList.get(i).getBoardNo()%>','/buy/buyView?boardNo=');">
 			<td class="board_no"><nobr><%= buyList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= buyList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= buyList.get(i).getBoardReadCounter()%></nobr></td>
@@ -130,7 +130,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(sudaList!=null){for(int i=0;i<sudaList.size();i++){%>
-		<tr onclick="boardView('<%=sudaList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=sudaList.get(i).getBoardNo()%>',);">
 			<td class="board_no"><nobr><%= sudaList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= sudaList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= sudaList.get(i).getBoardReadCounter()%></nobr></td>
@@ -204,16 +204,15 @@ String stop=(String)request.getAttribute("stop");
 </section>
 </article>
 <script>
- <% if(stop==null){%>
+<% if(stop==null){%>
 $(document).ready(function() {
     // 로딩되기 시작할때
 location.href="<%=request.getContextPath()%>/views/index";
-
 });
- <%}%> 
+<%}%> 
  
-function boardView(boardNo){
-	location.href="<%=request.getContextPath()%>/"+boardNo;
+function boardView(boardNo,link){
+	location.href="<%=request.getContextPath()%>"+link+boardNo;
 }
 
 

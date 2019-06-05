@@ -113,6 +113,10 @@ div#pageBar .cPage {
 	<div id="pageBar">
 		<%=pageBar!=null?pageBar:"" %>
 	</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/YeRim
 </article>
 <script>
 function setVal(obj){

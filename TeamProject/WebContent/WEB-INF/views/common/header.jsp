@@ -186,75 +186,73 @@
 </header>
 
 
-   <script>
-      //날씨정보 api불러오기
-      $(function() {
-         var location = "Seoul";
-         var today = new Date();
-         var dd = today.getDate();
-         var mm = today.getMonth() + 1; //January is 0!
-         var yyyy = today.getFullYear();
-         if (dd < 10) {
-            dd = '0' + dd
-         }
-         if (mm < 10) {
-            mm = '0' + mm
-         }
-         today = yyyy + "년" + mm + "월" + dd + "일";
-         var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d69250224a399641ef739b6e02e5cfaf";
-         $
-               .ajax({
-                  url : apiUrl,
-                  dataType : "json",
-                  type : "GET",
-                  async : "false",
-                  success : function(resp) {
-                     var imgURL = "http://openweathermap.org/img/w/"
-                           + resp.weather[0].icon + ".png";
-                     var html = '<div id="weather"><span style="font-size:20px;" id="today">'
-                           + today
-                           + '</span><img src="'+imgURL+'" alt="" /><span id="wSpan">'
-                           + resp.weather[0].description
-                           + '</span><br /><span>현재위치 : '
-                           + resp.name
-                           + '</span><br />';
-                     html += '<span>현재온도 : '
-                           + Math
-                                 .round((resp.main.temp - 273.15) * 10.0)
-                           / 10.0 + '°C</span><br /><span>현재습도 : '
-                           + resp.main.humidity + '</span><br />';
-                     html += '<span>풍속 : ' + resp.wind.speed
-                           + ' m/s</span></div><br />';
-                     $("#weather-day").append(html);
-                  }
-               });
-      });
-      //로그인 처리
-      function checkLogin() {
-         var id = $('#header_userId').val().trim();
-         var pwd = $('#header_userPwd').val().trim();
-         if (id.length == 0) {
-            alert('아이디를 입력해주세요.');
-            $('#header_userId').focus();
-            return;
-         } else {
-            if (pwd.length == 0) {
-               alert('비밀번호를 입력해주세요.');
-               $('#header_userPwd').focus();
-               return;
-            }
-         }
-         
-         $('#loginFrm').submit();
-      }
-      
-      function enterUser(){
-         if(window.event.keyCode==13){
-            checkLogin();
-         }
-      }
-      
-
-      
-   </script>
-   <section id="content">
+	<script>
+		//날씨정보 api불러오기
+		$(function() {
+			var location = "Seoul";
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth() + 1; //January is 0!
+			var yyyy = today.getFullYear();
+			if (dd < 10) {
+				dd = '0' + dd
+			}
+			if (mm < 10) {
+				mm = '0' + mm
+			}
+			today = yyyy + "년" + mm + "월" + dd + "일";
+			var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d69250224a399641ef739b6e02e5cfaf";
+			$
+					.ajax({
+						url : apiUrl,
+						dataType : "json",
+						type : "GET",
+						async : "false",
+						success : function(resp) {
+							var imgURL = "http://openweathermap.org/img/w/"
+									+ resp.weather[0].icon + ".png";
+							var html = '<div id="weather"><span style="font-size:20px;" id="today">'
+									+ today
+									+ '</span><img src="'+imgURL+'" alt="" /><span id="wSpan">'
+									+ resp.weather[0].description
+									+ '</span><br /><span>현재위치 : '
+									+ resp.name
+									+ '</span><br />';
+							html += '<span>현재온도 : '
+									+ Math
+											.round((resp.main.temp - 273.15) * 10.0)
+									/ 10.0 + '°C</span><br /><span>현재습도 : '
+									+ resp.main.humidity + '</span><br />';
+							html += '<span>풍속 : ' + resp.wind.speed
+									+ ' m/s</span></div><br />';
+							$("#weather-day").append(html);
+						}
+					});
+		});
+		//로그인 처리
+		function checkLogin() {
+			var id = $('#header_userId').val().trim();
+			var pwd = $('#header_userPwd').val().trim();
+			if (id.length == 0) {
+				alert('아이디를 입력해주세요.');
+				$('#header_userId').focus();
+				return;
+			} else {
+				if (pwd.length == 0) {
+					alert('비밀번호를 입력해주세요.');
+					$('#header_userPwd').focus();
+					return;
+				}
+			}
+			
+			$('#loginFrm').submit();
+		}
+		
+		function enterUser(){
+			if(window.event.keyCode==13){
+				checkLogin();
+			}
+		}
+		
+	</script>
+	<section id="content">
