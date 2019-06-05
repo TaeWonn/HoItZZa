@@ -6,7 +6,10 @@
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
-<article>
+ 
+</head>
+
+<body>
 
 
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
@@ -114,7 +117,8 @@ fileTarget.on('change', function(){ // 값이 변경되면
 
 </script>
 
-</article>
+</body>
+</html>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

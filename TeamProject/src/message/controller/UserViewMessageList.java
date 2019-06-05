@@ -27,15 +27,12 @@ public class UserViewMessageList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 핸들링
 		String userId=request.getParameter("userId");
-		System.out.println("myMessageServlet@userId : "+userId);
 		int numPerPage = 11;
 		int cPage=1;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
-		
-		System.out.println("cPage & numPerPage = "+cPage+","+numPerPage);
-		
+			
 		// 2. 업무 로직
 		List<Message> messageList=new MessageService().selectMessageList(userId,cPage,numPerPage);
 		// 전체 페이지수 구하기
@@ -53,7 +50,6 @@ public class UserViewMessageList extends HttpServlet {
 		int pageEnd = pageStart + pageBarSize-1;
 		int pageNo = pageStart;
 		
-		System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
 		
 		// section [prev]
 		if(pageNo == 1) {}
@@ -81,8 +77,7 @@ public class UserViewMessageList extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/views/message/myMessage?userId="+userId
 					+ "&cPage="+pageNo+ "'>[다음]</a>";
 		}
-		System.out.println("페이지바"+pageBar);
-		System.out.println("리스트 화깅ㄴ"+messageList);
+
 		String msg="";
 		String loc="";
 		String view="";

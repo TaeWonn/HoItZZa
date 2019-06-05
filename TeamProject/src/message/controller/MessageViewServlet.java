@@ -22,7 +22,6 @@ public class MessageViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int msgNo=Integer.parseInt(request.getParameter("msgNo"));
-		System.out.println("메시지 번호"+msgNo);
 		
 		//업무로직
 		Message m=new MessageService().selectMessage(msgNo);

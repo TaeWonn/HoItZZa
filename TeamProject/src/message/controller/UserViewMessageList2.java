@@ -38,8 +38,7 @@ public class UserViewMessageList2 extends HttpServlet {
 				try {
 					numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 				}catch(NumberFormatException e) {}
-				
-				System.out.println("cPage & numPerPage = "+cPage+","+numPerPage);
+
 				
 				int totalContents=0;
 				// 2. 업무 로직
@@ -53,7 +52,6 @@ public class UserViewMessageList2 extends HttpServlet {
 					 totalContents=new MessageService().selectTotalMessagSender(userId);
 				}
 				
-				System.out.println("토탈 컨텐츠 수"+totalContents);
 				int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 				
 				// 페이지바 구성
@@ -65,7 +63,6 @@ public class UserViewMessageList2 extends HttpServlet {
 				int pageEnd = pageStart + pageBarSize-1;
 				int pageNo = pageStart;
 				
-				System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
 				
 				// section [prev]
 				if(pageNo == 1) {}
@@ -95,7 +92,6 @@ public class UserViewMessageList2 extends HttpServlet {
 				}
 				
 				
-				System.out.println("리스트 확인 "+messageList);
 				String msg="";
 				String loc="";
 				String view="";

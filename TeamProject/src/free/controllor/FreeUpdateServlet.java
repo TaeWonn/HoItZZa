@@ -1,4 +1,4 @@
-package message.controller;
+package free.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,31 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import free.model.service.FreeService;
+import free.model.vo.Free;
+
 /**
- * Servlet implementation class WriteMessage
+ * Servlet implementation class FreeBoardUpdate
  */
-@WebServlet("/views/message/messageReply")
-public class ReplyMessageServlet extends HttpServlet {
+@WebServlet("/freeBoard/freeBoardUpdate")
+public class FreeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String senderId=request.getParameter("senderId");
-		String receiver=request.getParameter("recipient");
-
-		//보내는이, 받는이만 적어서 작성화면으로 전송
-		request.setAttribute("senderId", senderId);
-		request.setAttribute("receiver", receiver);
-		request.getRequestDispatcher("/WEB-INF/views/message/messageWrite.jsp").forward(request, response);
+		//파라미터 핸들링
+		String boardNo=request.getParameter("boardNo");
 		
-		
-		
-		
-		
+		request.setAttribute("boardNo", boardNo);
+		request.getRequestDispatcher("/WEB-INF/views/free/freeUpdate.jsp").forward(request, response);
+	
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

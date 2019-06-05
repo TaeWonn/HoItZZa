@@ -97,7 +97,7 @@ div#pageBar .cPage {
 	</div>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/board/boardForm'" />
+		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
 	<% } %>
 </body>
 </html>

@@ -29,7 +29,6 @@ public class MessageFinderServlet extends HttpServlet {
 		String searchKeyword=request.getParameter("searchKeyword");
 		String userId=request.getParameter("userId");
 		String senRec=request.getParameter("senRec");
-		System.out.println("뭐 검색했냐"+senRec+"/"+searchType);
 		List<Message> list=new ArrayList<>();
 		int numPerPage = 11;
 		int cPage = 1;
@@ -41,7 +40,6 @@ public class MessageFinderServlet extends HttpServlet {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {}
 		
-		System.out.println("cPage & numPerPage = "+cPage+","+numPerPage);
 		int totalContents=0;
 		
 		
@@ -70,7 +68,6 @@ public class MessageFinderServlet extends HttpServlet {
 				 totalContents=new MessageService().selectMsgByContentForReceiveTotal(userId,searchKeyword);
 			}
 		}
-		System.out.println("토탈 컨텐츠 : "+totalContents);
 		
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
@@ -82,9 +79,7 @@ public class MessageFinderServlet extends HttpServlet {
 		// 종료페이지 번호 세팅
 		int pageEnd = pageStart + pageBarSize-1;
 		int pageNo = pageStart;
-		System.out.println(pageNo+"은 뭐시냐(페이지넘_)");
-		
-		System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
+
 		
 		// section [prev]
 		if(pageNo == 1) {}
@@ -114,16 +109,10 @@ public class MessageFinderServlet extends HttpServlet {
 					+ "&cPage="+pageNo+ "'>[다음]</a>";
 		}
 		
-		
-		
+
 		String view="/WEB-INF/views/common/msg.jsp";
 		String msg=null;
 		String loc="/views/message/myMessage?userId="+userId;
-		System.out.println("리스느"+list);
-		System.out.println("페이;지바: "+pageBar);
-
-			
-		
 		
 		if(list!=null) {
 			view="/WEB-INF/views/message/message.jsp";

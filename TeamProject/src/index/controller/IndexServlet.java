@@ -28,22 +28,16 @@ public class IndexServlet extends HttpServlet {
 		//업무로직
 		//판매게시판
 		List<Sell> sellList=new IndexService().selectSellBoardList();
-		System.out.println(sellList);
 		//구매게시판
 		List<Buy> buyList=new IndexService().selectBuyBoardList();
-		System.out.println(buyList);
 		//잡담게시판
 		List<Free> sudaList=new IndexService().selectSudaBoardList();
-		System.out.println(sudaList);
 		//연예/미디어 게시판
 		List<Free> mediaList=new IndexService().selectMediaBoardList();
-		System.out.println(mediaList);
 		//유용한 생활지식 게시판
 		List<Free> senseList=new IndexService().selectSenseBoardList();
-		System.out.println(senseList);
 		//나눔게시판
 		List<Free> nanumList=new IndexService().selectNanumBoardList();
-		System.out.println(nanumList);
 		
 		
 		
