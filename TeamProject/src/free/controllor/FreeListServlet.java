@@ -27,43 +27,40 @@ public class FreeListServlet extends HttpServlet {
 		int numPerPage = 10;
 		
 		try {
-			numPerPage = Integer.parseInt(request.getParameter("cPage"));
+			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
 		
-		List<Free> free = new FreeService().selectAllFreeList();
+		List<Free> free = new FreeService().selectAllFreeList(cPage, numPerPage);
 		
 		int totalContents = new FreeService().selectFreeCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
-		int pageBarSize = 10;
+		int pageBarSize = 5;
 		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize + 1;
 		int pageEnd = pageStart + (pageBarSize-1);
 		int pageNo = pageStart;
 		
+		System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
+		
 		String pageBar = "";
 		
 		// section [prev]
-		if(pageNo == 1) {}
-		else {
-			pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+(pageNo-1)+
-					"&numPerPage="+numPerPage+"'>[이전]</a>";
+		if(!(pageNo == 1)) {
+			pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+(pageNo-1)+"'>[이전]</a>";
 		}
 		
 		// pageNo section
-		while(pageNo <= pageEnd && pageNo <= totalPage) {
+		while(!(pageNo>pageEnd || pageNo > totalPage)) {
 			if(cPage == pageNo)
-				pageBar += "<span='cPage'>"+pageNo+"</span> ";
+				pageBar += "<span class='cPage'>"+pageNo+"</span> ";
 			else {
-				pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+
-						"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
+				pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		
 		// section [next]
-		if(pageNo > totalPage) {}
-		else {
-			pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+
-					"&numPerPage="+numPerPage+"'>[다음]</a>";
+		if(!(pageNo > totalPage)) {
+			pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+"'>[다음]</a>";
 		}
 		
 		request.setAttribute("cPage", cPage);

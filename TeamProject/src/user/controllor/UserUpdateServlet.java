@@ -23,16 +23,16 @@ public class UserUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======<UserUpdateServlet Start>======");
 		// 1. 파라미터 핸들링(아이디, 이름, 이메일, 전화번호, 주소, 관심카테고리)
 		String userId = request.getParameter("userId");
 		String name = request.getParameter("userName");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone_1").trim()
-					 + request.getParameter("phone_2").trim()
-					 + request.getParameter("phone_3").trim();
+		String phone = request.getParameter("phone").trim();
 		String addr = request.getParameter("addr1").trim() + " " 
 					+ request.getParameter("addr2").trim();
 		String [] interest = request.getParameterValues("interest");
+		System.out.println("interest="+interest);
 		
 		User u = new User();
 		u.setUserId(userId);
@@ -63,6 +63,7 @@ public class UserUpdateServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher(view).forward(request, response);
+		System.out.println("======<UserUpdateServlet Over>======");
 	}
 
 	/**

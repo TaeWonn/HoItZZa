@@ -24,46 +24,60 @@ public class PointChargeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======<PointChargeServlet Start>======");
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("userId");
 		
-		int cPage = 1;
 		int numPerPage = 7;
+		int cPage = 1;
 		
 		// 2. 업무 로직
+		// 현재 페이지의 충전 내역
 		List<Point> list = new PointService().selectChargeListById(userId);
 		System.out.println("list="+list+", list.size="+list.size());
+		
+		// 전체 페이지수 구하기
 		int totalContents = list.size();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
-		int pageBarSize = 10;
+		
+		// 페이지바 구성
+		String pageBar = "";
+		int pageBarSize = 5;
+		// 시작페이지 번호 세팅
 		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize+1;
+		// 종료페이지 번호 세팅
 		int pageEnd = pageStart + (pageBarSize-1);
 		int pageNo = pageStart;
 		
-		String pageBar = "";
+		System.out.println("pageStart["+pageNo+"] ~ pageEnd["+pageEnd+"]");
 		
 		// section [prev]
 		if(pageNo == 1) {}
 		else {
 			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
-					+ "&cPage="+(pageNo-1)
-					+ "&numPerPage="+numPerPage+"'>[이전]</a>";
+					+ "&cPage=" + (pageNo-1) + "'>[이전]</a>";
 		}
 		
-//		// pageNo section
-//		while(pageNo <= pageEnd && pageNo <= totalPage) {
-//			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
-//					+ "cPage="+(pageNo-1)
-//					+ "&numPerPage="+numPerPage+"'>[이전]</a>";
-//		}
+		// pageNo section
+		// pageNo<=pageEnd && pageNo<=totalPage
+		while(!(pageNo>pageEnd || pageNo > totalPage)) {
+			if(cPage == pageNo)
+				pageBar += "<span>" + pageNo + "</span>";
+			else {
+				pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
+						+ "&cPage=" + pageNo + "'>"+pageNo+"</a>";
+			}
+			
+			pageNo++;
+		}
 		
 		// section [next]
 		if(pageNo>totalPage) {}
 		else {
 			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
-					+ "cPage="+pageNo
-					+ "&numPerPage="+numPerPage+"'>[다음]</a>";
+					+ "&cPage="+pageNo+ "'>[다음]</a>";
 		}
+		
 		// 3. view단 처리
 		String view = "";
 		String msg = "";
@@ -81,11 +95,12 @@ public class PointChargeServlet extends HttpServlet {
 			request.setAttribute("cPage", cPage);
 			request.setAttribute("numPerPage", numPerPage);
 			request.setAttribute("pageBar", pageBar);
-			request.setAttribute("chargeList", list);
+			request.setAttribute("list", list);
 		}
 		
 		request.getRequestDispatcher(view)
 			   .forward(request, response);
+		System.out.println("======<PointChargeServlet Over>======");
 	}
 
 	/**

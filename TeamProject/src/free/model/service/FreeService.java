@@ -14,9 +14,9 @@ import free.model.dao.FreeDAO;
 import free.model.vo.Free;
 
 public class FreeService {
-	public List<Free> selectAllFreeList() {
+	public List<Free> selectAllFreeList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Free> free = new FreeDAO().selectAllFreeList(conn);
+		List<Free> free = new FreeDAO().selectAllFreeList(conn, cPage, numPerPage);
 		close(conn);
 		return free;
 	}
@@ -55,5 +55,15 @@ public class FreeService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public int freeDelete(String boardNo) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().freeDelete(conn, boardNo);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		return 0;
 	}
 }
