@@ -203,13 +203,13 @@ String stop=(String)request.getAttribute("stop");
 </section>
 </article>
 <script>
- <% if(stop==null){%>
+<% if(stop==null){%>
 $(document).ready(function() {
     // 로딩되기 시작할때
 location.href="<%=request.getContextPath()%>/views/index";
 
 });
- <%}%> 
+<%}%> 
  
 function boardView(boardNo){
 	location.href="<%=request.getContextPath()%>/"+boardNo;

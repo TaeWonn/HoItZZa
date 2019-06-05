@@ -52,13 +52,15 @@ public class BuyDAO {
 		return count;
 	}
 
-	public List<Buy> selectAllBuyList(Connection conn) {
+	public List<Buy> selectAllBuyList(Connection conn,int cPage, int numPerPage) {
 		List<Buy> buy = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectAllBuyList");
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage +1);
+			ps.setInt(2, cPage*numPerPage);
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -660,6 +662,23 @@ public class BuyDAO {
 		}
 		
 		return list;
+	}
+
+	public int increaseReadCount(Connection conn, String boardNo) {
+		int result =0;
+		String sql = prop.getProperty("increaseReadCount");
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo);
+			
+			result = ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
 	}
 
 }

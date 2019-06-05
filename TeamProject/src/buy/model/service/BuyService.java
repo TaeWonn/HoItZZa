@@ -15,9 +15,9 @@ import file.model.vo.FileTable;
 
 public class BuyService {
 
-	public List<Buy> selectAllBuyList() {
+	public List<Buy> selectAllBuyList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Buy> buy = new BuyDAO().selectAllBuyList(conn);
+		List<Buy> buy = new BuyDAO().selectAllBuyList(conn, cPage, numPerPage);
 		close(conn);
 		return buy;
 	}
@@ -218,6 +218,16 @@ public class BuyService {
 		close(conn);
 		
 		return list;
+	}
+
+	public void increaseReadCount(String boardNo) {
+		Connection conn =getConnection();
+		int result = new BuyDAO().increaseReadCount(conn,boardNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
 	}
 
 }

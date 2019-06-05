@@ -72,6 +72,7 @@ public class OpinionListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("PageBar", pageBar);
 		request.setAttribute("oList", oList);
+		request.setAttribute("warningCnt", waringCnt);
 		request.getRequestDispatcher("/WEB-INF/views/opinion/opinionList.jsp")
 				.forward(request, response);
 	}

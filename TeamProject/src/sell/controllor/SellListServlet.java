@@ -35,7 +35,7 @@ public class SellListServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 		}
 		
-		List<Sell> sellList = new SellService().selectAllSellList();
+		List<Sell> sellList = new SellService().selectAllSellList(cPage ,numPerPage);
 		
 		//경고 횟수 가져오기
 		List<Integer> warningCntList = new SellService().warningListCnt(sellList);
@@ -77,12 +77,13 @@ public class SellListServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/sell/sellList?cPage="+pageNo+
 							"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
+		System.out.println(pageBar);
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
-		request.setAttribute("PageBar", pageBar);
+		request.setAttribute("pageBar", pageBar);
 		
-		request.setAttribute("sellList", sellList);
+		request.setAttribute("sell", sellList);
 		request.setAttribute("warningCntList", warningCntList);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellList.jsp")
 				.forward(request, response);

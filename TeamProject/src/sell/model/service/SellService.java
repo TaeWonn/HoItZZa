@@ -19,9 +19,9 @@ public class SellService {
 		return count;
 	}
 
-	public List<Sell> selectAllSellList() {
+	public List<Sell> selectAllSellList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Sell> sell = new SellDAO().selectAllSellList(conn);
+		List<Sell> sell = new SellDAO().selectAllSellList(conn, cPage, numPerPage);
 		close(conn);
 		return sell;
 	}
@@ -160,6 +160,17 @@ public class SellService {
 		int count = new SellDAO().findContents(conn, searchType, searchKeyword);
 		close(conn);
 		return count;
+	}
+
+	public void increaseReadCount(String boardNo) {
+		Connection conn = getConnection();
+		int result = new SellDAO().increaseReadCount(conn, boardNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		
 	}
 
 }
