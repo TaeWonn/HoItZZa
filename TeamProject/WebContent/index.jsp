@@ -17,6 +17,7 @@
    		</colgroup>
 
 		<thead>
+		
 		<tr >
 		<th style="font-size: 20px;"colspan="3">나눔 게시판</th>
 		</tr>
