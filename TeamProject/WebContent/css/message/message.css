@@ -12,6 +12,7 @@ div#search-container input[type=button]{width:50px;}
 div#search-container input[type=radio]{width:30px;}
 div#search-userId{display: inline-block;}
 div#search-content{display:none;}
+#tableBody tr:hover{cursor: pointer;}
  
 /*기존 효령씨 css에서 편집*/  
    .table{

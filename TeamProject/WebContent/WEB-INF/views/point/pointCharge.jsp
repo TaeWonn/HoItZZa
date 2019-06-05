@@ -27,7 +27,7 @@
 	
 		<tr>
 			<td>5000 Point</td>
-			<td><input type="radio" name="point" id="" value="5000" onchange="setVal(this)" checked /></td>
+			<td><input type="radio" name="point" id="" value="5000" onchange="setVal(this)"  /></td>
 		</tr>
 		<tr>
 			<td>10000 Point</td>
@@ -84,7 +84,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%-- <% if(pointList!=null){ for(int i=1;i<=pointList.size();i++){ %>
+		 <% if(pointList!=null){ for(int i=0;i<pointList.size();i++){ %>
 		<tr>
 			<td><%=pointList.get(i).getChargeDate() %></td>
 			<td><%=pointList.get(i).getChargeMoney() %>포인트</td>
@@ -93,13 +93,7 @@
 		<tr>
 			<td colspan="2">충전내역이 존재하지 않습니다.</td>
 		</tr>
-		<%} %>  --%>
-		<%for(int i=0;i<7;i++){ %>
-		<tr>
-			<td><%=i+"/"+i+"/"+"/"+i %></td>
-			<td><%=i %>포인트</td>
-		</tr>
-		<%} %>
+		<%} %> 
 	</tbody>
 	</table>
 	</div>

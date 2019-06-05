@@ -12,13 +12,13 @@
 		<form action="<%=request.getContextPath()%>/views/message/messageWrite" method="post" onsubmit="return check();">
 			<table id="messageWriteTable">
 				<tr>
-				<td><span>받는이</span><br />
+				<td><span>수신인</span><br />
 					<h3><%=receiverId%></h3>
 					<input type="hidden" name="recipient" value="<%=receiverId %>" />
 						<input type="hidden" name="sender" value="<%=senderId %>" />
 				</td>
 				</tr>
-				<tr>
+				<tr >
 					<td><textarea onchange="gogo();" id="contentArea"name="content" id="" cols="30" rows="10"></textarea></td>
 				</tr>
 				<tr>
@@ -43,5 +43,6 @@ function check(){
 }
 //주소창에 파라미터 값 숨기기
 history.replaceState({}, null, location.pathname);
+
 
 </script>

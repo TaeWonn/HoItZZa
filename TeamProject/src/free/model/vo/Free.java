@@ -15,4 +15,5 @@ public class Free extends Board{
 	}
 	
 	
+	
 }

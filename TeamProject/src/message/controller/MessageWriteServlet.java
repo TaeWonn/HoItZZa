@@ -28,17 +28,20 @@ public class MessageWriteServlet extends HttpServlet {
 		//쪽지 보내기(테이블에 insert)
 		int result=new MessageService().writeMessage(sender,receiver,content);
 		
+		String close="";
 		String msg="";
 		String loc="/views/message/myMessage?userId="+sender;
 		String view="/WEB-INF/views/common/msg.jsp";
 		if(result>0) {
 			msg="메시지가 전송되었습니다.";
+			close="window.close();";
 			
 		}else {
 			msg="메세지 전송에 실패하였습니다.다시 시도해 주세요";
 		}
 		request.setAttribute("loc", loc);
 		request.setAttribute("msg", msg);
+		request.setAttribute("close", close);
 		request.getRequestDispatcher(view).forward(request, response);
 		
 		
