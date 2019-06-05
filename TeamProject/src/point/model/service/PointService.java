@@ -11,9 +11,9 @@ import point.model.vo.Point;
 
 public class PointService {
 
-	public List<Point> selectChargeListById(String userId) {
+	public List<Point> selectChargeListById(String userId, int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Point> list = new PointDAO().selectChargeListById(conn, userId);
+		List<Point> list = new PointDAO().selectChargeListById(conn, userId, cPage, numPerPage);
 		close(conn);
 		return list;
 	}

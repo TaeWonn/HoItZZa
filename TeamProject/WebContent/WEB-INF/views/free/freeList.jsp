@@ -43,7 +43,7 @@
 }
 
 .thead-light {
-	font-size: 17px;
+	font-size: 13px;
 }
 
 h2 {

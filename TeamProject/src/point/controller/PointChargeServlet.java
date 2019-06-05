@@ -31,10 +31,13 @@ public class PointChargeServlet extends HttpServlet {
 		int numPerPage = 7;
 		int cPage = 1;
 		
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (NumberFormatException e) {}
+		
 		// 2. 업무 로직
 		// 현재 페이지의 충전 내역
-		List<Point> list = new PointService().selectChargeListById(userId);
-		System.out.println("list="+list+", list.size="+list.size());
+		List<Point> list = new PointService().selectChargeListById(userId, cPage, numPerPage);
 		
 		// 전체 페이지수 구하기
 		int totalContents = list.size();
@@ -62,7 +65,7 @@ public class PointChargeServlet extends HttpServlet {
 		// pageNo<=pageEnd && pageNo<=totalPage
 		while(!(pageNo>pageEnd || pageNo > totalPage)) {
 			if(cPage == pageNo)
-				pageBar += "<span>" + pageNo + "</span>";
+				pageBar += "<span class='cPage'>" + pageNo + "</span>";
 			else {
 				pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
 						+ "&cPage=" + pageNo + "'>"+pageNo+"</a>";
@@ -77,6 +80,8 @@ public class PointChargeServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/views/point/pointCharge?userId="+userId
 					+ "&cPage="+pageNo+ "'>[다음]</a>";
 		}
+		
+		System.out.println("pageBar@chargeServlet="+pageBar);
 		
 		// 3. view단 처리
 		String view = "";

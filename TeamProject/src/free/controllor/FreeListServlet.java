@@ -23,6 +23,7 @@ public class FreeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======<FreeListServlet Start>======");
 		int cPage = 1;
 		int numPerPage = 10;
 		
@@ -69,6 +70,7 @@ public class FreeListServlet extends HttpServlet {
 		request.setAttribute("free", free);
 		
 		request.getRequestDispatcher("/WEB-INF/views/free/freeList.jsp").forward(request, response);
+		System.out.println("======<FreeListServlet Over>======");
 	}
 
 	/**
