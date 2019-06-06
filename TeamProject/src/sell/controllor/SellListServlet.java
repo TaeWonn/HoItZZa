@@ -83,7 +83,7 @@ public class SellListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
 		
-		request.setAttribute("list", sellList);
+		request.setAttribute("sellList", sellList);
 		request.setAttribute("warningCntList", warningCntList);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellList.jsp")
 				.forward(request, response);

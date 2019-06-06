@@ -3,7 +3,7 @@
     <%@ page import="sell.model.vo.Sell, java.util.*" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
-	List<Sell> list = (List<Sell>)request.getAttribute("sellList");
+	List<Sell> sell = (List<Sell>)request.getAttribute("sellList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
@@ -116,7 +116,7 @@ border-radius: 3px;
           </tr>
         </thead>
         <tbody>
-        <% for(Sell b : list){ %>
+        <% for(Sell b : sell){ %>
          
           <tr>
             <td><%= b.getBoardNo() %></td>
