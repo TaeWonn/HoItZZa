@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,45 @@ public class BuyViewServlet extends HttpServlet {
 		b.setBoardCodeNo(ca);
 		
 		List<Comment> clist = new BuyService().commentList(boardNo);
+		
+		Cookie[] cookies = request.getCookies();
+		boolean hasRead = false;
+		String boardCookieVal = "";
+		//사이트 첫방문시 아무런 쿠키도 없으므로, cookies가 null
+		//boardCookie = |2||3||100|
+		if(cookies != null) {
+			for(Cookie c: cookies) {
+				String name = c.getName();
+				String value = c.getValue();
+				
+				//boardCookie인 경우
+				if("boardCookie".equals(name)) {
+					boardCookieVal = value;
+					
+					if(value.contains("|"+boardNo+"|")) {
+						hasRead = true;
+						break;
+					}
+				}
+			}
+		}
+		
+		//쿠키에 읽은 값이 없는 경우
+		if(!hasRead) {
+			new BuyService().increaseReadCount(boardNo);
+			
+			//쿠키생성
+			Cookie boardCookie = new Cookie("boardCookie", boardCookieVal+"|"+boardNo+"|");
+			boardCookie.setPath(request.getContextPath()+"/board/boardView");
+//			boardCookie.setMaxAge();//생략시 영속하게됨.
+			
+			//응답객체 cookie 전송
+			response.addCookie(boardCookie);
+			
+			System.out.println("boardCookie생성: "+boardCookie.getValue());
+		}
+		
+		
 		
 		request.setAttribute("cList", clist);
 		request.setAttribute("warningCnt", warningCnt);

@@ -20,9 +20,7 @@ public class ReplyMessageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String senderId=request.getParameter("senderId");
 		String receiver=request.getParameter("recipient");
-		System.out.println("보내는 이 : "+senderId);
-		System.out.println("받는 이 : "+receiver);
-		
+
 		//보내는이, 받는이만 적어서 작성화면으로 전송
 		request.setAttribute("senderId", senderId);
 		request.setAttribute("receiver", receiver);

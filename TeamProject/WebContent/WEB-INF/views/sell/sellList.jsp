@@ -80,8 +80,8 @@ text-align: center;
             <%=b.getBoardTitle() %> </a></td>
             <td><%=b.getBoardDate() %></td>
             <td><%=b.getBoardCodeNo() %></td>
-     </tr>
-                <% } %>
+    	 </tr>
+        <% } %>
         </tbody>
         
       </table>

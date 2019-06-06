@@ -29,6 +29,7 @@ public class UserViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======<UserViewServlet Start>======");
 		//1.파라미터핸들링
 		String userId = request.getParameter("userId");
 		int numPerPage = 14;
@@ -119,7 +120,7 @@ public class UserViewServlet extends HttpServlet {
 			String [] addrArr = u.getAddr().split(",");
 			if(addrArr.length > 2) {
 				msg += "</br> 주소 정보에 오류가 있습니다.";
-			}
+			} 
 			System.out.println("서블릿"+u);
 			request.setAttribute("user", u);
 			request.setAttribute("pageBar", pageBar);
@@ -128,8 +129,10 @@ public class UserViewServlet extends HttpServlet {
 //			request.setAttribute("secondInterestList", interestCategoryList2);
 //			request.setAttribute("thirdInterestList", interestCategoryList3);
 		}
-		System.out.println("서블릿"+u);		//3.view단 처리  		
+		
+		//3.view단 처리  		
 		request.getRequestDispatcher(view).forward(request, response);
+		System.out.println("======<UserViewServlet Over>======");
 	}
 
 	/**

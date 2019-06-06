@@ -27,7 +27,7 @@ public class PointDAO {
 		}
 	}
 
-	public List<Point> selectChargeListById(Connection conn, String userId) {
+	public List<Point> selectChargeListById(Connection conn, String userId, int cPage, int numPerPage) {
 		List<Point> list = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -36,6 +36,8 @@ public class PointDAO {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, userId);
+			ps.setInt(2, (cPage-1)*numPerPage+1);
+			ps.setInt(3, cPage*numPerPage);
 			
 			rs = ps.executeQuery();
 			
@@ -74,6 +76,30 @@ public class PointDAO {
 			close(ps);
 		}
 		
+		return result;
+	}
+
+	public int selectTotalContent(Connection conn, String userId) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectTotalContent");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("totalContent@DAO ="+result);
 		return result;
 	}
 }

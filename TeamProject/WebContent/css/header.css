@@ -2,7 +2,8 @@
 @charset "UTF-8";
 span#sellBuy1{font-family: 'Gloria Hallelujah', cursive; font-size: 60px;margin:0 auto;}
 span#sellBuy2 a{font-family: 'Poor Story', cursive; font-size: 50px;margin:0 auto; color: orange;}
-div#head-container{max-height: 200px;text-align: center;}
+div#head-container{height: 200px;text-align: center;}
+div#head-container:hover{cursor:pointer;}
 aside#asideLeft{float: left;width: 170px;height: 100%;}
 aside#asideRight{float: right;width: 200px;height: 100%;}
 body{max-width:1024px;margin: auto;}

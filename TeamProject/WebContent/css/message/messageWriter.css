@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-article#messageWritePage{background:rgba(188,178,178,0.4); width:100%;height: 100%;text-align: center;}
-article#messageWritePage h2{background:linear-gradient( to bottom, black, darkgray);text-align: center;width:100%;color:white;text-shadow: 1px 0.5px  white;}
+article#messageWritePage{background:rgba(215,215,215,0.31); width:100%;height: 100%;text-align: center;}
+article#messageWritePage h2{background:linear-gradient( to bottom, black, darkgray);text-align: center;width:100%;color:white;}
 table#messageWriteTable{width:300px;background: white;display: inline-block;}
 table#messageWriteTable td{padding:15px;}
 table#messageWriteTable h3{margin:0}

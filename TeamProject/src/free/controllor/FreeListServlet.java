@@ -23,14 +23,15 @@ public class FreeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======<FreeListServlet Start>======");
 		int cPage = 1;
 		int numPerPage = 10;
 		
 		try {
-			numPerPage = Integer.parseInt(request.getParameter("cPage"));
+			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
 		
-		List<Free> free = new FreeService().selectAllFreeList();
+		List<Free> free = new FreeService().selectAllFreeList(cPage, numPerPage);
 		
 		int totalContents = new FreeService().selectFreeCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
@@ -72,6 +73,7 @@ public class FreeListServlet extends HttpServlet {
 		request.setAttribute("free", free);
 		
 		request.getRequestDispatcher("/WEB-INF/views/free/freeList.jsp").forward(request, response);
+		System.out.println("======<FreeListServlet Over>======");
 	}
 
 	/**

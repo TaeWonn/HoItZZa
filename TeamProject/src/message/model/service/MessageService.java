@@ -11,9 +11,9 @@ public class MessageService {
 	
 	public MessageService() {}
 
-	public List<Message> selectMessageList(String userId) {
+	public List<Message> selectMessageList(String userId, int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMessageList(conn,userId);
+		List<Message> list=new MessageDAO().selectMessageList(conn,userId,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -32,39 +32,88 @@ public class MessageService {
 		return result;
 	}
 
-	public List<Message> selectMessageList2(String userId) {
+	public List<Message> selectMessageList2(String userId, int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMessageList2(conn,userId);
+		List<Message> list=new MessageDAO().selectMessageList2(conn,userId,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
 
-	public List<Message> selectMsgByIdForSend(String userId, String searchKeyword) {
+	public List<Message> selectMsgByIdForSend(String userId, String searchKeyword, int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMsgByIdForSend(conn,userId,searchKeyword);
+		List<Message> list=new MessageDAO().selectMsgByIdForSend(conn,userId,searchKeyword,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
 
-	public List<Message> selectMsgByContentForSend(String userId, String searchKeyword) {
+	public List<Message> selectMsgByContentForSend(String userId, String searchKeyword,int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMsgByContentForSend(conn,userId,searchKeyword);
+		List<Message> list=new MessageDAO().selectMsgByContentForSend(conn,userId,searchKeyword,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
 
-	public List<Message> selectMsgByIdForReceive(String userId, String searchKeyword) {
+	public List<Message> selectMsgByIdForReceive(String userId, String searchKeyword,int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMsgByIdForReceive(conn,userId,searchKeyword);
+		List<Message> list=new MessageDAO().selectMsgByIdForReceive(conn,userId,searchKeyword,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
 
-	public List<Message> selectMsgByContentForReceive(String userId, String searchKeyword) {
+	public List<Message> selectMsgByContentForReceive(String userId, String searchKeyword,int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Message> list=new MessageDAO().selectMsgByContentForReceive(conn,userId,searchKeyword);
+		List<Message> list=new MessageDAO().selectMsgByContentForReceive(conn,userId,searchKeyword,cPage,numPerPage);
 		close(conn);
 		return list;
+	}
+
+	public Message selectMessage(int msgNo) {
+		Connection conn=getConnection();
+		Message m=new MessageDAO().selectMessage(conn,msgNo);
+		close(conn);
+		return m;
+	}
+
+	public int selectTotalMessageReceiver(String userId) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectTotalMessageReceiver(userId,conn);
+		close(conn);
+		return result;
+	}
+
+	public int selectTotalMessagSender(String userId) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectTotalMessagSender(userId,conn);
+		close(conn);
+		return result;
+	}
+
+	public int selectMsgByIdForSendTotal(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectMsgByIdForSendTotal(userId,conn,searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public int selectMsgByContentForSendTotal(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectMsgByContentForSendTotal(userId,conn,searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public int selectMsgByIdForReceiveTotal(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectMsgByIdForReceiveTotal(userId,conn,searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public int selectMsgByContentForReceiveTotal(String userId, String searchKeyword) {
+		Connection conn=getConnection();
+		int result=new MessageDAO().selectMsgByContentForReceiveTotal(userId,conn,searchKeyword);
+		close(conn);
+		return result;
 	}
 
 }

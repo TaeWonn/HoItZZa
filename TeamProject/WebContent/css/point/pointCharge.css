@@ -13,7 +13,7 @@ table#PointList th,td{padding:5px;border: 1px solid;}
 /*충전내역 영역*/
 div#viewPointList{position:absolute;height: 300px;top:420px;text-align: center;width:100%;}
 table#userPointList{ border-collapse:collapse; width 500px; display: inline-block;}
-
+table#userPointList th{ border:1px solid;}
 
 div#pageBar{width:100%; position:absolute;top:695px;text-align: center;height: 43px;}
 

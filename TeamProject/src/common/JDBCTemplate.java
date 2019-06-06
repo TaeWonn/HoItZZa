@@ -22,7 +22,6 @@ public class JDBCTemplate {
 		try {
 			Properties prop = new Properties();
 			String filePath = JDBCTemplate.class.getResource("/driver-query.properties").getPath();
-			System.out.println("filePath@JDBCTemplate="+filePath);
 			prop.load(new FileReader(filePath));
 			
 			String driver = prop.getProperty("driver");

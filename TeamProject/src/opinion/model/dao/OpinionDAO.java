@@ -260,4 +260,21 @@ public class OpinionDAO {
 		}
 		return result;
 	}
+
+	public int increaseReadCount(Connection conn, String boardNo) {
+		int result =0;
+		String sql = prop.getProperty("increaseReadCount");
+		PreparedStatement ps = null;
+		try {
+			ps =conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			result =ps.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
 }
