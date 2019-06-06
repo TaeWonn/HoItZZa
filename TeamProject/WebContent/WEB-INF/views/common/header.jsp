@@ -149,8 +149,8 @@
             </ul>
             <p id="board_title">건의사항/신고</p>
             <ul class="boardList">
-               <li><a href="">건의 게시판</a></li>
-               <li><a href="">신고 게시판</a></li>
+               <li><a href="<%=request.getContextPath()%>/opinion/opinionList">건의 게시판</a></li>
+               <li><a href="<%=request.getContextPath()%>/opinion/declarationList">신고 게시판</a></li>
             </ul>
             <p id="board_title">기타</p>
             <ul class="boardList">

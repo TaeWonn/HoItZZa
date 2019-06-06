@@ -9,9 +9,9 @@ import opinion.model.dao.OpinionDAO;
 import opinion.model.vo.Opinion;
 
 public class OpinionService {
-	public List<Opinion> selectAllOpinionList() {
+	public List<Opinion> selectAllOpinionList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Opinion> opinion = new OpinionDAO().selectAllOpinionList(conn);
+		List<Opinion> opinion = new OpinionDAO().selectAllOpinionList(conn, cPage, numPerPage); 
 		close(conn);
 		return opinion;
 	}

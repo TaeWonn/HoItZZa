@@ -51,13 +51,15 @@ public class OpinionDAO {
 		return count;
 	}
 
-	public List<Opinion> selectAllOpinionList(Connection conn) {
+	public List<Opinion> selectAllOpinionList(Connection conn, int cPage, int numPerPage) {
 		List<Opinion> opinion = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectAllOpinionList");
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage+1);
+			ps.setInt(2, cPage * numPerPage);
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {

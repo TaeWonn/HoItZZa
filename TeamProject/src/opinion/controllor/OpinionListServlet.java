@@ -35,7 +35,7 @@ public class OpinionListServlet extends HttpServlet {
 		} catch(NumberFormatException e) {
 		}
 		
-		List<Opinion> oList = new OpinionService().selectAllOpinionList();
+		List<Opinion> oList = new OpinionService().selectAllOpinionList(cPage, numPerPage);
 		List<Integer> waringCnt = new OpinionService().OpinionWarningCnt(oList);
 		
 		int totalContents = new OpinionService().selectOpinionCount();
