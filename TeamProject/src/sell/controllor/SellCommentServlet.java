@@ -21,11 +21,20 @@ public class SellCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String boardNo = request.getParameter("boardNo");
 		String commentWriter = request.getParameter("commentWriter");
 		String commentContent = request.getParameter("commentContent");
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		int commentNoRef = Integer.parseInt(request.getParameter("commentNoRef"));
+		
+		//////////////////////////////////쿼리 확인바람
+		
+		System.out.println(boardNo);
+		System.out.println(commentWriter);
+		System.out.println(commentContent);
+		System.out.println(commentLevel);
+		System.out.println(commentNoRef);
 		
 		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel, commentNoRef);
 		
@@ -38,6 +47,7 @@ public class SellCommentServlet extends HttpServlet {
 		}else {
 			msg = "댓글 오류 발생";
 		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", "/sell/sellView?boardNo="+boardNo);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")

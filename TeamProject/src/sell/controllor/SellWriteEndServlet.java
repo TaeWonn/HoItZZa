@@ -55,13 +55,8 @@ public class SellWriteEndServlet extends HttpServlet {
 		String boardContent = multiReq.getParameter("boardContent");
 		String boardDeal = multiReq.getParameter("boardDeal");
 		String boardWriter = multiReq.getParameter("boardWriter");
-		String category1 = multiReq.getParameter("category1");
-		String category2 = multiReq.getParameter("category2");
-		String boardCodeNo = "";
+		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		
-		if(category2.equals(""))
-			boardCodeNo=category1;
-		else boardCodeNo=category2;
 		
 		
 		
@@ -71,8 +66,6 @@ public class SellWriteEndServlet extends HttpServlet {
 		System.out.println("제목"+boardTitle);
 		System.out.println("내용"+boardContent);
 		System.out.println("거래방식"+boardDeal);
-		System.out.println("카테1"+category1);
-		System.out.println("카테2"+category2);
 		System.out.println("코드"+boardCodeNo);
 		System.out.println("작성자"+boardWriter);
 		

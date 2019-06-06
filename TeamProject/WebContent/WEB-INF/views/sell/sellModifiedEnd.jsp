@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+<%@ page import="sell.model.vo.Sell, java.util.*,comment.model.vo.*" %>
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
- 
+ <% Sell s = (Sell)request.getAttribute("sell"); 
+ System.out.print(s);
+ %>
 
 
 <article id="article">
 
 
-	<form action="<%=request.getContextPath()%>/sell/sellWriteEnd"
-	 method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath()%>/sell/sellModifiedEnd"
+	 method="post" >
 	 
-	 <input type="hidden" name="boardCodeNo" />
-	
+		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
+		<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
+		
 		<h2 style="text-align: center">판매글 작성</h2>
 		<br>
-        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
+        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
         <br>
         <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
@@ -31,7 +34,7 @@
         </select>
 
         <br>
-        
+        <div id="ca">
 		<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
                 <option selected>카테고리 선택</option>
                 <option value="A">패션의류/잡화</option>
@@ -51,10 +54,10 @@
                 <option value="O">헬스/건강식품</option>
         </select>
         <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
-                <option selected>세부 카테고리</option>
-        
+                <option value=""  selected>세부 카테고리</option></select>
+               </div> 
               
-        </select>
+        
         <br>
         <!-- <div id="img-viewer-container">
 						<img id="img-viewer" width=350/>
@@ -62,7 +65,7 @@
         <div contentEditable="true"  id="boardContent">
         
         <img id="img-viewer" style="display: block;"/>
-        
+        <%=s.getBoardContent() %>
         </div>
         
         <input type="hidden" name="boardContent">
@@ -80,7 +83,7 @@
 </div>
     
                 <div id="buttons">
-                  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
+                  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">수정</button>
                   <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
                 </div>
             </form>
@@ -89,10 +92,21 @@
 
 <script>
 
-
-
+(function category_on1() {
+    
+	 $("#ca select").val('<%=s.getBoardCodeNo()%>'.substr(0,1)).prop("selected","true");
+    
+	 chageSelect();
+	 
+	 chageSelect3('<%=s.getBoardCodeNo()%>');
+	
+	
+ })();
+ 
+ 
 
 function validate(){
+	
 	//제목
 	var boardTitle = $("[name=boardTitle]").val();
 	if(boardTitle.trim().length == 0){
@@ -106,16 +120,10 @@ function validate(){
 		return false;
 	}
 	
-	//카테고리
-	var boardCodeNo = $("[name=boardCodeNo]").val();
-	if(boardCodeNo.trim().length == 0){
-		alert("카테고리를 선택하세요.");
-		return false;
-	}
-	
 	
 	$("[name=boardContent]").val($("#boardContent").text());
-
+	
+	
 	return true;
 }
 
@@ -176,13 +184,13 @@ function chageSelect(){
 						for(var i=0; i<nameArr.length; i++){
 							var option = $("<option>"+nameArr[i]+"</option>");
 			                $("#category2").append(option);
-
-						}	
-						
-					}
+						}				
+					}	
 				}
 			});//end of ajax
+			
 			$("[name=boardCodeNo]").val($("#category1").val());
+			
 }
 			
 			
@@ -199,15 +207,39 @@ function chageSelect(){
 									console.log("공백넘어옴");
 								}
 								else{
+									
 									$("#category2 option:selected").val(data);								
 									$("[name=boardCodeNo]").val($("#category2").val());
 								}
-								
+								 
 							}
 						});//end of ajax
-}	
-
-
+						
+						
+			}
+			
+			
+						function chageSelect3(ca){
+									$.ajax({
+										url: "<%=request.getContextPath()%>/buy/buycategory3",
+										data: "category2="+ca,//파라미터직렬화
+										success: function(data){
+											console.log(data);
+											
+											//넘어온 csv데이터가, 공백인경우
+											if(data.trim().length == 0){
+												console.log("공백넘어옴");
+											}
+											else{
+												$("#category2 option:selected").text(data);
+											}	
+											chageSelect2();
+										}
+									});//end of ajax		
+	
+						}
+			
+			
 
 
 </script>
