@@ -89,7 +89,7 @@ public class BuyViewServlet extends HttpServlet {
 		request.setAttribute("buy", b);
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
 				.forward(request, response); 
-	}
+	} 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
