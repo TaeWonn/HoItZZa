@@ -219,6 +219,16 @@ public class BuyService {
 		
 		return list;
 	}
+	
+	//////////////////////////////////////////////////////////
+	
+	public List<String> selectCategoryName(String category2) {
+		Connection conn = getConnection();
+		List<String> list = new BuyDAO().selectCategoryName(conn, category2);
+		close(conn);
+		
+		return list;
+	}
 
 	public void increaseReadCount(String boardNo) {
 		Connection conn =getConnection();

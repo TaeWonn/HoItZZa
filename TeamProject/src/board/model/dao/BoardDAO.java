@@ -112,15 +112,6 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertBoard"); 
 		
-//		private String boardNo;
-//		private String boardCodeNo;
-//		private String boardCode;
-//		private String boardTitle;
-//		private String boardWriter;
-//		private String boardContent;
-//		private String boardDeal;
-//		private int boardReadCounter;
-//		private Date boardDate;
 		
 		try {
 			//미완성쿼리문을 가지고 객체생성.

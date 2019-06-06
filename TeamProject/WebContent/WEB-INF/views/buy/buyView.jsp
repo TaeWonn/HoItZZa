@@ -4,6 +4,7 @@
 <%@ page import="buy.model.vo.Buy, java.util.*,comment.model.vo.*" %>
 <%
 Buy b = (Buy)request.getAttribute("buy");
+
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 %>
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -100,16 +101,17 @@ background-color: rgb(230, 234, 236)}
 <article id="article">
 
     <h2 style="text-align: center;">구매 게시판</h2>
-    <div id="div1">
-        <form action="">
-        <span id="boardTilte" name="boardTilte" ><%=b.getBoardTitle() %></span>
+    <div id="div1" style="text-align: center;">
+       
+        <span id="boardTitle" name="boardTilte" ><%=b.getBoardTitle() %></span>
         <span id="k_span"><%=b.getBoardCodeNo() %></span>
     </div>
     <div class="ed_box">
-        <span class="id"><%=b.getBoardWriter() %></span>
+        <span class="id"><%=b.getBoardWriter()%></span>
         <span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span>
         <span class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
-        <a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');" id="message_href" >☏ 쪽지보내기</a>
+        <a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
+         id="message_href" >☏ 쪽지보내기</a>
             </span>     
         </div>
 
@@ -129,24 +131,22 @@ background-color: rgb(230, 234, 236)}
 </tr>
 <td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
 </tr>
-        </table>
 </div>
-
 </table>
 <Br>
 
 <div id="comment-container" style="text-align: center;">
 	<div class="comment-editor">
-		<form action="<%=request.getContextPath()%>/sell/sellComment"
+		<form action="<%=request.getContextPath()%>/buy/buyComment"
 			  name="boardCommentFrm"
 			  method="post">
-			<textarea name="boardCommentContent" 
-					  cols="60" rows="3"></textarea>
-			<button type="submit" id="btn-insert">등록</button>	  
-			<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>" />  
-			<input type="hidden" name="boardCommentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
-			<input type="hidden" name="boardCommentLevel" value="1" />
-			<input type="hidden" name="boardCommentRef" value="0" />
+			<textarea name="commentContent" 
+					  cols="70" rows="2"></textarea>
+			<button type="submit" id="btn-insert" style="position: relative; top: -9px;">등록</button>	  
+			<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />  
+			<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
+			<input type="hidden" name="commentLevel" value="1" />
+			<input type="hidden" name="commentNoRef" value="0" />
 		
 		</form>
 	</div>
@@ -211,6 +211,8 @@ background-color: rgb(230, 234, 236)}
 	
 </div>
 
+
+
        <div id="buttons">
       <%--  <% if(userLoggedIn!=null && 
         (b.getBoardWriter().equals(userLoggedIn.getUserId())
@@ -218,14 +220,15 @@ background-color: rgb(230, 234, 236)}
    
        
             <input type="button" value="수정" 
-            	   onclick="location.href='<%=request.getContextPath()%>/board/boardUpdate?boardNo=<%=b.getBoardNo()%>'"/>
+            	   onclick="location.href='<%=request.getContextPath()%>/buy/buyModified?boardNo=<%=b.getBoardNo()%>'"/>
             <input type="button" value="삭제" onclick="deleteBoard();"/>
      
     
     
  <%--    <%} %>	 --%>
-           <button type="button" onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
+           <button type="button" onclick="location.href='<%=request.getContextPath()%>/buy/buyList'">목록</button>
         </div>              
+
 
 
 <script>
@@ -245,8 +248,8 @@ function deleteBoard(){
 	location.href="<%=request.getContextPath()%>/buy/buyDelete?boardNo=<%=b.getBoardNo()%>";
 }
 
-
 </script>
+
 
 </article>
 </html>

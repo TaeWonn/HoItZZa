@@ -102,9 +102,9 @@ background-color: rgb(230, 234, 236)}
 <article id="article">
 
     <h2 style="text-align: center;">판매 게시판</h2>
-    <div id="div1">
-        <form action="">
-        <span id="boardTilte" name="boardTilte" ><%=b.getBoardTitle() %></span>
+    <div id="div1" style="text-align: center;">
+       
+        <span id="boardTitle" name="boardTilte" ><%=b.getBoardTitle() %></span>
         <span id="k_span"><%=b.getBoardCodeNo() %></span>
     </div>
     <div class="ed_box">
@@ -128,7 +128,7 @@ background-color: rgb(230, 234, 236)}
         <table id="min_index">
 
 <tr>
-<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
+<td><a href="<%=request.getContextPath()%>/sell/sellView?<%=b.getBoardNo()+1%>">이전글 제목 </a></td>  
 </tr>
 <td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
 </tr>
@@ -141,13 +141,13 @@ background-color: rgb(230, 234, 236)}
 		<form action="<%=request.getContextPath()%>/sell/sellComment"
 			  name="boardCommentFrm"
 			  method="post">
-			<textarea name="boardCommentContent" 
-					  cols="60" rows="3"></textarea>
-			<button type="submit" id="btn-insert">등록</button>	  
-			<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>" />  
-			<input type="hidden" name="boardCommentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
-			<input type="hidden" name="boardCommentLevel" value="1" />
-			<input type="hidden" name="boardCommentRef" value="0" />
+			<textarea name="commentContent" 
+					  cols="70" rows="2"></textarea>
+			<button type="submit" id="btn-insert" style="position: relative; top: -9px;">등록</button>	  
+			<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />  
+			<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
+			<input type="hidden" name="commentLevel" value="1" />
+			<input type="hidden" name="commentNoRef" value="0" />
 		
 		</form>
 	</div>
@@ -221,7 +221,7 @@ background-color: rgb(230, 234, 236)}
    
        
             <input type="button" value="수정" 
-            	   onclick="location.href='<%=request.getContextPath()%>/board/boardUpdate?boardNo=<%=b.getBoardNo()%>'"/>
+            	   onclick="location.href='<%=request.getContextPath()%>/sell/sellModified?boardNo=<%=b.getBoardNo()%>'"/>
             <input type="button" value="삭제" onclick="deleteBoard();"/>
      
     
