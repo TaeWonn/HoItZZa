@@ -88,7 +88,7 @@ public class BuyViewServlet extends HttpServlet {
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("buy", b);
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
-				.forward(request, response);
+				.forward(request, response); 
 	}
 
 	/**
