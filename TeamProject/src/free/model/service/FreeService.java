@@ -106,4 +106,43 @@ public class FreeService {
 			rollback(conn);
 		close(conn);
 	}
+
+	public List<Free> selectAllSenseList(int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Free> sense = new FreeDAO().selectAllSenseList(conn, cPage, numPerPage);
+		close(conn);
+		return sense;
+	}
+
+	public int selectSenseCount() {
+		Connection conn=getConnection();
+		int count=new FreeDAO().selectSenseCount(conn);
+		return count;
+	}
+
+	public List<Free> selectAllEnterList(int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Free> free = new FreeDAO().selectAllEnterList(conn, cPage, numPerPage);
+		close(conn);
+		return free;
+	}
+
+	public int selectEnterCount() {
+		Connection conn=getConnection();
+		int count=new FreeDAO().selectEnterCount(conn);
+		return count;
+	}
+
+	public List<Free> selectAllDevideList(int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Free> free = new FreeDAO().selectAllDevideList(conn, cPage, numPerPage);
+		close(conn);
+		return free;
+	}
+
+	public int selectDevideCount() {
+		Connection conn=getConnection();
+		int count=new FreeDAO().selectDevideCount(conn);
+		return count;
+	}
 }

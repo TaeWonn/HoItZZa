@@ -159,6 +159,7 @@ public class FreeDAO {
 			if(rs.next()) {
 				f.setBoardNo(rs.getString("board_no"));
 				f.setBoardWriter(rs.getString("board_writer"));
+				f.setBoardContent(rs.getString("board_content"));
 				f.setBoardTitle(rs.getString("board_title"));
 				f.setBoardDate(rs.getDate("board_date"));
 				f.setBoardReadCounter(rs.getInt("board_read_count"));
@@ -275,5 +276,164 @@ public class FreeDAO {
 		}
 		
 		return result;
+	}
+
+	public List<Free> selectAllSenseList(Connection conn, int cPage, int numPerPage) {
+		List<Free> sense = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectAllSenceList");
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage+1);
+			ps.setInt(2, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Free f = new Free();
+				f.setBoardNo(rs.getString("board_no"));
+				f.setBoardTitle(rs.getString("board_title"));
+				f.setBoardContent(rs.getString("board_content"));
+				f.setBoardDate(rs.getDate("board_date"));
+				f.setBoardReadCounter(rs.getInt("board_read_count"));
+				f.setBoardWriter(rs.getString("board_writer"));
+				
+				sense.add(f);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return sense;
+	}
+
+	public int selectSenseCount(Connection conn) {
+		int count = 0;
+	    String sql = prop.getProperty("selectSenseCount");
+	    PreparedStatement ps = null;
+	    ResultSet rs  = null;
+	    try {
+	    	ps = conn.prepareStatement(sql);
+	    	
+	    	rs = ps.executeQuery();
+	    	if(rs.next()) {
+	    		count = rs.getInt("cnt");
+	    	}
+	    }catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	close(rs);
+	    	close(ps);
+	    }
+	    
+		return count;
+	}
+
+	public List<Free> selectAllEnterList(Connection conn, int cPage, int numPerPage) {
+		List<Free> free = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectAllEnterList");
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage+1);
+			ps.setInt(2, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Free f = new Free();
+				f.setBoardNo(rs.getString("board_no"));
+				f.setBoardTitle(rs.getString("board_title"));
+				f.setBoardContent(rs.getString("board_content"));
+				f.setBoardDate(rs.getDate("board_date"));
+				f.setBoardReadCounter(rs.getInt("board_read_count"));
+				f.setBoardWriter(rs.getString("board_writer"));
+				
+				free.add(f);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return free;
+	}
+
+	public int selectEnterCount(Connection conn) {
+		int count = 0;
+	    String sql = prop.getProperty("selectEnterCount");
+	    PreparedStatement ps = null;
+	    ResultSet rs  = null;
+	    try {
+	    	ps = conn.prepareStatement(sql);
+	    	
+	    	rs = ps.executeQuery();
+	    	if(rs.next()) {
+	    		count = rs.getInt("cnt");
+	    	}
+	    }catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	close(rs);
+	    	close(ps);
+	    }
+	    
+		return count;
+	}
+
+	public List<Free> selectAllDevideList(Connection conn, int cPage, int numPerPage) {
+		List<Free> free = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectAllDevideList");
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage+1);
+			ps.setInt(2, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Free f = new Free();
+				f.setBoardNo(rs.getString("board_no"));
+				f.setBoardTitle(rs.getString("board_title"));
+				f.setBoardContent(rs.getString("board_content"));
+				f.setBoardDate(rs.getDate("board_date"));
+				f.setBoardReadCounter(rs.getInt("board_read_count"));
+				f.setBoardWriter(rs.getString("board_writer"));
+				
+				free.add(f);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return free;
+	}
+
+	public int selectDevideCount(Connection conn) {
+		int count = 0;
+	    String sql = prop.getProperty("selectDevideCount");
+	    PreparedStatement ps = null;
+	    ResultSet rs  = null;
+	    try {
+	    	ps = conn.prepareStatement(sql);
+	    	
+	    	rs = ps.executeQuery();
+	    	if(rs.next()) {
+	    		count = rs.getInt("cnt");
+	    	}
+	    }catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	close(rs);
+	    	close(ps);
+	    }
+	    
+		return count;
 	}
 }

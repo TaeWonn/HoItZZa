@@ -1,0 +1,60 @@
+@charset "UTF-8";
+table#freeTable{padding:5px;}
+
+.table {
+	width: 600px;
+	border: none;
+	border-top: 2px solid rgb(196, 192, 192);
+	border-bottom: 2px solid rgb(196, 192, 192);
+	padding: 5px;
+	margin: 20px auto;
+	text-align: center;
+	font-size: 15px;
+	table-layout: fixed;
+}
+
+.table #title {
+	width: 200px;
+}
+
+.table tr th {
+	border: none;
+	border-bottom: 0.5px solid lightgray;
+}
+
+.thead-light {
+	font-size: 17px;
+}
+
+h2 {
+	text-align: center;
+}
+/*페이지바*/
+div#pageBar {
+	margin-top: 10px;
+	text-align: center;
+	width:83%;
+}
+
+div#pageBar a, span {
+	margin: 5px;
+}
+
+div#pageBar .cPage {
+	color: blue;
+}
+.table td{border: none;border-bottom: 0.5px solid lightgray;text-overflow: eclips;overflow: hidden;}
+.table tr{padding:10px;}
+.table th,td,tr{padding:10px;margin:0}
+
+
+
+
+
+
+
+
+
+
+
+

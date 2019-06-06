@@ -31,12 +31,13 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 		String boardNo = request.getParameter("boardNo");
 		
 		Free f = new FreeService().selectOneFree(boardNo);
+		System.out.println(f);
 		
 		List<FileTable> ft = new FreeService().selectFiles(boardNo);
 		
 		if(f == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
-			request.setAttribute("loc", "/sell/sellList");
+			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 			return;
