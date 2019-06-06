@@ -436,4 +436,24 @@ public class FreeDAO {
 	    
 		return count;
 	}
+
+	public int selectSeq(Connection conn) {
+		int seq = 0;
+		String sql = prop.getProperty("selectSeq");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			if(rs.next())
+				seq = rs.getInt("seq");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return seq;
+	}
 }

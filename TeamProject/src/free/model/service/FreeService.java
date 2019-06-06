@@ -145,4 +145,11 @@ public class FreeService {
 		int count=new FreeDAO().selectDevideCount(conn);
 		return count;
 	}
+
+	public int selectSeq() {
+		Connection conn = getConnection();
+		int seq = new FreeDAO().selectSeq(conn);
+		close(conn);
+		return seq;
+	}
 }

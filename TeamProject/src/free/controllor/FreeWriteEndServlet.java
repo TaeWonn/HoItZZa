@@ -76,6 +76,7 @@ public class FreeWriteEndServlet extends HttpServlet {
 		f.setBoardWriter(boardWriter);
 		
 		int result = new FreeService().insertBoard(f);
+		String boardNo = "FC_"+ new FreeService().selectSeq();
 		
 		if(f != null) {
 			FileTable t = new FileTable();
