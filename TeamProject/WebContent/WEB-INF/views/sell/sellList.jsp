@@ -13,23 +13,64 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
  <style>
-body{
+ .input-group{
+ margin-top : 3%;
+ margin-left: 30%;
+ width: 400px;
+ font-size: 12px;
+ }
+ .input-group *{
+  width: 40px;
+ height: 25px;
+ }
+ .input-group select{
+ width: 70px;
+  margin-top : -3px;
+ }
+ 
+ body{
 	margin: auto;
 }
  
- #btn-add{
- margin : 25px;
+#btn-add{
+ margin-right : 25px;
  width : 80px;
  float: right;}
+
 #pageBar{
 text-align: center;
-}
-#pageBar{
-  border-radius: 5px;
+width: 300px;
+  margin: auto;
+  padding: 0px 9px;
+  
+    border-radius: 5px;
+    
+    background-color white;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+    font-size: .875em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #717171;
+    text-shadow: 0px 1px 0px rgba(255,255,255, 1);
 }
 
-#pageBar {
-  border-radius: 5px;
+#pageBar >*{
+border-radius: 3px;
+ padding: 4px 10px;
+	margin: 5px;
+  background-color: skyblue;
+    color: white;
+    font-size : 15px;
+    border: solid 1px lightgray;
+}
+
+#pageBar >a{
+border-radius: 3px;
+ padding: 1.5px 7px;
+	margin: 5px;
+  background-color: #f5f5f5;
+    color: #969696;
+    border: solid 1px skyblue;
 }
  
     .table{
@@ -58,7 +99,11 @@ text-align: center;
 
 	<br>
 	<H3 style="text-align: center;">판매게시판</H3>
-
+<%if(userLoggedIn != null){ %> 
+		<input type="button" value="글쓰기" 
+			   id="btn-add"
+			   onclick="location.href='<%=request.getContextPath()%>/sell/sellWrite'"/>
+	 <% } %> 
 
     <table class="table">
         <thead class="thead-light">
@@ -88,11 +133,18 @@ text-align: center;
 	<div id="pageBar">
 		<%=pageBar %>
 	</div>
-	<%if(userLoggedIn != null){ %> 
-		<input type="button" value="글쓰기" 
-			   id="btn-add"
-			   onclick="location.href='<%=request.getContextPath()%>/sell/sellWrite'"/>
-	 <% } %> 
+	
+	 
+	 	<div class="input-group">
+	<select>
+	<option value="boardTitle" selected>제목</option>
+	<option value="boardWriter">작성자</option>
+	<option value="boardContant">내용</option>
+	<option value="boardCodeName">카테고리</option>
+	</select>
+  <input class="form-control" placeholder="검색어를 입력하세요" />
+  <input type="submit" value="검색">
+</div>
 </article>
 </html>
 

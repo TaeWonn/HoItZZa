@@ -128,7 +128,7 @@ background-color: rgb(230, 234, 236)}
         <table id="min_index">
 
 <tr>
-<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
+<td><a href="<%=request.getContextPath()%>/sell/sellView?<%=b.getBoardNo()+1%>">이전글 제목 </a></td>  
 </tr>
 <td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
 </tr>
