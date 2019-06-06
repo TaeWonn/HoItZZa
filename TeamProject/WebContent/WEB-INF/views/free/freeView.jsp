@@ -5,6 +5,17 @@
 <%
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
+	
+	String title="";
+	if(f.getBoardNo().contains("FC_")){
+		title="잡담게시판";	
+		}else if(f.getBoardNo().contains("FU_")){
+			title="유용한 생활지식 게시판";
+		}else if(f.getBoardNo().contains("FE_")){
+				title="연예/미디어";
+		}else{
+			title="나눔게시판";
+		}
 %>
 <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
@@ -12,7 +23,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/boardForm.css" />
 <article style="text-align: center;">
-	<style>
+<style>
 .ed_box {
 	color: rgb(122, 122, 122);
 	font-size: 9px;
@@ -32,7 +43,7 @@
 
 #buttons {
 	width: 58%;
-	float: right;
+	margin-left: 5%;
 }
 
 #buttons button {
@@ -116,8 +127,11 @@
 	background: white;
 	margin-top: 6px;
 }
+#boardContent{
+text-align: left;
+}
 </style>
-	<h2 style="text-align: center; margin-top: 50px;">잡담 게시판</h2>
+	<h2 style="text-align: center; margin-top: 50px;"><%=title%></h2>
 	<div id="div1">
 
 		<span id="boardTilte" name="boardTilte"><%=f.getBoardTitle()%></span>
@@ -127,13 +141,17 @@
 		<span class="id"><%=f.getBoardWriter()%></span> <span
 			class="ed text-xsmall text-muted"><%=f.getBoardDate()%></span> <span
 			class="ed text-xsmall text-muted">조회수 <%=f.getBoardReadCounter()%></span>
+		<%if(userLoggedIn!=null){ %>
 		<input type="button" value="☏쪽지보내기" id="message_href"
 			onclick="return reply('<%=userLoggedIn.getUserId() %>','<%=f.getBoardWriter()%>');" />
+		<%} %>
 	</div>
 
 	<div id="boardContent"
 		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
 		<div style="width: 100%; border: 1px solid;">파일내려받기 or 거래방식 넣을곳임</div>
+		<%=f.getBoardContent() %>
+		
 	</div>
 
 	<!-- <div id="min_div" style="margin-left: 15%;">
@@ -150,7 +168,7 @@
 		</table>
 	</div> -->
 	<div id="buttons">
-	<% if(userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin")){ %>
+	<% if(userLoggedIn!=null&&( userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
 		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
 		<button type="button" onclick="checkDelete();">삭제</button>
 	<% } %>
@@ -177,4 +195,5 @@ function updateFreeBoard(boardNo){
 }
 
 </script>
+</article>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

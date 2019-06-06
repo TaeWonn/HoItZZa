@@ -4,10 +4,6 @@ body{
 	margin: auto;
 }
  
-.img-viewer{
-
-	 height : 200;
-}
  input:radio{
     width: 20px;
 }
@@ -22,16 +18,16 @@ body{
 }
 .alert-light{
     border: 0.5px solid;
-    width: 495px;
+    width: 575px;
     margin: 7px;
     height: 40px;
-    margin-left : 7.5%;
+    margin-left : 4.4%%;
 }
 #userId{
     background: lightgray;
     font-size: 17px;
     color : black;
-    width: 240px;
+    width: 575px;
 }
 #boardDeal{
 position : relative;
@@ -41,12 +37,12 @@ width: 240px;
 border: 1px solid red;
 }
 #boardContent{
-    margin: 10px;
-    width: 500px;
+    width: 575px;
     height: 400px;
     margin : auto;
     overflow : auto;  
     border: 0.5px solid gray;
+    margin-top:8px;
      
 }
 .form-control-file{
@@ -62,12 +58,16 @@ border: 1px solid red;
 }
 #buttons{
     margin-top: 15px;
+    position:relative;
+    text-align: center;
+    width:80%;
 }
 #buttons button{
-	margin-left: 130px;
     width: 130px;
+    height: 40px;
   
 }
+#img-viewer img{width:500px;height: 300px;}
 .btn-outline-danger{
     margin-left: 70px;
 }
@@ -75,7 +75,11 @@ border: 1px solid red;
 
 
 .filebox{
-	margin-left: 24%;
+	text-align: center;
+	position:relative;
+	bottom:0px;
+	width:80%;
+
 }
 
 
@@ -126,8 +130,10 @@ border: 1px solid red;
 	display: none;
 }
 
-
-
+select#boardCodeNo{margin-left:4.4%%; height:40px; width:575px; background: lightgray;font-size: 17px;color : black;}
+div#freeBoard{position:relative;height: 690px;margin-left: 17%;width:85%;}
+div#freeBoard h3{font-size:20px;}
+div#boardContent
 
 
 

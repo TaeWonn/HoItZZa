@@ -1,40 +1,25 @@
+<%@page import="free.model.vo.Free"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="board.model.vo.Board, java.util.*"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<style>
-.table {
-	width: 600px;
-	border: none;
-	border-top: 2px solid rgb(196, 192, 192);
-	border-bottom: 2px solid rgb(196, 192, 192);
-	padding: 15px;
-	margin: 20px auto;
-	text-align: center;
-	font-size: 15px;
-}
+<%
+   List<Free> free = (List<Free>)request.getAttribute("sense");
+   String pageBar = (String)request.getAttribute("pageBar");
+   //header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
+   //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/freeboard/freeList.css" />
 
-.table #title {
-	width: 200px;
-}
-
-.table td, .table tr th {
-	border: none;
-	border-bottom: 0.5px solid lightgray;
-}
-
-.thead-light {
-	font-size: 17px;
-}
-
-h2 {
-	text-align: center;
-}
-</style>
-<article>
-	<h2>유용한 생활지식</h2>
-
-	<table class="table">
+	<h2>유용한 생활지식 게시판</h2>
+	<table class="table" id="freeTable">
+	<colgroup>
+	<col width="55px;"/>
+	<col width="80px;"/>
+	<col width="160px;"/>
+	<col width="80px;"/>
+	<col width="70px;"/>
+	</colgroup>
 		<thead class="thead-light">
 			<tr>
 				<th scope="col" style="width: 95px;">글번호</th>
@@ -45,28 +30,28 @@ h2 {
 			</tr>
 		</thead>
 		<tbody>
-			<%
-				for (int i = 0; i < 7; i++) {
-			%>
-
+			<% for(Free f : free){ %>
 			<tr>
-				<th scope="row">작성자명</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>2019-06-24</td>
-				<td>5</td>
+				<th scope="row"><%=f.getBoardNo() %></th>
+				<td><nobr><%=f.getBoardWriter() %></nobr></td>
+				<td>
+					<a
+					href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo()%>"
+					style="text-decoration: none; color: black;"> 
+						<nobr><%=f.getBoardTitle()%></nobr>
+					</a>
+				</td>
+				<td><%=f.getBoardDate() %></td>
+				<td><%=f.getBoardReadCounter() %></td>
 			</tr>
-			<%
-				}
-			%>
+			<% } %>
 		</tbody>
-
 	</table>
-
-	<%-- <%if(memberLoggedIn != null){ %>
-		<input type="button" value="글쓰기" 
-			   id="btn-add"
-			   onclick="location.href='<%=request.getContextPath()%>/board/boardForm'"/>
-	<% } %> --%>
-</article>
+	<div id="pageBar">
+		<%=pageBar %>
+	</div>
+	<%if(userLoggedIn != null){ %>
+	<input type="button" value="글쓰기" id="btn-add"
+		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
+	<% } %>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

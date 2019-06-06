@@ -201,8 +201,7 @@
 			}
 			today = yyyy + "년" + mm + "월" + dd + "일";
 			var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d69250224a399641ef739b6e02e5cfaf";
-			$
-					.ajax({
+			$.ajax({
 						url : apiUrl,
 						dataType : "json",
 						type : "GET",
@@ -212,9 +211,19 @@
 									+ resp.weather[0].icon + ".png";
 							var html = '<div id="weather"><span style="font-size:20px;" id="today">'
 									+ today
-									+ '</span><img src="'+imgURL+'" alt="" /><span id="wSpan">'
-									+ resp.weather[0].description
-									+ '</span><br /><span>현재위치 : '
+									+ '</span><img src="'+imgURL+'" alt="" />';
+								/* 날씨 설명이 너무 길어질 때가 있어 생략함.
+									if(!resp.weather[0].description.length>5){
+										html+='<span id="wSpan"><nobr>'
+										+ resp.weather[0].description
+										+ '</nobr></span><br />';
+									}else{
+										html+='<span id="wSpan2"><nobr>'
+											+ resp.weather[0].description
+											+ '</nobr></span><br />';
+									} */
+									
+									html+='<br /><span>현재위치 : '
 									+ resp.name
 									+ '</span><br />';
 							html += '<span>현재온도 : '

@@ -49,7 +49,7 @@ public class FreeWriteEndServlet extends HttpServlet {
 				new MultipartRequest(request, saveDirectory, maxPostSize, "UTF-8", policy);
 		
 		// 1. 파라미터 핸들링
-		String boardNo = multiReq.getParameter("boardNo");
+		// 보드넘버는 시퀀스로 처리할것. String boardNo = multiReq.getParameter("boardNo");
 		String boardTitle = multiReq.getParameter("boardTitle");
 		String boardContent = multiReq.getParameter("boardContent");
 		String boardWriter = multiReq.getParameter("boardWriter");
@@ -71,7 +71,6 @@ public class FreeWriteEndServlet extends HttpServlet {
 				.replaceAll(">", "&gt;");
 		
 		Free f = new Free();
-		f.setBoardNo(boardNo);
 		f.setBoardTitle(boardTitle);
 		f.setBoardContent(boardContent);
 		f.setBoardWriter(boardWriter);

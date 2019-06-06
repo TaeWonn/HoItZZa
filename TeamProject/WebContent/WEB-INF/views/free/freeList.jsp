@@ -9,62 +9,17 @@
     //header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/index.css" />
-<style>
-.table {
-	width: 600px;
-	border: none;
-	border-top: 2px solid rgb(196, 192, 192);
-	border-bottom: 2px solid rgb(196, 192, 192);
-	padding: 15px;
-	margin: 20px auto;
-	text-align: center;
-	font-size: 15px;
-}
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/freeboard/freeList.css" />
 
-.table #title {
-	width: 200px;
-}
-
-.table td, .table tr th {
-	border: none;
-	border-bottom: 0.5px solid lightgray;
-}
-
-.thead-light {
-	font-size: 17px;
-}
-
-h2 {
-	text-align: center;
-}
-/*페이지바*/
-div#pageBar {
-	margin-top: 10px;
-	text-align: center;
-}
-
-div#pageBar a, span {
-	margin: 5px;
-}
-
-div#pageBar .cPage {
-	color: blue;
-}
-
-/*글쓰기 버튼*/
-#btn-add {
-	margin: 25px;
-	width: 80px;
-	float: right;
-}
-</style>
-</head>
-<body>
-<body>
 	<h2>잡담게시판</h2>
-	<table class="table">
+	<table class="table" id="freeTable">
+	<colgroup>
+	<col width="55px;"/>
+	<col width="80px;"/>
+	<col width="160px;"/>
+	<col width="80px;"/>
+	<col width="70px;"/>
+	</colgroup>
 		<thead class="thead-light">
 			<tr>
 				<th scope="col" style="width: 95px;">글번호</th>
@@ -78,12 +33,12 @@ div#pageBar .cPage {
 			<% for(Free f : free){ %>
 			<tr>
 				<th scope="row"><%=f.getBoardNo() %></th>
-				<td><%=f.getBoardWriter() %></td>
+				<td><nobr><%=f.getBoardWriter() %></nobr></td>
 				<td>
 					<a
 					href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo()%>"
 					style="text-decoration: none; color: black;"> 
-						<%=f.getBoardTitle()%>
+						<nobr><%=f.getBoardTitle()%></nobr>
 					</a>
 				</td>
 				<td><%=f.getBoardDate() %></td>
@@ -99,6 +54,4 @@ div#pageBar .cPage {
 	<input type="button" value="글쓰기" id="btn-add"
 		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
 	<% } %>
-</body>
-</html>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

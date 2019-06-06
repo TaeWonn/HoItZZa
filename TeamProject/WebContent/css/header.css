@@ -34,7 +34,10 @@ div#board-list-container p{margin-top:16px;}
 div#weather-day{background:white; border: 1px solid;text-align: center;font-family: '맑은고딕'}
 div#weather-day img{width:70px;}
 div#weather-day span{margin:10px;}
-div#weather #wSpan{font-size: 40px;position:relative;bottom: -6px;font-family: "휴먼고딕"}
+div#weather #wSpan{display:inline-block ;font-size: 40px;position:relative;bottom: -6px;font-family: "휴먼고딕";max-width:50px;text-overflow: ellipsis;overflow: hidden;}
+div#weather #wSpan2{display:inline-block ;font-size: 25px;position:relative;bottom: -6px;font-family: "휴먼고딕";max-width:50px;text-overflow: ellipsis;overflow: hidden;}
+
+
 
 div#weather-day{margin-bottom: 15px;}
 a{ text-decoration:none !important;font-size: 15px;}
@@ -48,7 +51,7 @@ ul#link2{list-style: none;padding-left: 0px;margin-top: 0px;margin-bottom: 20px;
 
 div#weather span{font-family: 'Sunflower', sans-serif; font-size: 20px; }
 
-section#content{min-height:720px;}
+section#content{min-height:745px;}
 
 input#saveId{width:18px;height: 18px;position:relative;top:5px;}
 a{color:black;}
