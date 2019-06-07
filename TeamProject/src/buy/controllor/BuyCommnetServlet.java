@@ -24,7 +24,7 @@ public class BuyCommnetServlet extends HttpServlet {
 		String boardNo = request.getParameter("boardNo");
 		String commentWriter = request.getParameter("commentWriter");
 		String commentContent = request.getParameter("commentContent");
-		int commentNoRef = Integer.parseInt(request.getParameter("commentNoRef"));
+		String commentNoRef = request.getParameter("commentNoRef");
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
 		
 		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel, commentNoRef);
@@ -32,7 +32,6 @@ public class BuyCommnetServlet extends HttpServlet {
 		
 		String msg = "";
 		if(result > 0) {
-			msg = "댓글 등록 완료";
 		} else {
 			msg = "댓글 등록중 오류발생";
 		}

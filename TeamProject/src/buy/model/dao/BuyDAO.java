@@ -96,7 +96,6 @@ public class BuyDAO {
 		String sql = prop.getProperty("insertBoard");
 		PreparedStatement ps = null;
 		int result = 0;
-		System.out.println("구매쿼리"+sql);
 		try {
 			ps = conn.prepareStatement(sql);
 
@@ -244,7 +243,7 @@ public class BuyDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setString(5, c.getCommentNoRef());
+			ps.setString(5, c.getCommentNoRef().equals("0")?null:c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -357,6 +356,7 @@ public class BuyDAO {
 				c.setCommentNoRef(rs.getString("comment_no_ref"));
 				c.setCommentDate(rs.getDate("comment_date"));
 				c.setBoardNo(boardNo);
+				clist.add(c);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -364,18 +364,17 @@ public class BuyDAO {
 			close(ps);
 			close(rs);
 		}
-		
 		return clist;
 	}
 
-	public int deleteComment(Connection conn ,int commentNo) {
+	public int deleteComment(Connection conn ,String commentNo) {
 		int result =0;
 		String sql = prop.getProperty("deleteComment");
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, commentNo);
+			ps.setString(1, commentNo);
 			
 			result = ps.executeUpdate();
 		} catch(Exception e) {

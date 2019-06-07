@@ -1,4 +1,4 @@
-package sell.controllor;
+package free.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import free.model.service.FreeService;
 import sell.model.service.SellService;
 
 /**
- * Servlet implementation class SellCommentDeleteServlet
+ * Servlet implementation class FreeCommentDeleteServlet
  */
-@WebServlet("/sell/sellCommentDelete")
-public class SellCommentDeleteServlet extends HttpServlet {
+@WebServlet("/free/freeCommentDelete")
+public class FreeCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,12 +22,12 @@ public class SellCommentDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		String commentNo = request.getParameter("commentNo");
+		String commentNo =request.getParameter("commentNo");
 		
-		int result = new SellService().deleteComment(commentNo);
+		int result = new FreeService().deleteComment(commentNo);
 		
 		String msg = "";
-		String loc = "/sell/sellView?boardNo="+boardNo;
+		String loc = "/free/freeView?boardNo="+boardNo;
 		if(result > 0) {
 			msg = "댓글 수정완료";
 		} else {

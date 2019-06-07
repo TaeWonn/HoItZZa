@@ -45,6 +45,7 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 		int warningCnt = new FreeService().warningCnt(f.getBoardWriter());
 		
 		List<Comment> clist = new FreeService().commentList(boardNo);
+		System.out.println("서블렛"+clist);
 		
 		Cookie[] cookies = request.getCookies();
 		boolean hasRead = false;
@@ -84,7 +85,7 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 		}
 		
 
-		request.setAttribute("cList", clist);
+		request.setAttribute("clist", clist);
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("free", f);
 		request.setAttribute("files", ft);

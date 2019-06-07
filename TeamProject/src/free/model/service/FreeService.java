@@ -8,11 +8,13 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import buy.model.dao.BuyDAO;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import free.model.dao.FreeDAO;
 import free.model.vo.Free;
+import sell.model.dao.SellDAO;
 
 public class FreeService {
 	public List<Free> selectAllFreeList(int cPage, int numPerPage) {
@@ -152,4 +154,62 @@ public class FreeService {
 		close(conn);
 		return seq;
 	}
+
+	public int insertJabdamCommnet(Comment c) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().insertJabdamCommnet(conn, c);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertSenseComment(Comment c) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().insertSenseComment(conn, c);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertMediaComment(Comment c) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().insertMediaComment(conn, c);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int insertNanumComment(Comment c) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().insertNanumComment(conn, c);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteComment(String commentNo) {
+		Connection conn = getConnection();
+		int result = new FreeDAO().deleteComment(conn, commentNo);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+
+
 }

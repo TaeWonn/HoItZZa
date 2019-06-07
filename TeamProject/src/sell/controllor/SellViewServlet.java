@@ -40,7 +40,6 @@ public class SellViewServlet extends HttpServlet {
 			return;
 		}
 //		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
-		System.out.println(boardNo+"로 다오갔다옴");
 		List<Comment> clist = new SellService().commentList(boardNo);
 		
 		Cookie[] cookies = request.getCookies();
@@ -86,7 +85,7 @@ public class SellViewServlet extends HttpServlet {
 		String ca = new BoardService().selectcategoryname(s.getBoardCodeNo());
 		s.setBoardCodeNo(ca);
 		
-		
+		System.out.println("테스트"+clist);
 		request.setAttribute("cList", clist);
 //		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("sell", s);

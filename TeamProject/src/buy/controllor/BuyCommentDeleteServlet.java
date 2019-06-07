@@ -23,7 +23,7 @@ public class BuyCommentDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		String commentNo = request.getParameter("commentNo");
 		
 		int result= new BuyService().deleteComment(commentNo);
 		

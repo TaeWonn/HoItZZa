@@ -22,11 +22,12 @@ public class Comment {
 
 	public Comment() {}
 	
-	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, String commentNoRef2) {
+	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, String commentNoRef) {
 		this.commentContent = commentContent;
 		this.boardNo = boardNo;
 		this.commentWriter = commentWriter;
 		this.commentLevel = commentLevel;
+		this.commentNoRef=commentNoRef;
 	}
 	
 	public Comment(String commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,String commentNoRef
@@ -99,7 +100,7 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", commentContent=" + commentContent + ", boardNo=" + boardNo
-				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + "commentNoRef="
+				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + ",commentNoRef="
 				+ commentNoRef + "]";
 	}
 	

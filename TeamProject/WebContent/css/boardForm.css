@@ -38,7 +38,7 @@ border: 1px solid red;
 }
 #boardContent{
     width: 575px;
-    height: 400px;
+    height: 340px;
     margin : auto;
     overflow : auto;  
     border: 0.5px solid gray;
@@ -133,7 +133,11 @@ border: 1px solid red;
 select#boardCodeNo{margin-left:4.4%%; height:40px; width:575px; background: lightgray;font-size: 17px;color : black;}
 div#freeBoard{position:relative;height: 690px;margin-left: 17%;width:85%;}
 div#freeBoard h3{font-size:20px;}
-div#boardContent
-
-
+div#div-comment{height: 100px;overflow-y: auto;position:relative;bottom:21px;}
+table#tbl-comment{width: 92%;text-align: left;position: relative;left: 49px;}
+form[name=boardCommentFrm]{position: relative;bottom: 15px;}
+table#tbl-comment #CommentContents{border-bottom: 1px solid gray;} 
+table#tbl-comment #CommentContentsReply{border-bottom: 1px solid gray;} 
+table#tbl-comment button{border-radius: 20%;}
+table#tbl-comment tr.level2 td:first-of-type{padding-left: 40px;} 
 

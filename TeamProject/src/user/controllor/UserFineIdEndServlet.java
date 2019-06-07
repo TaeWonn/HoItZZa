@@ -1,4 +1,4 @@
-package sell.controllor;
+package user.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,36 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sell.model.service.SellService;
-
 /**
- * Servlet implementation class SellCommentDeleteServlet
+ * Servlet implementation class UserFineIdEndServlet
  */
-@WebServlet("/sell/sellCommentDelete")
-public class SellCommentDeleteServlet extends HttpServlet {
+@WebServlet("/views/user/findIdEnd")
+public class UserFineIdEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardNo = request.getParameter("boardNo");
-		String commentNo = request.getParameter("commentNo");
+		//유저가 있는지 확인 후에 해당 유저의 아이디값을 findId.jsp 로 보내준다.
+		String userId=request.getParameter("userId");
+		System.out.println("아이디찾기 END Servlet"+userId);
 		
-		int result = new SellService().deleteComment(commentNo);
+		request.setAttribute("userId", userId);
+		request.getRequestDispatcher("/WEB-INF/views/user/findId.jsp").forward(request, response);
 		
-		String msg = "";
-		String loc = "/sell/sellView?boardNo="+boardNo;
-		if(result > 0) {
-			msg = "댓글 수정완료";
-		} else {
-			msg = "댓글 삭제 실패";
-		}
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-			.forward(request, response);
 	}
 
 	/**

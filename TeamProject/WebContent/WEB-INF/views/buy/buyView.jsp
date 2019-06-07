@@ -8,7 +8,7 @@ Buy b = (Buy)request.getAttribute("buy");
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 %>
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrap cdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
   <style>
 
@@ -125,14 +125,14 @@ background-color: rgb(230, 234, 236)}
         <div id="min_div" style="margin-left: 15%;">
         <table id="min_index">
 
-<tr>
-<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
-</tr>
-<td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
-</tr>
-</div>
-</table>
-<Br>
+			<tr>
+			<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
+			</tr>
+			<td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>  
+			</tr>
+			</div>
+			</table>
+			<Br>
 
 <div id="comment-container" style="text-align: center;">
 	<div class="comment-editor">
@@ -140,7 +140,7 @@ background-color: rgb(230, 234, 236)}
 			  name="boardCommentFrm"
 			  method="post">
 			<textarea name="commentContent" 
-					  cols="70" rows="2"></textarea>
+					  cols="70" rows="2" maxlength="65" placeholder="65자까지만 작성 할 수 있습니다."></textarea>
 			<button type="submit" id="btn-insert" style="position: relative; top: -9px;">등록</button>	  
 			<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />  
 			<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
@@ -151,21 +151,26 @@ background-color: rgb(230, 234, 236)}
 	</div>
 	
 	<!-- 댓글목록 테이블 -->
+	<div id="div-comment">
 	<table id="tbl-comment">
+	<colgroup>
+	<col width="130px"/>
+	<col width="50px"/>	
+	</colgroup>
 	<%if(!commentList.isEmpty()) {
 		for(Comment bc: commentList){
 			if(bc.getCommentLevel()==1){
 	%>
 			<!-- 댓글인경우 -->
 			<tr class="level1">
-				<td>
+				<td id="CommentContents">
 					<sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
 					<sub class="comment-date"><%=bc.getCommentDate() %></sub>
 					<br />
 					<%=bc.getCommentContent() %>
 					
 				</td>
-				<td>
+				<td style="text-align: center;">
 					<button class="btn-reply" value="<%=bc.getCommentNo() %>" >답글</button>
 					<%-- 삭제버튼 추가 --%>
 					<%if(userLoggedIn!=null 
@@ -206,6 +211,7 @@ background-color: rgb(230, 234, 236)}
 	}//end of if(!commentList.isEmpty())
 	%>
 	</table>
+	</div>
 	
 	
 </div>
@@ -213,7 +219,7 @@ background-color: rgb(230, 234, 236)}
 
 
        <div id="buttons">
-      <%--  <% if(userLoggedIn!=null && 
+        <% if(userLoggedIn!=null && 
         (b.getBoardWriter().equals(userLoggedIn.getUserId())
         || "admin".equals(userLoggedIn.getUserId())) ){ %> --%>
    
@@ -224,10 +230,9 @@ background-color: rgb(230, 234, 236)}
      
     
     
- <%--    <%} %>	 --%>
+   		 <%} %>	
            <button type="button" onclick="location.href='<%=request.getContextPath()%>/buy/buyList'">목록</button>
         </div>              
-
 
 
 <script>
@@ -246,6 +251,52 @@ function deleteBoard(){
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
 	location.href="<%=request.getContextPath()%>/buy/buyDelete?boardNo=<%=b.getBoardNo()%>";
 }
+
+//대댓글 달기
+$(function() {
+	 //대댓글입력
+   $(".btn-reply").click(function(){
+       /* 로그인여부확인 */
+       <% if(userLoggedIn == null){ %>
+           loginAlert();
+       <% } else {%>
+           var tr = $("<tr></tr>");
+           var html = '<td style="display:none; text-align:left;" colspan="2">';
+           html += '<form action="<%=request.getContextPath()%>/buy/buyComment" method="post">';
+           html += '<textarea name="commentContent" cols="60" rows="3"></textarea>';
+           html += '<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />';
+           html += '<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />';
+           html += '<input type="hidden" name="commentLevel" value="2" />';
+           html += '<input type="hidden" name="commentNoRef" value="'+$(this).val()+'" />';
+           html += '<button type="submit" class="btn-insert2">등록</button>';      
+           html += '</form></td>';
+     
+           tr.html(html);
+           tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
+       
+           //답글버튼을 연속적으로 누르지 않도록 핸들러제거
+           $(this).off('click');
+           
+           //새로생성한 요소에 대해 submit이벤트 핸들러 작성
+           tr.find("form").submit(function(e){
+               //댓글 textarea 유효성검사
+               var content = $(this).children("textarea").val().trim();
+               if(content.length == 0){
+                   e.preventDefault();
+               }
+           });
+       <% } %>
+   });
+	
+	//댓글 삭제 기능
+	$('.btn-delete').click(function(){
+			 var bool=confirm('댓글을 삭제하시겠습니까??');
+			 if(bool){}
+			 location.href="<%=request.getContextPath()%>/buy/buyCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+	 });
+});
+
+
 
 </script>
 
