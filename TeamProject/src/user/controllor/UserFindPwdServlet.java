@@ -24,20 +24,20 @@ public class UserFindPwdServlet extends HttpServlet {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("findUserPwd_Id");
 		String name = request.getParameter("findUserPwd_name");
-		String ssn = request.getParameter("findUserPwd_ssn_1") + request.getParameter("findUserPwd_ssn_2");
-		
+		String ssn = request.getParameter("findUserPwd_ssn_1") +"-"+ request.getParameter("findUserPwd_ssn_2");
 		User u = new User();
 		u.setUserId(userId);
 		u.setName(name);
 		u.setSsn(ssn);
 		
 		// 2. 업무 로직
-		Boolean isUser = new UserService().findUserPwd(u);
+		boolean isUser = new UserService().findUserPwd(u);
 		
 		// 3. view단 처리
-		String view = "";
-		String msg = "test";
-		String loc = "/";
+
+		String view = "/WEB-INF/views/common/msg.jsp";
+		String msg = "";
+		String loc = "";
 
 		if(!isUser) {
 			msg = "일치하는 회원 정보가 존재하지 않습니다.";
@@ -46,14 +46,10 @@ public class UserFindPwdServlet extends HttpServlet {
 		}
 		else {
 			msg = "비밀번호를 새로 설정해주세요.";
-			view = "/WEB-INF/views/user/msg.jsp";
-			loc = "/views/user/updatePwdEnd";
-		}
-		
-		request.setAttribute("userId", userId);
+			loc = "/views/user/updatePwd?userId="+userId;
+		}		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
-		
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

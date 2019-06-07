@@ -291,8 +291,6 @@ public class UserDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getName());
 			ps.setString(2, u.getPhone());
-			System.out.println("ID뭐야!!!"+u.getName());
-			System.out.println("폰번!!!!"+u.getPhone());
 			rs = ps.executeQuery();
 			
 			if(rs.next())

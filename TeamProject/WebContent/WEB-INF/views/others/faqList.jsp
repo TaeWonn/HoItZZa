@@ -139,7 +139,7 @@ tr#p-tag td P{
 <script>
 $("tr:first").nextAll().click(function() {
 	var target = $(this);
-	$(this).children("td:last").children("p").slideToggle().css("color","black");
+	$(this).children("td:last").children("p").slideToggle(100ss("color","black");
 });
 </script>
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>

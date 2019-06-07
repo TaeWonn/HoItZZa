@@ -44,7 +44,7 @@ public class UserFindIdServlet extends HttpServlet {
 		}
 		else {
 			msg = "회원 정보와 일치하는 아이디를 찾았습니다.";
-			loc = "/views/user/findIdEnd?userId=" + userId;
+			loc = "/views/user/findId?userId=" + userId;
 		}
 		
 		request.setAttribute("msg", msg);
