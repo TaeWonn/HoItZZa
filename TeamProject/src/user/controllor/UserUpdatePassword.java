@@ -21,7 +21,8 @@ public class UserUpdatePassword extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = ((User)request.getSession().getAttribute("userLoggedIn")).getUserId();
+		String userId = request.getParameter("userId");
+		System.out.println("userId@servlet="+userId);
 		request.setAttribute("userId", userId);
 		request.getRequestDispatcher("/WEB-INF/views/user/updatePwd.jsp").forward(request, response);
 	}

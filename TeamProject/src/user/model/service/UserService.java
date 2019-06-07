@@ -92,7 +92,7 @@ public class UserService {
 		return userId;
 	}
 
-	public Boolean findUserPwd(User u) {
+	public boolean findUserPwd(User u) {
 		Connection conn = getConnection();
 		Boolean chkPwd = new UserDAO().findUserPwd(conn, u);
 		close(conn);

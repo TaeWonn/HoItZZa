@@ -162,6 +162,22 @@ background-color: rgb(230, 234, 236)}
 	%>
 			<!-- 댓글인경우 -->
 			<tr class="level1">
+						<td>
+							<sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
+							<sub class="comment-date"><%=bc.getCommentDate() %></sub>
+							<br />
+							<%=bc.getCommentContent() %>
+						</td>
+						<td>
+							<button class="btn-reply" value="<%=bc.getCommentNo()%>">답글</button>
+							<%if(userLoggedIn!=null && 
+        					(bc.getCommentWriter().equals(userLoggedIn.getUserId())
+        					|| "admin".equals(userLoggedIn.getUserId())) ){ %>
+        					<button class="del-reply" value="<%=bc.getCommentNo()%>">삭제</button>
+        					<%} %>
+						</td>
+					</tr>
+			<tr class="level1">
 				<td>
 					<sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
 					<sub class="comment-date"><%=bc.getCommentDate() %></sub>
@@ -243,8 +259,47 @@ function reply(sender,recipient){
 	var specs="width=460px, height=500px, left=500px, top=200px";
 	var popup=open(url, title,specs);
 
+	
 }
-
+$(function() {
+	 //대댓글입력
+    $(".btn-reply").click(function(){
+        /* 로그인여부확인 */
+        <% if(userLoggedIn == null){ %>
+            loginAlert();
+        <% } else {%>
+            var tr = $("<tr></tr>");
+            var html = '<td style="display:none; text-align:left;" colspan="2">';
+            html += '<form action="<%=request.getContextPath()%>/sell/sellComment" method="post">';
+            html += '<textarea name="commentContent" cols="60" rows="3"></textarea>';
+            html += '<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />';
+            html += '<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />';
+            html += '<input type="hidden" name="commentLevel" value="2" />';
+            html += '<input type="hidden" name="commentNoRef" value="'+$(this).val()+'" />';
+            html += '<button type="submit" class="btn-insert2">등록</button>';      
+            html += '</form></td>';
+            
+            tr.html(html);
+            tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
+        
+            //답글버튼을 연속적으로 누르지 않도록 핸들러제거
+            $(this).off('click');
+            
+            //새로생성한 요소에 대해 submit이벤트 핸들러 작성
+            tr.find("form").submit(function(e){
+                //댓글 textarea 유효성검사
+                var content = $(this).children("textarea").val().trim();
+                if(content.length == 0){
+                    e.preventDefault();
+                }
+            });
+        <% } %>
+    });
+});
+	function loginAlert(){
+	    alert("로그인 후 이용할 수 있습니다.");
+	    $("#header_userId").focus();
+	}
 function deleteBoard(){
 	if(!confirm("정말 삭제하시겠습니까?")) return;
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.

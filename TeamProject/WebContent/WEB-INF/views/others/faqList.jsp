@@ -3,12 +3,11 @@
 
  <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/userJoin.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 
 <style>
 div#faq-container{
 	text-align: center;
-	position: relative;
 }
 div#faq-container h2{
     margin-right: 144px;
@@ -17,7 +16,7 @@ div#faq-container h2{
 	
 }
 table#faq-tbl{
-	position: absolute;
+	margin: 0 auto;
 	width: 610px;
 	font-size: 12px;
 	text-align: center;
@@ -138,8 +137,7 @@ tr#p-tag td P{
 </article>
 <script>
 $("tr:first").nextAll().click(function() {
-	var target = $(this);
-	$(this).children("td:last").children("p").slideToggle().css("color","black");
+	$(this).children("td:last").children("p").slideToggle(100).css("color","black");
 });
 </script>
  <%@ include file="/WEB-INF/views/common/footer.jsp"%>
