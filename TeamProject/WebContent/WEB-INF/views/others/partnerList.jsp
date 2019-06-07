@@ -3,22 +3,28 @@
 
  <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/userJoin.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <style>
+section#partner-section{
+	width: 550px;
+	margin: 0 auto;	
+}
 div#partner-container{
 	position:relative;
-	margin-left: 30px;
+	margin-right: 50px;
+	width: 550px;
 }
 div#partner-container div#partner-list{
-	position:absolute;
-	min-width: 90%;
+	position: relative;
+	width:500px;
 }
-section h2{
+div#partner-container h2{
 	font-size: 2.2em;
 	margin-left: 170px;
 	padding: 6px;
 }
 div#partner-list li{
+	position: relative;
 	padding: 2px;
 	min-height: 20px;
 }
@@ -26,20 +32,18 @@ div#partner-list li:hover{
 	color: black;
 	background: rgba(196, 192, 192,0.8);
 	box-shadow: 5px 5px 5px 1px lightgray; 
-/* 	background: #cae5ffcc; */
 }
-div#partner-list li img{
-	float:left;
-	width: 100px;
-	height: 25px;
+div#partner-list li img{	
+	width: 140px;
+	height: 45px;
 	border: 1px solid gray;
 }
 </style>
 <article>
 <!-- sell쿼리중에insert 컬럼하나 빠져서 수정했고 협력사바로가기 페이지완성했고  -->
-	<section>
-		<h2>협력사 모아보기</h2>
+	<section id="partner-section">
 		<div id="partner-container">
+		<h2>협력사 모아보기</h2>
 			<div id="partner-list">
 				<span>♣ 중고거래 카페</span>
 				<ol>
