@@ -3,6 +3,9 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/user/findPwd.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%
+	String userA=(String)request.getAttribute("userId");
+%>
 <article id="article">
 	<h1>비밀번호 변경</h1>
 	<div id="changePwd">
@@ -14,7 +17,7 @@
 					<th>변경 할 비밀번호</th>
 					<td><input type="password" id="changePwd" name="changePwd"
 						onkeyup="check();" /> <input type="hidden" name="findUserPwd_Id"
-						value="<%=request.getAttribute("userId")%>" /></td>
+						value="<%=userA%>" /></td>
 				</tr>
 				<tr>
 					<th>비밀번호 확인</th>
@@ -33,19 +36,45 @@
 
 
 <script>
+	function regTest(reg,info,msg){
+		console.log(info);
+	  if(reg.test(info)){
+	      return true;
+	  }else{
+	      alert(msg);
+	      return false;
+	  }
+	}
 	function checkChangePwd() {
 		var pwd1 = $('input[name=changePwd]').val();
-		var pwd2 = $('#changePwd2').val();
-
-		if (pwd1 !== pwd2) {
-			alert('비밀번호가 동일하지 않습니다. 다시 입력해주세요');
+		var pwd2 = $("#changePwd2").val();
+		var result=true;
+		
+		var reg=/^.*(?=^.*\S{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g;
+		
+		console.log(pwd2+"/2");
+		console.log(pwd1+"/1");
+		var bool=regTest(reg,pwd1,'비밀번호를 다시 입력해주세요.');
+		
+		console.log(bool);
+		if(!bool){
 			$('input[name=changePwd]').val('');
 			$('#changePwd2').val('');
 			$('input[name=changePwd]').focus();
-			return false;
-		} else {
-			return true;
+			result=false;
 		}
+		else{
+			if (pwd1 !== pwd2){
+				alert('비밀번호가 동일하지 않습니다. 다시 입력해주세요');
+				$('input[name=changePwd]').val('');
+				$('#changePwd2').val('');
+				$('input[name=changePwd]').focus();
+				result=false;
+			} else {
+				result=true;
+			}	
+		}
+		return result;
 
 	}
 

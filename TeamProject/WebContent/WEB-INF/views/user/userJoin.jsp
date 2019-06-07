@@ -206,7 +206,7 @@ function regTest(reg,info,msg){
 function validate(){
   var result=true;
   
-  var reg=/^[\S\w\d]{4,15}$/;
+  var reg=/^.*(?=^.*\S{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g;
   bool=regTest(reg,'userPwd','비밀번호를 다시 입력해주세요.');
   console.log('비밀번호 체크 :'+bool);
   if(!bool){
@@ -218,7 +218,7 @@ function validate(){
 	  if(!bool){
 		  result=false;
 	  }else{
-		  reg=/^[0-9]{7}$/;
+		  reg=/^[0-9]{7}$/g;
 		  bool=regTest(reg,'ssn_2','주민등록번호는 숫자만 입력가능합니다.');
 		  console.log('주민2 : '+bool);
 		  if(!bool){

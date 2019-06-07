@@ -3,8 +3,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/findId.css" />
 
-<% //String userIdResult=(String)request.getAttribute("userId");
-String userIdResult="abcdefg";
+<%
+String userIdResult=(String)request.getAttribute("userId");
+/* String userIdResult="abcdefg"; */
 String str=userIdResult.substring((userIdResult.length()-3), userIdResult.length());
 
 String result=userIdResult.replaceAll("["+str+"]","*");
