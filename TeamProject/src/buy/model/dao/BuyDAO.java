@@ -96,6 +96,7 @@ public class BuyDAO {
 		String sql = prop.getProperty("insertBoard");
 		PreparedStatement ps = null;
 		int result = 0;
+		System.out.println("구매쿼리"+sql);
 		try {
 			ps = conn.prepareStatement(sql);
 

@@ -28,17 +28,15 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
          }
        
         #buttons{
-            width: 58%;
+            width: 70%;
             float: right;
         }
         #buttons button{
         position : relative;
         left : 20%;
-            width: 80px;
+            width: 60px;
             height: 35px;
-         	
-
-            font-size: 16px;
+           font-size: 16px;
         }
         #buttons :first-child{
             
@@ -110,13 +108,14 @@ background-color: rgb(230, 234, 236)}
         <span class="id"><%=b.getBoardWriter()%></span>
         <span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span>
         <span class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
+       <%if(userLoggedIn != null){ %> 
         <a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
          id="message_href" >☏ 쪽지보내기</a>
-            </span>     
+              <% } %> 
         </div>
 
         <div id="boardContent" style="width: 590px; height:400px; border: 0.2px solid lightgrayv; margin: auto;">
-<div style="width: 100%; border: 1px solid;" >파일내려받기 or 거래방식 넣을곳임</div>
+<div style="width: 100%; border: 1px solid;" >파일내려받기 or 거래방식 넣을곳임</div><%=b.getBoardContent() %>
         </div>
         
         
