@@ -244,7 +244,7 @@ public class BuyDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNoRef());
+			ps.setString(5, c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -351,10 +351,10 @@ public class BuyDAO {
 			while(rs.next()) {
 				Comment c = new Comment();
 				c.setCommentContent(rs.getString("comment_content"));
-				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommentNo(rs.getString("comment_no"));
 				c.setCommnetWriter(rs.getString("comment_writer"));
 				c.setCommentLevel(rs.getInt("comment_level"));
-				c.setCommentNoRef(rs.getInt("comment_no_ref"));
+				c.setCommentNoRef(rs.getString("comment_no_ref"));
 				c.setCommentDate(rs.getDate("comment_date"));
 				c.setBoardNo(boardNo);
 			}

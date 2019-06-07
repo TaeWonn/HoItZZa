@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Comment {
 
-	private int commentNo;
+	private String commentNo;
 	private String commentContent;
 	private String boardNo;
 	private String commentWriter;
@@ -29,7 +29,7 @@ public class Comment {
 		this.commentLevel = commentLevel;
 	}
 	
-	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,String commentNoRef
+	public Comment(String commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,String commentNoRef
 				,Date commentDate) {
 		this.commentNo = commentNo;
 		this.commentContent = commentContent;
@@ -56,12 +56,12 @@ public class Comment {
 		this.commentNoRef = commentNoRef;
 	}
 
-	public int getCommentNo() {
+	public String getCommentNo() {
 		return commentNo;
 	}
 
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
+	public void setCommentNo(String comme) {
+		this.commentNo = comme;
 	}
 
 	public String getCommentContent() {

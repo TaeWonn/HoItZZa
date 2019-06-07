@@ -7,6 +7,7 @@ Sell b = (Sell)request.getAttribute("sell");
 
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 System.out.print(b.getBoardNo());
+System.out.print(commentList.get(0).getCommentContent());
 %>
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -149,7 +150,7 @@ background-color: rgb(230, 234, 236)}
 			<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />  
 			<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
 			<input type="hidden" name="commentLevel" value="1" />
-		
+			<input type="hidden" name="boardCommentRef" value="0" />
 		</form>
 	</div>
 	

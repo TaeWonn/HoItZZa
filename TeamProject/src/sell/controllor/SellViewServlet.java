@@ -40,7 +40,7 @@ public class SellViewServlet extends HttpServlet {
 			return;
 		}
 //		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
-		
+		System.out.println(boardNo+"로 다오갔다옴");
 		List<Comment> clist = new SellService().commentList(boardNo);
 		
 		Cookie[] cookies = request.getCookies();

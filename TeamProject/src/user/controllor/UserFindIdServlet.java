@@ -30,6 +30,7 @@ public class UserFindIdServlet extends HttpServlet {
 		u.setName(name);
 		u.setPhone(phone);
 		String userId = new UserService().findUserId(u);
+		System.out.println("findIdServlet확인"+userId);
 		
 		
 		
@@ -43,7 +44,7 @@ public class UserFindIdServlet extends HttpServlet {
 		}
 		else {
 			msg = "회원 정보와 일치하는 아이디를 찾았습니다.";
-			loc = "views/user/findId?userId=" + userId;
+			loc = "/views/user/findIdEnd?userId=" + userId;
 		}
 		
 		request.setAttribute("msg", msg);

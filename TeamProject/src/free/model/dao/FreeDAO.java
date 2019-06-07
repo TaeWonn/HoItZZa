@@ -240,7 +240,7 @@ public class FreeDAO {
 			
 			while(rs.next()) {
 				Comment c = new Comment();
-				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommentNo(rs.getString("comment_no"));
 				c.setCommentContent(rs.getString("comment_content"));//컬럼명이 잘못되어 있어서 수정
 				c.setCommnetWriter(rs.getString("comment_writer"));
 				c.setCommentDate(rs.getDate("comment_date"));
