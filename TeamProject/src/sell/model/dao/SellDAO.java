@@ -1,14 +1,14 @@
 package sell.model.dao;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -153,13 +153,15 @@ public class SellDAO {
 		//현재 시퀀스 번호 가져오기
 		String boardNo = null;
 		String sql = prop.getProperty("selectOneBoardNo");
-		PreparedStatement ps = null;
+		System.out.println("쿼리문"+sql);
+		Statement ps = null;
 		ResultSet rs= null;
 		try {
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
+			ps = conn.createStatement();
+			rs = ps.executeQuery(sql);
 			if(rs.next()) {
-				boardNo = "s_"+rs.getInt("boardNo");
+				boardNo = "S_"+rs.getInt("boardNo");
+				System.out.println("처리여부"+boardNo);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -167,6 +169,7 @@ public class SellDAO {
 			close(rs);
 			close(ps);
 		}
+		
 		return boardNo;
 	}
 

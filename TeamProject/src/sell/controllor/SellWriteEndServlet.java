@@ -69,8 +69,6 @@ public class SellWriteEndServlet extends HttpServlet {
 		System.out.println("코드"+boardCodeNo);
 		System.out.println("작성자"+boardWriter);
 		
-		System.out.println("이미지 파일 네임 확인 "+multiReq.getOriginalFileName("upFile1"));
-		System.out.println("첨부파일 네임 확인 "+multiReq.getOriginalFileName("upFile"));
 		int fileCount = 1;
 		
 		List<String> fileNameList = new ArrayList<>();
@@ -96,6 +94,7 @@ public class SellWriteEndServlet extends HttpServlet {
 		int result = new SellService().insertSell(s);
 		String boardNo = new SellService().selectOneBoardNo();
 		
+		System.out.println("가야될곳"+boardNo);
 		
 		for(int i =0;i<fileCount;i++) {
 			FileTable t = new FileTable();

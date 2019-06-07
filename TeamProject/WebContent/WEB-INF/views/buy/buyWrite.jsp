@@ -5,13 +5,17 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/buysellForm.css" />
  
+
+
 <article id="article">
 
 
 	<form action="<%=request.getContextPath()%>/board/boardWriteEnd"
 	 method="post" enctype="multipart/form-data">
+	 
+	 <input type="hidden" name="boardCodeNo" />
 	
 		<h2 style="text-align: center">구매글 작성</h2>
 		<br>
@@ -22,12 +26,12 @@
 
 <!-- 거래방식 -->
     	<select class="custom-select" id="boardDeal" name="boardDeal">
-
                 <option value="택배" selected>택배</option>
                 <option value="직거래">직거래</option>
         </select>
 
         <br>
+        
 		<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
                 <option selected>카테고리 선택</option>
                 <option value="A">패션의류/잡화</option>
@@ -48,7 +52,7 @@
         </select>
         <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
                 <option selected>세부 카테고리</option>
-                
+        
               
         </select>
         <br>
@@ -56,29 +60,37 @@
 						<img id="img-viewer" width=350/>
 					</div> -->
         <div contentEditable="true"  id="boardContent">
+        
         <img id="img-viewer" style="display: block;"/>
         
         </div>
+        
+        <input type="hidden" name="boardContent">
         <br>
            <div class="filebox">
            			
 					
-	<input  type="file" id="ex_img" onchange="loadImg(this);" name="upFile">			 
+	<input type="file" id="ex_img" onchange="loadImg(this);" name="upFile1">			 
     <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input  type="file" id="ex_filename" class="upload-hidden" name="upFile">
+    <input multiple type="file" id="ex_filename" class="upload-hidden" name="upFile">
     
   <input class="upload-name" value="파일명" disabled="disabled">
   <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden" name="upFile">
+  <input type="file" id="ex_filename" class="upload-hidden" name="">
 </div>
-          
+    
                 <div id="buttons">
                   <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
                   <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
                 </div>
             </form>
 
+</article>
+
 <script>
+
+
+
 
 function validate(){
 	//제목
@@ -88,13 +100,22 @@ function validate(){
 		return false;
 	}
 	//내용
-	var boardContent = $("[name=boardContent]").val();
+	var boardContent = $("#boardContent").text();
 	if(boardContent.trim().length == 0){
 		alert("내용을 입력하세요.");
 		return false;
 	}
 	
-	console.log("["+$("[name=boardContent]").val()+"]")
+	//카테고리
+	var boardCodeNo = $("[name=boardCodeNo]").val();
+	if(boardCodeNo.trim().length == 0){
+		alert("카테고리를 선택하세요.");
+		return false;
+	}
+	
+	
+	$("[name=boardContent]").val($("#boardContent").text());
+
 	return true;
 }
 
@@ -161,7 +182,7 @@ function chageSelect(){
 					}
 				}
 			});//end of ajax
-			
+			$("[name=boardCodeNo]").val($("#category1").val());
 }
 			
 			
@@ -178,14 +199,12 @@ function chageSelect(){
 									console.log("공백넘어옴");
 								}
 								else{
-									
 									$("#category2 option:selected").val(data);								
-								
+									$("[name=boardCodeNo]").val($("#category2").val());
 								}
 								
 							}
 						});//end of ajax
-			
 }	
 
 
@@ -193,7 +212,7 @@ function chageSelect(){
 
 </script>
 
-</article>
+
 </html>
 
 

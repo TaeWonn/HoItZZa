@@ -34,6 +34,9 @@ public class BoardWriteEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg", "게시판 파일업로드 오류");
 			request.setAttribute("loc", "/");
@@ -59,8 +62,8 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String boardWriter = multiReq.getParameter("boardWriter");
 		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		String boardDeal = multiReq.getParameter("boardDeal");
-		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
-		File f = multiReq.getFile("upFile");
+		
+		int fileCount = 1;
 		
 		List<String> fileNameList = new ArrayList<>();
 		List<String> fileNewNameList = new ArrayList<>();
@@ -84,6 +87,8 @@ public class BoardWriteEndServlet extends HttpServlet {
 		int result = new BuyService().insertBoard(b);
 		String boardNo = new BuyService().selectOneBoardNo();
 		
+		System.out.println("가야될곳"+boardNo);
+		
 		for(int i=0;i<fileCount;i++) {
 			FileTable t = new FileTable();
 			t.setBoardNo(boardNo);
@@ -95,7 +100,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String msg = "";
 		String loc = "";
 		if(result > 0) {
-			msg = "게시글변경완료";
+			msg = "게시글등록완료";
 			loc = "/buy/buyView?boardNo="+boardNo;
 		}else {
 			msg = "변경중 오류 발생";
