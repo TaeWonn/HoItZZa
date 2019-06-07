@@ -130,7 +130,7 @@ public class SellService {
 		return clist;
 	}
 
-	public int deleteComment(int commentNo) {
+	public int deleteComment(String commentNo) {
 		Connection conn = getConnection();
 		int result = new SellDAO().deleteComment(conn, commentNo);
 		if(result > 0)

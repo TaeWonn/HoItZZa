@@ -7,25 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.model.service.UserService;
-import user.model.vo.User;
-
 /**
- * Servlet implementation class UserUpdatePassword
+ * Servlet implementation class UserFineIdEndServlet
  */
-@WebServlet("/views/user/updatePwd")
-public class UserUpdatePassword extends HttpServlet {
+@WebServlet("/views/user/findIdEnd")
+public class UserFineIdEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String userId = request.getParameter("userId");
-		System.out.println("userId@servlet="+userId);
+		//유저가 있는지 확인 후에 해당 유저의 아이디값을 findId.jsp 로 보내준다.
+		String userId=request.getParameter("userId");
+		System.out.println("아이디찾기 END Servlet"+userId);
+		
 		request.setAttribute("userId", userId);
-		request.getRequestDispatcher("/WEB-INF/views/user/updatePwd.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/user/findId.jsp").forward(request, response);
+		
 	}
 
 	/**

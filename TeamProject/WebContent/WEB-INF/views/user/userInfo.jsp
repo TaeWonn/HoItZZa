@@ -18,7 +18,7 @@
 	String[] addrArr = userLoggedIn.getAddr().split(",");
 %>
 <style>
-table#interestSellBoard2{position:absolute;width:312px;padding:0px;border:1px solid; border-collapse: collapse;
+table#interestSellBoard2{position:absolute;width:308px;padding:0px;border:1px solid; border-collapse: collapse;
 				top:40px; table-layout:fixed;}
 table#interestSellBoard2 th{max-width:76px;border:1px solid;text-align: center;background: lightgray;text-overflow:ellipsis;}
 table#interestSellBoard2 td{max-width:120px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}

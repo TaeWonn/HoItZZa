@@ -289,12 +289,12 @@ public class SellDAO {
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			
+			System.out.println("다오:"+c.getCommentNoRef());
 			ps.setString(1, c.getBoardNo());
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNoRef());
+			ps.setString(5, c.getCommentNoRef().equals("0")? null : c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -302,7 +302,6 @@ public class SellDAO {
 		} finally {
 			close(ps);
 		}
-		
 		return result;
 	}
 	public List<Sell> selectInterestSellListByUser(Connection conn, String userId) {
@@ -380,13 +379,13 @@ public class SellDAO {
 			rs= ps.executeQuery();
 			while(rs.next()) {
 				Comment c = new Comment();
-				c.setCommentNo(rs.getInt("comment_no"));
+				c.setCommentNo(rs.getString("comment_no"));
 				c.setCommentContent(rs.getString("comment_content"));//컬럼명이 잘못되어 있어서 수정
 				c.setCommnetWriter(rs.getString("comment_writer"));
+				c.setCommentLevel(rs.getInt("comment_level"));
 				c.setCommentDate(rs.getDate("comment_date"));
-				c.setCommentNoRef(rs.getInt("comment_no_ref"));
+				c.setCommentNoRef(rs.getString("comment_no_ref"));
 				c.setBoardNo(boardNo);
-				
 				clist.add(c);
 			}
 		} catch(Exception e) {
@@ -398,14 +397,14 @@ public class SellDAO {
 		return clist;
 	}
 
-	public int deleteComment(Connection conn, int commentNo) {
+	public int deleteComment(Connection conn, String commentNo) {
 		int result =0;
 		String sql = prop.getProperty("deleteComment");
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, commentNo);
+			ps.setString(1, commentNo);
 			
 			result = ps.executeUpdate();
 		} catch(Exception e) {

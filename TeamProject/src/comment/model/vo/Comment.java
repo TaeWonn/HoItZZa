@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Comment {
 
-	private int commentNo;
+	private String commentNo;
 	private String commentContent;
 	private String boardNo;
 	private String commentWriter;
 	private int commentLevel;
-	private int commentNoRef;
+	private String commentNoRef;
 	private Date commentDate;
 	
 	public Date getCommentDate() {
@@ -22,14 +22,15 @@ public class Comment {
 
 	public Comment() {}
 	
-	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, int commentNoRef) {
+	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, String commentNoRef) {
 		this.commentContent = commentContent;
 		this.boardNo = boardNo;
 		this.commentWriter = commentWriter;
 		this.commentLevel = commentLevel;
+		this.commentNoRef=commentNoRef;
 	}
 	
-	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,int commentNoRef
+	public Comment(String commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,String commentNoRef
 				,Date commentDate) {
 		this.commentNo = commentNo;
 		this.commentContent = commentContent;
@@ -48,20 +49,20 @@ public class Comment {
 		this.commentWriter = commentWriter;
 	}
 
-	public int getCommentNoRef() {
+	public String getCommentNoRef() {
 		return commentNoRef;
 	}
 
-	public void setCommentNoRef(int commentNoRef) {
+	public void setCommentNoRef(String commentNoRef) {
 		this.commentNoRef = commentNoRef;
 	}
 
-	public int getCommentNo() {
+	public String getCommentNo() {
 		return commentNo;
 	}
 
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
+	public void setCommentNo(String comme) {
+		this.commentNo = comme;
 	}
 
 	public String getCommentContent() {
@@ -99,7 +100,7 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", commentContent=" + commentContent + ", boardNo=" + boardNo
-				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + "commentNoRef="
+				+ ", commentWriter=" + commentWriter + ", commentLevel=" + commentLevel + ",commentNoRef="
 				+ commentNoRef + "]";
 	}
 	

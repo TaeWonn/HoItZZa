@@ -19,7 +19,7 @@ table td,th{border:1px solid;text-overflow:ellipsis;overflow:hidden;text-align: 
 table th{text-align: center;max-width: 43px;}
 table th#firstTitle{background:#f1ede1;}
 tbody tr:hover{cursor:pointer;background:lightgray;}
-
+div#list-container{position:relative;left:-10px;}
 
 
 

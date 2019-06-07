@@ -123,7 +123,7 @@ public class BuyService {
 		return clist;
 	}
 
-	public int deleteComment(int commentNo) {
+	public int deleteComment(String commentNo) {
 		Connection conn = getConnection();
 		int result = new BuyDAO().deleteComment(conn, commentNo);
 		if(result > 0)

@@ -34,6 +34,7 @@ public class UserFindPwdServlet extends HttpServlet {
 		boolean isUser = new UserService().findUserPwd(u);
 		
 		// 3. view단 처리
+
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "";
@@ -41,6 +42,7 @@ public class UserFindPwdServlet extends HttpServlet {
 		if(!isUser) {
 			msg = "일치하는 회원 정보가 존재하지 않습니다.";
 			loc = "/views/user/findId_pwd";
+			view = "/WEB-INF/views/common/msg.jsp";
 		}
 		else {
 			msg = "비밀번호를 새로 설정해주세요.";

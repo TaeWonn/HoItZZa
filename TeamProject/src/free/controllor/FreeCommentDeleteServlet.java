@@ -1,4 +1,4 @@
-package user.controllor;
+package free.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,25 +7,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.model.service.UserService;
-import user.model.vo.User;
+import free.model.service.FreeService;
+import sell.model.service.SellService;
 
 /**
- * Servlet implementation class UserUpdatePassword
+ * Servlet implementation class FreeCommentDeleteServlet
  */
-@WebServlet("/views/user/updatePwd")
-public class UserUpdatePassword extends HttpServlet {
+@WebServlet("/free/freeCommentDelete")
+public class FreeCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String userId = request.getParameter("userId");
-		System.out.println("userId@servlet="+userId);
-		request.setAttribute("userId", userId);
-		request.getRequestDispatcher("/WEB-INF/views/user/updatePwd.jsp").forward(request, response);
+		String boardNo = request.getParameter("boardNo");
+		String commentNo =request.getParameter("commentNo");
+		
+		int result = new FreeService().deleteComment(commentNo);
+		
+		String msg = "";
+		String loc = "/free/freeView?boardNo="+boardNo;
+		if(result > 0) {
+			msg = "댓글 수정완료";
+		} else {
+			msg = "댓글 삭제 실패";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
+			.forward(request, response);
 	}
 
 	/**

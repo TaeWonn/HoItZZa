@@ -1,4 +1,4 @@
-package sell.controllor;
+package free.controllor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sell.model.service.SellService;
+import comment.model.vo.Comment;
+import free.model.service.FreeService;
 
 /**
- * Servlet implementation class SellCommentDeleteServlet
+ * Servlet implementation class SenseCommentServlet
  */
-@WebServlet("/sell/sellCommentDelete")
-public class SellCommentDeleteServlet extends HttpServlet {
+@WebServlet("/free/senseComment")
+public class SenseCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,22 +22,28 @@ public class SellCommentDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		String commentNo = request.getParameter("commentNo");
+		String commentWriter = request.getParameter("commentWriter");
+		String commentContent = request.getParameter("commentContent");
+		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
+		String commentNoRef = request.getParameter("commentNoRef");
 		
-		int result = new SellService().deleteComment(commentNo);
 		
-		String msg = "";
-		String loc = "/sell/sellView?boardNo="+boardNo;
+		Comment c = new Comment(commentContent, boardNo, commentWriter, commentLevel, commentNoRef);
+		System.out.println(c);
+		
+		int result = new FreeService().insertSenseComment(c);
+		
+		
+		String msg = null;
 		if(result > 0) {
-			msg = "댓글 수정완료";
-		} else {
-			msg = "댓글 삭제 실패";
+		}else {
+			msg = "댓글 오류 발생";
 		}
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
+		request.setAttribute("loc", "/free/freeView?boardNo="+boardNo);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-			.forward(request, response);
+				.forward(request, response);
 	}
 
 	/**

@@ -9,7 +9,7 @@
 
 
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
-	 method="post" enctype="multipart/form-data" onsubmit="return textContent();">
+	 method="post" enctype="multipart/form-data" >
 		<div id="freeBoard">
 			<h3 style="text-align: center;margin:0 auto;">자유게시판  작성</h3>
 				<br>
@@ -38,13 +38,13 @@
 	        </div><br>
         
         <div class="filebox">			
-			<input type="file" multiple id="ex_img" onchange="loadImg(this);">			 
+			<input type="file" multiple id="ex_img" onchange="loadImg(this);" name="imgFile[]">			 
 		   <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   <input type="file" multiple id="ex_filename" class="upload-hidden" >
+		   <input type="file"  id="ex_filename" class="upload-hidden" >
 		    
 		  <input class="upload-name" value="파일명" disabled="disabled" >
 		  <label for="ex_filename">파일 업로드</label>
-		  <input type="file" multiple="multiple" id="ex_filename" class="upload-hidden" name="" >
+		  <input type="file"  id="ex_filename" class="upload-hidden" name="upFile[]" >
 		</div>
           
                 <div id="buttons">
@@ -66,8 +66,8 @@ function validate(){
 	}
 
 	//내용
-	var boardContent = $("[name=boardContent]").val();
-	if(boardContent.trim().length == 0){
+	var boardContent = document.getElementById('boardContent').textContent.trim();
+	if(boardContent.length == 0){
 		alert("내용을 입력하세요.");
 		return false;
 	}
@@ -76,22 +76,42 @@ function validate(){
 	return true;
 }
 
-function textContent(){
-	var content=$('#boardContent').textContent;
-	var bool;
-	$('#boardContent').val(content);
-	if(content.length==0){
-		alert('내용을 입력해주세요.');
-		bool=false;
-	}else{
-		bool=true;	
-	}
-	return bool;
-}
-
+var sel_file=[];
 function loadImg(f){
-	console.log(f.files);//FileList
-	console.log(f.files[0]);//File 실제 업로드한 파일
+	console.log($('#ex_img').val());
+	console.log($('#ex_filename').val());
+	var files=Array.prototype.slice.call(f.files);
+	
+	files.forEach(function(f){
+		sel_file.push(f);
+		var reader = new FileReader();
+		reader.onload = function(e){
+			//result속성에는 파일컨텐츠 담겨있음.
+		 	$("#img-viewer").append('<img src="'+reader.result+'" alt="" />').css('width','300px')
+							.css('max-height','300px')
+							.css('max-width','500px')
+							.css('height','300px')
+							.css('position','relative')
+							.css('left','10px')
+							.css('top','6px');
+		}
+		reader.readAsDataURL(f);
+		
+		
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* console.log(f.files[0]);//File 실제 업로드한 파일
 	for(var i=0;i<f.files.length;i++){
 			
 		var reader = new FileReader();
@@ -103,7 +123,7 @@ function loadImg(f){
 			console.log(reader);
 			//result속성에는 파일컨텐츠 담겨있음.
 			/* $("#img-viewer").append(attr("src", reader.result).css('width','300px') */
-			$("#img-viewer").append('<img src="'+reader.result+'" alt="" />').css('width','300px')
+		/* 	$("#img-viewer").append('<img src="'+reader.result+'" alt="" />').css('width','300px')
 							.css('max-height','300px')
 							.css('max-width','500px')
 							.css('height','300px')
@@ -113,7 +133,7 @@ function loadImg(f){
 			console.log(f.files[i]);
 			console.log('어펜드');
 		}
-	 }  
+	 }   */
 }
  
 
@@ -122,16 +142,17 @@ function loadImg(f){
 var fileTarget = $('.filebox .upload-hidden');
 
 fileTarget.on('change', function(){ // 값이 변경되면
-	for(var i=0;i<document.getElementById('ex_filename').files.length;i++){
-		console.log('파일 : '+document.getElementById('ex_filename').files[i].name);
-	}
+	var files=document.getElementById('ex_filename');
 	var maxPostSize = 1024 * 1024 * 30;
-	var fileSize=document.getElementById('ex_filename').files[0].size;
-	if(fileSize>maxPostSize){
-		alert('파일 크기는 '+(maxPostSize/1024/1024)+"MB를 넘길 수 없습니다.");
-		fileTarget.val('');
-		return;
+	for(var i=0;i<files.files.length;i++){
+		var fileSize=document.getElementById('ex_filename').files[0].size;
+		if(fileSize>maxPostSize){
+			alert('파일 크기는 '+(maxPostSize/1024/1024)+"MB를 넘길 수 없습니다.");
+			fileTarget.val('');
+			return;
+		}
 	}
+	
   if(window.FileReader){ // modern browser
     var filename = $(this)[0].files[0].name;
   }
