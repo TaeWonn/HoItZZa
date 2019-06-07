@@ -15,6 +15,7 @@ List<Free> senseList=(List<Free>)request.getAttribute("senseList");
 List<Free> nanumList=(List<Free>)request.getAttribute("nanumList");
 String stop=(String)request.getAttribute("stop");
 
+
 %>
   
 <article id="article">
@@ -102,7 +103,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(nanumList!=null){for(int i=0;i<nanumList.size();i++){%>
-		<tr onclick="boardView('<%=nanumList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=nanumList.get(i).getBoardNo()%>','/free/freeView?boardNo=');">
 			<td class="board_no"><nobr><%= nanumList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= nanumList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= nanumList.get(i).getBoardReadCounter()%></nobr></td>
@@ -130,7 +131,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(sudaList!=null){for(int i=0;i<sudaList.size();i++){%>
-		<tr onclick="boardView('<%=sudaList.get(i).getBoardNo()%>',);">
+		<tr onclick="boardView('<%=sudaList.get(i).getBoardNo()%>','/free/freeView?boardNo=');">
 			<td class="board_no"><nobr><%= sudaList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= sudaList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= sudaList.get(i).getBoardReadCounter()%></nobr></td>
@@ -159,7 +160,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 		 <%if(senseList!=null){for(int i=0;i<senseList.size();i++){%>
-		<tr onclick="boardView('<%=senseList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=senseList.get(i).getBoardNo()%>','/free/freeView?boardNo=');">
 			<td class="board_no"><nobr><%= senseList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= senseList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= senseList.get(i).getBoardReadCounter()%></nobr></td>
@@ -188,7 +189,7 @@ String stop=(String)request.getAttribute("stop");
 		</thead>
 		<tbody>
 	 	<%if(mediaList!=null){for(int i=0;i<mediaList.size();i++){%>
-		<tr onclick="boardView('<%=mediaList.get(i).getBoardNo()%>');">
+		<tr onclick="boardView('<%=mediaList.get(i).getBoardNo()%>','/free/freeView?boardNo=');">
 			<td class="board_no"><nobr><%= mediaList.get(i).getBoardNo()%></nobr></td>
 			<td><nobr><%= mediaList.get(i).getBoardTitle()%></nobr></td>
 			<td class="viewer"><nobr><%= mediaList.get(i).getBoardReadCounter()%></nobr></td>
