@@ -147,7 +147,6 @@ background-color: rgb(230, 234, 236)}
 			<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />  
 			<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />
 			<input type="hidden" name="commentLevel" value="1" />
-			<input type="hidden" name="commentNoRef" value="0" />
 		
 		</form>
 	</div>

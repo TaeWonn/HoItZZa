@@ -40,7 +40,7 @@ div#weather #wSpan2{display:inline-block ;font-size: 25px;position:relative;bott
 
 
 div#weather-day{margin-bottom: 15px;}
-a{ text-decoration:none !important;font-size: 15px;}
+a{ text-decoration:none !important;font-size: 15px;color:black !important;}
 .ad{margin-top:6px; margin-top:10px;text-align: center; border: 1px solid;max-height: 300px;}
 .ad img{width:99%;height: 182px;border-radius: 50%;}
 
@@ -54,7 +54,6 @@ div#weather span{font-family: 'Sunflower', sans-serif; font-size: 20px; }
 section#content{min-height:745px;}
 
 input#saveId{width:18px;height: 18px;position:relative;top:5px;}
-a{color:black;}
 
 span#pullPoint:hover{background: rgba(166,245,255,0.5);color: black;}
 span#changePoint:hover{background: rgba(166,245,255,0.5);color: black;}

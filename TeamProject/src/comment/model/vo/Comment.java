@@ -9,7 +9,7 @@ public class Comment {
 	private String boardNo;
 	private String commentWriter;
 	private int commentLevel;
-	private int commentNoRef;
+	private String commentNoRef;
 	private Date commentDate;
 	
 	public Date getCommentDate() {
@@ -22,14 +22,14 @@ public class Comment {
 
 	public Comment() {}
 	
-	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, int commentNoRef) {
+	public Comment(String commentContent, String boardNo, String commentWriter,int commentLevel, String commentNoRef2) {
 		this.commentContent = commentContent;
 		this.boardNo = boardNo;
 		this.commentWriter = commentWriter;
 		this.commentLevel = commentLevel;
 	}
 	
-	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,int commentNoRef
+	public Comment(int commentNo, String commentContent, String boardNo, String commentWriter, int commentLevel,String commentNoRef
 				,Date commentDate) {
 		this.commentNo = commentNo;
 		this.commentContent = commentContent;
@@ -48,11 +48,11 @@ public class Comment {
 		this.commentWriter = commentWriter;
 	}
 
-	public int getCommentNoRef() {
+	public String getCommentNoRef() {
 		return commentNoRef;
 	}
 
-	public void setCommentNoRef(int commentNoRef) {
+	public void setCommentNoRef(String commentNoRef) {
 		this.commentNoRef = commentNoRef;
 	}
 

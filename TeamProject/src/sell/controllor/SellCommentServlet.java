@@ -26,11 +26,11 @@ public class SellCommentServlet extends HttpServlet {
 		String commentWriter = request.getParameter("commentWriter");
 		String commentContent = request.getParameter("commentContent");
 		int commentLevel = Integer.parseInt(request.getParameter("commentLevel"));
-		int commentNoRef = Integer.parseInt(request.getParameter("commentNoRef"));
+		String commentNoRef = request.getParameter("commentNoRef");
 		
 		//////////////////////////////////쿼리 확인바람
 		
-		System.out.println(boardNo);
+		System.out.println("보드넘버"+boardNo);
 		System.out.println(commentWriter);
 		System.out.println(commentContent);
 		System.out.println(commentLevel);

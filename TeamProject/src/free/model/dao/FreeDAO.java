@@ -244,7 +244,7 @@ public class FreeDAO {
 				c.setCommentContent(rs.getString("comment_content"));//컬럼명이 잘못되어 있어서 수정
 				c.setCommnetWriter(rs.getString("comment_writer"));
 				c.setCommentDate(rs.getDate("comment_date"));
-				c.setCommentNoRef(rs.getInt("comment_no_ref"));
+				c.setCommentNoRef(rs.getString("comment_no_ref"));
 				c.setBoardNo(boardNo);
 				
 				clist.add(c);

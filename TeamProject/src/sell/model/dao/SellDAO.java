@@ -291,7 +291,7 @@ public class SellDAO {
 			ps.setString(2, c.getCommentContent());
 			ps.setString(3, c.getCommnetWriter());
 			ps.setInt(4, c.getCommentLevel());
-			ps.setInt(5, c.getCommentNoRef());
+			ps.setString(5, c.getCommentNoRef());
 			
 			result = ps.executeUpdate();
 		} catch (Exception e) {
@@ -381,7 +381,7 @@ public class SellDAO {
 				c.setCommentContent(rs.getString("comment_content"));//컬럼명이 잘못되어 있어서 수정
 				c.setCommnetWriter(rs.getString("comment_writer"));
 				c.setCommentDate(rs.getDate("comment_date"));
-				c.setCommentNoRef(rs.getInt("comment_no_ref"));
+				c.setCommentNoRef(rs.getString("comment_no_ref"));
 				c.setBoardNo(boardNo);
 				
 				clist.add(c);
