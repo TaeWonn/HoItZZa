@@ -16,12 +16,12 @@
 				<tr>
 					<th>변경 할 비밀번호</th>
 					<td><input type="password" id="changePwd" name="changePwd"
-						onkeyup="check();" /> <input type="hidden" name="findUserPwd_Id"
+						onkeyup="check();" placeholder="특수,영문,숫자 4~15자리"/> <input type="hidden" name="findUserPwd_Id"
 						value="<%=userA%>" /></td>
 				</tr>
 				<tr>
 					<th>비밀번호 확인</th>
-					<td><input type="password" id="changePwd2" /></td>
+					<td><input type="password" id="changePwd2" placeholder="비밀번호 재입력"/></td>
 				</tr>
 				<tr>
 					<th></th>

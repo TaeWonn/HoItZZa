@@ -27,7 +27,7 @@
 					<tr>
 						<th>비밀번호</th>
 						<td><input maxlength="15" minlength="4" type="password"
-							name="userPwd" id="userPwd" placeholder="특수문자 포함 4~15자리" required="required" ></td>
+							name="userPwd" id="userPwd" placeholder="특수,영문,숫자 4~15자리" required="required" ></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
