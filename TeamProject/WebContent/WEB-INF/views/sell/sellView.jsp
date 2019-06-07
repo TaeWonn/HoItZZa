@@ -262,52 +262,10 @@ function reply(sender,recipient){
 
 	
 }
-<<<<<<< HEAD
 function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }
 
-=======
-$(function() {
-	 //대댓글입력
-    $(".btn-reply").click(function(){
-        /* 로그인여부확인 */
-        <% if(userLoggedIn == null){ %>
-            loginAlert();
-        <% } else {%>
-            var tr = $("<tr></tr>");
-            var html = '<td style="display:none; text-align:left;" colspan="2">';
-            html += '<form action="<%=request.getContextPath()%>/sell/sellComment" method="post">';
-            html += '<textarea name="commentContent" cols="60" rows="3"></textarea>';
-            html += '<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />';
-            html += '<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />';
-            html += '<input type="hidden" name="commentLevel" value="2" />';
-            html += '<input type="hidden" name="commentNoRef" value="'+$(this).val()+'" />';
-            html += '<button type="submit" class="btn-insert2">등록</button>';      
-            html += '</form></td>';
-            
-            tr.html(html);
-            tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
-        
-            //답글버튼을 연속적으로 누르지 않도록 핸들러제거
-            $(this).off('click');
-            
-            //새로생성한 요소에 대해 submit이벤트 핸들러 작성
-            tr.find("form").submit(function(e){
-                //댓글 textarea 유효성검사
-                var content = $(this).children("textarea").val().trim();
-                if(content.length == 0){
-                    e.preventDefault();
-                }
-            });
-        <% } %>
-    });
-});
-	function loginAlert(){
-	    alert("로그인 후 이용할 수 있습니다.");
-	    $("#header_userId").focus();
-	}
->>>>>>> refs/remotes/origin/SeUh
 function deleteBoard(){
 	if(!confirm("정말 삭제하시겠습니까?")) return;
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
