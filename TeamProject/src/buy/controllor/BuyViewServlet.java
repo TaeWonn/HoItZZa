@@ -73,7 +73,7 @@ public class BuyViewServlet extends HttpServlet {
 			
 			//쿠키생성
 			Cookie boardCookie = new Cookie("boardCookie", boardCookieVal+"|"+boardNo+"|");
-			boardCookie.setPath(request.getContextPath()+"/board/boardView");
+			boardCookie.setPath(request.getContextPath()+"/buy/buyView");
 //			boardCookie.setMaxAge();//생략시 영속하게됨.
 			
 			//응답객체 cookie 전송

@@ -134,11 +134,8 @@ public class SellDAO {
 				s.setBoardDeal(rs.getString("board_deal"));
 				s.setBoardDate(rs.getDate("board_date"));
 				s.setBoardCodeNo(rs.getString("board_code_No"));
-				
-				/////////////////////////////////////////////////////
-				
 				s.setBoardNo(rs.getString("board_no"));
-				//////////////////////////////////////////////
+				s.setBoardReadCounter(rs.getInt("board_read_count"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

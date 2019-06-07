@@ -136,6 +136,7 @@ public class BuyDAO {
 				b.setBoardDeal(rs.getString("board_deal"));
 				b.setBoardWriter(rs.getString("board_writer"));
 				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardReadCounter(rs.getInt("board_read_count"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -24,6 +24,9 @@ public class OpinionViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
 		
+		
+		
+		
 		Opinion o = new OpinionService().selectOneBoard(boardNo);
 		
 		if(o ==null) {
