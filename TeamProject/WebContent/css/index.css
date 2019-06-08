@@ -7,7 +7,7 @@ table#buyList{position:absolute;left: 324px;width:300px;table-layout:fixed;}
 span.title{font-size: 30px;}
 
 div#board1{height: 350px;position:relative;}
-div#board2{height: 400px;position:relative;top:26px;}
+div#board2{height: 400px;position:relative;top:20px;}
 
 table#jayuList1{position:absolute;width:300px;table-layout:fixed;}
 table#jayuList2{position:absolute;width:300px;left: 324px;table-layout:fixed;}

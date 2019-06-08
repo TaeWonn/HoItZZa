@@ -99,11 +99,11 @@ border-radius: 3px;
 
 	<br>
 	<H3 style="text-align: center;">판매게시판</H3>
-<%if(userLoggedIn != null){ %> 
-		<input type="button" value="글쓰기" 
-			   id="btn-add"
-			   onclick="location.href='<%=request.getContextPath()%>/sell/sellWrite'"/>
-	 <% } %> 
+	<%if(userLoggedIn != null){ %> 
+			<input type="button" value="글쓰기" 
+				   id="btn-add"
+				   onclick="location.href='<%=request.getContextPath()%>/sell/sellWrite'"/>
+	<% } %> 
 
     <table class="table">
         <thead class="thead-light">
@@ -146,7 +146,6 @@ border-radius: 3px;
   <input type="submit" value="검색">
 </div>
 </article>
-</html>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

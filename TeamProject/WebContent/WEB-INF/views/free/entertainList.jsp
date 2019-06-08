@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/freeboard/freeList.css" />
 
 	<h2>연예/미디어 게시판</h2>
+	<%if(userLoggedIn != null){ %>
+	<input type="button" value="글쓰기" id="btn-add"
+		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
+	<% } %>
 	<table class="table" id="freeTable">
 	<colgroup>
 	<col width="55px;"/>
@@ -50,8 +54,5 @@
 	<div id="pageBar">
 		<%=pageBar %>
 	</div>
-	<%if(userLoggedIn != null){ %>
-	<input type="button" value="글쓰기" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
-	<% } %>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

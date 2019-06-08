@@ -169,15 +169,12 @@
          <div id="weather-day">
          </div>
          <div id="ad1" class="ad">
-            <a href=""> <img
-               src="<%=request.getContextPath()%>/images/강사님.PNG" alt="" /> <span>지식을 
-                  원하는자</span> <br /> <span>나에게 오라</span>
+            <a href="https://audioclip.naver.com/channels/2212"> <img src="https://ssl.pstatic.net/tveta/libs/1222/1222741/4700e66469135fe571c9_20190522110854287.jpg" alt="" /> 
             </a>
          </div>
          <div id="ad2" class="ad">
-            <a href=""> <img
-               src="<%=request.getContextPath()%>/images/강사님.PNG" alt="" /> <span>공부를
-                  원하는자</span> <br /> <span>나에게 질문하라</span>
+            <a href="http://mhorigin.noblegames.kr/simplejoin/"> <img
+               src="https://ssl.pstatic.net/tveta/libs/1242/1242071/2c71934b68f1550955f4_20190607145802832.jpg" alt="" />
             </a>
          </div>
       </section>

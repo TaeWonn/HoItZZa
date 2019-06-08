@@ -5,7 +5,6 @@
 <%
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
-	System.out.println("널이 어딘가"+commentList);
 	
 	String title="";
 	String link="";
