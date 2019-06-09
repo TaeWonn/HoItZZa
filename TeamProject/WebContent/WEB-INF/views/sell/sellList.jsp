@@ -8,7 +8,7 @@
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" />    
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm2.css" />    
 	<link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
@@ -134,18 +134,37 @@ border-radius: 3px;
 		<%=pageBar %>
 	</div>
 	
-	 
-	 	<div class="input-group">
-	<select>
-	<option value="boardTitle" selected>제목</option>
-	<option value="boardWriter">작성자</option>
-	<option value="boardContant">내용</option>
-	<option value="boardCodeName">카테고리</option>
+	<div class="input-group">
+	<select id="search_category">
+	<option value="board_Title" selected>제목</option>
+	<option value="board_Writer">작성자</option>
+	<option value="board_Content">내용</option>
+	<option value="board_CodeName">카테고리</option>
 	</select>
-  <input class="form-control" placeholder="검색어를 입력하세요" />
-  <input type="submit" value="검색">
+  <input class="form-control" placeholder="검색어를 입력하세요" id="search_key"/>
+  <input type="button" value="검색" onclick="search_category();">
 </div>
 </article>
 
+<script>
+
+
+
+//카테고리를 보내준다
+	function search_category() {
+	
+		//내용
+		var boardContent = $("#search_key").val();
+		if(boardContent.trim().length == 0){
+			alert("검색어 입력하세요.");
+			return false;
+		}
+	
+		var search_category = $("#search_category option:selected").val();
+		var search_key = $("#search_key").val();
+		location.href = "<%=request.getContextPath()%>/sell/sellList?search_category="+search_category+"&search_key="+search_key;
+	}
+
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
