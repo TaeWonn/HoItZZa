@@ -1,6 +1,7 @@
 package point.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import point.model.service.PointService;
 import point.model.vo.Point;
+import user.model.service.UserService;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class PointChargeEndServlet
@@ -38,14 +41,14 @@ public class PointChargeEndServlet extends HttpServlet {
       // 3. view단 처리
       String view = "/WEB-INF/views/common/msg.jsp";
       String msg = "";
-      String loc = "";
+      String loc = "/views/point/pointCharge?userId="+chargeWriter;
       if(result>0) {
-         msg = chargeMoney + "포인트를 충전했습니다!다시 로그인해 주세요!";
-         loc = "/views/user/userLogout";
+         msg = chargeMoney + "포인트를 충전했습니다!";
+         User userLoggedIn = new UserService().selectOne(chargeWriter);
+         request.getSession().setAttribute("userLoggedIn", userLoggedIn);
       }
       else {
          msg = "포인트 충전에 실패했습니다.";
-         loc = "/views/point/pointCharge?userId="+chargeWriter;
       }
       
       request.setAttribute("msg", msg);
