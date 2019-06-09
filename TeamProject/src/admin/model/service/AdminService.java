@@ -160,6 +160,13 @@ public class AdminService {
 		return result;
 	}
 
+	public String selectWarningReason(String userId) {
+		Connection conn=getConnection();
+		String result=new AdminDAO().selectBlackUserReason(conn,userId);
+		close(conn);
+		return result;
+	}
+
 
 	
 }

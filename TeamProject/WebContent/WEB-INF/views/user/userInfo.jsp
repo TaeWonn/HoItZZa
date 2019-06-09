@@ -8,12 +8,12 @@
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
 	User u=(User)request.getAttribute("user");
-	System.out.println(u);
   	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestBoardList");
 	List<Board> interest1BoardList=(List<Board>)request.getAttribute("firstInterestList");
 	List<Board> interest2BoardList=(List<Board>)request.getAttribute("secondInterestList");
 	List<Board> interest3BoardList=(List<Board>)request.getAttribute("thirdInterestList"); 
 	String[] interestArr=userLoggedIn.getInterest();
+	String reason=(String)request.getAttribute("reason");
  
 	String[] addrArr = u.getAddr().split(",");
 %>
@@ -99,7 +99,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
 			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=u.getUserId()%>,<%=u.getSsn()%>,<%=u.getName()%>');" />
 			<%if(userLoggedIn.getUserId().equals("admin")){ %>
-			<input type="button" value="블랙리스트 " class="btnGroup" onclick="blackUser('<%=u.getUserId()%>');" />			
+			<input type="button" value="블랙리스트 " class="btnGroup" onclick="blackUser('<%=u.getUserId()%>','<%=reason %>);" />			
 			<%} %>
 			</td>
 		</tr>
@@ -227,10 +227,10 @@ function deleteUser(userId){
 //주소창에 파라미터 값 숨기기
 history.replaceState({}, null, location.pathname);
 
-function blackUser(userId){
+function blackUser(userId,reason){
 	var bool=confirm('경고횟수가 3회 이상인것을 확인 하셨습니까?');
 	if(bool){
-	location.href="<%=request.getContextPath()%>/admin/insertBlackList?userId="+userId;
+	location.href="<%=request.getContextPath()%>/admin/insertBlackList?userId="+userId+"&reason="+reason;
 	}else{
 		return;
 	}

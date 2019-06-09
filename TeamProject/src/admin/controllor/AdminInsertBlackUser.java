@@ -24,6 +24,7 @@ public class AdminInsertBlackUser extends HttpServlet {
 		String reason=new AdminService().selectBlackUserReason(userId);
 		
 		int result=new AdminService().insertBlackUser(userId,reason);
+		
 		String msg="";
 		String loc="/admin/adminList";
 		String view="/WEB-INF/views/common/msg.jsp";

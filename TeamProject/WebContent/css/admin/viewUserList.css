@@ -2,7 +2,7 @@ s@charset "UTF-8";
 
 article{height: 743px;width:652px;position:relative;left:171px;}
 div#dUserList{text-align:center; ;position:relative;top:8px;width: 650px;left:160px;}
-div#pageBar{position: absolute;top:758px;width:75%;text-align: center;}
+div#pageBar{position: absolute;top:876px;width:67%;text-align: center;}
 table#userList{top:43px; left:13px;border: 1px solid;border-collapse: collapse;position:absolute;}
 table#userList th,td{border:1px solid; padding:6px;text-align: center;text-overflow:ellipsis;overflow: hidden;}
 table#userList th{min-width: 55px;height: 30px;background: lightgray;}
@@ -12,7 +12,7 @@ table#userList #userId{max-width: 145px;}
 
 table#userList tr:hover{cursor: pointer;background: lightseagreen;}
 
-div#search-container{position:relative;    top: 547px;width: 100%;left: 140px;}
+div#search-container{position:relative; top: 645px;width: 100%;left: 115px;}
 div#search-container input[type=search]{width:220px;}
 div#search-container input[type=button]{width:50px;}
 div#search-container input[type=radio]{width:30px;}

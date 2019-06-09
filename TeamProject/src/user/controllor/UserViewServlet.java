@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.model.service.AdminService;
 import board.model.vo.Board;
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
@@ -121,8 +122,16 @@ public class UserViewServlet extends HttpServlet {
 			if(addrArr.length > 2) {
 				msg += "</br> 주소 정보에 오류가 있습니다.";
 			} 
-			System.out.println("서블릿"+u);
+			
+			//경고받았던 사유(경고코드)받아오기
+			String reason=new AdminService().selectWarningReason(userId);
+			System.out.println("유저 경고 정보"+reason);
+			
+			
+			
+			
 			request.setAttribute("user", u);
+			request.setAttribute("reason", reason);
 			request.setAttribute("pageBar", pageBar);
 //			request.setAttribute("interestBoardList", list);
 //			request.setAttribute("firstInterestList", interestCategoryList1);
