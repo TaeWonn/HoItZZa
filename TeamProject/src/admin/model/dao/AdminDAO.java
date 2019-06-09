@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import board.model.vo.Board;
 
 import static common.JDBCTemplate.*;
 import user.model.vo.User;
@@ -304,6 +307,256 @@ public class AdminDAO {
 		}
 		return result;
 	}
+
+	public List<Board> selectSuggestionBoardList(Connection conn) {
+		List<Board>list=new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectSuggestionBoardList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Board b=new Board();
+				b.setBoardNo(rset.getString("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardContent(rset.getString("board_content"));
+				b.setBoardWriter(rset.getString("board_writer"));
+				b.setBoardDate(rset.getDate("board_date"));
+				b.setBoardReadCounter(rset.getInt("board_read_count"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
+		return list;
+	}
+
+	public List<Board> selectReportBoardList(Connection conn) {
+		List<Board>list=new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectReportBoardList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Board b=new Board();
+				b.setBoardNo(rset.getString("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardContent(rset.getString("board_content"));
+				b.setBoardWriter(rset.getString("board_writer"));
+				b.setBoardDate(rset.getDate("board_date"));
+				b.setBoardReadCounter(rset.getInt("board_read_count"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
+		return list;
+	}
+
+	public int warningCount(Connection conn, String userId) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("warningCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				result=rset.getInt("cnt");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(userId+"유저의 경고 횟수: "+result);
+		return result;
+	}
+
+	public int warningUserCodeD_A(String userId, String[] reasonArr, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("warningUserCodeD_A");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reasonArr[0]);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, reasonArr[1]);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int warningUserCodeD_S(String userId, String[] reasonArr, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("warningUserCodeD_S");
+		System.out.println(sql);
+		System.out.println(reasonArr[0]);
+		System.out.println(reasonArr[1]);
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reasonArr[0]);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, reasonArr[1]);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int warningUserCodeD_M(String userId, String[] reasonArr, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("warningUserCodeD_M");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reasonArr[0]);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, reasonArr[1]);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int warningUserCodeD_P(String userId, String[] reasonArr, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("warningUserCodeD_P");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reasonArr[0]);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, reasonArr[1]);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int warningUserCodeD_R(String userId, String[] reasonArr, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("warningUserCodeD_R");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reasonArr[0]);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, reasonArr[1]);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String selectBlackUserReason(Connection conn, String userId) {
+		String result="";
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBlackUserReason");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				if(rset.next()) {
+				result+=rset.getString("code")+",";
+				}else {
+					result+=rset.getString("code");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("코드"+result);
+		return result;
+	}
+
+	public int insertBlackUser(String userId, String reason, Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertBlackUser");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, reason);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 
 	

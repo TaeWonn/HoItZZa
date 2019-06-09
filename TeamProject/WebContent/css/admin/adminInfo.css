@@ -22,9 +22,9 @@ table#userInfoTable input{width:230px;}
 /*건의/신고게시판 리스트*/
 
 div#suggestionBoard p{position:absolute;left:0px;top:5px;font-size: 20px;font-weight: bold;}
-div#suggestionBoard table{margin-top:40px;padding:0px;border:1px solid; border-collapse: collapse; table-layout:fixed;max-width:250px;}
+div#suggestionBoard table{margin-top:40px;padding:0px;border:1px solid; border-collapse: collapse; table-layout:fixed;max-width:100%;}
 div#suggestionBoard table th{width:60px;border:1px solid;text-align: center;background: lightgray;}
-div#suggestionBoard table td{max-width:103px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
+div#suggestionBoard table td{max-width:123px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 div#suggestionBoard table th,td{overflow:hidden;}
 div#suggestionBoard tr{max-height: 10px; overflow: hidden;}
 div#suggestionBoard {top:250px;}
@@ -35,8 +35,8 @@ div#suggestionBoard {top:250px;}
 div#reportBoard{left:66px;top:250px;}
 div#reportBoard p{position: absolute;font-size: 20px;font-weight: bold;top:4px;}
 div#reportBoard table{margin-top:40px;padding:0px;border:1px solid; border-collapse: collapse; table-layout:fixed;max-width: 100%;}
-div#reportBoard table th{width:60px;border:1px solid;text-align: center;background: lightgray;}
-div#reportBoard table td{max-width:103px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
+div#reportBoard table th{width:80px;border:1px solid;text-align: center;background: lightgray;}
+div#reportBoard table td{max-width:123px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 div#reportBoard table th,td{overflow:hidden;}
 div#reportBoard tr{max-height: 10px; overflow: hidden;}
 

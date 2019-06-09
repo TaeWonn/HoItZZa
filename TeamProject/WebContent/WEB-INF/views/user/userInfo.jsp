@@ -8,14 +8,14 @@
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
 	User u=(User)request.getAttribute("user");
-	System.out.println(u);
-  	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestList");
-	List<Board> interest1BoardList=(List<Board>)request.getAttribute("interestCategoryList1");
-	List<Board> interest2BoardList=(List<Board>)request.getAttribute("interestCategoryList2");
-	List<Board> interest3BoardList=(List<Board>)request.getAttribute("interestCategoryList3"); 
+  	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestBoardList");
+	List<Board> interest1BoardList=(List<Board>)request.getAttribute("firstInterestList");
+	List<Board> interest2BoardList=(List<Board>)request.getAttribute("secondInterestList");
+	List<Board> interest3BoardList=(List<Board>)request.getAttribute("thirdInterestList"); 
 	String[] interestArr=userLoggedIn.getInterest();
+	String reason=(String)request.getAttribute("reason");
  
-	String[] addrArr = userLoggedIn.getAddr().split(",");
+	String[] addrArr = u.getAddr().split(",");
 %>
 <style>
 table#interestSellBoard2{position:absolute;width:308px;padding:0px;border:1px solid; border-collapse: collapse;
@@ -32,7 +32,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 <article>
 
 <div id="viewMain">
-	<span id="h1"><%=userLoggedIn.getUserId()%>님의 개인 페이지</span>
+	<span id="h1"><%=u.getUserId()%>님의 개인 페이지</span>
 </div>
 
 <div id="infoList">
@@ -41,19 +41,19 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 	
 		<tr>
 			<th>이름</th>
-			<td><input type="text" value="<%=userLoggedIn.getName() %>" name="userName" readonly /></td>
+			<td><input type="text" value="<%=u.getName() %>" name="userName" readonly /></td>
 		</tr>
 		<tr>
 			<th>포인트</th>
-			<td><input type="text" value="<%=userLoggedIn.getPoint()%>" readonly /></td>
+			<td><input type="text" value="<%=u.getPoint()%>" readonly /></td>
 		</tr>
 		<tr>
 			<th>연락처</th>
-			<td><input type="text" value="<%=userLoggedIn.getPhone() %>" name="phone" /></td>
+			<td><input type="text" value="<%=u.getPhone() %>" name="phone" /></td>
 		</tr>
 		<tr>
 			<th>비밀번호</th> 
-			<td><input type="button" value="변경하기" class="btn" onclick="return changeUserPwd('<%=userLoggedIn.getUserId()%>','<%=userLoggedIn.getName() %>','<%=userLoggedIn.getSsn() %>');"  /></td>
+			<td><input type="button" value="변경하기" class="btn" onclick="return changeUserPwd('<%=u.getUserId()%>','<%=u.getName() %>','<%=u.getSsn() %>');"  /></td>
 		</tr>
 		<tr>
 			<th>주소</th>
@@ -97,7 +97,10 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=userLoggedIn.getUserId()%>,<%=userLoggedIn.getSsn()%>,<%=userLoggedIn.getName()%>');" />
+			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=u.getUserId()%>,<%=u.getSsn()%>,<%=u.getName()%>');" />
+			<%if(userLoggedIn.getUserId().equals("admin")){ %>
+			<input type="button" value="블랙리스트 " class="btnGroup" onclick="blackUser('<%=u.getUserId()%>','<%=reason %>);" />			
+			<%} %>
 			</td>
 		</tr>
 	</table>
@@ -114,12 +117,12 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<th><nobr>작성자</nobr></th>
 		<th><nobr>조회수</nobr></th>
 	</tr>
-		<% for(int i=1;i<=14;i++){%>
+		<% for(int i=1;i<=interestBBoardList.size();i++){%>
 		<tr>
-			<td><nobr><%-- <%=b.getBoardNo() %> --%> <%=i %></nobr></td>
-			<td><nobr><%-- <%=b.getBoardTitle() %> --%><%= i<7? (i+"번가방 팝니다!"):(i+"번가방 삽니다!") %></nobr></td>
-			<td><nobr><%-- <%=b.getBoardWriter() %> --%><%=i %>번째작성</nobr></td>
-			<td><nobr><%-- <%=b.getBoardReadCounter()%> --%><%=i %></nobr></td>
+			<td><nobr> <%=interestBBoardList.get(i).getBoardNo() %> </nobr></td>
+			<td><nobr> <%=interestBBoardList.get(i).getBoardTitle() %> </nobr></td>
+			<td><nobr><%=interestBBoardList.get(i).getBoardWriter() %> </nobr></td>
+			<td><nobr> <%=interestBBoardList.get(i).getBoardReadCounter()%> </nobr></td>
 		</tr>
 	<%  } }else{ %>
 	<table id="interestSellBoard2">
@@ -154,27 +157,28 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[0] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<% for(int i=0;i<interest1BoardList.size();i++){%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest1BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
+			<span><nobr><%=interest1BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[1] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/냥챗 아이콘.jpg" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<% for(int i=0;i<interest2BoardList.size();i++){%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest2BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
+			<span><nobr><%=interest2BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[2] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<% for(int i=0;i<interest3BoardList.size();i++){%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
+			<span><nobr><%=interest3BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
 			<%} %>
 		</tr>
+		
 		
 		
 		</table>
@@ -222,6 +226,16 @@ function deleteUser(userId){
 }
 //주소창에 파라미터 값 숨기기
 history.replaceState({}, null, location.pathname);
+
+function blackUser(userId,reason){
+	var bool=confirm('경고횟수가 3회 이상인것을 확인 하셨습니까?');
+	if(bool){
+	location.href="<%=request.getContextPath()%>/admin/insertBlackList?userId="+userId+"&reason="+reason;
+	}else{
+		return;
+	}
+}
+
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -6,14 +6,14 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
    List<Opinion> opinion = (List<Opinion>)request.getAttribute("oList");
-   String pageBar = (String)request.getAttribute("PageBar");
+   String pageBar = (String)request.getAttribute("pageBar");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/freeboard/freeList.css" />
 
-	<h2>건의 게시판</h2>
+	<h2>신고 게시판</h2>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/opinion/opinionWrite'" />
+		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
 	<% } %>
 	<table class="table" id="freeTable">
 	<colgroup>
@@ -39,7 +39,7 @@
 				<td><nobr><%=b.getBoardWriter() %></nobr></td>
 				<td>
 					<a
-					href="<%=request.getContextPath()%>/opinion/opinionView?boardNo=<%=b.getBoardNo()%>"
+					href="<%=request.getContextPath()%>/opinion/declaration?boardNo=<%=b.getBoardNo()%>"
 					style="text-decoration: none; color: black;"> 
 						<nobr><%=b.getBoardTitle()%></nobr>
 					</a>

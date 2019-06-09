@@ -35,17 +35,20 @@ public class OpinionListServlet extends HttpServlet {
 		} catch(NumberFormatException e) {
 		}
 		
+		System.out.println(cPage+" : "+numPerPage);
 		List<Opinion> oList = new OpinionService().selectAllOpinionList(cPage, numPerPage);
 		List<Integer> waringCnt = new OpinionService().OpinionWarningCnt(oList);
 		
 		int totalContents = new OpinionService().selectOpinionCount();
+		System.out.println(totalContents);
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 
 		int pageBarSize = 5;
-		int pageStart = ((cPage-1)*numPerPage) *pageBarSize +1;
+		int pageStart = ((cPage-1)/pageBarSize)*pageBarSize +1;
 		int pageEnd = pageStart + pageBarSize -1;
+		System.out.println(pageStart);
 		
-		int pageNo = pageStart ;
+		int pageNo = pageStart;
 		String pageBar = "";
 		if(pageNo ==1) {
 		}else {
@@ -57,7 +60,7 @@ public class OpinionListServlet extends HttpServlet {
 			if(cPage == pageNo) {
 				pageBar += "<span>"+pageNo+"</span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage"+pageNo+
+				pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage="+pageNo+
 						"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
 			pageNo ++;
@@ -67,6 +70,7 @@ public class OpinionListServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionLisr?cPage="+pageNo+
 					"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
+		System.out.println(pageBar);
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);

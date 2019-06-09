@@ -8,13 +8,6 @@ Sell b = (Sell)request.getAttribute("sell");
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 System.out.println("널이 어딘가"+commentList);
 %>
-<link
-	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/boardForm.css" />
 <style>
@@ -317,7 +310,6 @@ $(function() {
 
 </script>
 </article>
-</html>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 

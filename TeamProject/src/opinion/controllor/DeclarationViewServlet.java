@@ -61,7 +61,7 @@ public class DeclarationViewServlet extends HttpServlet {
 		if(o == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
 			request.setAttribute("loc", "/opinion/declarationList");
-			request.getRequestDispatcher("/WEV-INF/views/common/msg.jsp")
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 					.forward(request, response);
 			return;
 		}

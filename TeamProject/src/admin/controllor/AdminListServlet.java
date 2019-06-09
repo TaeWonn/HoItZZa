@@ -1,7 +1,10 @@
 package admin.controllor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +28,7 @@ public class AdminListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int cPage =1 ;
-		int numPerPage = 10;
+		int numPerPage = 12;
 		
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -77,11 +80,19 @@ public class AdminListServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+"/admin/adminList?cPage"+pageNo
 							+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
+		Map<String, Integer> countWarning=new HashMap<String,Integer>();
+		for(User u:userList) {
+			String userId=u.getUserId();
+			int count=new AdminService().warningCount(userId);
+			countWarning.put(userId,count);
+		}
 		
+		
+		System.out.println("페이지바:"+pageBar);
 		request.setAttribute("cPge", cPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("numPerPage", numPerPage);
-		
+		request.setAttribute("warningCount", countWarning);
 		request.setAttribute("userList", userList);
 		
 		request.getRequestDispatcher("/WEB-INF/views/admin/viewUserList.jsp")

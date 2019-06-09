@@ -13,7 +13,7 @@ table#userInfoTable input.btn{padding:0px;width:80px;border: 1px solid;backgroun
 table#userInfoTable button.btn{padding:0px;width:80px;border: 1px solid;background: lightblue;}
 table#userInfoTable #addrBox{width:230px;}
 table#userInfoTable{position:absolute;top:7px;}
-table#userInfoTable .btnGroup{width:85px;margin:10px;}
+table#userInfoTable .btnGroup{width:85px;margin:8px;}
 table#userInfoTable input{width:175px;}
 div#interestBoard h3{position:absolute;left:101px;top:4px;font-size: 27px;}
 div#interestBoard #p1{position: absolute; top:40px;}
