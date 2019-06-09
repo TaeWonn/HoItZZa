@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import board.model.service.BoardService;
+import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.vo.Sell;
@@ -534,6 +535,59 @@ public class SellDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//카테고리검색
+	
+	public List<Sell> selectsearchList(Connection conn, int cPage, int numPerPage, String search_category,
+			String search_key) {
+		
+		
+		List<Sell> sell = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		System.out.println("다오 들옴0"+search_category);
+		System.out.println("다오 들옴0"+'%'+search_key+'%');
+		
+		String sql = prop.getProperty("selectAllSellList");
+		sql+=("and("+search_category+" like '%"+search_key+"%')");
+		
+		System.out.println("쿼리다"+sql);
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage +1);
+			ps.setInt(2, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Sell s = new Sell();
+				s.setBoardNo(rs.getString("board_no"));
+				s.setBoardTitle(rs.getString("board_title"));
+				s.setBoardContent(rs.getString("board_content"));
+				s.setBoardCodeNo(rs.getString("board_code_no"));
+				s.setBoardDate(rs.getDate("board_date"));
+				s.setBoardDeal(rs.getString("board_deal"));
+				s.setBoardReadCounter(rs.getInt("board_read_count"));
+				s.setBoardWriter(rs.getString("board_writer"));
+				
+				///////////////////////////////////////////////////////////////////////////
+				
+				String ca = new BoardService().selectcategoryname(s.getBoardCodeNo());
+				s.setBoardCodeNo(ca);
+				
+				////////////////////////////////////////////////////////////////////////////
+				sell.add(s);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return sell;
 	}
 	
 	

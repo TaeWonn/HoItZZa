@@ -125,7 +125,28 @@ public class BoardService {
 		close(conn);
 		return board;
 	}
-	
+
+	public int interestAdd(String userId, String boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDAO().interestAdd(conn,userId, boardNo);
+		close(conn);
+		return result;
+	}
+
+	public int interestcheck(String userId, String boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDAO().interestcheck(conn,userId, boardNo);
+		close(conn);
+		return result;
+	}
+
+	public int interestDelete(String userId, String boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDAO().interestDelete(conn,userId, boardNo);
+		close(conn);
+		return result;
+	}
+
 	
 	
 	

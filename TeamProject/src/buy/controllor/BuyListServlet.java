@@ -24,6 +24,10 @@ public class BuyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String search_category = request.getParameter("search_category");
+		String search_key = request.getParameter("search_key");
+		
+		
 		int cPage =1;
 		int numPerPage =10;
 		try {
@@ -39,7 +43,20 @@ public class BuyListServlet extends HttpServlet {
 			System.out.println("numPerPage");
 		}
 		
-		List<Buy> buy = new BuyService().selectAllBuyList(cPage, numPerPage);
+		
+		List<Buy> buy=null;
+		//검색조건이 있을경우 
+		/////////////////////////////////////////////////////////////////////////
+		
+		if(search_category!=null&&search_key!=null) {
+			buy = new BuyService().selectsearchList(cPage, numPerPage,search_category,search_key);
+		}
+		
+		//없을경우
+		//////////////////////////////////////////////////////////////
+		else { 
+			 buy = new BuyService().selectAllBuyList(cPage, numPerPage);
+		}
 		
 		List<Integer> warningCntList = new BuyService().warningCntList(buy);
 		

@@ -240,4 +240,12 @@ public class BuyService {
 		close(conn);
 	}
 
+	public List<Buy> selectsearchList(int cPage, int numPerPage, String search_category, String search_key) {
+		Connection conn = getConnection();
+		List<Buy> buy = new BuyDAO().selectsearchList(conn, cPage, numPerPage,search_category,search_key);
+		close(conn);
+		return buy;
+	}
+
+
 }

@@ -11,100 +11,9 @@ System.out.println("널이 어딘가"+commentList);
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/boardForm.css" />
 <style>
-.ed_box {
-	color: rgb(122, 122, 122);
-	font-size: 9px;
-	width: 630px;
-	margin: auto;
-}
 
-.ed_box span {
-	float: left;
-	margin: 5px;
-}
 
-.ed_box a {
-	float: right;
-	margin-top: 5px;
-}
 
-#buttons {
-	width: 58%;
-	float: right;
-}
-
-#buttons button {
-	position: relative;
-	left: 20%;
-	width: 80px;
-	height: 35px;
-	font-size: 16px;
-}
-
-#buttons :first-child {
-	color: rgb(0, 0, 0);
-	margin-top: 5px;
-}
-
-#buttons :last-child {
-	color: rgb(102, 61, 179);
-	margin: 5px;
-}
-
-#min_index {
-	border-spacing: 2px;
-	border-collapse: separate;
-	margin-top: 5px;
-	margin-left: 5%;
-	border-top: 1px solid #7a82f1;
-	border-bottom: 1px solid #7a82f1;
-	width: 58%;
-	font-size: 10px;
-}
-
-#min_index tr {
-	height: 10px;
-}
-
-#min_index tr td {
-	width: 590px;
-}
-
-#div1 {
-	width: 58%;
-	margin-left: 19.5%;
-	border-top: 1px solid rgb(28, 4, 117);
-	background-color: rgb(230, 234, 236)
-}
-
-#min_index td {
-	float: left;
-	font-size: 8px;
-	color: rgb(153, 153, 153);
-	font-weight: bold;
-}
-
-#min_index tr:not (:last-child ) td {
-	border-bottom: 0.1px solid lightgray;
-	padding-bottom: 5px;
-	width: 600px;
-}
-
-#k_span {
-	float: right;
-	margin: 5px;
-	font-size: 11px;
-	color: red;
-	font-weight: bold;
-}
-
-#message_href {
-	font-size: 9px;
-	color: cadetblue;
-	text-decoration: none;
-	position: relative;
-	left: 4%
-}
 </style>
 
 <article id="article">
@@ -122,7 +31,11 @@ System.out.println("널이 어딘가"+commentList);
 		<%if(userLoggedIn != null){ %>
 		<a
 			onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
-			id="message_href">☏ 쪽지보내기</a>
+			id="message_href">☏ 쪽지보내기</a> 
+					
+			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=b.getBoardNo()%>');"
+			id="interest_btn">☆관심등록</a>
+			<input type="hidden" value="0" id="interest_val">
 		<% } %>
 	</div>
 
@@ -134,7 +47,22 @@ System.out.println("널이 어딘가"+commentList);
 	</div>
 
 
+<div id="buttons">
+			<% if(userLoggedIn!=null && 
+        (b.getBoardWriter().equals(userLoggedIn.getUserId())
+        || "admin".equals(userLoggedIn.getUserId())) ){ %>
 
+
+			<input type="button" value="수정"
+				onclick="location.href='<%=request.getContextPath()%>/sell/sellModified?boardNo=<%=b.getBoardNo()%>'" />
+			<input type="button" value="삭제" onclick="deleteBoard();" />
+
+
+
+			<%} %>
+			<button type="button"
+				onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
+		</div>
 
 
 	<div id="min_div" style="margin-left: 15%;">
@@ -246,6 +174,7 @@ System.out.println("널이 어딘가"+commentList);
 
 <script>
 
+
 function reply(sender,recipient){
 	//사용자가 sender, 받는사람이 recipient
 	var url="<%=request.getContextPath()%>/views/message/messageReply?senderId="+sender+"&recipient="+recipient;
@@ -253,8 +182,89 @@ function reply(sender,recipient){
 	var specs="width=460px, height=500px, left=500px, top=200px";
 	var popup=open(url, title,specs);
 
+}
+
+//관심글인지 확인하는 함수
+(function on_interest(userId,boardNo) {
+	
+	
+	$.ajax({
+		url: "<%=request.getContextPath()%>/board/boardinterestcheck",
+		data: {userId : '<%=userLoggedIn.getUserId()%>', boardNo : '<%=b.getBoardNo()%>'},
+		success: function(data){
+			console.log(data);
+			
+			//넘어온 csv데이터가, 공백인경우
+			if(data.trim().length == '0'){
+				console.log("관심글 x");
+				$("#interest_val").val(0);
+				$("#interest_btn").text('☆관심등록');
+			}
+			else{
+				console.log("관심글 o");
+				$("#interest_val").val(1);
+				$("#interest_btn").text('★관심등록');
+				}	
+			}
+	});
+})();
+
+//관심글 등록 함수
+function interest_btn(userId,boardNo) {
+	
+<%-- if('<%=b.getBoardWriter()%>'==userId){
+		alert('본인글 입니다');
+		return;
+	} --%>
+	
+	if($("#interest_val").val()==0){
+		console.log("추가 실행");
+	$.ajax({
+		
+		url: "<%=request.getContextPath()%>/board/boardinterest",
+		data: {userId : userId, boardNo : boardNo},
+		success: function(data){
+			console.log(data);
+			
+			//넘어온 csv데이터가, 공백인경우
+			if(data.trim().length == 0){
+				console.log("공백넘어옴");
+			}
+			else{
+					alert("관심글 등록완료");
+					$("#interest_val").val(1);
+					$("#interest_btn").text('★관심등록');
+				}	
+			}
+	});
+	
+	} //end if
+	else {
+		console.log("삭제 실행");
+		$.ajax({
+			
+			url: "<%=request.getContextPath()%>/board/boardinterestdelete",
+			data: {userId : userId, boardNo : boardNo},
+			success: function(data){
+				console.log(data);
+				
+				//넘어온 csv데이터가, 공백인경우
+				if(data.trim().length == 0){
+					console.log("공백넘어옴");
+				}
+				else{
+						alert("관심글 제거완료");
+						$("#interest_val").val(0);
+						$("#interest_btn").text('☆관심등록');
+					}	
+				}
+		});
+		
+	}//end else
 	
 }
+	
+
 function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }

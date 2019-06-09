@@ -1,0 +1,326 @@
+@charset "UTF-8";
+
+body{
+	margin: auto;
+}
+
+.ed_box {
+	color: rgb(122, 122, 122);
+	font-size: 9px;
+	width: 630px;
+	margin: auto;
+}
+
+.ed_box span {
+	float: left;
+	margin: 5px;
+}
+
+.ed_box a {
+	float: right;
+	margin-top: 5px;
+}
+
+#buttons {
+	width: 58%;
+	float: right;
+}
+
+#buttons button {
+	position: relative;
+	left: 20%;
+	width: 80px;
+	height: 35px;
+	font-size: 16px;
+}
+
+#buttons :first-child {
+	color: rgb(0, 0, 0);
+	margin-top: 5px;
+}
+
+#buttons :last-child {
+	color: rgb(102, 61, 179);
+	margin: 5px;
+}
+
+#min_index {
+	border-spacing: 2px;
+	border-collapse: separate;
+	margin-top: 5px;
+	margin-left: 5%;
+	border-top: 1px solid #7a82f1;
+	border-bottom: 1px solid #7a82f1;
+	width: 58%;
+	font-size: 10px;
+}
+
+#min_index tr {
+	height: 10px;
+}
+
+#min_index tr td {
+	width: 590px;
+}
+
+#div1 {
+	width: 58%;
+	margin-left: 19.5%;
+	border-top: 1px solid rgb(28, 4, 117);
+	background-color: rgb(230, 234, 236)
+}
+
+#min_index td {
+	float: left;
+	font-size: 8px;
+	color: rgb(153, 153, 153);
+	font-weight: bold;
+}
+
+#min_index tr:not (:last-child ) td {
+	border-bottom: 0.1px solid lightgray;
+	padding-bottom: 5px;
+	width: 600px;
+}
+
+#k_span {
+	float: right;
+	margin: 5px;
+	font-size: 11px;
+	color: red;
+	font-weight: bold;
+} 
+
+ input:radio{
+    width: 20px;
+}
+#category1{
+    width: 240px;
+    margin: 7px;
+    margin-left : 7.5%;
+}
+#category2{
+    width: 240px;
+    margin: 7px;
+}
+.alert-light{
+    border: 0.5px solid;
+    width: 575px;
+    margin: 7px;
+    height: 40px;
+    margin-left : 4.4%%;
+}
+#userId{
+    background: lightgray;
+    font-size: 17px;
+    color : black;
+    width: 575px;
+}
+#boardDeal{
+position : relative;
+top : -7px;
+left :5px;
+width: 240px;
+border: 1px solid red;
+}
+#boardContent{
+    width: 575px;
+    height: 340px;
+    margin : auto;
+    overflow : auto;  
+    border: 0.5px solid gray;
+    margin-top:8px;
+     
+}
+.form-control-file{
+    margin-left : 23%;
+    width: 200px;
+    border: 0.1px solid rgb(211, 208, 208);
+      margin-bottom: 20px;
+}
+#what{
+    
+    color : rgb(99, 82, 82);
+    font-size: 12px;
+}
+#buttons{
+    margin-top: 15px;
+    position:relative;
+    text-align: center;
+    width:80%;
+}
+#buttons button{
+    width: 100px;
+    height: 40px;
+  
+}
+#img-viewer img{width:500px;height: 300px;}
+.btn-outline-danger{
+    margin-left: 70px;
+}
+
+
+
+.filebox{
+	text-align: center;
+	position:relative;
+	bottom:0px;
+	width:80%;
+
+}
+
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+	width: 250px;
+  display: inline-block;
+  padding: .5em .75em; /* label의 패딩값과 일치 */
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+#message_href {
+	font-size: 10px;
+	color: cadetblue;
+	text-decoration: none;
+	position: relative;
+	left: -4%
+}
+#interest_btn {
+	font-size: 10px;
+	font-color: blue;
+	text-decoration: none;
+	position: relative;
+	left: 22%
+}
+
+#ex_img{
+	display: none;
+}
+
+.ed_box{
+ 			color: rgb(122, 122, 122);
+            font-size: 9px;
+            width: 630px;
+            margin : auto;
+        }
+        .ed_box span{
+        float : left;
+            margin: 5px;
+         }
+         .ed_box a{
+        float : right;
+            margin-top: 5px;
+         }
+       
+        #buttons{
+            width: 70%;
+            float: right;
+        }
+        #buttons button{
+        position : relative;
+        left : 20%;
+            width: 60px;
+            height: 35px;
+           font-size: 16px;
+        }
+        #buttons :first-child{
+            
+            color: rgb(0, 0, 0);
+            margin-top: 5px;
+            
+        }
+        #buttons :last-child{
+            color: rgb(102, 61, 179);
+            margin: 5px;
+        }
+    #min_index{
+        border-spacing: 2px;
+        border-collapse: separate;
+        margin-top : 5px;
+        margin-left : 5%;
+        border-top: 1px solid #7a82f1; 
+        border-bottom: 1px solid #7a82f1; 
+        width: 58%;
+        font-size: 10px;
+    } 
+    #min_index tr{
+        height: 10px;
+    }
+    #min_index tr td{
+    width: 590px;
+  
+    }
+    #div1{
+width: 58%; 
+margin-left: 19.5%;
+border-top: 1px solid rgb(28, 4, 117); 
+background-color: rgb(230, 234, 236)}
+    #min_index td{
+    	float: left;
+ 
+        font-size: 8px;
+        color: rgb(153, 153, 153);
+        font-weight: bold; 
+    }
+    #min_index tr:not(:last-child) td {
+        border-bottom: 0.1px solid lightgray;
+        padding-bottom: 5px;
+       width: 600px;
+    }
+  	
+  	#k_span{
+  	float: right; margin: 5px; 
+  	font-size: 11px; color: red; 
+  	font-weight: bold;
+  	}
+  	#message_href{
+  	font-size: 9px; color: cadetblue; 
+  	text-decoration: none; position: 
+  	relative; left : 4%
+  	}
+
+select#boardCodeNo{margin-left:4.4%%; height:40px; width:575px; background: lightgray;font-size: 17px;color : black;}
+div#freeBoard{position:relative;height: 690px;margin-left: 17%;width:85%;}
+div#freeBoard h3{font-size:20px;}
+div#div-comment{height: 100px;overflow-y: auto;position:relative;bottom:21px;}
+table#tbl-comment{width: 92%;text-align: left;position: relative;left: 49px;}
+form[name=boardCommentFrm]{position: relative;bottom: 15px;}
+table#tbl-comment #CommentContents{border-bottom: 1px solid gray;} 
+table#tbl-comment #CommentContentsReply{border-bottom: 1px solid gray;} 
+table#tbl-comment button{border-radius: 20%;}
+table#tbl-comment tr.level2 td:first-of-type{padding-left: 40px;} 
+#message_href{cursor:pointer;}
+#interest_btn{cursor:pointer;}

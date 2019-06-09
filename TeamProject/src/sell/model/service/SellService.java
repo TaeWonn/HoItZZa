@@ -5,6 +5,8 @@ import static common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import buy.model.dao.BuyDAO;
+import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.dao.SellDAO;
@@ -171,6 +173,13 @@ public class SellService {
 			rollback(conn);
 		close(conn);
 		
+	}
+
+	public List<Sell> selectsearchList(int cPage, int numPerPage, String search_category, String search_key) {
+		Connection conn = getConnection();
+		List<Sell> sell = new SellDAO().selectsearchList(conn, cPage, numPerPage,search_category,search_key);
+		close(conn);
+		return sell;
 	}
 
 }

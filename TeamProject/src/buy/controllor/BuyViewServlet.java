@@ -9,11 +9,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import board.model.service.BoardService;
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class BuyViewServlet
@@ -28,6 +30,9 @@ public class BuyViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
 		
+		
+		
+		
 		Buy b = new BuyService().selectOneBuy(boardNo);
 		
 		if(b == null) {
@@ -40,8 +45,11 @@ public class BuyViewServlet extends HttpServlet {
 		
 		//경고회수 가져오기
 		int warningCnt = new BuyService().warningCnt(b.getBoardWriter());
+		
+		//카테고리를 한글로 변환하는 문
 		String ca = new BoardService().selectcategoryname(b.getBoardCodeNo());
 		b.setBoardCodeNo(ca);
+		
 		
 		List<Comment> clist = new BuyService().commentList(boardNo);
 		

@@ -720,4 +720,53 @@ public class BuyDAO {
 		return list;
 	}
 
+	public List<Buy> selectsearchList(Connection conn, int cPage, int numPerPage, String search_category,
+			String search_key) {
+		List<Buy> buy = new ArrayList<>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		System.out.println("다오 들옴0"+search_category);
+		System.out.println("다오 들옴0"+'%'+search_key+'%');
+		
+		String sql = prop.getProperty("selectAllBuyList");
+		sql+=("and("+search_category+" like '%"+search_key+"%')");
+		
+		System.out.println("쿼리다"+sql);
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, (cPage-1)*numPerPage +1);
+			ps.setInt(2, cPage*numPerPage);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Buy b = new Buy();
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				b.setBoardContent(rs.getString("board_content"));
+				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardDate(rs.getDate("board_date"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardReadCounter(rs.getInt("board_read_count"));
+				b.setBoardWriter(rs.getString("board_writer"));
+				
+				///////////////////////////////////////////////////////////////////////////
+				
+				String ca = new BoardService().selectcategoryname(b.getBoardCodeNo());
+				b.setBoardCodeNo(ca);
+				
+				////////////////////////////////////////////////////////////////////////////
+				buy.add(b);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return buy;
+	}
+
+
+
 }

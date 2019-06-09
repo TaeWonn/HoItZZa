@@ -377,4 +377,72 @@ public class BoardDAO {
 		}
 		return categoryname;
 	}
+
+	public int interestAdd(Connection conn, String userId, String boardNo) {
+		String sql = prop.getProperty("interestAdd");
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, userId);
+			ps.setString(2, boardNo);
+			//테이블 insert순서 title,content,writer,board_code_no
+			//,board_deal,board_date,board_read_count순임-세웅
+			result =ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+
+	public int interestcheck(Connection conn, String userId, String boardNo) {
+		String sql = prop.getProperty("interestCheck");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+			pstmt.setString(2, boardNo);
+			//테이블 insert순서 title,content,writer,board_code_no
+			//,board_deal,board_date,board_read_count순임-세웅
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				if(rset.getString("board_No")!=null)result=1;
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	
+	
 }
+
+	public int interestDelete(Connection conn, String userId, String boardNo) {
+		String sql = prop.getProperty("interestDelete");
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, userId);
+			ps.setString(2, boardNo);
+			//테이블 insert순서 title,content,writer,board_code_no
+			//,board_deal,board_date,board_read_count순임-세웅
+			result =ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(ps);
+		}
+		return result;
+	}
+}
+

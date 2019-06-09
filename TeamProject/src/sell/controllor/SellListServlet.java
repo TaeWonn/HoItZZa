@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import buy.model.service.BuyService;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
@@ -24,6 +25,11 @@ public class SellListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String search_category = request.getParameter("search_category");
+		String search_key = request.getParameter("search_key");
+		
+		
 		int cPage =1 ;
 		int numPerPage = 10;
 		try {
@@ -35,7 +41,18 @@ public class SellListServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 		}
 		
-		List<Sell> sellList = new SellService().selectAllSellList(cPage ,numPerPage);
+		List<Sell> sellList=null;
+		
+		if(search_category!=null&&search_key!=null) {
+			sellList = new SellService().selectsearchList(cPage, numPerPage,search_category,search_key);
+		}
+		
+		//없을경우
+		//////////////////////////////////////////////////////////////
+		else { 
+			sellList = new SellService().selectAllSellList(cPage, numPerPage);
+		}
+		
 		
 		//경고 횟수 가져오기
 		List<Integer> warningCntList = new SellService().warningListCnt(sellList);
