@@ -163,7 +163,7 @@ public class FreeDAO {
 				f.setBoardTitle(rs.getString("board_title"));
 				f.setBoardDate(rs.getDate("board_date"));
 				f.setBoardReadCounter(rs.getInt("board_read_count"));
-			} 
+			}  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
