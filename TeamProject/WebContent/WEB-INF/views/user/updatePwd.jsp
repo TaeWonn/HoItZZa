@@ -83,7 +83,5 @@
 
 	}
 	
-	//주소창에 파라미터 값 숨기기
-	history.replaceState({}, null, location.pathname);
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

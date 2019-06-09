@@ -518,8 +518,6 @@ public class AdminDAO {
 			while(rset.next()) {
 				if(rset.next()) {
 				result+=rset.getString("code")+",";
-				}else {
-					result+=rset.getString("code");
 				}
 			}
 		} catch (SQLException e) {

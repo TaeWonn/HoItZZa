@@ -51,7 +51,7 @@ public class UserLoginServlet extends HttpServlet {
 		
 		System.out.println("headermap@loginServlet="+headerMap);
 		
-		String referer = headerNames.nextElement();
+		String referer =request.getHeader("Referer");
 		String origin = request.getHeader("Origin");
 		String url = request.getRequestURL().toString();
 		String uri = request.getRequestURI();
@@ -63,8 +63,8 @@ public class UserLoginServlet extends HttpServlet {
 		
 		String view = "";
 		String msg = "";
-//		String loc = referer.replace(origin+request.getContextPath(), "");
-		String loc = "/";
+		String loc = referer.replace(origin+request.getContextPath(), "");
+		//String loc = "/";
 		
 		// login Success
 		if(result == UserService.LOGIN_OK) {
@@ -76,7 +76,6 @@ public class UserLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("userLoggedIn", userLoggedIn);
 			
-			System.out.println("Session Object ID: "+session.getId());
 			System.out.println("Session Max Interval: " + session.getMaxInactiveInterval());
 			
 			session.setMaxInactiveInterval(20*60);
@@ -99,7 +98,7 @@ public class UserLoginServlet extends HttpServlet {
 				
 			}	// end of if(saveId != null)
 			
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(referer);
 		} // end of if(LOGIN_OK)
 		else {	// login failure
 			view = "/WEB-INF/views/common/msg.jsp";
@@ -113,6 +112,7 @@ public class UserLoginServlet extends HttpServlet {
 				msg = "존재하지 않는 아이디입니다.";
 			}
 			
+			System.out.println("로그인 성공시 : "+referer);
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 			

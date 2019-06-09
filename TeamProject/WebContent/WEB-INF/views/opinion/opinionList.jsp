@@ -15,6 +15,7 @@
 	<input type="button" value="글쓰기" id="btn-add"
 		onclick="location.href='<%=request.getContextPath()%>/opinion/opinionWrite'" />
 	<% } %>
+	
 	<table class="table" id="freeTable">
 	<colgroup>
 	<col width="55px;"/>
@@ -34,6 +35,7 @@
 		</thead>
 		<tbody>
 			<% for(Opinion b : opinion){ %>
+			<%if(userLoggedIn.getUserId().equals("admin")||userLoggedIn.getUserId().equals(b.getBoardWriter())){ %>
 			<tr>
 				<th scope="row"><%=b.getBoardNo() %></th>
 				<td><nobr><%=b.getBoardWriter() %></nobr></td>
@@ -47,7 +49,7 @@
 				<td><%=b.getBoardDate() %></td>
 				<td><%=b.getBoardReadCount() %></td>
 			</tr>
-			<% } %>
+			<% }} %>
 		</tbody>
 	</table>
 	<div id="pageBar">

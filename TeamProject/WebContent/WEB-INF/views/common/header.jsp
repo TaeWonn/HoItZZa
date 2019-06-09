@@ -227,7 +227,7 @@
 									+ Math
 											.round((resp.main.temp - 273.15) * 10.0)
 									/ 10.0 + '°C</span><br /><span>현재습도 : '
-									+ resp.main.humidity + '</span><br />';
+									+ resp.main.humidity + '%</span><br />';
 							html += '<span>풍속 : ' + resp.wind.speed
 									+ ' m/s</span></div><br />';
 							$("#weather-day").append(html);

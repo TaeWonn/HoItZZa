@@ -224,8 +224,6 @@ function deleteUser(userId){
 	location.href="<%=request.getContextPath()%>/views/user/deleteUser?userId="+userId;
 	}
 }
-//주소창에 파라미터 값 숨기기
-history.replaceState({}, null, location.pathname);
 
 function blackUser(userId,reason){
 	var bool=confirm('경고횟수가 3회 이상인것을 확인 하셨습니까?');
