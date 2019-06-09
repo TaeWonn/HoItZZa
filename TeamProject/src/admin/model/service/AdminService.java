@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import admin.model.dao.AdminDAO;
+import board.model.vo.Board;
 import user.model.vo.User;
 
 public class AdminService {
@@ -84,6 +85,77 @@ public class AdminService {
 	public int genderCotents(String searchKeyword) {
 		Connection conn = getConnection();
 		int result = new AdminDAO().genderContents(conn, searchKeyword);
+		close(conn);
+		return result;
+	}
+
+	public List<Board> selectSuggestionBoardList() {
+		Connection conn=getConnection();
+		List<Board> list=new AdminDAO().selectSuggestionBoardList(conn);
+		close(conn);
+		return list;
+	}
+
+	public List<Board> selectReportBoardList() {
+		Connection conn=getConnection();
+		List<Board> list=new AdminDAO().selectReportBoardList(conn);
+		close(conn);
+		return list;
+	}
+
+
+	public int warningCount(String userId) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningCount(conn,userId);
+		close(conn);
+		return result;
+	}
+
+	public int warningUserCodeD_A(String userId, String[] reasonArr) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningUserCodeD_A(userId,reasonArr,conn);
+		close(conn);
+		return result;
+	}
+
+	public int warningUserCodeD_S(String userId, String[] reasonArr) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningUserCodeD_S(userId,reasonArr,conn);
+		close(conn);
+		return result;
+	}
+
+	public int warningUserCodeD_M(String userId, String[] reasonArr) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningUserCodeD_M(userId,reasonArr,conn);
+		close(conn);
+		return result;
+	}
+
+	public int warningUserCodeD_P(String userId, String[] reasonArr) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningUserCodeD_P(userId,reasonArr,conn);
+		close(conn);
+		return result;
+	}
+
+	public int warningUserCodeD_R(String userId, String[] reasonArr) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().warningUserCodeD_R(userId,reasonArr,conn);
+		close(conn);
+		return result;
+	}
+
+	public String selectBlackUserReason(String userId) {
+		Connection conn=getConnection();
+		String result=new AdminDAO().selectBlackUserReason(conn,userId);
+		close(conn);
+		return result;
+	}
+
+	public int insertBlackUser(String userId, String reason) {
+		Connection conn=getConnection();
+		int result=new AdminDAO().insertBlackUser(userId,reason,conn);
 		close(conn);
 		return result;
 	}

@@ -33,8 +33,9 @@ public class DeclarationListServlet extends HttpServlet {
 			numPerPage = Integer.parseInt(request.getParameter("numPerpage"));
 		} catch(NumberFormatException e) {
 		}
-		
+		System.out.println(cPage+" : "+numPerPage);
 		List<Opinion> olist = new OpinionService().selectDeclarationList(cPage,numPerPage);
+		System.out.println("리스트"+olist);
 		List<Integer> wCnt = new OpinionService().OpinionWarningCnt(olist);
 		
 		int totalContents = new OpinionService().selectDeclarationCount();
@@ -49,32 +50,33 @@ public class DeclarationListServlet extends HttpServlet {
 		
 		if(pageNo ==1) {
 		}else {
-			pageBar += "<a href'"+request.getContextPath()+"/opinion/declaration?cPage="+(pageNo-1)+
-					"numPerPage="+numPerPage+"'>[이전]</a>";
+			pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage="+(pageNo-1)+
+					"&numPerPage="+numPerPage+"'>[이전]</a>";
 		}
 		
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
-			if(pageNo == cPage) {
-				pageBar+= "<span>"+pageNo+"</span>";
+			if(cPage == pageNo) {
+				pageBar += "<span>"+pageNo+"</span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/opinion/declaration?cPage="+pageNo+
+				pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionList?cPage="+pageNo+
 						"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
-			pageNo++;
+			pageNo ++;
 		}
-		
 		if(pageNo > totalPage) {
 		}else {
-			pageBar +="<a href='"+request.getContextPath()+"/opinion/declaration?cPage="+pageNo+
+			pageBar += "<a href='"+request.getContextPath()+"/opinion/opinionLisr?cPage="+pageNo+
 					"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
+		
+		
 		request.setAttribute("oList", olist);
 		request.setAttribute("warningCnt", wCnt);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
 		
-		request.getRequestDispatcher("/WEB-INF/views/opinion/declaration.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/opinion/declarationList.jsp")
 				.forward(request, response);
 	}
 

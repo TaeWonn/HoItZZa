@@ -6,9 +6,10 @@
 
 <%
 
-List<Board> suggestionBoardList=(List<Board>)request.getAttribute("");
-List<Board> reportBoardList=(List<Board>)request.getAttribute("");
+List<Board> suggestionBoardList=(List<Board>)request.getAttribute("suggestion");
+List<Board> reportBoardList=(List<Board>)request.getAttribute("report");
 String[] addrArr = userLoggedIn.getAddr().split(",");
+String pageBar = (String) request.getAttribute("pageBar");
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/admin/adminInfo.css" />
@@ -53,7 +54,7 @@ String[] addrArr = userLoggedIn.getAddr().split(",");
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" value="회원관리" class="btnGroup" onclick="viewUser();" />
+			<input type="button" value="회원관리" class="btnGroup" onclick="location.href='<%=request.getContextPath()%>/admin/adminList'" />
 			</td>
 		</tr>
 	</table>
@@ -69,11 +70,11 @@ String[] addrArr = userLoggedIn.getAddr().split(",");
 	<th>제목</th>
 	<th>작성일</th>
 	</tr>
-	 <%for(int i=1;i<=5;i++){ %>
+	<%for(Board b : suggestionBoardList){ %>
 	<tr>
-		<td><nobr>나는 <%=i %>번째 유저</nobr></td>
-		<td><nobr>이것좀 고쳐주시면 감사하겠습니다 오버플로우를 왜 안먹을까요<%=i %></nobr></td>
-		<td><nobr>2019/03/0<%=i %></nobr></td>
+		<td><nobr><%=b.getBoardWriter() %></nobr></td>
+		<td><nobr><%=b.getBoardTitle() %></nobr></td>
+		<td><nobr><%=b.getBoardDate() %></nobr></td>
 	</tr>
 	 <%}%>
 	</table>
@@ -84,16 +85,17 @@ String[] addrArr = userLoggedIn.getAddr().split(",");
 	<div id="reportBoard"  class="boardTitle">
 	<p>신고게시판</p>
 	<table>
+
 	<tr>
 	<th>작성자</th>
 	<th>제목</th>
 	<th>작성일</th>
 	</tr>
-	 <%for(int i=1;i<=5;i++){ %>
+	 <%for(Board b : reportBoardList){ %>
 	<tr>
-		<td><nobr>나는 <%=i %>번째 유저</nobr></td>
-		<td><nobr><%=i %>그놈새끼 나쁜새끼 사기꾼새끼 신고합니다.</nobr></td>
-		<td><nobr>2019/03/0<%=i %></nobr></td>
+		<td><nobr><%=b.getBoardWriter() %></nobr></td>
+		<td><nobr><%=b.getBoardTitle() %></nobr></td>
+		<td><nobr><%=b.getBoardDate() %></nobr></td>
 	</tr>
 	 <%}%>
 	</table>
@@ -119,22 +121,17 @@ function searchAddr(){
 		}).open();
 }
 
-//관리자가 유저 목록 확인을 위한 함수
-function viewUser(){
-	//admin 외의 접근을 막기 위해 아이디값 보냄
-	location.href="<%=request.getContextPath()%>/admin/adminList";
-}
 
 //비밀번호 변경페이지로 이동
 function changeUserPwd(userId){
-	location.href="<%=request.getContextPath()%>/user/updatePwd?userId="<%--<%=userIdd%>--%>;
+	location.href="<%=request.getContextPath()%>/user/updatePwd?userId="+userId;
 }
 
 function moveSBoard(userId){
-	location.href="<%=request.getContextPath()%>/opinion/suggestionBoard?userId="+userId;
+	location.href="<%=request.getContextPath()%>/opinion/opinionList";
 }
 function moveRBoard(userId){
-	location.href="<%=request.getContextPath()%>/views/opinion/reportBoard?userId="+userId;
+	location.href="<%=request.getContextPath()%>/views/opinion/reportBoard";
 }
 
 

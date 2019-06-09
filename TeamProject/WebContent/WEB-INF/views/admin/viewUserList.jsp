@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +9,7 @@ String searchType=(String)request.getAttribute("searchType");
 String searchKeyword=(String)request.getAttribute("searchKeyword");
 int numPerPage=10;
 String pageBar=(String)request.getAttribute("pageBar");
+Map<String,Integer>warningCount=(Map<String,Integer>)request.getAttribute("warningCount");
 
 
 %>
@@ -41,23 +43,23 @@ div#search-gender_find {
 		<tr>
 			<th>아이디</th>
 			<th>이름</th>
-			<th>성별</th>
-			<th>주민등록번호</th>
+			<th><nobr>경고 횟수</nobr></th>
+			<th>경고처리</th>
 			<th>이메일</th>
 			<th>연락처</th>
 		</tr>
 	</thead>
 	<tbody>
-	<%for(int i=0;i<userList.size();i++){ %>
-		<tr>
-			<td><nobr><%=userList.get(i).getUserId() %></nobr></td>
-			<td><nobr>  <%=userList.get(i).getName() %></nobr></td>
-			<td><nobr>  <%=userList.get(i).getGender().equals("m")?"남":"여" %></nobr></td>
-			<td><nobr>  <%=userList.get(i).getSsn() %></nobr></td>
-			<td><nobr>  <%=userList.get(i).getEmail() %></nobr></td>
+	<% for(int i=0;i<userList.size();i++){if(!userList.get(i).getUserId().equals("admin")){ %>
+		<tr >
+			<td onclick="location.href='<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userList.get(i).getUserId()%>'" ><nobr><%=userList.get(i).getUserId() %></nobr></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userList.get(i).getUserId()%>'"><nobr>  <%=userList.get(i).getName() %></nobr></td>
+			<td onclick="location.href='<%=request.getContextPath()%>/views/user/userInfo?userId=<%=userList.get(i).getUserId()%>'"><nobr><label for=""><%=warningCount.get(userList.get(i).getUserId()) %>회</label></nobr></td>
+			<td><nobr> <input type="button" style="width:90px;" id="warningBtn"value="경고처리" onclick="warningUser('<%=userList.get(i).getUserId() %>');" /></nobr></td>
+			<td id="userId"><nobr>  <%=userList.get(i).getEmail() %></nobr></td>
 			<td><nobr>  <%=userList.get(i).getPhone() %></nobr></td>		
 		</tr>
-	<% }%>	
+	<% }}%>	
 	
 	</tbody>
 	</table>
@@ -109,9 +111,9 @@ div#search-gender_find {
 		</form>
 		</div>
 	</div>
-<div id="pageBar">
-	<%=pageBar %>
-</div>
+	<div id="pageBar">
+		<%=pageBar %>
+	</div>
 
 
 
@@ -128,15 +130,25 @@ $('#searchType').change(function() {
 	$('input[name=searchType]').val(value);
 	
 });
-	function insertKeyword(obj){
-		 $('input[name=searchKeyword]').val(obj.value);
+function insertKeyword(obj){
+	 $('input[name=searchKeyword]').val(obj.value);
 
-	}
-	function submit(){
+}
+function submit(){
 
-		 $('input[name=searchType]').val($('#searchType').val());	
-		
-		  $('#submit').submit();  
+	 $('input[name=searchType]').val($('#searchType').val());	
+	
+	  $('#submit').submit();  
+}
+function warningUser(userId){
+	var bool=prompt(userId+"유저에게 경고 1회를 주시겠습니까?\n경고 코드를 입력해주십시오.\n D_A : 욕설 / D_S : 사기 / D_M : 비매너 / D_P : 음란물 관련 게시 / D_R : 허위신고\n게시글번호 입력(필수) 시 경고 코드 뒤에 콤마(,)를 입력해주세요.");
+	if(bool===null){
+		location.href="<%=request.getContextPath()%>/admin/adminList";
+		return;
+	}else{
+		location.href="<%=request.getContextPath()%>/admin/warningUser?userId="+userId+"&reason="+bool;
 	}
+
+}
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
