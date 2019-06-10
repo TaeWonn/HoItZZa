@@ -1,3 +1,4 @@
+<%@page import="file.model.vo.FileTable"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" errorPage="../common/error.jsp" %>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -5,8 +6,7 @@
 <%
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
-	System.out.println("작성자"+f.getBoardWriter());
-	System.out.println("로그인한 사람"+userLoggedIn.getUserId());
+	List<FileTable> file=(List<FileTable>)request.getAttribute("files");
 	
 	String title="";
 	String link="";
@@ -165,7 +165,15 @@ div#div-comment{height: 140px;}
 
 	<div id="boardContent"
 		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
-		<div style="width: 100%; border: 1px solid;">파일내려받기 or 거래방식 넣을곳임</div>
+		<div style="width: 100%; border: 1px solid;">
+			<img src="<%=request.getContextPath() %>/image/file.png" alt="" />
+			<label for=""><%if(file!=null){
+				for(int i=0;i<file.size();i++){%>
+				<%=file.get(i).getRenamedFileName() %>
+				
+			<%}} %>
+			</label>
+		</div>
 		<%=f.getBoardContent() %>
 		
 	</div>
