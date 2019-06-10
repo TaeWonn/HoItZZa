@@ -57,6 +57,7 @@ public class OpinionListServlet extends HttpServlet {
 		}
 		
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
+			System.out.println("while--------------");
 			if(cPage == pageNo) {
 				pageBar += "<span>"+pageNo+"</span>";
 			}else {

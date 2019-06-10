@@ -8,7 +8,6 @@
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-<<<<<<< HEAD
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm2.css" />    
 	<link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -95,12 +94,10 @@ border-radius: 3px;
     .thead-light{
     font-size : 14px;}
     </style>
-=======
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
->>>>>>> refs/remotes/origin/SeUh
 
 <article id="article">
 
@@ -141,19 +138,6 @@ border-radius: 3px;
 		<%=pageBar %>
 	</div>
 	
-<<<<<<< HEAD
-	<div class="input-group">
-	<select id="search_category">
-	<option value="board_Title" selected>제목</option>
-	<option value="board_Writer">작성자</option>
-	<option value="board_Content">내용</option>
-	<option value="board_CodeName">카테고리</option>
-	</select>
-  <input class="form-control" placeholder="검색어를 입력하세요" id="search_key"/>
-  <input type="button" value="검색" onclick="search_category();">
-</div>
-=======
-	 
 	<div class="input-group">
 		<select>
 			<option value="boardTitle" selected>제목</option>
@@ -164,7 +148,6 @@ border-radius: 3px;
 		<input class="form-control" placeholder="검색어를 입력하세요" />
 		<input type="submit" value="검색">
 	</div>
->>>>>>> refs/remotes/origin/SeUh
 </article>
 
 <script>
