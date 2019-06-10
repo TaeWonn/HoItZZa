@@ -1,7 +1,7 @@
 <%@page import="point.model.vo.Point"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
     List<Point> pointList=(List<Point>)request.getAttribute("list");

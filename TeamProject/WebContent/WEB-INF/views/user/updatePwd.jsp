@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/user/findPwd.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>

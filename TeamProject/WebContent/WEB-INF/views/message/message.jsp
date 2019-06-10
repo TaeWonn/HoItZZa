@@ -1,7 +1,7 @@
 <%@page import="message.model.vo.Message"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
 	String pageBar=(String)request.getAttribute("pageBar");

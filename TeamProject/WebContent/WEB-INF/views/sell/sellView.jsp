@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ page import="sell.model.vo.Sell, java.util.*,comment.model.vo.*"%>
 <%
 Sell b = (Sell)request.getAttribute("sell");
 
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
-System.out.println("널이 어딘가"+commentList);
+
 %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/boardForm.css" />
@@ -134,7 +134,7 @@ System.out.println("널이 어딘가"+commentList);
 						<td style="text-align: center;"> 
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
 							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
-							<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
+							<button class="btn-delete" value="<%=bc.getCommentNo()%>" >삭제</button>
 							<%} %>
 						</td>
 					</tr>
@@ -274,6 +274,9 @@ function deleteBoard(){
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
 	location.href="<%=request.getContextPath()%>/sell/sellDelete?boardNo=<%=b.getBoardNo()%>";
 }
+function deleteComment(obj){
+	console.log(obj.value);
+}
 
 $(function() {
 	 //대댓글입력
@@ -311,10 +314,14 @@ $(function() {
    });
 	 
 
-	$('.btn-delete').click(function(){
+   $('.btn-delete').click(function(){
 		 var bool=confirm('댓글을 삭제하시겠습니까??');
-		 if(bool){}
-		 location.href="<%=request.getContextPath()%>/sell/sellCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+		 if(bool){
+			 location.href="<%=request.getContextPath()%>/sell/sellCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+		 }else{
+			 return;
+		 }
+		 
 	});
 });
 

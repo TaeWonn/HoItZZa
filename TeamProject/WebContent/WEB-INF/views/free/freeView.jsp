@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"errorPage="../common/error.jsp" %>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ page import="free.model.vo.Free, java.util.*,comment.model.vo.*"%>
 <%
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
+	System.out.println("작성자"+f.getBoardWriter());
+	System.out.println("로그인한 사람"+userLoggedIn.getUserId());
 	
 	String title="";
 	String link="";
@@ -239,7 +241,7 @@ div#div-comment{height: 140px;}
 
 
 	<div id="buttons">
-	<% if(userLoggedIn!=null&&( userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
+	<% if(userLoggedIn!=null&&(userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
 		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
 		<button type="button" onclick="checkDelete();">삭제</button>
 	<% } %>
@@ -319,9 +321,13 @@ $(function() {
    //댓글 삭제 기능
    $('.btn-delete').click(function(){
 		 var bool=confirm('댓글을 삭제하시겠습니까??');
-		 if(bool){}
-		 location.href="<%=request.getContextPath()%>/free/freeCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=f.getBoardNo()%>";
-	 });
+		 if(bool){
+			 location.href="<%=request.getContextPath()%>/free/freeCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=f.getBoardNo()%>";
+		 }else{
+			 return;
+		 }
+		 
+	});
 	
 });
 

@@ -38,13 +38,13 @@
 	        </div><br>
         
         <div class="filebox">			
-			<input type="file" multiple id="ex_img" onchange="loadImg(this);" name="imgFile[]">			 
+			<input type="file" multiple id="ex_img" onchange="loadImg(this);" name="imgFile">			 
 		   <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		   <input type="file"  id="ex_filename" class="upload-hidden" >
 		    
 		  <input class="upload-name" value="파일명" disabled="disabled" >
 		  <label for="ex_filename">파일 업로드</label>
-		  <input type="file"  id="ex_filename" class="upload-hidden" name="upFile[]" >
+		  <input type="file"  id="ex_filename" class="upload-hidden" name="upFile" >
 		</div>
           
                 <div id="buttons">

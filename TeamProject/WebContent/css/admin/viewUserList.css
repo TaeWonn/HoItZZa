@@ -1,8 +1,8 @@
 s@charset "UTF-8";
 
 article{height: 743px;width:652px;position:relative;left:171px;}
-div#dUserList{text-align:center; ;position:relative;top:8px;width: 650px;left:160px;}
-div#pageBar{position: absolute;top:876px;width:67%;text-align: center;}
+div#dUserList{text-align:center; ;position:relative;top:8px;width: 650px;left:185px;}
+div#pageBar{position: absolute;top:876px;width: 47%;left: 22%;text-align: center;}
 table#userList{top:43px; left:13px;border: 1px solid;border-collapse: collapse;position:absolute;}
 table#userList th,td{border:1px solid; padding:6px;text-align: center;text-overflow:ellipsis;overflow: hidden;}
 table#userList th{min-width: 55px;height: 30px;background: lightgray;}

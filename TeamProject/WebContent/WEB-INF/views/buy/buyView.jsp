@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ page import="buy.model.vo.Buy, java.util.*,comment.model.vo.*" %>
 <%
@@ -297,8 +297,11 @@ $(function() {
 
 	$('.btn-delete').click(function(){
 		 var bool=confirm('댓글을 삭제하시겠습니까??');
-		 if(bool){}
-		 location.href="<%=request.getContextPath()%>/sell/sellCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+		 if(bool){location.href="<%=request.getContextPath()%>/buy/buyCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+		 }else{
+			 return;
+		 }
+		 
 	});
 });
 
