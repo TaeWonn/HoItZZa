@@ -31,15 +31,37 @@ public class FreeService {
 		return count;
 	}
 
-	public int insertBoard(Free f) {
+	public String insertBoard(Free f) {
 		Connection conn = getConnection();
-		int result = new FreeDAO().insertBoard(conn, f);
-		if(result>0)
+		int result=0;
+		int boardNo=0;
+		
+		if(f.getBoardCodeNo().equals("FC_")) {
+			System.out.println("자유게시판 ");
+			result=new FreeDAO().insertFreeBoardFC(conn,f);
+			boardNo=new FreeDAO().selectBoardNoFC(conn);
+		}else if(f.getBoardCodeNo().equals("FU_")) {
+			result=new FreeDAO().insertFreeBoardFU(conn,f);
+			boardNo=new FreeDAO().selectBoardNoFU(conn);
+			
+		}else if(f.getBoardCodeNo().equals("FE_")) {
+			result=new FreeDAO().insertFreeBoardFE(conn,f);
+			boardNo=new FreeDAO().selectBoardNoFE(conn);
+		}
+		else if(f.getBoardCodeNo().equals("FS_")) {
+			result=new FreeDAO().insertFreeBoardFS(conn,f);
+			boardNo=new FreeDAO().selectBoardNoFS(conn);
+		}
+		System.out.println("서비스단 결과확인: "+result);
+		if(result>0) {
 			commit(conn);
-		else
+		}else
 			rollback(conn);
+		
+		String boardNoresult=f.getBoardCodeNo()+boardNo;
+		
 		close(conn);
-		return result;
+		return boardNoresult;
 	}
 
 	public int selectFreeCount() {

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 
@@ -19,17 +19,17 @@
 	        <br>
 	
 	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo" style="margin-left: 4.4%;">
-	                <option selected>카테고리 선택</option>
-	                <option value="1">잡답 게시판</option>
-	                <option value="2">생활지식 게시판</option>
-	                <option value="3">연예/미디어 게시판</option>
-	                <option value="4">나눔게시판</option>
+	                <option selected>게시판 선택</option>
+	                <option value="FC_">잡답 게시판</option>
+	                <option value="FU_">유용한 생활지식 게시판</option>
+	                <option value="FE_">연예/미디어 게시판</option>
+	                <option value="FS_">나눔게시판</option>
 	        </select>
 	        <br>
 	        <!-- <div id="img-viewer-container">
 							<img id="img-viewer" width=350/>
 						</div> -->
-	        <div contentEditable="true"  id="boardContent" name="boardContent">
+	        <div contentEditable="true"  id="boardContent" >
 	        
 	        
 	        <div id="img-viewer" style="display: block;"></div>
@@ -38,13 +38,15 @@
 	        </div><br>
         
         <div class="filebox">			
-			<input type="file" multiple id="ex_img" onchange="loadImg(this);" name="imgFile">			 
+			<input type="file"  id="ex_img" onchange="loadImg(this);" name="imgFile">			 
 		   <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   <input type="file"  id="ex_filename" class="upload-hidden" >
+		    <input type="file"  id="ex_filename" class="upload-hidden" > 
 		    
-		  <input class="upload-name" value="파일명" disabled="disabled" >
+		  <input class="upload-name" value="파일명" disabled="disabled" name="upFile">
+		  
 		  <label for="ex_filename">파일 업로드</label>
-		  <input type="file"  id="ex_filename" class="upload-hidden" name="upFile" >
+		 <!--  <input type="file"  id="ex_filename2" class="upload-hidden"  > -->
+		  <input type="hidden" name="boardContent" id="cont" />
 		</div>
           
                 <div id="buttons">
@@ -58,6 +60,16 @@
 <script>
 
 function validate(){
+	//내용
+	var boardContent = document.getElementById('boardContent').textContent.trim();
+	console.log('컨텐츠'+boardContent);
+	if(boardContent.length == 0){
+		alert("내용을 입력하세요.");
+		return false;
+	}else{
+		$('#cont').val(boardContent);
+	}
+	console.log('밸류'+$('#cont').val());
 	//제목
 	var boardTitle = $("[name=boardTitle]").val();
 	if(boardTitle.trim().length == 0){
@@ -65,14 +77,8 @@ function validate(){
 		return false;
 	}
 
-	//내용
-	var boardContent = document.getElementById('boardContent').textContent.trim();
-	if(boardContent.length == 0){
-		alert("내용을 입력하세요.");
-		return false;
-	}
 	
-	console.log("["+$("[name=boardContent]").val()+"]")
+	
 	return true;
 }
 

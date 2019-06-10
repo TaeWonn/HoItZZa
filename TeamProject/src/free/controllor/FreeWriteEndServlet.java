@@ -54,91 +54,73 @@ public class FreeWriteEndServlet extends HttpServlet {
 		String boardTitle = multiReq.getParameter("boardTitle");
 		String boardContent = multiReq.getParameter("boardContent");
 		String boardWriter = multiReq.getParameter("boardWriter");
+		String boardCodeNo=multiReq.getParameter("boardCodeNo");
+
+		String fileOriginName= multiReq.getOriginalFileName("upFile");
+		String fileRenamedName= multiReq.getFilesystemName("upFile");
 		
-		//////////////////////테스트/////////////////////////////////
+		String imageOriginName=multiReq.getOriginalFileName("imgFile");
+		String imageRenamedName=multiReq.getFilesystemName("imgFile");
 		
-		ArrayList<String> filename = new ArrayList<String>();
-		Enumeration<String> files=multiReq.getFileNames();
-		while(files.hasMoreElements()){
-			String name = files.nextElement();
-			filename.add(multiReq.getFilesystemName(name));
-			}
-		System.out.println("확ㅇㅣㄴ"+filename);
-		
-		
-		
-		
-		String originName=multiReq.getFilesystemName("imgFile[]");
-		String originName2=multiReq.getFilesystemName("upFile[]");
-		
-		
-		System.out.println("확인"+boardTitle);
-		System.out.println("확인"+originName);
-		System.out.println("확인"+originName2);
+		System.out.println("넘어온 값 전체확인");
+		System.out.println(boardTitle+"제목");
+		System.out.println(boardContent+"내용");
+		System.out.println(boardWriter+"작성자");
+		System.out.println(boardCodeNo+"게시글코드");
+		System.out.println(imageOriginName+"이미지 오리지날네임");
+		System.out.println(imageRenamedName+"이미지 바뀐네임");
+		System.out.println(fileOriginName+"파일 오리지날네임");
+		System.out.println(fileRenamedName+"파일 바뀐네임");
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 자유게시판이기 때문에 게시판 카테고리 분류, 거래방식이 들어가지 않는다. 
-		// 우선 주석 처리 후, 상의 요망 요청.
-//		String boardCodeNo = multiReq.getParameter("boardCodeNo");
-//		String boardDeal = multiReq.getParameter("boardDeal");
-		String renamedFileNameOld = multiReq.getParameter("renamedFileNameOld");
-		int fileCount = Integer.parseInt(multiReq.getParameter("fileCount"));
-		
-		String fileName = multiReq.getOriginalFileName("upFile[]");
-		String newFileName = multiReq.getFilesystemName("upFile[]");
-		
-		String delFile = multiReq.getParameter("delFile");
-		File file = multiReq.getFile("upFile0");
-		
+		//사용자가 스크립트문으로 가지고 놀지 못하게 하기.
+		boardContent=boardContent.replaceAll("<","&lt;").replaceAll(">", "&gt;");
+
+
+
 		// 2. 업무 로직
-		boardContent = boardContent.replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
 		
 		Free f = new Free();
 		f.setBoardTitle(boardTitle);
 		f.setBoardContent(boardContent);
 		f.setBoardWriter(boardWriter);
+		f.setBoardCodeNo(boardCodeNo);
 		
-		int result = new FreeService().insertBoard(f);
-		String boardNo = "FC_"+ new FreeService().selectSeq();
+		String boardNo = new FreeService().insertBoard(f);
 		
-		if(f != null) {
-			FileTable t = new FileTable();
-			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileName);
-			t.setRenamedFileName(newFileName);
-			new FreeService().insertFileTable(t);
-			for(int i=1 ; i<fileCount ; i++) {
-				String fname = multiReq.getOriginalFileName("upFile"+i);
-				String newfname = multiReq.getFilesystemName("upFile"+i);
-				
-				FileTable ft = new FileTable();
-				ft.setBoardNo(boardNo);
-				ft.setOriginalFileName(fname);
-				ft.setRenamedFileName(newfname);
-				new FreeService().insertFileTable(ft);
+		
+		Free fResult=new FreeService().selectOneFree(boardNo); 
+		
+		if(fResult != null) {
+			//이미지파일
+			FileTable imgFile = new FileTable();
+			if(imgFile!=null) {
+				imgFile.setBoardNo(boardNo);
+				imgFile.setOriginalFileName(imageOriginName);
+				imgFile.setRenamedFileName(imageRenamedName);
+				new FreeService().insertFileTable(imgFile);
 			}
+			
+			//파일
+			FileTable file=new FileTable();
+			if(file!=null) {
+				file.setBoardNo(boardNo);
+				file.setOriginalFileName(fileOriginName);
+				file.setRenamedFileName(fileRenamedName);
+				new FreeService().insertFileTable(file);
+			}
+			
+			
 		}
+		System.out.println("작성한 게시물"+fResult);
 		
 		// 3. view단 처리
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "/";
-		if(result>0) {
+		if(boardNo!=null) {
 			msg = "게시글 작성 완료.";
-			loc = "/free/freeView?boardNo"+f.getBoardNo();
-			request.setAttribute("free", f);
+			loc = "/free/freeView?boardNo="+boardNo;
 		}
 		else {
 			msg = "게시글 작성 실패";

@@ -13,7 +13,4 @@ public class Free extends Board{
 		super(boardNo, boardTitle, boardContent, boardDeal,
 				boardWriter, boardCodeNo, boardReadCounter, boardDate);
 	}
-	
-	
-	
 }
