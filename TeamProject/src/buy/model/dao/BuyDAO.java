@@ -158,8 +158,7 @@ public class BuyDAO {
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				boardNo = rs.getString("board_no");
-				System.out.println("buyDAO@boardNo = "+boardNo);
+				boardNo = "B_"+rs.getInt("board_no");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
