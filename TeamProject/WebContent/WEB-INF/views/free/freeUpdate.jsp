@@ -5,13 +5,23 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
- 
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" />
+ <style>
+
+ #userId{
+	width: 590px;
+ }
+
+ #boardCodeNo{
+	width: 590px;
+}
+</style>
 </head>
 
 <body>
 
-
+<article id="article">	
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
 	 method="post" enctype="multipart/form-data">
 	
@@ -52,11 +62,12 @@
   <input type="file" id="ex_filename" class="upload-hidden" name="">
 </div>
           
-                <div id="buttons">
-                  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
-                  <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
-                </div>
-            </form>
+       <div id="buttons">
+         <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
+         <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
+       </div>
+   </form>
+   </article>
 
 <script>
 

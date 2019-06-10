@@ -8,11 +8,6 @@ Sell b = (Sell)request.getAttribute("sell");
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 
 %>
-<<<<<<< HEAD
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/boardForm.css" />
-<style>
-=======
 <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
@@ -23,13 +18,9 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
 <style>1
->>>>>>> refs/remotes/origin/SeUh
-
-<<<<<<< HEAD
 
 
-=======
->>>>>>> refs/remotes/origin/SeUh
+
 </style>
 
 <article id="article">
@@ -45,18 +36,11 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 			class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span> <span
 			class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
 		<%if(userLoggedIn != null){ %>
-<<<<<<< HEAD
-		<a
-			onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
-			id="message_href">☏ 쪽지보내기</a> 
-					
 			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=b.getBoardNo()%>');"
 			id="interest_btn">☆관심등록</a>
 			<input type="hidden" value="0" id="interest_val">
-=======
 		<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
 			id="message_href">☏ 쪽지보내기</a>
->>>>>>> refs/remotes/origin/SeUh
 		<% } %>
 	</div>
 
@@ -69,7 +53,6 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 
 	</div>
 
-<<<<<<< HEAD
 
 <div id="buttons">
 			<% if(userLoggedIn!=null && 
@@ -89,19 +72,6 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 		</div>
 
 
-	<div id="min_div" style="margin-left: 15%;">
-		<table id="min_index">
-
-			<tr>
-				<td><a
-					href="<%=request.getContextPath()%>/sell/sellView?<%=b.getBoardNo()+1%>">이전글
-						제목 </a></td>
-			</tr>
-			<td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>
-			</tr>
-			</div>
-		</table>
-=======
 		<div id="min_div" style="margin-left: 15%;">
 			<table id="min_index">
 			
@@ -114,7 +84,6 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 				</tr>
 			</table>
 		</div>
->>>>>>> refs/remotes/origin/SeUh
 		<Br>
 		<div id="buttons">
 			<% if(userLoggedIn!=null && 
@@ -220,7 +189,6 @@ function reply(sender,recipient){
 //관심글인지 확인하는 함수
 (function on_interest(userId,boardNo) {
 	
-<<<<<<< HEAD
 	
 	$.ajax({
 		url: "<%=request.getContextPath()%>/board/boardinterestcheck",
@@ -252,7 +220,7 @@ function interest_btn(userId,boardNo) {
 	} --%>
 	
 	if($("#interest_val").val()==0){
-		console.log("추가 실행");
+		console.log("추가 실행")
 	$.ajax({
 		
 		url: "<%=request.getContextPath()%>/board/boardinterest",
@@ -299,9 +267,6 @@ function interest_btn(userId,boardNo) {
 }
 	
 
-=======
-}
->>>>>>> refs/remotes/origin/SeUh
 function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }

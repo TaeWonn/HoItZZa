@@ -36,6 +36,7 @@
 }
 div#min_div{
 	text-align: left;
+	margin: 10px;
 }
 </style>
 <article style="text-align: center;">
@@ -76,8 +77,8 @@ div#min_div{
 		</div>
 	<div id="buttons">
 	<% if(userLoggedIn!=null&&( userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
-		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
-		<button type="button" onclick="checkDelete();">삭제</button>
+		<input type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');" value="수정">
+		<input type="button" onclick="checkDelete();" value="삭제">
 	<% } %>
 		<button type="button" disabled>목록</button>
 	</div>
@@ -244,5 +245,4 @@ $(function() {
 
 
 </script>
-</article>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

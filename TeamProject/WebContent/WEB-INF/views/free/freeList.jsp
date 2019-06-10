@@ -11,6 +11,7 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
+	<article id="article">
 	<h3 style="text-align: center; margin: 30px 0 0 5px;">잡담게시판</h3>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
@@ -57,5 +58,5 @@
 		<input class="form-control" placeholder="검색어를 입력하세요" />
 		<input type="submit" value="검색">
 	</div>
-	
+	</article>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

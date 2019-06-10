@@ -19,7 +19,7 @@
 		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
 		<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
 		
-		<h2 style="text-align: center">판매글 작성</h2>
+		<h2 style="text-align: center">판매글 수정</h2>
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
         <br>
