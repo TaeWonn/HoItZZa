@@ -14,6 +14,9 @@
 #boardCodeNo{
 	width: 590px;
 }
+#boardContent{
+	margin-right: 33px;
+}
 </style>
 <article id="article">
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
