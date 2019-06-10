@@ -25,9 +25,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
-<article style="text-align: center;">
 <style>
 
 #boardContent div{
@@ -35,8 +33,10 @@
 }
 div#min_div{
 	text-align: left;
+	margin: 10px;
 }
 </style>
+<article style="text-align: center;">
 	<h2 style="text-align: center;"><%=title%></h2>
 	<div id="div1">
 
@@ -74,8 +74,8 @@ div#min_div{
 		</div>
 	<div id="buttons">
 	<% if(userLoggedIn!=null&&( userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
-		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
-		<button type="button" onclick="checkDelete();">삭제</button>
+		<input type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');" value="수정">
+		<input type="button" onclick="checkDelete();" value="삭제">
 	<% } %>
 		<button type="button" disabled>목록</button>
 	</div>

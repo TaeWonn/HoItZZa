@@ -31,6 +31,7 @@ public class DeclarationWriteEndServlet extends HttpServlet {
 		o.setBoardWriter(boardWriter);
 		
 		int result = new OpinionService().insertDeclaration(o);
+		String boardNo = "OD_"+ new OpinionService().selectSeqOD();
 		
 		String msg = "";
 		String loc ="";

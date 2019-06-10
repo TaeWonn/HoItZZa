@@ -34,9 +34,15 @@ public class OpinionService {
 		return result;
 	}
 
-	public int selectSeqCurr() {
+	public int selectSeqOT() {
 		Connection conn = getConnection();
-		int seq = new OpinionDAO().selectSeqCurr(conn);
+		int seq = new OpinionDAO().selectSeqOT(conn);
+		close(conn);
+		return seq;
+	}
+	public int selectSeqOD() {
+		Connection conn = getConnection();
+		int seq = new OpinionDAO().selectSeqOD(conn);
 		close(conn);
 		return seq;
 	}

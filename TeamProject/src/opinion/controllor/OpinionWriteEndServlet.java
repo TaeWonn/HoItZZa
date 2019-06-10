@@ -31,13 +31,13 @@ public class OpinionWriteEndServlet extends HttpServlet {
 		o.setBoardWriter(boardWriter);
 		
 		int result = new OpinionService().insertBoard(o);
-		String boardNo = "OT_"+ new OpinionService().selectSeqCurr();
+		String boardNo = "OT_"+ new OpinionService().selectSeqOT();
 		
 		String msg = "";
 		String loc = "";
 		if(result>0) {
 			msg = "글 등록 완료";
-			loc = "/opinion/opinionView?boardNo=";
+			loc = "/opinion/opinionView?boardNo="+boardNo;
 		}else {
 			msg ="";
 			loc ="/";

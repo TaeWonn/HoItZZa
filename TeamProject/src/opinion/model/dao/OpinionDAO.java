@@ -102,9 +102,9 @@ public class OpinionDAO {
 		return result;
 	}
 
-	public int selectSeqCurr(Connection conn) {
+	public int selectSeqOT(Connection conn) {
 		int seq = 0;
-		String sql = prop.getProperty("selectSeqCurr");
+		String sql = prop.getProperty("selectSeqOT");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -120,7 +120,24 @@ public class OpinionDAO {
 		}
 		return seq;
 	}
-
+	public int selectSeqOD(Connection conn) {
+		int seq = 0;
+		String sql = prop.getProperty("selectSeqOD");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next())
+				seq = rs.getInt("seq");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return seq;
+	}
 	public Opinion selectOneBoard(Connection conn, String boardNo) {
 		Opinion o = null;
 		String sql = prop.getProperty("selectOneBoard");

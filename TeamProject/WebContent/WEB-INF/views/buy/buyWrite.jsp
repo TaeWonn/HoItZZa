@@ -5,12 +5,12 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/buysellForm.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" />
  
 
 
 <article id="article">
-
 
 	<form action="<%=request.getContextPath()%>/board/boardWriteEnd"
 	 method="post" enctype="multipart/form-data">
@@ -24,34 +24,32 @@
         <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
 
-<!-- 거래방식 -->
-    	<select class="custom-select" id="boardDeal" name="boardDeal">
+		<!-- 거래방식 -->
+			<select class="custom-select" id="boardDeal" name="boardDeal">
                 <option value="택배" selected>택배</option>
                 <option value="직거래">직거래</option>
-        </select>
-
-        <br>
-        
-		<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
-                <option selected>카테고리 선택</option>
-                <option value="A">패션의류/잡화</option>
-                <option value="B">뷰티</option>
-                <option value="C">출산/유아농</option>
-                <option value="D">식품</option>
-                <option value="E">주방용품</option>
-                <option value="F">생활용품</option>
-                <option value="G">홈인테리어</option>
-                <option value="H">가전디지털</option>
-                <option value="I">스포츠/레저</option>
-                <option value="G">자동차용품</option>
-                <option value="K">도서/음반/DVD</option>
-                <option value="L">완구/취미</option>
-                <option value="M">문구/오피스</option>
-                <option value="N">반려동물용품</option>
-                <option value="O">헬스/건강식품</option>
-        </select>
-        <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
-                <option selected>세부 카테고리</option>
+	        </select>
+		
+	    	<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
+	                <option selected>카테고리 선택</option>
+	                <option value="A">패션의류/잡화</option>
+	                <option value="B">뷰티</option>
+	                <option value="C">출산/유아농</option>
+	                <option value="D">식품</option>
+	                <option value="E">주방용품</option>
+	                <option value="F">생활용품</option>
+	                <option value="G">홈인테리어</option>
+	                <option value="H">가전디지털</option>
+	                <option value="I">스포츠/레저</option>
+	                <option value="G">자동차용품</option>
+	                <option value="K">도서/음반/DVD</option>
+	                <option value="L">완구/취미</option>
+	                <option value="M">문구/오피스</option>
+	                <option value="N">반려동물용품</option>
+	                <option value="O">헬스/건강식품</option>
+	        </select>
+	        <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
+	                <option value=""  selected>세부 카테고리</option></select>
         
               
         </select>

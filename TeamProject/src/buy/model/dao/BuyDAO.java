@@ -155,10 +155,9 @@ public class BuyDAO {
 		ResultSet rs= null;
 		try {
 			ps = conn.prepareStatement(sql);
-			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				boardNo = rs.getString("board_no");
+				boardNo = "B_"+rs.getInt("board_no");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

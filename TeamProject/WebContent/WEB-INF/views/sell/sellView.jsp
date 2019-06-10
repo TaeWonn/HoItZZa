@@ -17,9 +17,6 @@ System.out.println("널이 어딘가"+commentList);
 	crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
-<style>1
-
-</style>
 
 <article id="article">
 
@@ -42,7 +39,7 @@ System.out.println("널이 어딘가"+commentList);
 	<div id="boardContent"
 		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
 				<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 360px;">
+		<div style="width: 100%; margin-left: -16px; min-height: 360px; margin-top: 10px;">
 		<%=b.getBoardContent() %>
 		</div>
 
@@ -66,13 +63,9 @@ System.out.println("널이 어딘가"+commentList);
         (b.getBoardWriter().equals(userLoggedIn.getUserId())
         || "admin".equals(userLoggedIn.getUserId())) ){ %>
 
-
 			<input type="button" value="수정"
 				onclick="location.href='<%=request.getContextPath()%>/sell/sellModified?boardNo=<%=b.getBoardNo()%>'" />
 			<input type="button" value="삭제" onclick="deleteBoard();" />
-
-
-
 			<%} %>
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
