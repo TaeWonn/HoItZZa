@@ -32,7 +32,7 @@ public class SellDeleteServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", "/buy/buyList");
+		request.setAttribute("loc", "/sell/sellList");
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);
 	}
