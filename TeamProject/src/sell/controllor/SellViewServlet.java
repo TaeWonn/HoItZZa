@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
+import buy.model.service.BuyService;
+import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.service.SellService;
@@ -79,7 +81,32 @@ public class SellViewServlet extends HttpServlet {
 			System.out.println("boardCookie생성: "+boardCookie.getValue());
 		}
 		
-
+		/////////////////////////////////////////////////////////////////////////////
+		
+		//이전글 
+		Sell prev = new SellService().selectOneSellprev(boardNo.substring(0, 2)+(Integer.parseInt(boardNo.substring(2))-1));
+		
+		//다음글 가져오기
+		Sell next = new SellService().selectOneSellnext(boardNo.substring(0, 2)+(Integer.parseInt(boardNo.substring(2))+1));
+    	System.out.println(next);
+		
+    	
+    	//다음글 이전글 없으면 없다고 출력해줌
+		if(prev == null) {
+			prev.setBoardTitle("이전글이 없습니다");
+			request.setAttribute("prev", prev);
+		}
+		else 
+		request.setAttribute("prev", prev);
+		
+		if(next == null) {
+		next.setBoardTitle("다음글이 없습니다");
+		request.setAttribute("next", next);
+		}
+		else 
+		request.setAttribute("next", next);
+		
+		
 		////////////////////////////////////////카테고리 한글변환
 		
 		String ca = new BoardService().selectcategoryname(s.getBoardCodeNo());

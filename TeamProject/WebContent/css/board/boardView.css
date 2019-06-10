@@ -20,7 +20,6 @@
 	width: 805px;
     text-align: right;
     position: static;
-    padding-right: 4px;
 }
 #buttons input{
 	width: 60px;
@@ -90,9 +89,6 @@
   	position: relative; 
   	left : 4%
 }
-#boardContent{
-	min-height: 200px;
-}
 table#tbl-comment{
 	width: ;
 }
@@ -109,9 +105,9 @@ div#div-comment{
 	overflow: scroll;	
 	overflow-y: auto;
 	overflow-x: hidden;
-	width: 600px;
+	width: 590px;
 	height: 200px;
-	margin-left: 45px;
+	margin-left: 60px;
 }
 tr.level1{
 	text-align: left;
@@ -138,3 +134,6 @@ tr.level2 td:last-of-type{
 tr.level2 td:last-of-type{
 	padding-right: 56px;
 }
+
+#message_href{cursor:pointer;}
+#interest_btn{cursor:pointer;}

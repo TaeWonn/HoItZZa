@@ -5,24 +5,26 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" /> 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" />
-<% Buy s = (Buy)request.getAttribute("buy"); 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardModified.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+ <% Buy s = (Buy)request.getAttribute("buy"); 
  System.out.print(s);
  %>
 
 <article id="article">
-		<form action="<%=request.getContextPath()%>/buy/buyModifiedEnd"
-		 method="post" >
-		 
-			<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
-			<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
-			
-			<h2 style="text-align: center">구매글 수정</h2>
-			<br>
-	        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
-	        <br>
-	        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
+
+
+	<form action="<%=request.getContextPath()%>/sell/sellModifiedEnd"
+	 method="post" >
+	 
+		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
+		<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
+		
+		<h2 style="text-align: center">구매글 수정</h2>
+		<br>
+        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
+        <br>
+        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
 
 <!-- 거래방식 -->
@@ -117,7 +119,7 @@ function validate(){
 	
 	
 	$("[name=boardContent]").val($("#boardContent").text());
-	$("[name=boardCodeNo]").val($("#category2").val());
+	
 	
 	return true;
 }
@@ -203,9 +205,8 @@ function chageSelect(){
 								}
 								else{
 									
-									$("#category2 option:selected").val(data);	
+									$("#category2 option:selected").val(data);								
 									$("[name=boardCodeNo]").val($("#category2").val());
-									
 								}
 								 
 							}

@@ -117,32 +117,30 @@ public class BuyDAO {
 
 	public Buy selectOneBuy(Connection conn, String boardNo) {
 		String sql = prop.getProperty("selectOneBuy");
+		Buy b = new Buy();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Buy b = null;
+		
 		try {
 			ps = conn.prepareStatement(sql);
-			
 			ps.setString(1, boardNo);
 			
-			rs = ps.executeQuery();
-			
+			rs= ps.executeQuery();
 			if(rs.next()) {
-				b = new Buy();
-				b.setBoardNo(rs.getString("board_no"));
 				b.setBoardTitle(rs.getString("board_title"));
 				b.setBoardContent(rs.getString("board_content"));
-				b.setBoardDate(rs.getDate("board_date"));
-				b.setBoardDeal(rs.getString("board_deal"));
 				b.setBoardWriter(rs.getString("board_writer"));
-				b.setBoardCodeNo(rs.getString("board_code_no"));
+				b.setBoardDeal(rs.getString("board_deal"));
+				b.setBoardDate(rs.getDate("board_date"));
+				b.setBoardCodeNo(rs.getString("board_code_No"));
+				b.setBoardNo(rs.getString("board_no"));
 				b.setBoardReadCounter(rs.getInt("board_read_count"));
 			}
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rs); 
-			close(ps); 
+			close(rs);
+			close(ps);
 		}
 		return b;
 	}
@@ -764,6 +762,91 @@ public class BuyDAO {
 			close(ps);
 		}
 		return buy;
+	}
+
+	
+	///////////////////////////////////////////////////////////////////////////////////////
+	//검색용 토탈페이지
+	
+	public int selectBuyCount_search(Connection conn, String search_category, String search_key) {
+		 int count = 0;
+		    String sql = prop.getProperty("selectBuyCount_search");
+		    PreparedStatement ps = null;
+		    ResultSet rs  = null;
+		    sql+=("and("+search_category+" like '%"+search_key+"%')");
+		    
+		    try {
+		    	ps = conn.prepareStatement(sql);
+		    	
+		    	rs = ps.executeQuery();
+		    	if(rs.next()) {
+		    		count = rs.getInt("cnt");
+		    	}
+		    }catch (Exception e) {
+		    	e.printStackTrace();
+		    } finally {
+		    	close(rs);
+		    	close(ps);
+		    }
+		    
+			return count;
+	}
+
+	
+	////////////////////////////////////////////////////////////////////////////
+	//다음
+	
+	public Buy selectOneBuynext(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneBuynext");
+		Buy b = new Buy();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo.substring(2));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
+	}
+	
+	
+	public Buy selectOneBuyprev(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneBuyprev");
+		Buy b = new Buy();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo.substring(2));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
 	}
 
 

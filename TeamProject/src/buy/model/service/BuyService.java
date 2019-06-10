@@ -240,12 +240,41 @@ public class BuyService {
 		close(conn);
 	}
 
+	////////////////////////////////////////////////서치카운트 
+	
 	public List<Buy> selectsearchList(int cPage, int numPerPage, String search_category, String search_key) {
 		Connection conn = getConnection();
 		List<Buy> buy = new BuyDAO().selectsearchList(conn, cPage, numPerPage,search_category,search_key);
 		close(conn);
 		return buy;
 	}
+
+	public int selectBuyCount_search(String search_category, String search_key) {
+		Connection conn  = getConnection();
+		int count = new BuyDAO().selectBuyCount_search(conn,search_category,search_key);
+		close(conn);
+		return count;
+	}
+
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	/////이전글 다음글 상세
+	
+	public Buy selectOneBuyprev(String boardNo) {
+		Connection conn = getConnection();
+		Buy b = new BuyDAO().selectOneBuyprev(conn, boardNo);
+		close(conn);
+		return b;
+	}
+
+	public Buy selectOneBuynext(String boardNo) {
+		Connection conn = getConnection();
+		Buy b = new BuyDAO().selectOneBuynext(conn, boardNo);
+		close(conn);
+		return b;
+	}
+
+	
 
 
 }
