@@ -37,9 +37,9 @@ System.out.println("널이 어딘가"+commentList);
 	</div>
 
 	<div id="boardContent"
-		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
+		style="width: 590px; border: 0.2px solid lightgrayv; margin: auto;">
 				<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 360px; margin-top: 10px;">
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
 		<%=b.getBoardContent() %>
 		</div>
 

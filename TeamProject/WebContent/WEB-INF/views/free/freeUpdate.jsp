@@ -23,7 +23,7 @@
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
-        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly style="width : 500px"> 
+        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
         <br>
 
         <select class="custom-select" id="boardCodeNo" name="boardCodeNo">
