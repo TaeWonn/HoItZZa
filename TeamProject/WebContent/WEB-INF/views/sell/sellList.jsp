@@ -8,7 +8,7 @@
 	//header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
-<<<<<<< HEAD
+
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm2.css" />    
 	<link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -95,12 +95,12 @@ border-radius: 3px;
     .thead-light{
     font-size : 14px;}
     </style>
-=======
+
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />    
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
->>>>>>> refs/remotes/origin/SeUh
+
 
 <article id="article">
 

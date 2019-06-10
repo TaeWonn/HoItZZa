@@ -20,7 +20,7 @@
 	
 	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo" style="margin-left: 4.4%;">
 	                <option selected>게시판 선택</option>
-	                <option value="FC_">잡답 게시판</option>
+	                <option value="FC_">잡담 게시판</option>
 	                <option value="FU_">유용한 생활지식 게시판</option>
 	                <option value="FE_">연예/미디어 게시판</option>
 	                <option value="FS_">나눔게시판</option>
