@@ -192,7 +192,7 @@ function reply(sender,recipient){
 	
 	$.ajax({
 		url: "<%=request.getContextPath()%>/board/boardinterestcheck",
-		data: {userId : '<%=userLoggedIn.getUserId()%>', boardNo : '<%=b.getBoardNo()%>'},
+		data: {userId : '<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>', boardNo : '<%=b.getBoardNo()%>'},
 		success: function(data){
 			console.log(data);
 			
