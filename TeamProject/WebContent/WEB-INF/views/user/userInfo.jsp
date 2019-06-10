@@ -1,21 +1,27 @@
+<%@page import="sell.model.vo.Sell"%>
+<%@page import="file.model.vo.FileTable"%>
 <%@page import="java.util.Date"%>
 <%@page import="board.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
+    pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <%
 	String pageBar = (String) request.getAttribute("pageBar");
 	User u=(User)request.getAttribute("user");
-  	List<Board> interestBBoardList=(List<Board>)request.getAttribute("interestBoardList");
-	List<Board> interest1BoardList=(List<Board>)request.getAttribute("firstInterestList");
-	List<Board> interest2BoardList=(List<Board>)request.getAttribute("secondInterestList");
-	List<Board> interest3BoardList=(List<Board>)request.getAttribute("thirdInterestList"); 
+  	List<Sell> interestBoardList=(List<Sell>)request.getAttribute("interestBoardList");
+	List<Sell> interest1BoardList=(List<Sell>)request.getAttribute("firstInterestList");
+	List<Sell> interest2BoardList=(List<Sell>)request.getAttribute("secondInterestList");
+	List<Sell> interest3BoardList=(List<Sell>)request.getAttribute("thirdInterestList"); 
 	String[] interestArr=userLoggedIn.getInterest();
 	String reason=(String)request.getAttribute("reason");
+	List<FileTable> intFile1=(List<FileTable>)request.getAttribute("intFile1");
+	List<FileTable> intFile2=(List<FileTable>)request.getAttribute("intFile2");
+	List<FileTable> intFile3=(List<FileTable>)request.getAttribute("intFile3");
  
 	String[] addrArr = u.getAddr().split(",");
+
 %>
 <style>
 table#interestSellBoard2{position:absolute;width:308px;padding:0px;border:1px solid; border-collapse: collapse;
@@ -66,7 +72,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><input type="email" value="<%=userLoggedIn.getEmail() %>" name="email"/></td>
+			<td><input type="email" value="<%=u.getEmail() %>" name="email"/></td>
 		</tr>
 		<tr>
 			<th>관심품목</th>
@@ -109,41 +115,35 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 
 <div id="interestBoard">
 	<h3>관심글</h3>	
- 	 <%  if(interest1BoardList!=null){ %>
-	<table id="interestSellBoard">
-	<tr>
-		<th><nobr>번호</nobr></th>
-		<th><nobr>제목</nobr></th>
-		<th><nobr>작성자</nobr></th>
-		<th><nobr>조회수</nobr></th>
-	</tr>
-		<% for(int i=1;i<=interestBBoardList.size();i++){%>
-		<tr>
-			<td><nobr> <%=interestBBoardList.get(i).getBoardNo() %> </nobr></td>
-			<td><nobr> <%=interestBBoardList.get(i).getBoardTitle() %> </nobr></td>
-			<td><nobr><%=interestBBoardList.get(i).getBoardWriter() %> </nobr></td>
-			<td><nobr> <%=interestBBoardList.get(i).getBoardReadCounter()%> </nobr></td>
-		</tr>
-	<%  } }else{ %>
-	<table id="interestSellBoard2">
+ 	
+ 	<table id="interestSellBoard">
 	<colgroup>
 	    <col width="55px">
         <col width="55px">  <!-- 너비를 지정해주어야한다 -->
         <col width="55px">  <!-- 너비를 지정해주어야한다 -->
         <col width="55px">
 	</colgroup>
-			<tr>
-				<th><nobr>번호</nobr></th>
-				<th><nobr>제목</nobr></th>
-				<th><nobr>작성자</nobr></th>
-				<th><nobr>조회수</nobr></th>
-			</tr>
+	<tr>
+		<th><nobr>번호</nobr></th>
+		<th><nobr>제목</nobr></th>
+		<th><nobr>작성자</nobr></th>
+		<th><nobr>조회수</nobr></th>
+	</tr>
+	 <%  if(interestBoardList!=null){ %>
+		<% for(Sell s:interestBoardList){%>
+		<tr>
+			<td><nobr> <%=s.getBoardNo() %> </nobr></td>
+			<td><nobr> <%=s.getBoardTitle() %> </nobr></td>
+			<td><nobr><%=s.getBoardWriter() %> </nobr></td>
+			<td><nobr> <%=s.getBoardReadCounter()%> </nobr></td>
+		</tr>
+	<% }}else{ %>
 			<tr>
 				<td colspan="4">관심글이 존재하지 않습니다.</td>
 			</tr>
 	
 	<%} %> 
-	</table>
+	</table> 
 	<div id="pageBar" style="top:460px;">
 		<%=pageBar %>
 	</div>
@@ -152,34 +152,50 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 
 <div id="interestBoardAll">
 	<p>관심사 추천 글</p>
-		<table id="recommendBoard">
+		 <table id="recommendBoard">
 		
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[0] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
-			<%} %>
+			<% if(interest1BoardList!=null){for(int i=0;i<interest1BoardList.size();i++){%>
+			<%if(intFile1!=null){ %>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest1BoardList.get(i).getBoardNo()%>">
+			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile1.get(i).getRenamedFileName() %>" alt="" /><br />
+			<span><nobr><%=interest1BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}else{%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest1BoardList.get(i).getBoardNo()%>">
+			<br />
+			<span><nobr><%=interest1BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}}} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[1] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/냥챗 아이콘.jpg" alt="" /><br />
-			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
-			<%} %>
+			<% if(interest2BoardList!=null){for(int i=0;i<interest2BoardList.size();i++){%>
+			<%if(intFile2!=null){ %>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest2BoardList.get(i).getBoardNo()%>">
+			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile2.get(i).getRenamedFileName() %>" alt="" /><br />
+			<span><nobr><%=interest2BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}else{%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest2BoardList.get(i).getBoardNo()%>">
+			<br />
+			<span><nobr><%=interest2BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}}} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[2] %></nobr></th>
-			<% for(int i=0;i<5;i++){%>
-			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><br />
-			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
-			<%} %>
+			<% if(interest3BoardList!=null){for(int i=0;i<interest3BoardList.size();i++){%>
+			<%if(intFile3!=null){ %>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>">
+			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile3.get(i).getRenamedFileName() %>" alt="" /><br />
+			<span><nobr><%=interest3BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}else{%>
+			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>">
+			<br />
+			<span><nobr><%=interest3BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
+			<%}}} %>
 		</tr>
-		
-		
 		
 		</table>
 	</div>

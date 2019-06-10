@@ -71,6 +71,7 @@ public class DivideListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("divideList", free);
+		request.setAttribute("backList", "/divideList");
 		
 		request.getRequestDispatcher("/WEB-INF/views/free/divideList.jsp").forward(request, response);
 		System.out.println("======<divideListServlet Over>======");

@@ -8,6 +8,7 @@
     String pageBar = (String)request.getAttribute("pageBar");
     //header.jsp에 memberLoggedIn변수를 선언했으므로, 이 페이지에서는 선언할 필요 없음.
     //Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+   
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
@@ -35,7 +36,7 @@
 				<td><nobr><%=f.getBoardWriter() %></nobr></td>
 				<td>
 					<a
-					href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo()%>"
+					href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo()%>&list="
 					style="text-decoration: none; color: black;"> 
 						<nobr><%=f.getBoardTitle()%></nobr>
 					</a>

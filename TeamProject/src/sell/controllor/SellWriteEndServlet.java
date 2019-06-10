@@ -20,6 +20,7 @@ import com.sun.xml.internal.messaging.saaj.soap.MultipartDataContentHandler;
 
 import common.SellBarFileRenamePolicy;
 import file.model.vo.FileTable;
+import free.model.service.FreeService;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
@@ -57,30 +58,24 @@ public class SellWriteEndServlet extends HttpServlet {
 		String boardWriter = multiReq.getParameter("boardWriter");
 		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		
+		String fileOriginName= multiReq.getOriginalFileName("upFile");
+		String fileRenamedName= multiReq.getFilesystemName("upFile");
 		
+		String imageOriginName=multiReq.getOriginalFileName("upFile1");
+		String imageRenamedName=multiReq.getFilesystemName("upFile1");
 		
+		System.out.println("넘어온 값 전체확인");
+		System.out.println(boardTitle+"제목");
+		System.out.println(boardContent+"내용");
+		System.out.println(boardWriter+"작성자");
+		System.out.println(boardCodeNo+"게시글코드");
+		System.out.println(imageOriginName+"이미지 오리지날네임");
+		System.out.println(imageRenamedName+"이미지 바뀐네임");
+		System.out.println(fileOriginName+"파일 오리지날네임");
+		System.out.println(fileRenamedName+"파일 바뀐네임");
+
 		
-		File f = multiReq.getFile("upFile");
-		
-		
-		System.out.println("제목"+boardTitle);
-		System.out.println("내용"+boardContent);
-		System.out.println("거래방식"+boardDeal);
-		System.out.println("코드"+boardCodeNo);
-		System.out.println("작성자"+boardWriter);
-		
-		int fileCount = 1;
-		
-		List<String> fileNameList = new ArrayList<>();
-		List<String> newFileNameList = new ArrayList<>();
-		
-		for(int i=0;i<fileCount;i++) {
-			String fileName = multiReq.getOriginalFileName("upFile"+i);
-			String newFileName = multiReq.getFilesystemName("upFile"+i);
-			fileNameList.add(fileName);
-			newFileNameList.add(newFileName);
-		}
-		
+
 		boardContent =boardContent.replaceAll("<", "&lt;")
 								.replaceAll(">", "&gt;");
 		
@@ -91,25 +86,37 @@ public class SellWriteEndServlet extends HttpServlet {
 		s.setBoardCodeNo(boardCodeNo);
 		s.setBoardWriter(boardWriter);
 		
-		int result = new SellService().insertSell(s);
-		String boardNo = new SellService().selectOneBoardNo();
+		String boardNo  = new SellService().insertSell(s);
+		System.out.println("보드넘버 확인"+boardNo);
+		Sell sell=new SellService().selectOneSell(boardNo);
 		
-		System.out.println("가야될곳"+boardNo);
-		
-		for(int i =0;i<fileCount;i++) {
-			FileTable t = new FileTable();
-			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileNameList.get(i));
-			t.setRenamedFileName(newFileNameList.get(i));
+		if(sell != null) {
+			//이미지파일
+			FileTable imgFile = new FileTable();
 			
-			new SellService().insertFileTable(t);
+				imgFile.setBoardNo(boardNo);
+				imgFile.setOriginalFileName(imageOriginName);
+				imgFile.setRenamedFileName(imageRenamedName);
+				new FreeService().insertFileTable(imgFile);
 		}
+			
+			//파일
+		if(sell != null) {
+		FileTable file=new FileTable();
+		
+			file.setBoardNo(boardNo);
+			file.setOriginalFileName(fileOriginName);
+			file.setRenamedFileName(fileRenamedName);
+			new FreeService().insertFileTable(file);
+		}
+			
+		System.out.println("작성한 게시물"+sell);
 		
 		
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "";
-		if(result> 0) {
+		if(boardNo!=null) {
 			msg ="글 등록완료";
 			loc ="/sell/sellView?boardNo="+boardNo;
 		}else {
