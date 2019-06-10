@@ -52,7 +52,6 @@ public class FreeService {
 			result=new FreeDAO().insertFreeBoardFS(conn,f);
 			boardNo=new FreeDAO().selectBoardNoFS(conn);
 		}
-		System.out.println("서비스단 결과확인: "+result);
 		if(result>0) {
 			commit(conn);
 		}else

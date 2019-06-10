@@ -40,9 +40,9 @@
         <div class="filebox">			
 			<input type="file"  id="ex_img" onchange="loadImg(this);" name="imgFile">			 
 		   <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    <input type="file"  id="ex_filename" class="upload-hidden" > 
+		    <input type="file"  id="ex_filename" class="upload-hidden"name="upFile" > 
 		    
-		  <input class="upload-name" value="파일명" disabled="disabled" name="upFile">
+		  <input class="upload-name" value="파일명" disabled="disabled" >
 		  
 		  <label for="ex_filename">파일 업로드</label>
 		 <!--  <input type="file"  id="ex_filename2" class="upload-hidden"  > -->
