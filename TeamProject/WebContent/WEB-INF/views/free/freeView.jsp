@@ -58,10 +58,6 @@ div#min_div{
 
 	<div id="boardContent"
 		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
-<<<<<<< HEAD
-		<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 360px;">
-=======
 		<div style="width: 100%; border: 1px solid;">
 			<img src="<%=request.getContextPath() %>/image/file.png" alt="" />
 			<label for=""><%if(file!=null){
@@ -71,11 +67,9 @@ div#min_div{
 			<%}} %>
 			</label>
 		</div>
->>>>>>> refs/remotes/origin/YeRim
 		<%=f.getBoardContent() %>
 		</div>
 		
-	</div>
 	<div id="min_div" style="margin-left: 15%;">
 			<table id="min_index">
 				<tr>
