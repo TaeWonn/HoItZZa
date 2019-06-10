@@ -61,6 +61,7 @@ public class SellWriteEndServlet extends HttpServlet {
 		
 		
 		File f = multiReq.getFile("upFile");
+		System.out.println("파일 넘어온 유뭄 ="+f);
 		
 		
 		System.out.println("제목"+boardTitle);
@@ -69,17 +70,12 @@ public class SellWriteEndServlet extends HttpServlet {
 		System.out.println("코드"+boardCodeNo);
 		System.out.println("작성자"+boardWriter);
 		
-		int fileCount = 1;
 		
-		List<String> fileNameList = new ArrayList<>();
-		List<String> newFileNameList = new ArrayList<>();
 		
-		for(int i=0;i<fileCount;i++) {
-			String fileName = multiReq.getOriginalFileName("upFile"+i);
-			String newFileName = multiReq.getFilesystemName("upFile"+i);
-			fileNameList.add(fileName);
-			newFileNameList.add(newFileName);
-		}
+		String fileName = multiReq.getOriginalFileName("upFile");
+		String newFileName = multiReq.getFilesystemName("upFile");
+		System.out.println("fileName="+fileName);
+		System.out.println("newfileName="+newFileName);
 		
 		boardContent =boardContent.replaceAll("<", "&lt;")
 								.replaceAll(">", "&gt;");
@@ -96,11 +92,11 @@ public class SellWriteEndServlet extends HttpServlet {
 		
 		System.out.println("가야될곳"+boardNo);
 		
-		for(int i =0;i<fileCount;i++) {
+		if(fileName != null){
 			FileTable t = new FileTable();
 			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileNameList.get(i));
-			t.setRenamedFileName(newFileNameList.get(i));
+			t.setOriginalFileName(fileName);
+			t.setRenamedFileName(newFileName);
 			
 			new SellService().insertFileTable(t);
 		}

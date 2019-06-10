@@ -177,7 +177,7 @@ public class SellDAO {
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			
+			System.out.println(t);
 			ps.setString(1, t.getBoardNo());
 			ps.setString(2, t.getOriginalFileName());
 			ps.setString(3, t.getRenamedFileName());
