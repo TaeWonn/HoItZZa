@@ -4,51 +4,8 @@
  <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/others/faqList.css" />
 
-<style>
-div#faq-container{
-	text-align: center;
-}
-div#faq-container h2{
-    margin-right: 144px;
-	padding: 30px;
-	margin-bottom: 10px;
-	
-}
-table#faq-tbl{
-	margin: 0 auto;
-	width: 610px;
-	font-size: 12px;
-	text-align: center;
-	border-top: 2px solid rgb(196, 192, 192);
-}
-table#faq-tbl tr{
-	border-bottom: 1px solid rgb(196, 192, 192);
-}
-table#faq-tbl tr:last-of-type{
-	border-bottom: 2px solid rgb(196, 192, 192);
-}
-table#faq-tbl tr:first-of-type{
-	/* background: #e9ecef; */
-	background: #cae5ffcc;
-	border-bottom: 1px solid rgb(196, 192, 192);
-	font-size: 1.2em;
-}
-table#faq-tbl td:last-of-type {
-	text-align: left;
-}
-tr#p-tag:hover td{
-	color: #0041ff;
-	cursor: pointer;
-}
-tr#p-tag:hover td p{
-	cursor: default;
-}
-tr#p-tag td P{
-	min-height: 10px;
-	display: none;
-}
-</style>
 <article>
 
 	<section>

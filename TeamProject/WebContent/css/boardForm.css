@@ -129,7 +129,6 @@ border: 1px solid red;
 #ex_img{
 	display: none;
 }
-
 select#boardCodeNo{margin-left:4.4%%; height:40px; width:575px; background: lightgray;font-size: 17px;color : black;}
 div#freeBoard{position:relative;height: 690px;margin-left: 17%;width:85%;}
 div#freeBoard h3{font-size:20px;}

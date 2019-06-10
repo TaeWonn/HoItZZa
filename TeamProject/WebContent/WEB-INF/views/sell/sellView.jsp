@@ -8,12 +8,28 @@ Sell b = (Sell)request.getAttribute("sell");
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 System.out.println("널이 어딘가"+commentList);
 %>
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/boardForm.css" />
 <style>
+=======
+<link
+	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
+<style>1
+>>>>>>> refs/remotes/origin/SeUh
+
+<<<<<<< HEAD
 
 
-
+=======
+>>>>>>> refs/remotes/origin/SeUh
 </style>
 
 <article id="article">
@@ -29,6 +45,7 @@ System.out.println("널이 어딘가"+commentList);
 			class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span> <span
 			class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
 		<%if(userLoggedIn != null){ %>
+<<<<<<< HEAD
 		<a
 			onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
 			id="message_href">☏ 쪽지보내기</a> 
@@ -36,16 +53,23 @@ System.out.println("널이 어딘가"+commentList);
 			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=b.getBoardNo()%>');"
 			id="interest_btn">☆관심등록</a>
 			<input type="hidden" value="0" id="interest_val">
+=======
+		<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
+			id="message_href">☏ 쪽지보내기</a>
+>>>>>>> refs/remotes/origin/SeUh
 		<% } %>
 	</div>
 
 	<div id="boardContent"
 		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
-		<div style="width: 100%; border: 1px solid;">파일내려받기 or 거래방식
-			넣을곳임</div><%=b.getBoardContent() %>
+				<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
+		<div style="width: 100%; margin-left: -16px; min-height: 360px;">
+		<%=b.getBoardContent() %>
+		</div>
 
 	</div>
 
+<<<<<<< HEAD
 
 <div id="buttons">
 			<% if(userLoggedIn!=null && 
@@ -77,8 +101,38 @@ System.out.println("널이 어딘가"+commentList);
 			</tr>
 			</div>
 		</table>
+=======
+		<div id="min_div" style="margin-left: 15%;">
+			<table id="min_index">
+			
+				<tr>
+					<td><a href="<%=request.getContextPath()%>/sell/sellView?<%=b.getBoardNo()+1%>">이전글
+							제목 </a></td>
+				</tr>
+				<tr>
+					<td><a href="">다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>
+				</tr>
+			</table>
+		</div>
+>>>>>>> refs/remotes/origin/SeUh
 		<Br>
+		<div id="buttons">
+			<% if(userLoggedIn!=null && 
+        (b.getBoardWriter().equals(userLoggedIn.getUserId())
+        || "admin".equals(userLoggedIn.getUserId())) ){ %>
 
+
+			<input type="button" value="수정"
+				onclick="location.href='<%=request.getContextPath()%>/sell/sellModified?boardNo=<%=b.getBoardNo()%>'" />
+			<input type="button" value="삭제" onclick="deleteBoard();" />
+
+
+
+			<%} %>
+			<button type="button"
+				onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
+		</div>
+		
 		<div id="comment-container" style="text-align: center;">
 			<div class="comment-editor">
 				<form action="<%=request.getContextPath()%>/sell/sellComment"
@@ -99,10 +153,6 @@ System.out.println("널이 어딘가"+commentList);
 			<!-- 댓글목록 테이블 -->
 			<div id="div-comment">
 				<table id="tbl-comment">
-					<colgroup>
-						<col width="130px" />
-						<col width="50px" />
-					</colgroup>
 					<%if(!commentList.isEmpty()) {
 		for(Comment bc: commentList){
 			if(bc.getCommentLevel()==1){
@@ -113,7 +163,7 @@ System.out.println("널이 어딘가"+commentList);
 						<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
 							<%=bc.getCommentContent() %></td>
-						<td>
+						<td style="text-align: center; width: 110px;">
 							<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null 
 
@@ -128,9 +178,10 @@ System.out.println("널이 어딘가"+commentList);
 			}else{%>
 					<!-- 대댓글인경우 -->
 					<tr class="level2">
-						<td id="CommentContentsReply"><sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
+						<td id="CommentContentsReply">
+						<sub class="comment-writer">↳<%=bc.getCommentWriter()%></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
-							↳<%=bc.getCommentContent() %></td>
+							<%=bc.getCommentContent() %></td>
 						<td style="text-align: center;"> 
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
 							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
@@ -153,24 +204,6 @@ System.out.println("널이 어딘가"+commentList);
 
 
 
-		<div id="buttons">
-			<% if(userLoggedIn!=null && 
-        (b.getBoardWriter().equals(userLoggedIn.getUserId())
-        || "admin".equals(userLoggedIn.getUserId())) ){ %>
-
-
-			<input type="button" value="수정"
-				onclick="location.href='<%=request.getContextPath()%>/sell/sellModified?boardNo=<%=b.getBoardNo()%>'" />
-			<input type="button" value="삭제" onclick="deleteBoard();" />
-
-
-
-			<%} %>
-			<button type="button"
-				onclick="location.href='<%=request.getContextPath()%>/sell/sellList'">목록</button>
-		</div>
-
-
 
 <script>
 
@@ -187,6 +220,7 @@ function reply(sender,recipient){
 //관심글인지 확인하는 함수
 (function on_interest(userId,boardNo) {
 	
+<<<<<<< HEAD
 	
 	$.ajax({
 		url: "<%=request.getContextPath()%>/board/boardinterestcheck",
@@ -265,6 +299,9 @@ function interest_btn(userId,boardNo) {
 }
 	
 
+=======
+}
+>>>>>>> refs/remotes/origin/SeUh
 function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }
@@ -290,7 +327,7 @@ $(function() {
            html += '<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />';
            html += '<input type="hidden" name="commentLevel" value="2" />';
            html += '<input type="hidden" name="commentNoRef" value="'+$(this).val()+'" />';
-           html += '<button type="submit" class="btn-insert2">등록</button>';      
+           html += '<br><button style="margin-left: 396px;" type="submit" class="btn-insert2">등록</button>';      
            html += '</form></td>';
      
            tr.html(html);
@@ -322,4 +359,3 @@ $(function() {
 </article>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-

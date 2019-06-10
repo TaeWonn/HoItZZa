@@ -52,7 +52,7 @@ public class FreeListServlet extends HttpServlet {
 		// pageNo section
 		while(pageNo <= pageEnd && pageNo <= totalPage) {
 			if(cPage == pageNo)
-				pageBar += "<span='cPage'>"+pageNo+"</span> ";
+				pageBar += "<span>"+pageNo+"</span> ";
 			else {
 				pageBar += "<a href='"+request.getContextPath()+"/free/freeList?cPage="+pageNo+
 						"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";

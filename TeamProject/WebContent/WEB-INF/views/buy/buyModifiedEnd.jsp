@@ -5,58 +5,54 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
- <% Buy s = (Buy)request.getAttribute("buy"); 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardModified.css" />
+<% Buy s = (Buy)request.getAttribute("buy"); 
  System.out.print(s);
  %>
 
-
 <article id="article">
 
-
-	<form action="<%=request.getContextPath()%>/buy/buyModifiedEnd"
-	 method="post" >
-	 
-		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
-		<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
-		
-		<h2 style="text-align: center">구매글 수정</h2>
-		<br>
-        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
-        <br>
-        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
+		<form action="<%=request.getContextPath()%>/buy/buyModifiedEnd"
+		 method="post" >
+		 
+			<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
+			<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
+			
+			<h2 style="text-align: center">구매글 수정</h2>
+			<br>
+	        <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
+	        <br>
+	        <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly> 
 
 
 <!-- 거래방식 -->
-    	<select class="custom-select" id="boardDeal" name="boardDeal">
-                <option value="택배" selected>택배</option>
-                <option value="직거래">직거래</option>
-        </select>
-
-        <br>
-        <div id="ca">
-		<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
-                <option selected>카테고리 선택</option>
-                <option value="A">패션의류/잡화</option>
-                <option value="B">뷰티</option>
-                <option value="C">출산/유아농</option>
-                <option value="D">식품</option>
-                <option value="E">주방용품</option>
-                <option value="F">생활용품</option>
-                <option value="G">홈인테리어</option>
-                <option value="H">가전디지털</option>
-                <option value="I">스포츠/레저</option>
-                <option value="G">자동차용품</option>
-                <option value="K">도서/음반/DVD</option>
-                <option value="L">완구/취미</option>
-                <option value="M">문구/오피스</option>
-                <option value="N">반려동물용품</option>
-                <option value="O">헬스/건강식품</option>
-        </select>
-        <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
-                <option value=""  selected>세부 카테고리</option></select>
-               </div> 
-              
+	    	<select class="custom-select" id="boardDeal" name="boardDeal">
+	                <option value="택배" selected>택배</option>
+	                <option value="직거래">직거래</option>
+	        </select>
+	
+	
+			<select class="custom-select" id="category1" name="category1" onchange="chageSelect()">
+	                <option selected>카테고리 선택</option>
+	                <option value="A">패션의류/잡화</option>
+	                <option value="B">뷰티</option>
+	                <option value="C">출산/유아농</option>
+	                <option value="D">식품</option>
+	                <option value="E">주방용품</option>
+	                <option value="F">생활용품</option>
+	                <option value="G">홈인테리어</option>
+	                <option value="H">가전디지털</option>
+	                <option value="I">스포츠/레저</option>
+	                <option value="G">자동차용품</option>
+	                <option value="K">도서/음반/DVD</option>
+	                <option value="L">완구/취미</option>
+	                <option value="M">문구/오피스</option>
+	                <option value="N">반려동물용품</option>
+	                <option value="O">헬스/건강식품</option>
+	        </select>
+	        <select class="custom-select" id="category2" name="category2" onchange="chageSelect2()">
+	                <option value=""  selected>세부 카테고리</option></select>     
         
         <br>
         <!-- <div id="img-viewer-container">
@@ -64,30 +60,30 @@
 					</div> -->
         <div contentEditable="true"  id="boardContent">
         
-        <img id="img-viewer" style="display: block;"/>
-        <%=s.getBoardContent() %>
+	        <img id="img-viewer" style="display: block;"/>
+	        <%=s.getBoardContent() %>
         </div>
         
         <input type="hidden" name="boardContent">
         <br>
-           <div class="filebox">
+	<div class="filebox">
            			
 					
-	<input type="file" id="ex_img" onchange="loadImg(this);" name="upFile1">			 
-    <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input multiple type="file" id="ex_filename" class="upload-hidden" name="upFile">
+		<input type="file" id="ex_img" onchange="loadImg(this);" name="upFile1">			 
+		<label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input multiple type="file" id="ex_filename" class="upload-hidden" name="upFile">
+	    
+		<input class="upload-name" value="파일명" disabled="disabled">
+		<label for="ex_filename">파일 업로드</label>
+		<input type="file" id="ex_filename" class="upload-hidden" name="">
+	</div> 
     
-  <input class="upload-name" value="파일명" disabled="disabled">
-  <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden" name="">
-</div>
-    
-                <div id="buttons">
-                  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">수정</button>
-                  <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
-                </div>
+	<div id="buttons">
+	  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">수정</button>
+	  <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
+	</div>
             </form>
-
+            
 </article>
 
 <script>
