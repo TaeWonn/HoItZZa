@@ -14,7 +14,7 @@ import buy.model.service.BuyService;
 /**
  * Servlet implementation class BuyCommentDeleteServlet
  */
-@WebServlet("/buy/commentDelete")
+@WebServlet("/buy/buyCommentDelete")
 public class BuyCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
