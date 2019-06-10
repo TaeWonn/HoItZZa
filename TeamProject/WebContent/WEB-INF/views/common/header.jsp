@@ -1,6 +1,6 @@
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 
 <%
    //세션 객체로부터 저장된 로그인 사용자 정보 가져오기

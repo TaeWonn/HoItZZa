@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.0.js"></script>
 <%
 	String senderId=(String)request.getAttribute("senderId");
@@ -34,15 +34,19 @@
 <script>
 
 function check(){
-	console.log('검사');
+	if(<%=receiverId.equals(senderId)%>){
+		alert('작성자 본인에게 쪽지를 보낼 수 없습니다.');
+		return false;
+	}else{
 	var content=$('#contentArea').val();
 	if(content.length==0){
 		alert('내용을 입력해주세요.');
 		return false;
-	}else return true;
+	}else 
+		return true;
+	}
 }
-//주소창에 파라미터 값 숨기기
-history.replaceState({}, null, location.pathname);
+
 
 
 </script>

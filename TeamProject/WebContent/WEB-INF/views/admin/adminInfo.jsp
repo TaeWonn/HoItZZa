@@ -1,7 +1,7 @@
 <%@page import="board.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <%
@@ -78,7 +78,7 @@ String pageBar = (String) request.getAttribute("pageBar");
 	</tr>
 	 <%}%>
 	</table>
-	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard(<%--<%=userIdd%>--%>)">건의게시판 바로가기</button>
+	 <button type="button" id="move1" class="btn btn-secondary" onclick="moveSBoard('<%=userLoggedIn.getUserId()%>')">건의게시판 바로가기</button>
 	<%-- <button type="button" id="move1"onclick="moveSBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
 	</div>
 	
@@ -99,8 +99,7 @@ String pageBar = (String) request.getAttribute("pageBar");
 	</tr>
 	 <%}%>
 	</table>
-	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard(<%--<%=userIdd%>)--%>">신고게시판 바로가기</button>
-	<%-- <button type="button" id="move2"onclick="moveRBoard('<%=userIdd%>')">건의게시판 바로가기</button> --%>
+	 <button type="button" id="move2" class="btn btn-secondary" onclick="moveRBoard('<%=userLoggedIn.getUserId()%>')">신고게시판 바로가기</button>
 	</div>
 </div>
 
@@ -128,12 +127,11 @@ function changeUserPwd(userId){
 }
 
 function moveSBoard(userId){
-	location.href="<%=request.getContextPath()%>/opinion/opinionList";
+	location.href="<%=request.getContextPath()%>/opinion/opinionList?userId="+userId;
 }
 function moveRBoard(userId){
-	location.href="<%=request.getContextPath()%>/views/opinion/reportBoard";
+	location.href="<%=request.getContextPath()%>/opinion/declarationList?userId="+userId;
 }
-
 
 
 </script>

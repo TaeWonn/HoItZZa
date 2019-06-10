@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%
 	String msg = (String)request.getAttribute("msg");
 	String loc = request.getContextPath() + (String)request.getAttribute("loc");

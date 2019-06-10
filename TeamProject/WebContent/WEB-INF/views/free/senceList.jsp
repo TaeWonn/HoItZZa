@@ -1,6 +1,6 @@
 <%@page import="free.model.vo.Free"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ page import="board.model.vo.Board, java.util.*"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%

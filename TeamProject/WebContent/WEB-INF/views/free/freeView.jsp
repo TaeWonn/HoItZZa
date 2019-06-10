@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"errorPage="../common/error.jsp" %>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ page import="free.model.vo.Free, java.util.*,comment.model.vo.*"%>
 <%
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
+	System.out.println("작성자"+f.getBoardWriter());
+	System.out.println("로그인한 사람"+userLoggedIn!=null?userLoggedIn.getUserId():"");
 	
 	String title="";
 	String link="";
@@ -27,7 +29,6 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
-<article style="text-align: center;">
 <style>
 
 #boardContent div{
@@ -37,6 +38,7 @@ div#min_div{
 	text-align: left;
 }
 </style>
+<article style="text-align: center;">
 	<h2 style="text-align: center;"><%=title%></h2>
 	<div id="div1">
 
@@ -148,6 +150,15 @@ div#min_div{
 
 		</div>
 
+
+	<div id="buttons">
+	<% if(userLoggedIn!=null&&(userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
+		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
+		<button type="button" onclick="checkDelete();">삭제</button>
+	<% } %>
+		<button type="button" disabled>목록</button>
+	</div>
+
 	<!-- <div id="min_div" style="margin-left: 15%;">
 		<table id="min_index">
 
@@ -221,9 +232,13 @@ $(function() {
    //댓글 삭제 기능
    $('.btn-delete').click(function(){
 		 var bool=confirm('댓글을 삭제하시겠습니까??');
-		 if(bool){}
-		 location.href="<%=request.getContextPath()%>/free/freeCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=f.getBoardNo()%>";
-	 });
+		 if(bool){
+			 location.href="<%=request.getContextPath()%>/free/freeCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=f.getBoardNo()%>";
+		 }else{
+			 return;
+		 }
+		 
+	});
 	
 });
 
