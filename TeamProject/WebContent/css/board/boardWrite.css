@@ -16,7 +16,7 @@
 }
 #userId{ 
 	background: lightgray;
-	margin-right: 4px;
+	margin-right: 3px;
 }
 .custom-select{
 	width: 180px;
@@ -35,7 +35,7 @@
     overflow: auto;
     border: 0.5px solid gray;
     margin-top: 15px;
-    margin-right: 27px;
+    margin-right: 33px;
 }
 .filebox input[type="file"] {
   position: absolute;
@@ -88,4 +88,7 @@
 }
 #buttons{
 	width: 810px;
+}
+select#boardCodeNo{
+	width: 590px;
 }

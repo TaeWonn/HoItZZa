@@ -4,21 +4,26 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
-<article>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" /> 
+<style>
+#userId{
+	margin-left: 6px;
+}
+</style>
+<article id="article">
 
-
+	<div id="freeBoard">
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
 	 method="post" enctype="multipart/form-data" >
-		<div id="freeBoard">
-			<h3 style="text-align: center;margin:0 auto;">자유게시판  작성</h3>
+			<h3 style="text-align: center; margin:0 auto; padding: 20px 0 0 0;">자유게시판  작성</h3>
 				<br>
-	        	<input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" style="margin-left: 4.4%;" placeholder="제목을 입력해주세요">
+	        	<input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle"" placeholder="제목을 입력해주세요">
 	        	<br>
-	       	 <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" style="margin-left: 4.4%;" value="<%=userLoggedIn.getUserId() %>" readonly > 
+	       	 <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly > 
 	        <br>
 	
-	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo" style="margin-left: 4.4%;">
+	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo" ">
 	                <option selected>카테고리 선택</option>
 	                <option value="1">잡답 게시판</option>
 	                <option value="2">생활지식 게시판</option>
@@ -32,7 +37,7 @@
 	        <div contentEditable="true"  id="boardContent" name="boardContent">
 	        
 	        
-	        <div id="img-viewer" style="display: block;"></div>
+	        	<div id="img-viewer" style="display: block;"></div>
 
 	        
 	        </div><br>

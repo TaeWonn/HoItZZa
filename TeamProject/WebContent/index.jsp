@@ -21,68 +21,69 @@ String stop=(String)request.getAttribute("stop");
 <article id="article">
 <section>
 	<div id="list-container">
-	<div id="board1">
-		<span class="title">판매 / 구매 게시판</span>
-		
-		<table id="sellList">
-		<colgroup>
-	        <col width="20px">
-	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
-	        <col width="25px">
-   		</colgroup>
-
-		<thead>
-		
-		<tr >
-		<th style="font-size: 20px;"colspan="3" id="firstTitle">판매 게시판</th>
-		</tr>
-		<tr>
-		<th class="board_no"><nobr>번호</nobr></th>
-		<th><nobr>제목</nobr></th>
-		<th class="viewer"><nobr>조회수</nobr></th>
-		</tr>
-		</thead>
-		<tbody>
-		 <%if(sellList!=null){for(int i=0;i<sellList.size();i++){%>
-		<tr onclick="boardView('<%=sellList.get(i).getBoardNo()%>','/sell/sellView?boardNo=');">
-			<td class="board_no"><nobr><%= sellList.get(i).getBoardNo()%></nobr></td>
-			<td><nobr><%= sellList.get(i).getBoardTitle()%></nobr></td>
-			<td class="viewer"><nobr><%= sellList.get(i).getBoardReadCounter()%></nobr></td>
-		</tr>
-		<%}} %>
-		</tbody>
-		</table>
-		
-		
-		<table id="buyList">
-		<colgroup>
-	        <col width="20px">
-	        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
-	        <col width="25px">
-   		</colgroup>
-		<thead>
-		<tr >
-		<th style="font-size: 20px;"colspan="3" id="firstTitle"><nobr>구매 게시판</nobr></th>
-		</tr>
-		<tr>
-		<th class="board_no"><nobr>번호</nobr></th>
-		<th><nobr>제목</nobr></th>
-		<th class="viewer"><nobr>조회수</nobr></th>
-		</tr>
-		</thead>
-		<tbody>
-		 <%if(buyList!=null){for(int i=0;i<buyList.size();i++){%>
-		<tr onclick="boardView('<%=buyList.get(i).getBoardNo()%>','/buy/buyView?boardNo=');">
-			<td class="board_no"><nobr><%= buyList.get(i).getBoardNo()%></nobr></td>
-			<td><nobr><%= buyList.get(i).getBoardTitle()%></nobr></td>
-			<td class="viewer"><nobr><%= buyList.get(i).getBoardReadCounter()%></nobr></td>
-		</tr>
-		<%}} %> 
-		</tbody>
-		</table>
+		<div id="board1">
+			<span class="title">판매 /구매 게시판</span>
+			
+			<table id="sellList">
+			<colgroup>
+		        <col width="20px">
+		        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+		        <col width="25px">
+	   		</colgroup>
+	
+			<thead>
+			
+			<tr >
+			<th style="font-size: 20px;"colspan="3" id="firstTitle">판매 게시판</th>
+			</tr>
+			<tr>
+			<th class="board_no"><nobr>번호</nobr></th>
+			<th><nobr>제목</nobr></th>
+			<th class="viewer"><nobr>조회수</nobr></th>
+			</tr>
+			</thead>
+			<tbody>
+			 <%if(sellList!=null){for(int i=0;i<sellList.size();i++){%>
+			<tr onclick="boardView('<%=sellList.get(i).getBoardNo()%>','/sell/sellView?boardNo=');">
+				<td class="board_no"><nobr><%= sellList.get(i).getBoardNo()%></nobr></td>
+				<td><nobr><%= sellList.get(i).getBoardTitle()%></nobr></td>
+				<td class="viewer"><nobr><%= sellList.get(i).getBoardReadCounter()%></nobr></td>
+			</tr>
+			<%}} %>
+			</tbody>
+			</table>
+			
+			
+			<table id="buyList">
+			<colgroup>
+		        <col width="20px">
+		        <col width="70px">  <!-- 너비를 지정해주어야한다 -->
+		        <col width="25px">
+	   		</colgroup>
+			<thead>
+			<tr >
+			<th style="font-size: 20px;"colspan="3" id="firstTitle"><nobr>구매 게시판</nobr></th>
+			</tr>
+			<tr>
+			<th class="board_no"><nobr>번호</nobr></th>
+			<th><nobr>제목</nobr></th>
+			<th class="viewer"><nobr>조회수</nobr></th>
+			</tr>
+			</thead>
+			<tbody>
+			 <%if(buyList!=null){for(int i=0;i<buyList.size();i++){%>
+			<tr onclick="boardView('<%=buyList.get(i).getBoardNo()%>','/buy/buyView?boardNo=');">
+				<td class="board_no"><nobr><%= buyList.get(i).getBoardNo()%></nobr></td>
+				<td><nobr><%= buyList.get(i).getBoardTitle()%></nobr></td>
+				<td class="viewer"><nobr><%= buyList.get(i).getBoardReadCounter()%></nobr></td>
+			</tr>
+			<%}} %> 
+			</tbody>
+			</table>
 		</div>
 		
 		<div id="board2">
+		<br />
 		<span class="title">자유게시판</span>
 		<table id="jayuList1">
 		<colgroup>
