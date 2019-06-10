@@ -18,7 +18,9 @@ import common.wrapper.EncryptWrapper;
  */
 @WebFilter(
 		servletNames= {
-				"UserJoinServlet"
+				"UserEnrollEndServlet",
+				"UserLoginServlet",
+				"UserUpdatePasswordEndServlet"
 		}
 		
 )
@@ -46,6 +48,7 @@ public class EncryFilter implements Filter {
 		
 		//암호화 Wrapper객체 생성
 		EncryptWrapper encWrapper = new EncryptWrapper(httpReq);
+		System.out.println("password암호화처리@EncryptWrapper");
 		
 		chain.doFilter(encWrapper, response);
 	}

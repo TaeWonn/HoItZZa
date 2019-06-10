@@ -400,7 +400,7 @@ public class AdminDAO {
 			result=pstmt.executeUpdate();
 			if(result>0) {
 				commit(conn);
-			}else rollback(conn);
+			}else rollback(conn); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

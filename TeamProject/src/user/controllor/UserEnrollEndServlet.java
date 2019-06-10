@@ -16,7 +16,9 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserEnrollEndServlet
  */
-@WebServlet("/views/user/userEnrollEnd")
+@WebServlet(urlPatterns= {"/views/user/userEnrollEnd"},
+				name = "UserEnrollEndServlet")
+
 public class UserEnrollEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

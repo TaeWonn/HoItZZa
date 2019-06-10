@@ -15,7 +15,10 @@ import user.model.vo.User;
 /**
  * Servlet implementation class UserUpdatePasswordEndServlet
  */
-@WebServlet("/views/user/updatePwdEnd")
+@WebServlet(urlPatterns= {"/views/user/updatePwdEnd"},
+				name="UserUpdatePasswordEndServlet")
+
+
 public class UserUpdatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +28,7 @@ public class UserUpdatePasswordEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("findUserPwd_Id");
-		String password = request.getParameter("changePwd");
+		String password = request.getParameter("re_userPwd");
 
 		System.out.println("@userFindPwdServlet:userId="+userId+", password="+password);
 

@@ -15,7 +15,7 @@
 			<table id="changePwdTable">
 				<tr>
 					<th>변경 할 비밀번호</th>
-					<td><input type="password" id="changePwd" name="changePwd"
+					<td><input type="password" id="changePwd" name="re_userPwd"
 						onkeyup="check();" placeholder="특수,영문,숫자 4~15자리"/> <input type="hidden" name="findUserPwd_Id"
 						value="<%=userA%>" /></td>
 				</tr>
@@ -46,7 +46,7 @@
 	  }
 	}
 	function checkChangePwd() {
-		var pwd1 = $('input[name=changePwd]').val();
+		var pwd1 = $('#changePwd').val();
 		var pwd2 = $("#changePwd2").val();
 		var result=true;
 		
@@ -58,17 +58,17 @@
 		
 		console.log(bool);
 		if(!bool){
-			$('input[name=changePwd]').val('');
+			$('#changePwd').val('');
 			$('#changePwd2').val('');
-			$('input[name=changePwd]').focus();
+			$('#changePwd').focus();
 			result=false;
 		}
 		else{
 			if (pwd1 !== pwd2){
 				alert('비밀번호가 동일하지 않습니다. 다시 입력해주세요');
-				$('input[name=changePwd]').val('');
+				$('#changePwd').val('');
 				$('#changePwd2').val('');
-				$('input[name=changePwd]').focus();
+				$('#changePwd').focus();
 				result=false;
 			} else {
 				result=true;
