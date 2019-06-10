@@ -29,10 +29,13 @@ public class UserUpdateServlet extends HttpServlet {
 		String name = request.getParameter("userName");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone").trim();
-		String addr = request.getParameter("addr1").trim() + " " 
+		String addr = request.getParameter("addr1").trim() + "," 
 					+ request.getParameter("addr2").trim();
-		String [] interest = request.getParameterValues("interest");
-		System.out.println("interest="+interest);
+		String [] interest = new String[3];
+		interest[0] = request.getParameter("interest1");
+		interest[1] = request.getParameter("interest2");
+		interest[2] = request.getParameter("interest3");
+		System.out.println("interest="+String.join(",", interest));
 		
 		User u = new User();
 		u.setUserId(userId);
@@ -46,7 +49,7 @@ public class UserUpdateServlet extends HttpServlet {
 		int result = new UserService().updateUser(u);
 		
 		// 3. view
-		String view = "/WEB-INF/vies/common/msg.jsp";
+		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "/";
 		

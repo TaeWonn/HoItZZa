@@ -20,7 +20,6 @@ public class UserDAO {
 	
 	public UserDAO() {
 		String filePath = getClass().getResource("/sql/user/user-query.properties").getPath();
-		System.out.println("filePath@userDao="+filePath);
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
@@ -262,6 +261,7 @@ public class UserDAO {
 		try { 
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
+			System.out.println("updateUser@DAO="+u);
 			pstmt.setString(1, u.getName());
 			pstmt.setString(2, u.getEmail());
 			pstmt.setString(3, u.getPhone());
@@ -272,7 +272,7 @@ public class UserDAO {
 			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
 			//DML은 executeUpdate()
 			result = pstmt.executeUpdate();
-			
+			System.out.println("updateResult@DAO="+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
