@@ -1,6 +1,7 @@
 <%@page import="opinion.model.vo.Opinion"%>
 <%@page import="board.model.vo.Board"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
@@ -47,7 +48,7 @@
 				<td><%=b.getBoardDate() %></td>
 				<td><%=b.getBoardReadCount() %></td>
 			</tr>
-			<% }%>
+			<% } %>
 		</tbody>
 	</table>
 	<div id="pageBar">
