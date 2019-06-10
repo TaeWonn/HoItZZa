@@ -20,6 +20,7 @@ import common.wrapper.EncryptWrapper;
 		servletNames= {
 				"UserJoinServlet"
 		}
+		
 )
 public class EncryFilter implements Filter {
 
