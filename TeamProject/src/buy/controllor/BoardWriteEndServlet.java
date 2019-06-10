@@ -20,6 +20,7 @@ import buy.model.service.BuyService;
 import buy.model.vo.Buy;
 import common.SellBarFileRenamePolicy;
 import file.model.vo.FileTable;
+import free.model.service.FreeService;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
@@ -63,16 +64,11 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String boardCodeNo = multiReq.getParameter("boardCodeNo");
 		String boardDeal = multiReq.getParameter("boardDeal");
 		
-		int fileCount = 1;
+		String fileOriginName= multiReq.getOriginalFileName("upFile");
+		String fileRenamedName= multiReq.getFilesystemName("upFile");
 		
-		List<String> fileNameList = new ArrayList<>();
-		List<String> fileNewNameList = new ArrayList<>();
-		for(int i =0; i<fileCount; i++) {
-			String fileName = multiReq.getOriginalFileName("upFile"+i);
-			String newFileName = multiReq.getFilesystemName("upFile"+i);
-			fileNameList.add(fileName);
-			fileNewNameList.add(newFileName);
-		}
+		String imageOriginName=multiReq.getOriginalFileName("upFile1");
+		String imageRenamedName=multiReq.getFilesystemName("upFile1");
 		
 		boardContent =boardContent.replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
@@ -87,14 +83,26 @@ public class BoardWriteEndServlet extends HttpServlet {
 		int result = new BuyService().insertBoard(b);
 		String boardNo = new BuyService().selectOneBoardNo();
 		
-		for(int i=0;i<fileCount;i++) {
-			FileTable t = new FileTable();
-			t.setBoardNo(boardNo);
-			t.setOriginalFileName(fileNameList.get(i));
-			t.setRenamedFileName(fileNewNameList.get(i));
-			new SellService().insertFileTable(t);
+		Buy buy = new BuyService().selectOneBuy(boardNo);
+		
+		if(buy != null) {
+			FileTable imgFile = new FileTable();
+			
+			imgFile.setBoardNo(boardNo);
+			imgFile.setOriginalFileName(imageOriginName);
+			imgFile.setRenamedFileName(imageRenamedName);
+			new BuyService().insertFileTable(imgFile);
 		}
 		
+		if(buy != null) {
+			FileTable file=new FileTable();
+			
+				file.setBoardNo(boardNo);
+				file.setOriginalFileName(fileOriginName);
+				file.setRenamedFileName(fileRenamedName);
+				new BuyService().insertFileTable(file);
+			}
+			
 		String msg = "";
 		String loc = "";
 		if(result > 0) {

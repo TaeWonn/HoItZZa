@@ -28,16 +28,22 @@ public class SellService {
 		return sell;
 	}
 
-	public int insertSell(Sell s) {
+	public String insertSell(Sell s) {
 		Connection conn = getConnection();
+
+		
 		int result = new SellDAO().insertSell(conn, s);
+		int boardNo=new SellDAO().selectBoardNo(conn);
+		
 		if(result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
+		System.out.println("서비스단2 : "+boardNo);
+		String boardNoresult="S_"+boardNo;
 		close(conn);
-		return result;
+		return boardNoresult;
 	}
 
 	public Sell selectOneSell(String boardNo) {
@@ -76,9 +82,9 @@ public class SellService {
 		return result;
 	}
 
-	public List<FileTable> selectFiles(String boardNo) {
+	public FileTable selectFiles(String boardNo) {
 		Connection conn = getConnection();
-		List<FileTable> ft = new SellDAO().selectFiles(conn, boardNo);
+		FileTable ft = new SellDAO().selectFiles(conn, boardNo);
 		close(conn);
 		return ft;
 	}
@@ -112,9 +118,9 @@ public class SellService {
 		return result;
 	}
 	
-	public List<Sell> selectInterestSellListByUser(String userId) {
+	public List<String> interestSellBoardNoByUser(String userId) {
 		Connection conn = getConnection();
-		List<Sell> list = new SellDAO().selectInterestSellListByUser(conn, userId);
+		List<String> list = new SellDAO().interestSellBoardNoByUser(conn, userId);
 		close(conn);
 		return list;
 	}
@@ -201,6 +207,13 @@ public class SellService {
 		Sell b = new SellDAO().selectOneSellnext(conn, boardNo);
 		close(conn);
 		return b;
+	}
+
+	public String selectSubjectCode(String string) {
+		Connection conn = getConnection();
+		String str = new SellDAO().selectSubjectCode(conn, string);
+		close(conn);
+		return str;
 	}
 
 }

@@ -37,7 +37,6 @@ public class FreeService {
 		int boardNo=0;
 		
 		if(f.getBoardCodeNo().equals("FC_")) {
-			System.out.println("자유게시판 ");
 			result=new FreeDAO().insertFreeBoardFC(conn,f);
 			boardNo=new FreeDAO().selectBoardNoFC(conn);
 		}else if(f.getBoardCodeNo().equals("FU_")) {

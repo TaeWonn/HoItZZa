@@ -14,6 +14,7 @@ import admin.model.service.AdminService;
 import board.model.vo.Board;
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
+import file.model.vo.FileTable;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 import user.model.service.UserService;
@@ -59,20 +60,57 @@ public class UserViewServlet extends HttpServlet {
 			// 바로 개인정보 페이지로 이동한다.
 			view = "/WEB-INF/views/user/userInfo.jsp";
 			
-			// 이용자가 있을 경우에만 개인화 리스트를 받아온다.
-//			List<Sell> interestSellListByUser = new SellService().selectInterestSellListByUser(userId);
+			// 이용자가 있을 경우에만 개인화 리스트를 받아온다. =>과심글
+			List<String> interestSellBoardNoByUser = new SellService().interestSellBoardNoByUser(userId);
+			List<Sell>interestSellListByUser=new ArrayList<>();
+			for(String s:interestSellBoardNoByUser) {
+				Sell sell=new SellService().selectOneSell(s);
+				System.out.println(sell);
+				interestSellListByUser.add(sell);
+			}
+			
+			System.out.println("유저 관심글 리스트"+interestSellListByUser);
+			
+			
+			String[] intereestArr=new String[3];
+			for(int i=0;i<u.getInterest().length;i++) {
+				String s=new SellService().selectSubjectCode(u.getInterest()[i]);
+				intereestArr[i]=s;
+			}
+			System.out.println("arr0번지"+intereestArr[0]);
+			
+			
 //			List<Buy> interestBuyListByUser = new BuyService().selectInterestBuyListByUser(userId);
-//			List<Sell> interestCategoryList1 = new SellService().selectInterestSellListByCategory(u.getInterest()[0]);
-//			List<Sell> interestCategoryList2 = new SellService().selectInterestSellListByCategory(u.getInterest()[1]);
-//			List<Sell> interestCategoryList3 = new SellService().selectInterestSellListByCategory(u.getInterest()[2]);
-//			
+			List<Sell> interestCategoryList1 = new SellService().selectInterestSellListByCategory(intereestArr[0]);
+			List<Sell> interestCategoryList2 = new SellService().selectInterestSellListByCategory(intereestArr[1]);
+			List<Sell> interestCategoryList3 = new SellService().selectInterestSellListByCategory(intereestArr[2]);
+			
+			
+			List<FileTable> intFile1=new ArrayList<>();
+			List<FileTable> intFile2=new ArrayList<>();
+			List<FileTable> intFile3=new ArrayList<>();
+			for(int i=0;i<interestCategoryList1.size();i++) {
+				FileTable ft=new SellService().selectFiles(interestCategoryList1.get(i).getBoardNo());
+				 intFile1.add(ft);				
+			}
+			for(int i=0;i<interestCategoryList2.size();i++) {
+				FileTable ft=new SellService().selectFiles(interestCategoryList2.get(i).getBoardNo());
+				intFile2.add(ft);
+			}
+			for(int i=0;i<interestCategoryList3.size();i++) {
+				FileTable ft=new SellService().selectFiles(interestCategoryList3.get(i).getBoardNo());
+				intFile3.add(ft);
+			}
+			
+			
+			
+			
 			// 관심글을 판매/구매 게시판 별로 받아와서 부모 클래스인 Board객체의 리스트로 합친다.
-			List<Board> list = new ArrayList<>();
 //			list.add((Board)interestSellListByUser);
 //			list.add((Board)interestBuyListByUser);
 			
 			// 전체 게시글 수, 전체 페이지 수 구하기
-			int totalCnt = list.size();
+			int totalCnt = interestSellListByUser.size();
 			int totalPage = (int)Math.ceil((double)totalCnt/numPerPage);
 
 			// 페이지바 구성
@@ -125,18 +163,19 @@ public class UserViewServlet extends HttpServlet {
 			
 			//경고받았던 사유(경고코드)받아오기
 			String reason=new AdminService().selectWarningReason(userId);
-			System.out.println("유저 경고 정보"+reason);
-			
-			
+
 			
 			
 			request.setAttribute("user", u);
 			request.setAttribute("reason", reason);
 			request.setAttribute("pageBar", pageBar);
-//			request.setAttribute("interestBoardList", list);
-//			request.setAttribute("firstInterestList", interestCategoryList1);
-//			request.setAttribute("secondInterestList", interestCategoryList2);
-//			request.setAttribute("thirdInterestList", interestCategoryList3);
+			request.setAttribute("interestBoardList", interestSellListByUser);
+			request.setAttribute("firstInterestList", interestCategoryList1);
+			request.setAttribute("secondInterestList", interestCategoryList2);
+			request.setAttribute("thirdInterestList", interestCategoryList3);
+			request.setAttribute("intFile1", intFile1);
+			request.setAttribute("intFile2", intFile2);
+			request.setAttribute("intFile3", intFile3);
 		}
 		
 		//3.view단 처리  		

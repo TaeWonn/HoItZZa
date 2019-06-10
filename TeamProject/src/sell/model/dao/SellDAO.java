@@ -177,7 +177,7 @@ public class SellDAO {
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			System.out.println(t);
+			
 			ps.setString(1, t.getBoardNo());
 			ps.setString(2, t.getOriginalFileName());
 			ps.setString(3, t.getRenamedFileName());
@@ -189,6 +189,7 @@ public class SellDAO {
 		} finally {
 			close(ps);
 		}
+		System.out.println("파일 데이터 삽입 : "+result);
 		return result;
 	}
 
@@ -214,8 +215,8 @@ public class SellDAO {
 		return result;
 	}
 
-	public List<FileTable> selectFiles(Connection conn, String boardNo) {
-		List<FileTable> ft = new ArrayList<>();
+	public FileTable selectFiles(Connection conn, String boardNo) {
+		FileTable ft = new FileTable();
 		String sql = prop.getProperty("selectFiles");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -226,11 +227,9 @@ public class SellDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				FileTable f = new FileTable();
-				f.setBoardNo(rs.getString("board_no"));
-				f.setOriginalFileName("original_file_name");
-				f.setRenamedFileName(rs.getString("renamed_file_name"));
-				ft.add(f);
+				ft.setBoardNo(rs.getString("board_no"));
+				ft.setOriginalFileName(rs.getString("original_filename"));
+				ft.setRenamedFileName(rs.getString("renamed_filename"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -302,11 +301,11 @@ public class SellDAO {
 		}
 		return result;
 	}
-	public List<Sell> selectInterestSellListByUser(Connection conn, String userId) {
-		List<Sell> list = new ArrayList<>();
+	public List<String> interestSellBoardNoByUser(Connection conn, String userId) {
+		List<String> list = new ArrayList<>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = prop.getProperty("selectInterestSellListByUser");
+		String sql = prop.getProperty("interestSellBoardNoByUser");
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -315,16 +314,8 @@ public class SellDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Sell s = new Sell();
-				s.setBoardNo(rs.getString("board_no"));
-				s.setBoardCodeNo(rs.getString("board_code_no"));
-				s.setBoardTitle(rs.getString("board_title"));
-				s.setBoardContent("board_content");
-				s.setBoardDeal(rs.getString("board_deal"));
-				s.setBoardWriter(rs.getString("board_writer"));
-				s.setBoardReadCounter(rs.getInt("board_read_counter"));
-				s.setBoardDate(rs.getDate("board_date"));
-				
+				String s="";
+				s=rs.getString("interest_board_no");
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -353,7 +344,7 @@ public class SellDAO {
 				s.setBoardContent("board_content");
 				s.setBoardDeal(rs.getString("board_deal"));
 				s.setBoardWriter(rs.getString("board_writer"));
-				s.setBoardReadCounter(rs.getInt("board_read_counter"));
+				s.setBoardReadCounter(rs.getInt("board_read_count"));
 				s.setBoardDate(rs.getDate("board_date"));
 				
 				list.add(s);
@@ -664,6 +655,49 @@ public class SellDAO {
 			close(ps);
 		}
 		return b;
+	}
+
+	public String selectSubjectCode(Connection conn, String string) {
+		String str="";
+		PreparedStatement pstmt=null;
+		ResultSet rset= null;
+		String sql=prop.getProperty("selectSubjectCode");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, string);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				str=rset.getString("subject_no");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
+	}
+
+	public int selectBoardNo(Connection conn) {
+		System.out.println("보드넘버 가져오기");
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBoardNo");
+		System.out.println(sql);
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("다오 : 보드넘버가져오기"+result);
+		return result;
 	}
 	
 	

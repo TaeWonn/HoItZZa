@@ -72,6 +72,7 @@ public class SenceListServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("sense", sense);
+		request.setAttribute("backList", "/senseList");
 		
 		request.getRequestDispatcher("/WEB-INF/views/free/senceList.jsp").forward(request, response);
 		System.out.println("======<SenseListServlet Over>======");

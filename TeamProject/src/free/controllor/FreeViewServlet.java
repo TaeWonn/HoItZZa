@@ -94,6 +94,7 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 		request.setAttribute("files", ft);
 		request.setAttribute("prev", prev);
 		request.setAttribute("after", after);
+		request.setAttribute("backList", "/freeView");
 		request.getRequestDispatcher("/WEB-INF/views/free/freeView.jsp")
 				.forward(request, response);
 	}

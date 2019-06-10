@@ -9,21 +9,25 @@
 	Free f = (Free) request.getAttribute("free");
 	List<Comment> commentList = (List<Comment>) request.getAttribute("clist");
 	List<FileTable> file=(List<FileTable>)request.getAttribute("files");
-	
 	String title="";
 	String link="";
+	String list="";
 	if(f.getBoardNo().contains("FC_")){
 		title="잡담게시판";	
-		link="/jabdamComment";	
+		link="/jabdamComment";
+		list="/freeList";
 		}else if(f.getBoardNo().contains("FU_")){
 			title="유용한 생활지식 게시판";
 			link="/senseComment";
+			list="/senseList";
 		}else if(f.getBoardNo().contains("FE_")){
 				title="연예/미디어";
 				link="/mediaComment";
+				list="/entertainList";
 		}else{
 			title="나눔게시판";
 			link="/nanumComment";
+			list="divideList";
 		}
 	Free prev=(Free)request.getAttribute("prev");
 	Free after=(Free)request.getAttribute("after");
@@ -81,11 +85,11 @@ div#min_div{
 	<div id="min_div" style="margin-left: 15%;">
 			<table id="min_index">
 				<tr>
-					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))-1)%>"><%=prev.getBoardTitle() %>
+					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))-1)%>"><%=prev.getBoardTitle()==null?"":prev.getBoardTitle() %>
 							</a></td>
 				</tr>
 				<tr>
-					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))+1)%>"><%=after.getBoardTitle() %></a></td>
+					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))+1)%>"><%=after.getBoardTitle()==null?"":after.getBoardTitle() %></a></td>
 				</tr>
 			</table>
 		</div>
@@ -94,7 +98,7 @@ div#min_div{
 		<input type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');" value="수정">
 		<input type="button" onclick="checkDelete();" value="삭제">
 	<% } %>
-		<button type="button" disabled>목록</button>
+		<button type="button"  onclick="location.href='<%=request.getContextPath()%>/free<%=list%>'">목록</button>
 	</div>
 	<div id="comment-container" style="text-align: center;">
 			<div class="comment-editor">
@@ -171,7 +175,6 @@ div#min_div{
 		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
 		<button type="button" onclick="checkDelete();">삭제</button>
 	<% } %>
-		<button type="button" disabled>목록</button>
 	</div>
 
 	<!-- <div id="min_div" style="margin-left: 15%;">
