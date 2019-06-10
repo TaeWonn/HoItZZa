@@ -155,7 +155,6 @@ public class BuyDAO {
 		ResultSet rs= null;
 		try {
 			ps = conn.prepareStatement(sql);
-			
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				boardNo = "B_"+rs.getInt("board_no");

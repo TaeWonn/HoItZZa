@@ -20,6 +20,7 @@
 	width: 805px;
     text-align: right;
     position: static;
+    padding-right: 4px;
 }
 #buttons input{
 	width: 60px;
@@ -89,6 +90,9 @@
   	position: relative; 
   	left : 4%
 }
+#boardContent{
+	min-height: 200px;
+}
 table#tbl-comment{
 	width: ;
 }
@@ -105,9 +109,9 @@ div#div-comment{
 	overflow: scroll;	
 	overflow-y: auto;
 	overflow-x: hidden;
-	width: 590px;
+	width: 600px;
 	height: 200px;
-	margin-left: 60px;
+	margin-left: 45px;
 }
 tr.level1{
 	text-align: left;

@@ -87,8 +87,6 @@ public class BoardWriteEndServlet extends HttpServlet {
 		int result = new BuyService().insertBoard(b);
 		String boardNo = new BuyService().selectOneBoardNo();
 		
-		System.out.println("가야될곳"+boardNo);
-		
 		for(int i=0;i<fileCount;i++) {
 			FileTable t = new FileTable();
 			t.setBoardNo(boardNo);

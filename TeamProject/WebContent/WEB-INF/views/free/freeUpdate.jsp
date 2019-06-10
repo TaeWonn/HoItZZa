@@ -5,23 +5,17 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" />
- <style>
-
- #userId{
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" />
+<style>
+#userId{
 	width: 590px;
- }
-
- #boardCodeNo{
+}
+#boardCodeNo{
 	width: 590px;
 }
 </style>
-</head>
-
-<body>
-
-<article id="article">	
+<article id="article">
 	<form action="<%=request.getContextPath()%>/free/freFormEnd"
 	 method="post" enctype="multipart/form-data">
 	
@@ -29,7 +23,7 @@
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
         <br>
-        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly style="width : 500px"> 
+        <input type="text" class="alert alert-light" role="alert" name="userId" id="userId" value="작성자명" readonly> 
         <br>
 
         <select class="custom-select" id="boardCodeNo" name="boardCodeNo">
@@ -44,30 +38,25 @@
 						<img id="img-viewer" width=350/>
 					</div> -->
         <div contentEditable="true"  id="boardContent">
-        
-        
-        <img id="img-viewer" style="display: block;"/>
-        
-        
-        </div><br>
+        	<img id="img-viewer" style="display: block;"/>
+        </div>
+        <br>
         <div class="filebox">
-           			
-					
-	<input type="file" id="ex_img" onchange="loadImg(this);">			 
-    <label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="file" id="ex_filename" class="upload-hidden" >
-    
-  <input class="upload-name" value="파일명" disabled="disabled">
-  <label for="ex_filename">파일 업로드</label>
-  <input type="file" id="ex_filename" class="upload-hidden" name="">
-</div>
+			<input type="file" id="ex_img" onchange="loadImg(this);">			 
+			<label for="ex_img">이미지삽입</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="file" id="ex_filename" class="upload-hidden" >
+			 
+			<input class="upload-name" value="파일명" disabled="disabled">
+			<label for="ex_filename">파일 업로드</label>
+			<input type="file" id="ex_filename" class="upload-hidden" name="">
+		</div>
           
-       <div id="buttons">
-         <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
-         <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
-       </div>
-   </form>
-   </article>
+                <div id="buttons">
+                  <button type="submit" class="btn btn-success" onclick="return validate();" value="버튼">등록</button>
+                  <button type="button" class="btn btn-outline-danger" onclick="">취소</button>
+                </div>
+            </form>
+</article>
 
 <script>
 
@@ -128,8 +117,6 @@ fileTarget.on('change', function(){ // 값이 변경되면
 
 </script>
 
-</body>
-</html>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

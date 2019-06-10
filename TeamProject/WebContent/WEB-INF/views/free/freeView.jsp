@@ -27,6 +27,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+	
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
 <style>
@@ -57,18 +58,12 @@ div#min_div{
 	</div>
 
 	<div id="boardContent"
-		style="width: 590px; height: 400px; border: 0.2px solid lightgrayv; margin: auto;">
-		<div style="width: 100%; border: 1px solid;">
-			<img src="<%=request.getContextPath() %>/image/file.png" alt="" />
-			<label for=""><%if(file!=null){
-				for(int i=0;i<file.size();i++){%>
-				<%=file.get(i).getRenamedFileName() %>
-				
-			<%}} %>
-			</label>
-		</div>
+		style="width: 590px; border: 0.2px solid lightgrayv; margin: auto;">
+		<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
 		<%=f.getBoardContent() %>
 		</div>
+	</div>
 		
 	<div id="min_div" style="margin-left: 15%;">
 			<table id="min_index">
