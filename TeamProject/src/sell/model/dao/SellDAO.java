@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Properties;
 
 import board.model.service.BoardService;
-import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import sell.model.vo.Sell;
@@ -123,6 +122,7 @@ public class SellDAO {
 		Sell s = new Sell();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, boardNo);
@@ -588,6 +588,82 @@ public class SellDAO {
 			close(ps);
 		}
 		return sell;
+	}
+
+	public int selectSellCount_search(Connection conn, String search_category, String search_key) {
+		int count = 0;
+	    String sql = prop.getProperty("selectSellCount_search");
+	    PreparedStatement ps = null;
+	    ResultSet rs  = null;
+	    sql+=("and("+search_category+" like '%"+search_key+"%')");
+	    
+	    try {
+	    	ps = conn.prepareStatement(sql);
+	    	
+	    	rs = ps.executeQuery();
+	    	if(rs.next()) {
+	    		count = rs.getInt("cnt");
+	    	}
+	    }catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	close(rs);
+	    	close(ps);
+	    }
+	    
+		return count;
+	}
+
+	public Sell selectOneSellprev(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneSellprev");
+		Sell b = new Sell();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo.substring(2));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
+	}
+
+	public Sell selectOneSellnext(Connection conn, String boardNo) {
+		String sql = prop.getProperty("selectOneSellnext");
+		Sell b = new Sell();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardNo.substring(2));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
 	}
 	
 	

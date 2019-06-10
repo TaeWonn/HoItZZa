@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import buy.model.service.BuyService;
+import buy.model.vo.Buy;
 import sell.model.service.SellService;
 import sell.model.vo.Sell;
 
@@ -43,8 +44,13 @@ public class SellListServlet extends HttpServlet {
 		
 		List<Sell> sellList=null;
 		
+		int totalContents = new SellService().selectSellCount();
+		
 		if(search_category!=null&&search_key!=null) {
 			sellList = new SellService().selectsearchList(cPage, numPerPage,search_category,search_key);
+			
+			//토탈페이지 변경해줌 
+			totalContents = new SellService().selectSellCount_search(search_category,search_key);
 		}
 		
 		//없을경우
@@ -54,10 +60,15 @@ public class SellListServlet extends HttpServlet {
 		}
 		
 		
+		
+		
+		
+		
+		
 		//경고 횟수 가져오기
 		List<Integer> warningCntList = new SellService().warningListCnt(sellList);
 		
-		int totalContents = new SellService().selectSellCount();
+		
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		
 		

@@ -50,7 +50,30 @@ public class BuyViewServlet extends HttpServlet {
 		String ca = new BoardService().selectcategoryname(b.getBoardCodeNo());
 		b.setBoardCodeNo(ca);
 		
+		//이전글 
+		Buy prev = new BuyService().selectOneBuyprev(boardNo.substring(0, 2)+(Integer.parseInt(boardNo.substring(2))-1));
 		
+		//다음글 가져오기
+    	Buy next = new BuyService().selectOneBuynext(boardNo.substring(0, 2)+(Integer.parseInt(boardNo.substring(2))+1));
+    	System.out.println(next);
+		
+    	
+    	//다음글 이전글 없으면 없다고 출력해줌
+		if(prev == null) {
+			prev.setBoardTitle("이전글이 없습니다");
+			request.setAttribute("prev", prev);
+		}
+		else 
+		request.setAttribute("prev", prev);
+		
+		if(next == null) {
+		next.setBoardTitle("다음글이 없습니다");
+		request.setAttribute("next", next);
+		}
+		else 
+		request.setAttribute("next", next);
+    	
+    	
 		List<Comment> clist = new BuyService().commentList(boardNo);
 		
 		Cookie[] cookies = request.getCookies();
@@ -90,11 +113,15 @@ public class BuyViewServlet extends HttpServlet {
 			System.out.println("boardCookie생성: "+boardCookie.getValue());
 		}
 		
+	
+		
+		
 		
 		
 		request.setAttribute("cList", clist);
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("buy", b);
+		
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
 				.forward(request, response); 
 	} 

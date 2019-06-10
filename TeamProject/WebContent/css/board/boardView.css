@@ -1,0 +1,139 @@
+@charset "UTF-8";
+#article h2{
+	padding: 10px;
+}
+.ed_box{
+	color: rgb(122, 122, 122);
+	font-size: 12px;
+	width: 630px;
+    margin : 0 auto;
+}
+.ed_box span{
+	float : left;
+	margin: 5px;
+}
+.ed_box a{
+	float : right;
+	margin-top: 5px;
+}
+#buttons{
+	width: 805px;
+    text-align: right;
+    position: static;
+}
+#buttons input{
+	width: 60px;
+	margin: 10px;
+}
+#buttons input:last-of-type{
+	margin-right: 170px;
+}
+#buttons button{
+	width: 60px;
+	height: 35px;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+#buttons :first-child{          
+	color: rgb(0, 0, 0);
+	margin-top: 5px;
+}
+#buttons :last-child{
+	color: rgb(102, 61, 179);
+	margin: 5px;
+}
+#min_index{
+	border-spacing: 2px;
+	border-collapse: separate;
+	margin-top : 5px;
+	margin-left : 5%;
+	border-top: 1px solid #7a82f1; 
+	border-bottom: 1px solid #7a82f1; 
+	width: 58%;
+	font-size: 10px;
+} 
+#min_index tr{
+	height: 10px;
+}
+#min_index tr td{
+	width: 590px;
+}
+#div1{
+	width: 58%; 
+	margin-left: 19.5%;
+	border-top: 1px solid rgb(28, 4, 117); 
+	background-color: rgb(230, 234, 236)
+}
+#min_index td{
+	float: left; 
+	font-size: 8px;
+	color: rgb(153, 153, 153);
+	font-weight: bold; 
+}
+#min_index tr:not(:last-child) td {
+	border-bottom: 0.1px solid lightgray;
+	padding-bottom: 5px;
+	width: 600px;
+}
+#k_span{
+	float: right; 
+	margin: 5px; 
+  	font-size: 11px; 
+  	color: red; 
+  	font-weight: bold;
+}
+#message_href{
+  	font-size: 12px; 
+  	color: cadetblue; 
+  	text-decoration: none; 
+  	position: relative; 
+  	left : 4%
+}
+table#tbl-comment{
+	width: ;
+}
+div.comment-editor{
+    width: 590px;
+    margin-left: 47px;
+}
+div#comment-container{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-left: 155px;
+}
+div#div-comment{
+	overflow: scroll;	
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 590px;
+	height: 200px;
+	margin-left: 60px;
+}
+tr.level1{
+	text-align: left;
+}
+tr.level1 td#CommentContents{
+	width: 490px;
+}
+tr.level2{
+	text-align: left;
+}
+tr.level2 td#CommentContentsReply{
+	width: 490px;
+	padding-left: 40px;
+}
+tr.level2 td:last-of-type{
+	padding-left: 4px;
+}
+#tbl-comment td:first-of-type{
+	border-bottom: 1px solid;
+}
+#tbl-comment textarea{
+	margin: 5px 0 0 0;
+}
+tr.level2 td:last-of-type{
+	padding-right: 56px;
+}
+
+#message_href{cursor:pointer;}
+#interest_btn{cursor:pointer;}

@@ -5,7 +5,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardModified.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
  <% Sell s = (Sell)request.getAttribute("sell"); 
  System.out.print(s);
  %>
@@ -20,7 +21,7 @@
 		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
 		<input type="hidden" name="boardCodeNo" value="<%=s.getBoardCodeNo()%>"/>
 		
-		<h2 style="text-align: center">판매글 작성</h2>
+		<h2 style="text-align: center">판매글 수정</h2>
 		<br>
         <input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" value="<%=s.getBoardTitle()%>">
         <br>

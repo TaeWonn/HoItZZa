@@ -30,6 +30,8 @@ public class BoardModifiedServlet extends HttpServlet {
 		
 		Buy b = new BuyService().selectOneBuy(boardNo);
 		
+		
+		
 		request.setAttribute("buy", b);
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyModifiedEnd.jsp")
 				.forward(request, response);

@@ -5,7 +5,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/boardForm.css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardModified.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
  <% Buy s = (Buy)request.getAttribute("buy"); 
  System.out.print(s);
  %>
@@ -14,7 +15,7 @@
 <article id="article">
 
 
-	<form action="<%=request.getContextPath()%>/buy/buyModifiedEnd"
+	<form action="<%=request.getContextPath()%>/sell/sellModifiedEnd"
 	 method="post" >
 	 
 		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
@@ -122,7 +123,7 @@ function validate(){
 	
 	
 	$("[name=boardContent]").val($("#boardContent").text());
-	$("[name=boardCodeNo]").val($("#category2").val());
+	
 	
 	return true;
 }
@@ -208,9 +209,8 @@ function chageSelect(){
 								}
 								else{
 									
-									$("#category2 option:selected").val(data);	
+									$("#category2 option:selected").val(data);								
 									$("[name=boardCodeNo]").val($("#category2").val());
-									
 								}
 								 
 							}

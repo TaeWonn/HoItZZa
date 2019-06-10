@@ -48,8 +48,13 @@ public class BuyListServlet extends HttpServlet {
 		//검색조건이 있을경우 
 		/////////////////////////////////////////////////////////////////////////
 		
+		int totalContents = new BuyService().selectBuyCount();
+		
 		if(search_category!=null&&search_key!=null) {
 			buy = new BuyService().selectsearchList(cPage, numPerPage,search_category,search_key);
+			
+			//토탈페이지 변경해줌 
+			totalContents = new BuyService().selectBuyCount_search(search_category,search_key);
 		}
 		
 		//없을경우
@@ -60,7 +65,7 @@ public class BuyListServlet extends HttpServlet {
 		
 		List<Integer> warningCntList = new BuyService().warningCntList(buy);
 		
-		int totalContents = new BuyService().selectBuyCount();
+		
 		
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
 		

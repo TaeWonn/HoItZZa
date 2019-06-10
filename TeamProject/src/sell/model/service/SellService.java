@@ -182,4 +182,25 @@ public class SellService {
 		return sell;
 	}
 
+	public int selectSellCount_search(String search_category, String search_key) {
+		Connection conn  = getConnection();
+		int count = new SellDAO().selectSellCount_search(conn,search_category,search_key);
+		close(conn);
+		return count;
+	}
+
+	public Sell selectOneSellprev(String boardNo) {
+		Connection conn = getConnection();
+		Sell b = new SellDAO().selectOneSellprev(conn, boardNo);
+		close(conn);
+		return b;
+	}
+
+	public Sell selectOneSellnext(String boardNo) {
+		Connection conn = getConnection();
+		Sell b = new SellDAO().selectOneSellnext(conn, boardNo);
+		close(conn);
+		return b;
+	}
+
 }
