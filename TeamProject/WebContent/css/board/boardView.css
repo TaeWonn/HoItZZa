@@ -20,7 +20,7 @@
 	width: 805px;
     text-align: right;
     position: static;
-    padding-right: 4px;
+    padding-right: 6px;
 }
 #buttons input{
 	width: 60px;
@@ -47,7 +47,7 @@
 	border-spacing: 2px;
 	border-collapse: separate;
 	margin-top : 5px;
-	margin-left : 5%;
+	margin-left : 38px;
 	border-top: 1px solid #7a82f1; 
 	border-bottom: 1px solid #7a82f1; 
 	width: 58%;
@@ -94,16 +94,16 @@
 	min-height: 200px;
 }
 table#tbl-comment{
-	width: ;
+	width: 590px;
 }
 div.comment-editor{
     width: 590px;
-    margin-left: 47px;
+    margin-left: 28px;
 }
 div#comment-container{
 	margin-top: 20px;
 	margin-bottom: 10px;
-	padding-left: 155px;
+	padding-left: 175px;
 }
 div#div-comment{
 	overflow: scroll;	

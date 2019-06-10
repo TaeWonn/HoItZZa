@@ -153,7 +153,9 @@ function deleteBoard(){
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
 	location.href="<%=request.getContextPath()%>/buy/buyDelete?boardNo=<%=b.getBoardNo()%>";
 }
-
+function loginAlert(){
+	alert('로그인이 필요한 기능입니다.');
+}
 //대댓글 달기
 $(function() {
 	 //대댓글입력
