@@ -156,7 +156,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<th><nobr><%=interestArr[0] %></nobr></th>
 			<% for(int i=0;i<5;i++){%>
 			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
@@ -164,7 +164,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<th><nobr><%=interestArr[1] %></nobr></th>
 			<% for(int i=0;i<5;i++){%>
 			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/냥챗 아이콘.jpg" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
@@ -172,7 +172,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<th><nobr><%=interestArr[2] %></nobr></th>
 			<% for(int i=0;i<5;i++){%>
 			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><br />
-			<span><nobr><%=i %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		
