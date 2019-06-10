@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
+    pageEncoding="UTF-8" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/footer.css" />
 
 

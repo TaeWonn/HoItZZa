@@ -1,7 +1,6 @@
 <%@page import="opinion.model.vo.Opinion"%>
 <%@page import="board.model.vo.Board"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+
 <%@page import="java.util.List"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%
@@ -35,7 +34,6 @@
 		</thead>
 		<tbody>
 			<% for(Opinion b : opinion){ %>
-			<%if(userLoggedIn.getUserId().equals("admin")||userLoggedIn.getUserId().equals(b.getBoardWriter())){ %>
 			<tr>
 				<th scope="row"><%=b.getBoardNo() %></th>
 				<td><nobr><%=b.getBoardWriter() %></nobr></td>
@@ -49,7 +47,7 @@
 				<td><%=b.getBoardDate() %></td>
 				<td><%=b.getBoardReadCount() %></td>
 			</tr>
-			<% }} %>
+			<% }%>
 		</tbody>
 	</table>
 	<div id="pageBar">
