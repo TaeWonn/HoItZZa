@@ -14,7 +14,8 @@ import board.model.service.BoardService;
 /**
  * Servlet implementation class BuyIntersetServlet
  */
-@WebServlet("/board/boardinterestdelete")
+@WebServlet(urlPatterns= {"/board/boardinterestdelete"},
+				name="BoardIntersetDeleteServlet")
 public class BoardIntersetDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

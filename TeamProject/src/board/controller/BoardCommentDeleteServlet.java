@@ -12,7 +12,8 @@ import board.model.service.BoardService;
 /**
  * Servlet implementation class BoardCommentDeleteServlet
  */
-@WebServlet("/board/boardCommentDelete")
+@WebServlet(urlPatterns="/board/boardCommentDelete",
+				name="BoardCommentDeleteServlet")
 public class BoardCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

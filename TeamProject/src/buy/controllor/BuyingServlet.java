@@ -12,7 +12,8 @@ import buy.model.service.BuyService;
 /**
  * Servlet implementation class BuyingServlet
  */
-@WebServlet("/buy/buying")
+@WebServlet(urlPatterns="/buy/buying",
+			name="BuyingServlet")
 public class BuyingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

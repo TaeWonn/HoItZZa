@@ -13,7 +13,8 @@ import buy.model.service.BuyService;
 /**
  * Servlet implementation class BoardWriteServlet
  */
-@WebServlet("/buy/buyWrite")
+@WebServlet(urlPatterns="/buy/buyWrite",
+				name="BoardWriteServlet")
 public class BoardWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
