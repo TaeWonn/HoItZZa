@@ -158,7 +158,7 @@ public class SellDAO {
 			ps = conn.createStatement();
 			rs = ps.executeQuery(sql);
 			if(rs.next()) {
-				boardNo = "S_"+rs.getInt("boardNo");
+				boardNo = "S_"+rs.getInt("board_No");
 				System.out.println("처리여부"+boardNo);
 			}
 		} catch(Exception e) {
