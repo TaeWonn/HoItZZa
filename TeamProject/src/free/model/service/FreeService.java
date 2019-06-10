@@ -98,7 +98,7 @@ public class FreeService {
 		close(conn);
 		return f;
 	}
-
+ 
 	public List<FileTable> selectFiles(String boardNo) {
 		Connection conn = getConnection();
 		List<FileTable> ft = new FreeDAO().selectFiles(conn, boardNo);

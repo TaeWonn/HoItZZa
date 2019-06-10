@@ -113,7 +113,7 @@ public class FreeWriteEndServlet extends HttpServlet {
 			
 		}
 		System.out.println("작성한 게시물"+fResult);
-		
+		 
 		// 3. view단 처리
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
