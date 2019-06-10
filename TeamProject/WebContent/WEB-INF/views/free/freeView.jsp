@@ -243,7 +243,9 @@ $(function() {
 	});
 	
 });
-
+function loginAlert(){
+	alert('로그인이 필요한 기능입니다.');
+}
 
 </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

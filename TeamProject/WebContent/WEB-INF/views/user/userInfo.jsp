@@ -157,25 +157,25 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[0] %></nobr></th>
-			<% for(int i=0;i<interest1BoardList.size();i++){%>
-			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest1BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=interest1BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[1] %></nobr></th>
-			<% for(int i=0;i<interest2BoardList.size();i++){%>
-			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest2BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=interest2BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/냥챗 아이콘.jpg" alt="" /><br />
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		<tr>
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[2] %></nobr></th>
-			<% for(int i=0;i<interest3BoardList.size();i++){%>
-			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>"><img src="<%=request.getContextPath() %>/images/leo.jpg" alt="" /><br />
-			<span><nobr><%=interest3BoardList.get(i).getBoardTitle() %></nobr></span></a></td>
+			<% for(int i=0;i<5;i++){%>
+			<td><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath() %>/images/강사님.PNG" alt="" /><br />
+			<span><nobr><%=i+1 %>번제품 팝니다!!!!!!!!!!!!!!!!1</nobr></span></a></td>
 			<%} %>
 		</tr>
 		
