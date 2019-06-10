@@ -28,7 +28,7 @@
 	                <option value="FC_">잡담 게시판</option>
 	                <option value="FU_">유용한 생활지식 게시판</option>
 	                <option value="FE_">연예/미디어 게시판</option>
-	                <option value="FS_">나눔게시판</option>
+	                <option value="FS_">나눔게시판</option> 
 	        </select>
 	        <br>
 	        <!-- <div id="img-viewer-container">
