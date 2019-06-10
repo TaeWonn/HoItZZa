@@ -46,7 +46,7 @@
 	  }
 	}
 	function checkChangePwd() {
-		var pwd1 = $('#changePwd').val();
+		var pwd1 = $('input[name=re_userPwd]').val();
 		var pwd2 = $("#changePwd2").val();
 		var result=true;
 		
@@ -58,9 +58,9 @@
 		
 		console.log(bool);
 		if(!bool){
-			$('#changePwd').val('');
+			$('input[name=re_userPwd]').val('');
 			$('#changePwd2').val('');
-			$('#changePwd').focus();
+			$('input[name=re_userPwd]').focus();
 			result=false;
 		}
 		else{
@@ -79,7 +79,7 @@
 	}
 
 	function check() {
-		console.log($('#changePwd').val());
+		console.log($('input[name=re_userPwd]').val());
 
 	}
 	
