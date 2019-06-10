@@ -169,7 +169,7 @@ public class FreeDAO {
 			while(rs.next()) {
 				FileTable f = new FileTable();
 				f.setBoardNo(rs.getString("board_no"));
-				f.setOriginalFileName("original_filename");
+				f.setOriginalFileName(rs.getString("original_filename"));
 				f.setRenamedFileName(rs.getString("renamed_filename"));
 				ft.add(f);
 			}
