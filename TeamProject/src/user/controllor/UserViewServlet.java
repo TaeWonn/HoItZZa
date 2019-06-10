@@ -69,15 +69,13 @@ public class UserViewServlet extends HttpServlet {
 				interestSellListByUser.add(sell);
 			}
 			
-			System.out.println("유저 관심글 리스트"+interestSellListByUser);
-			
+
 			
 			String[] intereestArr=new String[3];
 			for(int i=0;i<u.getInterest().length;i++) {
 				String s=new SellService().selectSubjectCode(u.getInterest()[i]);
 				intereestArr[i]=s;
 			}
-			System.out.println("arr0번지"+intereestArr[0]);
 			
 			
 //			List<Buy> interestBuyListByUser = new BuyService().selectInterestBuyListByUser(userId);
