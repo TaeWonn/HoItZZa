@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import buy.model.vo.Buy;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import free.model.vo.Free;
@@ -80,29 +79,10 @@ public class FreeDAO {
 			close(rs);
 			close(ps);
 		}
+		System.out.println(free);
 		return free;
 	}
 
-	public int insertBoard(Connection conn, Free f) {
-		String sql = prop.getProperty("insertBoard");
-		PreparedStatement ps = null;
-		int result = 0;
-		try {
-			ps = conn.prepareStatement(sql);
-
-			ps.setString(1, f.getBoardNo());
-			ps.setString(2, f.getBoardTitle());
-			ps.setString(3, f.getBoardWriter());
-			ps.setString(4, f.getBoardWriter());
-			
-			result =ps.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(ps);
-		}
-		return result;
-	}
 
 	public int insertFileTable(Connection conn, FileTable t) {
 		int result = 0;
@@ -189,8 +169,8 @@ public class FreeDAO {
 			while(rs.next()) {
 				FileTable f = new FileTable();
 				f.setBoardNo(rs.getString("board_no"));
-				f.setOriginalFileName("original_file_name");
-				f.setRenamedFileName(rs.getString("renamed_file_name"));
+				f.setOriginalFileName("original_filename");
+				f.setRenamedFileName(rs.getString("renamed_filename"));
 				ft.add(f);
 			}
 		} catch (SQLException e) {
@@ -274,7 +254,7 @@ public class FreeDAO {
 		} finally {
 			close(ps);
 		}
-		
+		System.out.println("조회수 증가여부 :"+result);
 		return result;
 	}
 
@@ -452,7 +432,7 @@ public class FreeDAO {
 			e.printStackTrace();
 		} finally {
 			close(rs);
-			close(ps);
+			close(ps); 
 		}
 		return seq;
 	}
@@ -555,4 +535,172 @@ public class FreeDAO {
 		}
 		return result;
 	}
+
+	public int insertFreeBoardFC(Connection conn, Free f) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertFreeBoardFC");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, f.getBoardCodeNo());
+			pstmt.setString(2, f.getBoardTitle());
+			pstmt.setString(3, f.getBoardContent());
+			pstmt.setString(4, f.getBoardWriter());
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println(result+"다오 프리보드 인설트 확인");
+		return result;
+	}
+  
+	public int insertFreeBoardFU(Connection conn, Free f) {
+			int result=0;
+			PreparedStatement pstmt=null;
+			String sql=prop.getProperty("insertFreeBoardFU");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, f.getBoardCodeNo());
+				pstmt.setString(2, f.getBoardTitle());
+				pstmt.setString(3, f.getBoardContent());
+				pstmt.setString(4, f.getBoardWriter());
+				result=pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+	}
+
+	public int insertFreeBoardFE(Connection conn, Free f) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertFreeBoardFE");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, f.getBoardCodeNo());
+			pstmt.setString(2, f.getBoardTitle());
+			pstmt.setString(3, f.getBoardContent());
+			pstmt.setString(4, f.getBoardWriter());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertFreeBoardFS(Connection conn, Free f) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertFreeBoardFS");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, f.getBoardCodeNo());
+			pstmt.setString(2, f.getBoardTitle());
+			pstmt.setString(3, f.getBoardContent());
+			pstmt.setString(4, f.getBoardWriter());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectBoardNoFC(Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBoardNoFC");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectBoardNoFU(Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBoardNoFU");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectBoardNoFE(Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBoardNoFE");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectBoardNoFS(Connection conn) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectBoardNoFS");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	
 }
