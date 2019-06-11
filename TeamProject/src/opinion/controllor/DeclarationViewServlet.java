@@ -15,7 +15,7 @@ import sell.model.service.SellService;
 /**
  * Servlet implementation class DeclarationViewServlet
  */
-@WebServlet("/opinion/declaration")
+@WebServlet("/opinion/declarationView")
 public class DeclarationViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
