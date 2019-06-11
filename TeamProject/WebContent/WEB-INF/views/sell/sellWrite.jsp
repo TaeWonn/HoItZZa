@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+<style>
+#img-viewer img{width:500px;height: 300px;}
+</style>
 
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -129,7 +131,13 @@ function loadImg(f){
 		
 		reader.onload = function(){
 			//result속성에는 파일컨텐츠 담겨있음.
-			$("#img-viewer").attr("src", reader.result);
+			$("#img-viewer").attr("src", reader.result)
+				.css('max-height','300px')
+				.css('max-width','500px')
+				.css('height','300px')
+				.css('position','relative')
+				.css('left','10px')
+				.css('top','6px');
 		}
 	}
 }
