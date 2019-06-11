@@ -33,10 +33,15 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
         <span class="id"><%=b.getBoardWriter()%></span>
         <span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span>
         <span class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
-       <%if(userLoggedIn != null){ %> 
-        <a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
-         id="message_href" >☏ 쪽지보내기</a>
-              <% } %> 
+       <div id="div-message">
+			<%if(userLoggedIn != null){ %>
+			<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
+				id="message_href">☏ 쪽지보내기</a> 
+			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=b.getBoardNo()%>');"
+				id="interest_btn">☆ 관심등록</a> 
+				<input type="hidden" value="0" id="interest_val">
+			<% } %>
+		</div>
 	</div>
 
 	 <div id="boardContent" style="width: 590px; height:400px; border: 0.2px solid lightgrayv; margin: auto;">
@@ -56,17 +61,15 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 
 
 
-	<div id="min_div" style="margin-left: 15%;">
-		<table id="min_index">
-			<tr>
-<td><a onclick="next_btn();" id="interest_btn"> [다음글 : <%=next.getBoardTitle()!=null?next.getBoardTitle():"다음글 없습니다"%> ]</a></td>  
-</tr>
-<tr>
-<td><a onclick="prev_btn();" id="interest_btn"> [이전글 : <%=prev.getBoardTitle()!=null?prev.getBoardTitle():"이전글 없습니다"%> ]</a></td>  
-</tr>
-
-	
-		</table>
+		<div id="min_div" style="margin-left: 15%;">
+			<table id="min_index">
+				<tr>
+					<td><a onclick="next_btn();" id="next_btn"> [다음글 : <%=next.getBoardTitle()!=null?next.getBoardTitle():"다음글 없습니다"%> ]</a></td>  
+				</tr>
+				<tr>
+					<td><a onclick="prev_btn();" id="prev_btn"> [이전글 : <%=prev.getBoardTitle()!=null?prev.getBoardTitle():"이전글 없습니다"%> ]</a></td>  
+				</tr>
+			</table>
 		</div>
 		
 		<div id="buttons">
@@ -121,7 +124,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 						<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
 							<%=bc.getCommentContent() %></td>
-						<td>
+						<td style="text-align: left; width: 120px;">
 							<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null 
 
@@ -139,7 +142,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 						<td id="CommentContentsReply"><sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
 							↳<%=bc.getCommentContent() %></td>
-						<td style="text-align: center;"> 
+						<td style="text-align: left; width: 120px;"> 
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
 							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
 							<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
