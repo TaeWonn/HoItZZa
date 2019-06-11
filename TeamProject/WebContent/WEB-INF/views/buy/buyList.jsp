@@ -61,7 +61,6 @@
 	<option value="board_Title" selected>제목</option>
 	<option value="board_Writer">작성자</option>
 	<option value="board_Content">내용</option>
-	<option value="board_CodeName">카테고리</option>
 	</select>
   <input class="form-control" placeholder="검색어를 입력하세요" id="search_key"/>
   <input type="button" value="검색" onclick="search_category();">
