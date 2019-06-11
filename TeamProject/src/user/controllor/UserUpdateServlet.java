@@ -55,7 +55,7 @@ public class UserUpdateServlet extends HttpServlet {
 		
 		if(result > 0) {
 			msg = "성공적으로 회원 정보를 수정했습니다.";
-			loc = "/user/userView?userId=" + userId;
+			loc = "/views/user/userInfo?userId=" + userId;
 			HttpSession session = request.getSession();
 			session.setAttribute("userLoggedIn", new UserService().selectOne(userId));
 		}

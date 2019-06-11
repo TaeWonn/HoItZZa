@@ -39,6 +39,7 @@
 	color: rgb(0, 0, 0);
 	margin-top: 5px;
 }
+#imgView{max-width:500px;max-height: 600px;}
 #buttons :last-child{
 	color: rgb(102, 61, 179);
 	margin: 5px;
