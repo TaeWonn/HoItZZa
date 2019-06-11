@@ -71,7 +71,7 @@ public class FreeFileDownloadServlet extends HttpServlet {
 		bos.close();
 		bis.close();
 		
-		// 3. view단 처리
+		// 3. view단 처리 
 		System.out.println("======<FreeFileDownloadServlet Over>======");
 	}
 
