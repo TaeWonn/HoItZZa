@@ -40,7 +40,7 @@ public class UserDeleteServlet extends HttpServlet {
 			if(session != null) {
 				session.invalidate();
 			}
-			loc = "/views/user/logout";
+			loc = "/";
 		}
 		else {
 			msg = "회원정보 삭제에 실패했습니다.";

@@ -8,6 +8,7 @@
 #userId{
 	margin-left: 6px;
 }
+div#img-viewer img{max-width: 450px;max-height: 600px;}
 </style>
 <article id="article">
 
@@ -98,7 +99,7 @@ function loadImg(f){
 			//result속성에는 파일컨텐츠 담겨있음.
 		 	$("#img-viewer").append('<img src="'+reader.result+'" alt="" />').css('width','300px')
 							.css('max-height','300px')
-							.css('max-width','500px')
+							.css('max-width','400px')
 							.css('height','300px')
 							.css('position','relative')
 							.css('left','10px')

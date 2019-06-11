@@ -15,6 +15,7 @@ import java.util.Properties;
 import comment.model.vo.Comment;
 import file.model.vo.FileTable;
 import free.model.vo.Free;
+import sell.model.vo.Sell;
 
 public class FreeDAO {
 	
@@ -700,6 +701,59 @@ public class FreeDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public Free selectOnePrev(Connection conn, String string) {
+		System.out.println("프리뷰 다오"+string.substring(3));
+		String sql = "select * from(select board_no, rownum as rnum,board_title from(select board_no,board_title from free_board where (SUBSTR(board_no,4)) <= to_Number(?) order by to_Number(SUBSTR(board_no,4))desc))where rnum=1";
+		Free b = new Free();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, string.substring(3));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
+	}
+
+	public Free selectOneNext(Connection conn, String string) {
+		String sql = "select * from(select board_no, rownum as rnum,board_title from(select board_no,board_title from free_board where (SUBSTR(board_no,4)) > to_Number(?) order by to_Number(SUBSTR(board_no,4))asc))where rnum=1";
+		Free b = new Free();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, string.substring(3));
+			
+			rs= ps.executeQuery();
+			if(rs.next()) {
+				
+				b.setBoardNo(rs.getString("board_no"));
+				b.setBoardTitle(rs.getString("board_title"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return b;
 	}
 
 	
