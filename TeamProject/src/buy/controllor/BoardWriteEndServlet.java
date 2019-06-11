@@ -67,8 +67,18 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String fileOriginName= multiReq.getOriginalFileName("upFile");
 		String fileRenamedName= multiReq.getFilesystemName("upFile");
 		
-		String imageOriginName=multiReq.getOriginalFileName("upFile1");
-		String imageRenamedName=multiReq.getFilesystemName("upFile1");
+		String imageOriginName=multiReq.getOriginalFileName("imgFile");
+		String imageRenamedName=multiReq.getFilesystemName("imgFile");
+		
+		System.out.println("넘어온 값 전체확인");
+		System.out.println(boardTitle+"제목");
+		System.out.println(boardContent+"내용");
+		System.out.println(boardWriter+"작성자");
+		System.out.println(boardCodeNo+"게시글코드");
+		System.out.println(imageOriginName+"이미지 오리지날네임");
+		System.out.println(imageRenamedName+"이미지 바뀐네임");
+		System.out.println(fileOriginName+"파일 오리지날네임");
+		System.out.println(fileRenamedName+"파일 바뀐네임");
 		
 		boardContent =boardContent.replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
@@ -85,23 +95,26 @@ public class BoardWriteEndServlet extends HttpServlet {
 		
 		Buy buy = new BuyService().selectOneBuy(boardNo);
 		
-		if(buy != null) {
+		if(imageOriginName != null) {
 			FileTable imgFile = new FileTable();
-			
-			imgFile.setBoardNo(boardNo);
-			imgFile.setOriginalFileName(imageOriginName);
-			imgFile.setRenamedFileName(imageRenamedName);
-			new BuyService().insertFileTable(imgFile);
+			if(imgFile!=null) {
+				imgFile.setBoardNo(boardNo);
+				imgFile.setOriginalFileName(imageOriginName);
+				imgFile.setRenamedFileName(imageRenamedName);
+				new BuyService().insertFileTable(imgFile);
+			}
+		
 		}
 		
 		if(buy != null) {
 			FileTable file=new FileTable();
-			
+			if(file!=null) {
 				file.setBoardNo(boardNo);
 				file.setOriginalFileName(fileOriginName);
 				file.setRenamedFileName(fileRenamedName);
 				new BuyService().insertFileTable(file);
-			}
+			}	
+		}
 			
 		String msg = "";
 		String loc = "";

@@ -173,6 +173,8 @@ public class BuyDAO {
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
+			System.out.println("오리지널 파일이름: "+t.getOriginalFileName());
+			System.out.println("변경된 파일이름: "+t.getRenamedFileName());
 			
 			ps.setString(1, t.getBoardNo());
 			ps.setString(2, t.getOriginalFileName());

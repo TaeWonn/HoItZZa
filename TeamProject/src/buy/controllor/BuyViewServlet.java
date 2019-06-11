@@ -15,6 +15,7 @@ import board.model.service.BoardService;
 import buy.model.service.BuyService;
 import buy.model.vo.Buy;
 import comment.model.vo.Comment;
+import file.model.vo.FileTable;
 import user.model.vo.User;
 
 /**
@@ -72,6 +73,8 @@ public class BuyViewServlet extends HttpServlet {
 		}
 		else 
 		request.setAttribute("next", next);
+		
+		List<FileTable> ft = new BuyService().selectFileList(boardNo);
     	
     	
 		List<Comment> clist = new BuyService().commentList(boardNo);
@@ -121,6 +124,7 @@ public class BuyViewServlet extends HttpServlet {
 		request.setAttribute("cList", clist);
 		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("buy", b);
+		request.setAttribute("fileList", ft);
 		
 		request.getRequestDispatcher("/WEB-INF/views/buy/buyView.jsp")
 				.forward(request, response); 
