@@ -73,9 +73,10 @@ div#min_div{
 		
 
 		<%if(file!=null){for(int i=0;i<file.size();i++){ %>
-	<a href="javascript:fileDownload('<%=file.get(i).getOriginalFileName()%>','<%=file.get(i).getRenamedFileName()%>');">
-		<img src="<%=request.getContextPath() %>/images/file.png" alt="" /></a>
+		<a href="<%=request.getContextPath()%>/free/fileDownload?oName=<%=file.get(i).getOriginalFileName() %>&rName=<%=file.get(i).getRenamedFileName()%>">
+		<img src="<%=request.getContextPath() %>/images/file.png" alt="" />
 		<%=file.get(i).getOriginalFileName() %>
+		</a>
 		<%}}else{ %>
 		<%="" %>
 		<%} %>

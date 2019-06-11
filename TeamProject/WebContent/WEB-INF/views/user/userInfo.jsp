@@ -19,7 +19,6 @@
 	List<FileTable> intFile1=(List<FileTable>)request.getAttribute("intFile1");
 	List<FileTable> intFile2=(List<FileTable>)request.getAttribute("intFile2");
 	List<FileTable> intFile3=(List<FileTable>)request.getAttribute("intFile3");
- 	String code="";
 	String[] addrArr = u.getAddr().split(",");
 
 %>
@@ -81,6 +80,9 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<td>
 			<%for(int i=0;i<interestArr.length;i++){%>
 			<select name="interest<%=i+1%>" class="interestBo" >
+			<%
+			String code="";
+			%>
 			 <option value="" selected id="selected"><%=interestArr[i] %></option> 
 				  <option value="A">패션의류/잡화</option>
 				  <option value="B">뷰티</option>
