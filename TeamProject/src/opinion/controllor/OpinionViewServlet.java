@@ -1,6 +1,8 @@
 package opinion.controllor;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.vo.BoardComment;
+import comment.model.vo.Comment;
 import opinion.model.service.OpinionService;
 import opinion.model.vo.Opinion;
 
@@ -24,11 +28,8 @@ public class OpinionViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
 		
-		
-		
-		
 		Opinion o = new OpinionService().selectOneBoard(boardNo);
-		
+		List<Comment> cList = new OpinionService().commentList(boardNo);
 		if(o ==null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
 			request.setAttribute("loc", "/opinion/opinionList");
@@ -36,7 +37,7 @@ public class OpinionViewServlet extends HttpServlet {
 			.forward(request, response);
 			return;
 		}
-		int warningCnt = new OpinionService().selectWarningCnt(o.getBoardWriter());
+//		int warningCnt = new OpinionService().selectWarningCnt(o.getBoardWriter());
 		
 		OpinionService os = new OpinionService();
 		
@@ -78,9 +79,10 @@ public class OpinionViewServlet extends HttpServlet {
 			System.out.println("boardCookie생성: "+boardCookie.getValue());
 		}
 		
-		
+		System.out.println("댓글!!"+cList);
 		request.setAttribute("opinion", o);
-		request.setAttribute("warningCnt", warningCnt);
+		request.setAttribute("cList", cList);
+//		request.setAttribute("warningCnt", warningCnt);
 		request.getRequestDispatcher("/WEB-INF/views/opinion/opinionView.jsp")
 			.forward(request, response);
 		

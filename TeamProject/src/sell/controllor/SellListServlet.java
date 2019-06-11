@@ -58,12 +58,7 @@ public class SellListServlet extends HttpServlet {
 		else { 
 			sellList = new SellService().selectAllSellList(cPage, numPerPage);
 		}
-		
-		
-		
-		
-		
-		
+
 		
 		//경고 횟수 가져오기
 		List<Integer> warningCntList = new SellService().warningListCnt(sellList);

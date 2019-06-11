@@ -5,6 +5,7 @@ import static common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import comment.model.vo.Comment;
 import opinion.model.dao.OpinionDAO;
 import opinion.model.vo.Opinion;
 
@@ -102,5 +103,12 @@ public class OpinionService {
 			rollback(conn);
 		close(conn);
 		
+	}
+
+	public List<Comment> commentList(String boardNo) {
+		Connection conn = getConnection();
+		List<Comment> list = new OpinionDAO().commentList(conn,boardNo);
+		close(conn);
+		return list;
 	}
 }

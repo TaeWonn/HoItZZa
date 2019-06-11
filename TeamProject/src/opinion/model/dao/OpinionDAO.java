@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import comment.model.vo.Comment;
 import opinion.model.vo.Opinion;
 
 public class OpinionDAO {
@@ -295,5 +297,33 @@ public class OpinionDAO {
 			close(ps);
 		}
 		return result;
+	}
+
+	public List<Comment> commentList(Connection conn, String boardNo) {
+		List<Comment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("CommentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Comment c = new Comment();
+				c.setCommentContent(rset.getString("comment_content"));
+				c.setCommentNo(rset.getString("comment_no"));
+				c.setCommnetWriter(rset.getString("comment_writer"));
+				c.setCommentLevel(rset.getInt("comment_level"));
+				c.setCommentNoRef(rset.getString("comment_no_ref"));
+				c.setCommentDate(rset.getDate("comment_date"));
+				c.setBoardNo(boardNo);
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

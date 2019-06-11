@@ -8,22 +8,25 @@
    List<Opinion> opinion = (List<Opinion>)request.getAttribute("oList");
    String pageBar = (String)request.getAttribute("pageBar");
 %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/freeboard/freeList.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
 
 <article id="article">
-	<h2>신고 게시판</h2>
+	<br />
+	<h3 style="text-align: center; margin-bottom: 10px;">신고 게시판</h3>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
+		onclick="location.href='<%=request.getContextPath()%>/opinion/opinionWrite'" />
 	<% } %>
+	
 	<table class="table" id="freeTable">
 		<thead class="thead-light">
 			<tr>
-				<th scope="col" style="width: 95px;">글번호</th>
-				<th scope="col" style="width: 100px;">작성자</th>
+				<th scope="col">글번호</th>
+				<th scope="col">작성자</th>
 				<th scope="col" id="title">제목</th>
 				<th scope="col">작성일</th>
-				<th scope="col" style="width: 80px;">조회수</th>
+				<th scope="col">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,7 +35,7 @@
 				<th scope="row"><%=b.getBoardNo() %></th>
 				<td><nobr><%=b.getBoardWriter() %></nobr></td>
 				<td>
-					<a href="<%=request.getContextPath()%>/opinion/declarationView?boardNo=<%=b.getBoardNo()%>"
+					<a href="<%=request.getContextPath()%>/opinion/opinionView?boardNo=<%=b.getBoardNo()%>"
 					style="text-decoration: none; color: black;"> 
 						<nobr><%=b.getBoardTitle()%></nobr>
 					</a>
@@ -45,6 +48,16 @@
 	</table>
 	<div id="pageBar">
 		<%=pageBar %>
+	</div>
+	<div class="input-group">
+		<select>
+			<option value="boardTitle" selected>제목</option>
+			<option value="boardWriter">작성자</option>
+			<option value="boardContant">내용</option>
+			<option value="boardCodeName">카테고리</option>
+		</select>
+		<input class="form-control" placeholder="검색어를 입력하세요" />
+		<input type="submit" value="검색">
 	</div>
 </article>
 

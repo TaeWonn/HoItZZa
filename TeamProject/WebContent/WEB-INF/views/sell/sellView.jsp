@@ -40,27 +40,21 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 		</div>
 	</div>
 
-	 <div id="boardContent" style="width: 590px; height:400px; border: 0.2px solid lightgrayv; margin: auto;">
+	 <div id="boardContent" style="width: 590px; min-height:200px; border: 0.2px solid lightgrayv; margin: auto;">
             <div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
-            <div style="width: 100%; margin-left: -16px; min-height: 360px; margin-top: 10px;">
+            <div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
                 <%=b.getBoardContent() %>
             </div>
         </div>
 
-
-
-
-
 	<div id="min_div" style="margin-left: 15%;">
 		<table id="min_index">
-		<tr>
-			<td><a onclick="next_btn();" id="next_btn"> [다음글 : <%=next.getBoardTitle()!=null?next.getBoardTitle():"다음글 없습니다"%> ]</a></td>  
-		</tr>
-		<tr>
-			<td><a onclick="prev_btn();" id="prev_btn"> [이전글 : <%=prev.getBoardTitle()!=null?prev.getBoardTitle():"이전글 없습니다"%> ]</a></td>  
-		</tr>
-
-	
+			<tr>
+				<td><a onclick="next_btn();" id="next_btn"> [다음글 : <%=next.getBoardTitle()!=null?next.getBoardTitle():"다음글 없습니다"%> ]</a></td>  
+			</tr>
+			<tr>
+				<td><a onclick="prev_btn();" id="prev_btn"> [이전글 : <%=prev.getBoardTitle()!=null?prev.getBoardTitle():"이전글 없습니다"%> ]</a></td>  
+			</tr>
 		</table>
 	</div>
 		
@@ -107,8 +101,8 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 					<!-- 댓글인경우 -->
 					<tr class="level1">
 						<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
-							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
-							<%=bc.getCommentContent() %></td>
+							<sub class="comment-date"><%=bc.getCommentDate() %>
+							</sub> <br /><%=bc.getCommentContent() %></td>
 						<td style="text-align: left; width: 120px;">
 							<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
 							<%-- 삭제버튼 추가 --%> 
