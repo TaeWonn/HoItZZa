@@ -339,7 +339,8 @@ $(function() {
    $('.btn-delete').click(function(){
 		 var bool=confirm('댓글을 삭제하시겠습니까??');
 		 if(bool){
-			 location.href="<%=request.getContextPath()%>/sell/sellCommentDelete?commentNo="+$(this).val()+"&boardNo=<%=b.getBoardNo()%>";
+			 location.href="<%=request.getContextPath()%>/sell/sellCommentDelete?commentNo="+$(this).val()
+					 	+"&boardNo=<%=b.getBoardNo()%>";
 		 }else{
 			 return;
 		 }
