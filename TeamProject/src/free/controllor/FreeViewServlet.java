@@ -82,10 +82,10 @@ public class FreeViewServlet extends HttpServlet implements Servlet {
 			
 			System.out.println("boardCookie생성: "+boardCookie.getValue());
 		}
-		String s=boardNo.substring(0,3)+(Integer.parseInt(boardNo.substring(3))-1);
-		Free prev=new FreeService().selectOneFree(s);
-		s=boardNo.substring(0,3)+(Integer.parseInt(boardNo.substring(3))+1);
-		Free after=new FreeService().selectOneFree(s);
+
+		Free prev=new FreeService().selectOnePrev(boardNo.substring(0,3)+(Integer.parseInt(boardNo.substring(3))-1));
+		
+		Free after=new FreeService().selectOneNext(boardNo.substring(0,3)+(Integer.parseInt(boardNo.substring(3))-1));
 		
 
 		request.setAttribute("clist", clist);

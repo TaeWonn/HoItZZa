@@ -138,7 +138,6 @@ public class SellDAO {
 				s.setBoardNo(rs.getString("board_no"));
 				s.setBoardReadCounter(rs.getInt("board_read_count"));
 			}
-			System.out.println(s);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -216,8 +215,8 @@ public class SellDAO {
 		return result;
 	}
 
-	public List<FileTable> selectFiles(Connection conn, String boardNo) {
-		List<FileTable> ft = new ArrayList<>();
+	public FileTable selectFiles(Connection conn, String boardNo) {
+		FileTable ft = new FileTable();
 		String sql = prop.getProperty("selectFiles");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -228,12 +227,9 @@ public class SellDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				FileTable f = new FileTable();
-				f.setBoardNo(rs.getString("board_no"));
-				f.setOriginalFileName(rs.getString("original_filename"));
-				f.setRenamedFileName(rs.getString("renamed_filename"));
-				
-				ft.add(f);
+				ft.setBoardNo(rs.getString("board_no"));
+				ft.setOriginalFileName(rs.getString("original_filename"));
+				ft.setRenamedFileName(rs.getString("renamed_filename"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -590,8 +586,9 @@ public class SellDAO {
 	    String sql = prop.getProperty("selectSellCount_search");
 	    PreparedStatement ps = null;
 	    ResultSet rs  = null;
-	    sql+=("and("+search_category+" like '%"+search_key+"%')");
+	    sql+=(search_category+" like '%"+search_key+"%'");
 	    
+	    System.out.println("숫자쿼리"+sql);
 	    try {
 	    	ps = conn.prepareStatement(sql);
 	    	

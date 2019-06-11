@@ -15,6 +15,7 @@ import file.model.vo.FileTable;
 import free.model.dao.FreeDAO;
 import free.model.vo.Free;
 import sell.model.dao.SellDAO;
+import sell.model.vo.Sell;
 
 public class FreeService {
 	public List<Free> selectAllFreeList(int cPage, int numPerPage) {
@@ -228,6 +229,20 @@ public class FreeService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public Free selectOnePrev(String string) {
+		Connection conn = getConnection();
+		Free b = new FreeDAO().selectOnePrev(conn, string);
+		close(conn);
+		return b;
+	}
+
+	public Free selectOneNext(String string) {
+		Connection conn = getConnection();
+		Free b = new FreeDAO().selectOneNext(conn, string);
+		close(conn);
+		return b;
 	}
 
 
