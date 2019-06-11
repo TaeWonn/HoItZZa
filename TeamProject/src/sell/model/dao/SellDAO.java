@@ -608,6 +608,7 @@ public class SellDAO {
 
 	public Sell selectOneSellprev(Connection conn, String boardNo) {
 		String sql = prop.getProperty("selectOneSellprev");
+		System.out.println("셀 다오 : "+boardNo.substring(2));
 		Sell b = new Sell();
 		PreparedStatement ps = null;
 		ResultSet rs = null;

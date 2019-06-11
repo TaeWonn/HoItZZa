@@ -704,7 +704,8 @@ public class FreeDAO {
 	}
 
 	public Free selectOnePrev(Connection conn, String string) {
-		String sql = prop.getProperty("selectOneFreeprev");
+		System.out.println("프리뷰 다오"+string.substring(3));
+		String sql = "select * from(select board_no, rownum as rnum,board_title from(select board_no,board_title from free_board where (SUBSTR(board_no,4)) <= to_Number(?) order by to_Number(SUBSTR(board_no,4))desc))where rnum=1";
 		Free b = new Free();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -730,7 +731,7 @@ public class FreeDAO {
 	}
 
 	public Free selectOneNext(Connection conn, String string) {
-		String sql = prop.getProperty("selectOneFreenext");
+		String sql = "select * from(select board_no, rownum as rnum,board_title from(select board_no,board_title from free_board where (SUBSTR(board_no,4)) > to_Number(?) order by to_Number(SUBSTR(board_no,4))asc))where rnum=1";
 		Free b = new Free();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
