@@ -18,7 +18,7 @@
 	 method="post" enctype="multipart/form-data" >
 			<h3 style="text-align: center; margin:0 auto; padding: 20px 0 0 0;">자유게시판  작성</h3>
 				<br>
-	        	<input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle"" placeholder="제목을 입력해주세요">
+	        	<input type="text" class="alert alert-light" role="alert" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
 	        	<br>
 	       	 <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly > 
 	        <br>
