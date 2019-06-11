@@ -88,6 +88,13 @@ public class SellService {
 		close(conn);
 		return ft;
 	}
+	
+	public FileTable selectFile(String boardNo) {
+		Connection conn = getConnection();
+		FileTable f = new SellDAO().selectFile(conn, boardNo);
+		close(conn);
+		return f;
+	}
 
 	public int warningCnt(String boardWriter) {
 		Connection conn = getConnection();

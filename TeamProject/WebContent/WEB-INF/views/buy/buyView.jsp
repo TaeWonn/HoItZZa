@@ -45,17 +45,26 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 	</div>
 
 	 <div id="boardContent" style="width: 590px; height:400px; border: 0.2px solid lightgrayv; margin: auto;">
-            <div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
+            <div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >
+            
             <%if(file!=null){for(int i=0;i<file.size();i++){ %>
+		<a href="<%=request.getContextPath()%>/buy/fileDownload?oName=<%=file.get(i).getOriginalFileName() %>&rName=<%=file.get(i).getRenamedFileName()%>">
 		<img src="<%=request.getContextPath() %>/images/file.png" alt="" />
 		<%=file.get(i).getOriginalFileName() %>
+		</a>
 		<%}}else{ %>
 		<%="" %>
 		<%} %>
-            <div style="width: 100%; margin-left: -16px; min-height: 360px;">
-                <%=b.getBoardContent() %>
-            </div>
-        </div>
+            
+            
+           	</div>
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;overflow: auto;max-height: 600px;;">
+		<%for(int i=0;i<file.size();i++){ %>
+			<img src="<%=request.getContextPath() %>/upload/buy/<%=file.get(i).getRenamedFileName() %>" alt="" id="imgView" />
+		<%} %>
+		<%=b.getBoardContent() %>
+		</div>
+	</div>
 
 
 

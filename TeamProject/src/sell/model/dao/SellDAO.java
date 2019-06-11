@@ -243,6 +243,32 @@ public class SellDAO {
 		}
 		return ft;
 	}
+	
+	public FileTable selectFile(Connection conn, String boardNo) {
+		FileTable f = new FileTable();
+		String sql = prop.getProperty("selectFiles");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, boardNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				f.setBoardNo(rs.getString("board_no"));
+				f.setOriginalFileName(rs.getString("original_filename"));
+				f.setRenamedFileName(rs.getString("renamed_filename"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(ps);
+		}
+		return f;
+	}
 
 	public int warningCnt(Connection conn, String boardWriter) {
 		int warningCnt = 0;

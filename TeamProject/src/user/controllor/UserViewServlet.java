@@ -88,15 +88,15 @@ public class UserViewServlet extends HttpServlet {
 			List<FileTable> intFile2=new ArrayList<>();
 			List<FileTable> intFile3=new ArrayList<>();
 			for(int i=0;i<interestCategoryList1.size();i++) {
-				FileTable ft=new SellService().selectFiles(interestCategoryList1.get(i).getBoardNo());
+				FileTable ft=new SellService().selectFile(interestCategoryList1.get(i).getBoardNo());
 				 intFile1.add(ft);				
 			}
 			for(int i=0;i<interestCategoryList2.size();i++) {
-				FileTable ft=new SellService().selectFiles(interestCategoryList2.get(i).getBoardNo());
+				FileTable ft=new SellService().selectFile(interestCategoryList2.get(i).getBoardNo());
 				intFile2.add(ft);
 			}
 			for(int i=0;i<interestCategoryList3.size();i++) {
-				FileTable ft=new SellService().selectFiles(interestCategoryList3.get(i).getBoardNo());
+				FileTable ft=new SellService().selectFile(interestCategoryList3.get(i).getBoardNo());
 				intFile3.add(ft);
 			}
 			

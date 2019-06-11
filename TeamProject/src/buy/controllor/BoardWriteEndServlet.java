@@ -46,7 +46,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 			return;
 		}
 		
-		String saveDirectory = getServletContext().getRealPath("/")+"upload/sell";
+		String saveDirectory = getServletContext().getRealPath("/")+"upload/buy";
 		
 		int maxPostSize = 1024 * 1024 * 30;
 		
