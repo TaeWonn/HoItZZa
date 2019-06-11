@@ -1,11 +1,14 @@
 package free.controllor;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +37,18 @@ public class FreeFileDownloadServlet extends HttpServlet {
 		// 파일입력스트림
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filePath));
 		// 파일출력스트림
+		ServletOutputStream sos = response.getOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(sos);
+		
+		// 파일명 인코딩처리(한글깨짐방지)
+		String resFileName = "";
+		boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1
+					|| request.getHeader("user-agent").indexOf("Trident") != -1;
+		if(isMSIE) {
+			resFileName = URLEncoder.encode(oName, "UTF-8");
+			// 공백을 +로 치환 -> %20
+			resFileName = resFileName.replaceAll("\\+", "%20");
+		}
 		
 		// 3. view단 처리
 		System.out.println("======<FreeFileDownloadServlet Over>======");
