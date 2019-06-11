@@ -73,8 +73,8 @@ public class EntertainListServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("entertainList", enter);
 
-		request.getRequestDispatcher("/WEB-INF/views/free/entertainList.jsp").forward(request, response);
 		System.out.println("======<entertainListServlet Over>======");
+		request.getRequestDispatcher("/WEB-INF/views/free/entertainList.jsp").forward(request, response);
 	}
 
 	/**
