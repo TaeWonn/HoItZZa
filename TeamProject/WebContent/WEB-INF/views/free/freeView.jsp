@@ -70,16 +70,20 @@ div#min_div{
 	<div id="boardContent"
 		style="width: 590px; border: 0.2px solid lightgrayv; margin: auto;">
 		<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >
+		
+
 		<%if(file!=null){for(int i=0;i<file.size();i++){ %>
-		<img src="<%=request.getContextPath() %>/images/file.png" alt="" />
+	<a href="javascript:fileDownload('<%=file.get(i).getOriginalFileName()%>','<%=file.get(i).getRenamedFileName()%>');">
+		<img src="<%=request.getContextPath() %>/images/file.png" alt="" /></a>
 		<%=file.get(i).getOriginalFileName() %>
 		<%}}else{ %>
 		<%="" %>
 		<%} %>
+		
 		</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;overflow: auto;max-height: 600px;;">
 		<%for(int i=0;i<file.size();i++){ %>
-			<img src="<%=request.getContextPath() %>/upload/free/<%=file.get(i).getRenamedFileName() %>" alt="" />
+			<img src="<%=request.getContextPath() %>/upload/free/<%=file.get(i).getRenamedFileName() %>" alt="" id="imgView" />
 		<%} %>
 		<%=f.getBoardContent() %>
 		</div>
@@ -196,6 +200,17 @@ div#min_div{
 	
 </article>
 <script>
+
+function fileDownload(oName, rName){
+	var url = "<%=request.getContextPath()%>/free/fileDownload";
+	//IE는 한글을 유니코드문자로 변환해주지 않으므로 명시적변환처리
+	oName = encodeURIComponent(oName);
+	
+	location.href = url+"?oName="+oName+"&rName="+rName;
+	
+}
+
+
 function checkDelete() {
 	var chk = confirm("게시글을 삭제하시겠습니까?"); 
 	if(chk) {

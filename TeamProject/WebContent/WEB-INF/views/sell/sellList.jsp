@@ -60,7 +60,6 @@
 			<option value="boardTitle" selected>제목</option>
 			<option value="boardWriter">작성자</option>
 			<option value="boardContant">내용</option>
-			<option value="boardCodeName">카테고리</option>
 		</select>
 		<input class="form-control" placeholder="검색어를 입력하세요" />
 		<input type="submit" value="검색">
