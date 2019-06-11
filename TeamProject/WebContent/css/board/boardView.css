@@ -108,23 +108,20 @@ div#div-comment{
 	overflow-x: hidden;
 	width: 590px;
 	height: 200px;
-	margin-left: 60px;
+	margin-left: 40px;
 }
 tr.level1{
 	text-align: left;
 }
 tr.level1 td#CommentContents{
-	width: 490px;
+	width: 480px;
 }
 tr.level2{
 	text-align: left;
 }
 tr.level2 td#CommentContentsReply{
-	width: 490px;
+	width: 480px;
 	padding-left: 40px;
-}
-tr.level2 td:last-of-type{
-	padding-left: 4px;
 }
 #tbl-comment td:first-of-type{
 	border-bottom: 1px solid;
@@ -135,6 +132,11 @@ tr.level2 td:last-of-type{
 tr.level2 td:last-of-type{
 	padding-right: 56px;
 }
-
-#message_href{cursor:pointer;}
+#div-message{
+	position: absolute;
+	margin-left: 440px;
+}
+#message_href{cursor:pointer; margin-top: 6px;}
 #interest_btn{cursor:pointer;}
+#prev_btn{cursor:pointer;}
+#next_btn{cursor:pointer;}
