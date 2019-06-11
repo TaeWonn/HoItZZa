@@ -78,6 +78,9 @@ div#min_div{
 		<%} %>
 		</div>
 		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
+		<%for(int i=0;i<file.size();i++){ %>
+			<img src="<%=request.getContextPath() %>/upload/free/<%=file.get(i).getRenamedFileName() %>" alt="" />
+		<%} %>
 		<%=f.getBoardContent() %>
 		</div>
 	</div>
@@ -85,11 +88,11 @@ div#min_div{
 	<div id="min_div" style="margin-left: 15%;">
 			<table id="min_index">
 				<tr>
-					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))-1)%>"><%=prev.getBoardTitle()==null?"":prev.getBoardTitle() %>
+					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))-1)%>"><%=prev.getBoardTitle()==null?"이전 글이 없습니다.":"이전글: "+prev.getBoardTitle() %>
 							</a></td>
 				</tr>
 				<tr>
-					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))+1)%>"><%=after.getBoardTitle()==null?"":after.getBoardTitle() %></a></td>
+					<td><a href="<%=request.getContextPath()%>/free/freeView?boardNo=<%=f.getBoardNo().substring(0,3)+(Integer.parseInt(f.getBoardNo().substring(3))+1)%>"><%=after.getBoardTitle()==null?"다음글이 없습니다.":"다음글: "+after.getBoardTitle() %></a></td>
 				</tr>
 			</table>
 		</div>

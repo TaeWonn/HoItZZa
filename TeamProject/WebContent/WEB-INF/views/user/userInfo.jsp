@@ -118,9 +118,9 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
  	
  	<table id="interestSellBoard">
 	<colgroup>
-	    <col width="55px">
-        <col width="55px">  <!-- 너비를 지정해주어야한다 -->
-        <col width="55px">  <!-- 너비를 지정해주어야한다 -->
+	    <col width="70px">
+        <col width="120px">  <!-- 너비를 지정해주어야한다 -->
+        <col width="65px">  <!-- 너비를 지정해주어야한다 -->
         <col width="55px">
 	</colgroup>
 	<tr>
@@ -133,7 +133,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<% for(Sell s:interestBoardList){%>
 		<tr>
 			<td><nobr> <%=s.getBoardNo() %> </nobr></td>
-			<td><nobr> <%=s.getBoardTitle() %> </nobr></td>
+			<td style="min-width: 130px;"><nobr> <%=s.getBoardTitle() %> </nobr></td>
 			<td><nobr><%=s.getBoardWriter() %> </nobr></td>
 			<td><nobr> <%=s.getBoardReadCounter()%> </nobr></td>
 		</tr>
@@ -158,7 +158,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[0] %></nobr></th>
 			<% if(interest1BoardList!=null){for(int i=0;i<interest1BoardList.size();i++){%>
-			<%if(intFile1!=null){ %>
+			<%if(intFile1.get(i).getRenamedFileName()!=null){ %>
 			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest1BoardList.get(i).getBoardNo()%>">
 			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile1.get(i).getRenamedFileName() %>" alt="" /><br />
 			<span><nobr><%=interest1BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
@@ -172,7 +172,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[1] %></nobr></th>
 			<% if(interest2BoardList!=null){for(int i=0;i<interest2BoardList.size();i++){%>
-			<%if(intFile2!=null){ %>
+			<%if(intFile2.get(i).getRenamedFileName()!=null){ %>
 			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest2BoardList.get(i).getBoardNo()%>">
 			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile2.get(i).getRenamedFileName() %>" alt="" /><br />
 			<span><nobr><%=interest2BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
@@ -186,7 +186,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 		<!-- 판매게시판 글만 가져오므로 링크걸때 판매게시판쪽 DB만 보도록 해야함. 주의할것. -->
 			<th><nobr><%=interestArr[2] %></nobr></th>
 			<% if(interest3BoardList!=null){for(int i=0;i<interest3BoardList.size();i++){%>
-			<%if(intFile3!=null){ %>
+			<%if(intFile3.get(i).getRenamedFileName()!=null){ %>
 			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>">
 			<img src="<%=request.getContextPath() %>/upload/sell/<%=intFile3.get(i).getRenamedFileName() %>" alt="" /><br />
 			<span><nobr><%=interest3BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
