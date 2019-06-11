@@ -43,6 +43,7 @@ public class SellViewServlet extends HttpServlet {
 		}
 //		int warningCnt = new SellService().warningCnt(s.getBoardWriter());
 		List<Comment> clist = new SellService().commentList(boardNo);
+		List<FileTable> ft = new SellService().selectFiles(boardNo);
 		
 		Cookie[] cookies = request.getCookies();
 		boolean hasRead = false;
@@ -93,6 +94,7 @@ public class SellViewServlet extends HttpServlet {
     	
     	//다음글 이전글 없으면 없다고 출력해줌
 		if(prev == null) {
+			
 			prev.setBoardTitle("이전글이 없습니다");
 			request.setAttribute("prev", prev);
 		}
@@ -117,7 +119,7 @@ public class SellViewServlet extends HttpServlet {
 //		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("sell", s);
 		
-//		request.setAttribute("files", ft);
+		request.setAttribute("files", ft);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellView.jsp")
 				.forward(request, response);
 	}

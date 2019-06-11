@@ -73,15 +73,16 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 		</div>
 		
 		<div id="buttons">
-			<% if(b.getBoardWriter().equals(userLoggedIn.getUserId())
-        || "admin".equals(userLoggedIn.getUserId())){ %>
+			<%if(userLoggedIn != null){ 
+			if(b.getBoardWriter().equals(userLoggedIn.getUserId())
+        			|| "admin".equals(userLoggedIn.getUserId())){ %>
 
 
 			<input type="button" value="수정"
 				onclick="location.href='<%=request.getContextPath()%>/buy/buyModified?boardNo=<%=b.getBoardNo()%>'" />
 			<input type="button" value="삭제" onclick="deleteBoard();" />
 
-			<%} %>
+			<%} }%>
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/buy/buyList'">목록</button>
 		</div>

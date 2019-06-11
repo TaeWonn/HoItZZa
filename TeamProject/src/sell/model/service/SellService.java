@@ -82,9 +82,9 @@ public class SellService {
 		return result;
 	}
 
-	public FileTable selectFiles(String boardNo) {
+	public List<FileTable> selectFiles(String boardNo) {
 		Connection conn = getConnection();
-		FileTable ft = new SellDAO().selectFiles(conn, boardNo);
+		List<FileTable> ft = new SellDAO().selectFiles(conn, boardNo);
 		close(conn);
 		return ft;
 	}

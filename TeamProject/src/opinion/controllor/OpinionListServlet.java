@@ -15,7 +15,8 @@ import opinion.model.vo.Opinion;
 /**
  * Servlet implementation class OpinionListServlet
  */
-@WebServlet("/opinion/opinionList")
+@WebServlet(urlPatterns="/opinion/opinionList",
+				name="OpinionListServlet")
 public class OpinionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

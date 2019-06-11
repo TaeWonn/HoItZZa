@@ -300,8 +300,8 @@ public class BuyDAO {
 			while(rs.next()) { 
 				FileTable t = new FileTable();
 				t.setBoardNo(rs.getString("board_no"));
-				t.setOriginalFileName(rs.getString("original_file_name"));
-				t.setRenamedFileName(rs.getString("renamed_file_name"));
+				t.setOriginalFileName(rs.getString("original_filename"));
+				t.setRenamedFileName(rs.getString("renamed_filename"));
 				
 				flist.add(t);
 			}

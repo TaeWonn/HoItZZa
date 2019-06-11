@@ -27,7 +27,9 @@ import user.model.vo.User;
 					"FreeWriteServlet",
 					"DeclarationWriteServlet",
 					"SellModifiedServlet",
-					"SellWriteServlet"
+					"SellWriteServlet",
+					"DeclarationListServlet",
+					"OpinionListServlet"
 					})
 public class LoginCheckFilter implements Filter {
 
