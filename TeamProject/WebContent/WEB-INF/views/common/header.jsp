@@ -173,8 +173,8 @@
             </a>
          </div>
          <div id="ad2" class="ad">
-            <a href="http://mhorigin.noblegames.kr/simplejoin/"> <img
-               src="https://ssl.pstatic.net/tveta/libs/1242/1242071/2c71934b68f1550955f4_20190607145802832.jpg" alt="" />
+            <a href="http://officetelnaru.com/web/"> <img
+               src="https://ssl.pstatic.net/tveta/libs/1242/1242413/4fa4d9057ee46b1ab988_20190531163155486.png" alt="" />
             </a>
          </div>
       </section>

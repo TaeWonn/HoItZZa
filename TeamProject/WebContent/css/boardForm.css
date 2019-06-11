@@ -140,3 +140,4 @@ table#tbl-comment #CommentContentsReply{border-bottom: 1px solid gray;}
 table#tbl-comment button{border-radius: 20%;}
 table#tbl-comment tr.level2 td:first-of-type{padding-left: 40px;} 
 #message_href{cursor:pointer;}
+imgView{max-width:600px;max-height: 700px;}

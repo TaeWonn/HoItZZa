@@ -23,9 +23,11 @@ public class UserDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("userId");
+		System.out.println(userId+"가 탈퇴시도 ");
 		
 		// 2. 업무 로직
 		int result = new UserService().deleteUser(userId);
+		System.out.println("유저 탈퇴처리 : "+result );
 		
 		// 3. view
 		String view = "/WEB-INF/views/common/msg.jsp";

@@ -77,9 +77,9 @@ div#min_div{
 		<%="" %>
 		<%} %>
 		</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;overflow: auto;max-height: 600px;;">
 		<%for(int i=0;i<file.size();i++){ %>
-			<img src="<%=request.getContextPath() %>/upload/free/<%=file.get(i).getRenamedFileName() %>" alt="" />
+			<img src="<%=request.getContextPath() %>/upload/free/<%=file.get(i).getRenamedFileName() %>" alt="" id="imgView" />
 		<%} %>
 		<%=f.getBoardContent() %>
 		</div>

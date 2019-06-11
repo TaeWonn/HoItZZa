@@ -19,7 +19,7 @@
 	List<FileTable> intFile1=(List<FileTable>)request.getAttribute("intFile1");
 	List<FileTable> intFile2=(List<FileTable>)request.getAttribute("intFile2");
 	List<FileTable> intFile3=(List<FileTable>)request.getAttribute("intFile3");
- 
+ 	String code="";
 	String[] addrArr = u.getAddr().split(",");
 
 %>
@@ -47,7 +47,9 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 	
 		<tr>
 			<th>이름</th>
-			<td><input type="text" value="<%=u.getName() %>" name="userName" readonly /></td>
+			<td><input type="text" value="<%=u.getName() %>" name="userName" readonly />
+			<input type="hidden" name="userId" value="<%=u.getUserId()%>"/>
+			</td>
 		</tr>
 		<tr>
 			<th>포인트</th>
@@ -79,7 +81,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<td>
 			<%for(int i=0;i<interestArr.length;i++){%>
 			<select name="interest<%=i+1%>" class="interestBo" >
-			<option value="" selected><%=interestArr[i] %></option>
+			 <option value="" selected id="selected"><%=interestArr[i] %></option> 
 				  <option value="A">패션의류/잡화</option>
 				  <option value="B">뷰티</option>
 				  <option value="C">출산/유아동</option>
@@ -103,7 +105,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<th></th>
 			<td >
 			<input type="submit" value="정보 수정" class="btnGroup"/> 
-			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=u.getUserId()%>,<%=u.getSsn()%>,<%=u.getName()%>');" />
+			<input type="button" value="탈퇴" class="btnGroup" onclick="deleteUser('<%=u.getUserId()%>');" />
 			<%if(userLoggedIn.getUserId().equals("admin")){ %>
 			<input type="button" value="블랙리스트 " class="btnGroup" onclick="blackUser('<%=u.getUserId()%>','<%=reason %>);" />			
 			<%} %>
@@ -194,7 +196,7 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 			<td><a href="<%=request.getContextPath()%>/sell/sellView?boardNo=<%=interest3BoardList.get(i).getBoardNo()%>">
 			<br />
 			<span><nobr><%=interest3BoardList.get(i).getBoardTitle()%></nobr></span></a></td>
-			<%}}} %>
+			<%}}}%>
 		</tr>
 		
 		</table>
@@ -212,6 +214,10 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 
 </article>
 <script>
+
+$(function(){
+	console.log($('#selected').val());
+});
 function searchAddr(){
 	 new daum.Postcode({
 		  oncomplete: function(data) {
@@ -249,6 +255,7 @@ function blackUser(userId,reason){
 		return;
 	}
 }
+
 
 </script>
 

@@ -31,7 +31,6 @@ public class UserLoginServlet extends HttpServlet {
 		// 1. 파라미터 핸들링
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("userPwd");
-		
 		String saveId = request.getParameter("saveId");
 		
 		User u = new User();
@@ -41,8 +40,9 @@ public class UserLoginServlet extends HttpServlet {
 		// 2. business logic
 		// 1(로그인 성공), 0(비밀번호 오류), -1(아이디 없음)
 		int result = new UserService().loginCheck(u);
+		System.out.println("로그인 성공 ?"+result);
 		
-		Map<String, String> headerMap = new HashMap<>();
+		/*Map<String, String> headerMap = new HashMap<>();
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while(headerNames.hasMoreElements()) {
 			String name = headerNames.nextElement();
@@ -51,7 +51,7 @@ public class UserLoginServlet extends HttpServlet {
 		}
 		
 		System.out.println("headermap@loginServlet="+headerMap);
-		
+		*/
 		String referer =request.getHeader("Referer");
 		String origin = request.getHeader("Origin");
 		String url = request.getRequestURL().toString();
@@ -73,6 +73,7 @@ public class UserLoginServlet extends HttpServlet {
 			
 			//로그인에 성공한 회원정보 가져오기
 			User userLoggedIn = new UserService().selectOne(userId);
+			System.out.println(userLoggedIn);
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("userLoggedIn", userLoggedIn);
