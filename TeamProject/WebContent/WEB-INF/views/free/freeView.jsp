@@ -71,8 +71,10 @@ div#min_div{
 		style="width: 590px; border: 0.2px solid lightgrayv; margin: auto;">
 		<div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >
 		<%if(file!=null){for(int i=0;i<file.size();i++){ %>
+		<a href="<%=request.getContextPath()%>/free/fileDownload?oName=<%=file.get(i).getOriginalFileName() %>&rName=<%=file.get(i).getRenamedFileName()%>">
 		<img src="<%=request.getContextPath() %>/images/file.png" alt="" />
 		<%=file.get(i).getOriginalFileName() %>
+		</a>
 		<%}}else{ %>
 		<%="" %>
 		<%} %>
