@@ -30,10 +30,10 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
         <span id="k_span"><%=b.getBoardCodeNo() %></span>
     </div>
     <div class="ed_box">
-        <span class="id"><%=b.getBoardWriter()%></span>
-        <span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span>
-        <span class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
-       <div id="div-message">
+		<span class="id"><%=b.getBoardWriter()%></span> <span
+			class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span> <span
+			class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
+		<div id="div-message">
 			<%if(userLoggedIn != null){ %>
 			<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=b.getBoardWriter() %>');"
 				id="message_href">☏ 쪽지보내기</a> 
@@ -44,6 +44,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 		</div>
 	</div>
 
+<<<<<<< HEAD
 	 <div id="boardContent" style="width: 590px; height:400px; border: 0.2px solid lightgrayv; margin: auto;">
             <div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >
             
@@ -65,6 +66,14 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 		<%=b.getBoardContent() %>
 		</div>
 	</div>
+=======
+	 <div id="boardContent" style="width: 590px; min-height:200px; border: 0.2px solid lightgrayv; margin: auto;">
+            <div style="width: 100%; border: 1px solid; margin-top: 28px; margin-left: -16px;" >파일내려받기 or 거래방식 넣을곳임</div>
+            <div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;">
+                <%=b.getBoardContent() %>
+            </div>
+        </div>
+>>>>>>> refs/remotes/origin/SeUh
 
 
 
@@ -118,68 +127,55 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 
 
 			<!-- 댓글목록 테이블 -->
-			<div id="div-comment">
-				<table id="tbl-comment">
-					<colgroup>
-						<col width="130px" />
-						<col width="50px" />
-					</colgroup>
-					<%if(!commentList.isEmpty()) {
-		for(Comment bc: commentList){
-			if(bc.getCommentLevel()==1){
-	%>
+		<div id="div-comment">
+			<table id="tbl-comment">
+		<%if(!commentList.isEmpty()) {
+			for(Comment bc: commentList){
+				if(bc.getCommentLevel()==1){
+			%>
 
-					<!-- 댓글인경우 -->
-					<tr class="level1">
-						<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
-							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
-							<%=bc.getCommentContent() %></td>
-						<td style="text-align: left; width: 120px;">
-							<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
-							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null 
+				<!-- 댓글인경우 -->
+				<tr class="level1">
+					<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
+						<sub class="comment-date"><%=bc.getCommentDate() %>
+						</sub> <br /><%=bc.getCommentContent() %></td>
+					<td style="text-align: left; width: 120px;">
+						<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
+						<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null 
 
-						&& ("admin".equals(userLoggedIn.getUserId()) 
-								|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
-							<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
-							<%} %>
-						</td>
-					</tr>
-
-					<%			
-			}else{%>
-					<!-- 대댓글인경우 -->
-					<tr class="level2">
-						<td id="CommentContentsReply"><sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
-							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
-							↳<%=bc.getCommentContent() %></td>
-						<td style="text-align: left; width: 120px;"> 
-							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
+					&& ("admin".equals(userLoggedIn.getUserId()) 
 							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
-							<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
-							<%} %>
-						</td>
-					</tr>
-					<%			
-			}//end of if(bc.getBoardCommentLevel()==1)
-		
-		}//end of for
-		
-	}//end of if(!commentList.isEmpty())
-	%>
-				</table>
-			</div>
+						<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
+						<%} %>
+					</td>
+				</tr>
 
-
+				<%			
+		}else{%>
+				<!-- 대댓글인경우 -->
+				<tr class="level2">
+					<td id="CommentContentsReply"><sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
+						<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
+						↳<%=bc.getCommentContent() %></td>
+					<td style="text-align: left; width: 120px;"> 
+						<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
+						|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
+						<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
+						<%} %>
+					</td>
+				</tr>
+				<%			
+				}//end of if(bc.getBoardCommentLevel()==1)
+		
+			}//end of for
+		
+		}//end of if(!commentList.isEmpty())
+		%>
+			</table>
 		</div>
-
-
-
-          
-
+	</div>
 
 <script>
-
-
 function prev_btn() {
 	
 	if('<%=prev.getBoardTitle()%>'=='null'){
@@ -193,7 +189,7 @@ function prev_btn() {
 	boardNo = b1+b2
 	console.log(boardNo)
 	
- location.href="<%=request.getContextPath()%>/buy/buyView?boardNo=<%=prev.getBoardNo()%>";
+ 	location.href="<%=request.getContextPath()%>/buy/buyView?boardNo=<%=prev.getBoardNo()%>";
 }
 
 
@@ -232,8 +228,8 @@ function next_btn() {
 				console.log("관심글 o");
 				$("#interest_val").val(1);
 				$("#interest_btn").text('★관심등록');
-				}	
-			}
+			}	
+		}
 	});
 })();
 
@@ -291,8 +287,6 @@ function interest_btn(userId,boardNo) {
 	}//end else
 	
 }
-
-
 
 function reply(sender,recipient){
 	//사용자가 sender, 받는사람이 recipient

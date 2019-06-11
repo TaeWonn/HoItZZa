@@ -19,7 +19,7 @@ public class OpinionWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/opinion/opinionWrite.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/opinion/opnionWrite.jsp")
 				.forward(request, response);
 	}
 

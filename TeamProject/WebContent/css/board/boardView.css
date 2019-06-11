@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 #article h2{
 	padding: 10px;
 }
@@ -136,6 +137,9 @@ tr.level2 td:last-of-type{
 #div-message{
 	position: absolute;
 	margin-left: 440px;
+}
+div#div1{
+	text-align: center;
 }
 #message_href{cursor:pointer; margin-top: 6px;}
 #interest_btn{cursor:pointer;}

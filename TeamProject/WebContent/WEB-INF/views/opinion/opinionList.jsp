@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
 <article id="article">
-	<h3 style="text-align: center; margin-bottom: 10px; padding-top: 20px;">건의 게시판</h3>
+	<br />
+	<h3 style="text-align: center; margin-bottom: 10px;">건의 게시판</h3>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
 		onclick="location.href='<%=request.getContextPath()%>/opinion/opinionWrite'" />
@@ -20,11 +21,11 @@
 	<table class="table" id="freeTable">
 		<thead class="thead-light">
 			<tr>
-				<th scope="col" style="width: 95px;">글번호</th>
-				<th scope="col" style="width: 100px;">작성자</th>
+				<th scope="col">글번호</th>
+				<th scope="col">작성자</th>
 				<th scope="col" id="title">제목</th>
 				<th scope="col">작성일</th>
-				<th scope="col" style="width: 80px;">조회수</th>
+				<th scope="col">조회수</th>
 			</tr>
 		</thead>
 		<tbody>

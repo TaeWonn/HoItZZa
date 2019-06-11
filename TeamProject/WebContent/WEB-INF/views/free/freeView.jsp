@@ -57,14 +57,19 @@ div#min_div{
 		<span id="boardTilte" name="boardTilte"><%=f.getBoardTitle()%></span>
 		<span id="k_span">free</span>
 	</div>
-	<div class="ed_box">
+	 <div class="ed_box">
 		<span class="id"><%=f.getBoardWriter()%></span> <span
-			class="ed text-xsmall text-muted"><%=f.getBoardDate() %></span> <span
-			class="ed text-xsmall text-muted">조회수 <%=f.getBoardReadCounter() %></span>
-		<%if(userLoggedIn != null){ %>
-		<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=f.getBoardWriter() %>');"
-			id="message_href">☏ 쪽지보내기</a>
-		<% } %>
+			class="ed text-xsmall text-muted"><%=f.getBoardDate() %>
+			</span> <span class="ed text-xsmall text-muted">조회수 <%=f.getBoardReadCounter() %></span>
+		<div id="div-message" style="margin-left: 436px;">
+			<%if(userLoggedIn != null){ %>
+			<a onclick="reply('<%=userLoggedIn.getUserId() %>','<%=f.getBoardWriter() %>');"
+				id="message_href">☏ 쪽지보내기</a> 
+			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=f.getBoardNo()%>');"
+				id="interest_btn">☆ 관심등록</a> 
+				<input type="hidden" value="0" id="interest_val">
+			<% } %>
+		</div>
 	</div>
 
 	<div id="boardContent"
@@ -108,6 +113,8 @@ div#min_div{
 	<% } %>
 		<button type="button"  onclick="location.href='<%=request.getContextPath()%>/free<%=list%>'">목록</button>
 	</div>
+	
+	
 	<div id="comment-container" style="text-align: center;">
 			<div class="comment-editor">
 				<form action="<%=request.getContextPath()%>/free<%=link %>"
@@ -128,10 +135,6 @@ div#min_div{
 			<!-- 댓글목록 테이블 -->
 			<div id="div-comment">
 				<table id="tbl-comment">
-					<colgroup>
-						<col width="130px" />
-						<col width="50px" />
-					</colgroup>
 					<%if(!commentList.isEmpty()) {
 						for(Comment bc: commentList){
 							if(bc.getCommentLevel()==1){%>
@@ -140,7 +143,7 @@ div#min_div{
 						<td id="CommentContents"><sub class="comment-writer"><%=bc.getCommentWriter() %></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
 							<%=bc.getCommentContent() %></td>
-						<td style="text-align: center; width: 110px;">
+						<td style="text-align: left; width: 120px;">
 							<button class="btn-reply" value="<%=bc.getCommentNo() %>">답글</button>
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null 
 						&& ("admin".equals(userLoggedIn.getUserId()) 
@@ -157,7 +160,7 @@ div#min_div{
 						<td id="CommentContentsReply"><sub class="comment-writer"><%=bc.getCommentWriter()%></sub>
 							<sub class="comment-date"><%=bc.getCommentDate() %></sub> <br />
 							↳<%=bc.getCommentContent() %></td>
-						<td >
+						<td>
 							<%-- 삭제버튼 추가 --%> <%if(userLoggedIn!=null && ("admin".equals(userLoggedIn.getUserId()) 
 							|| bc.getCommentWriter().equals(userLoggedIn.getUserId()) )){%>
 							<button class="btn-delete" value="<%=bc.getCommentNo()%>">삭제</button>
@@ -176,28 +179,6 @@ div#min_div{
 
 
 		</div>
-
-
-	<div id="buttons">
-	<% if(userLoggedIn!=null&&(userLoggedIn.getUserId().equals(f.getBoardWriter())||userLoggedIn.getUserId().equals("admin"))){ %>
-		<button type="button" onclick="updateFreeBoard('<%=f.getBoardNo()%>');">수정</button>
-		<button type="button" onclick="checkDelete();">삭제</button>
-	<% } %>
-	</div>
-
-	<!-- <div id="min_div" style="margin-left: 15%;">
-		<table id="min_index">
-
-			<tr>
-				<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>
-			</tr>
-			<tr>
-				<td><a href>이전글 제목 ~~~~~~~~~~~~~~~~~</a></td>
-			</tr>
-			<td><a href>다음글 제목 ~~~~~~~~~~~~~~~~~</a></td>
-			</tr>
-		</table>
-	</div> -->
 	
 </article>
 <script>

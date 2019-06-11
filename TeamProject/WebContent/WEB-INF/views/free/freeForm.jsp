@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="../common/error.jsp"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
-
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" /> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardWrite.css" /> 
@@ -23,7 +21,7 @@
 	       	 <input type="text" class="alert alert-light" role="alert" name="boardWriter" id="userId" value="<%=userLoggedIn.getUserId() %>" readonly > 
 	        <br>
 	
-	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo" style="margin-left: 4.4%;">
+	        <select class="custom-select" id="boardCodeNo" name="boardCodeNo">
 	                <option selected>게시판 선택</option>
 	                <option value="FC_">잡담 게시판</option>
 	                <option value="FU_">유용한 생활지식 게시판</option>

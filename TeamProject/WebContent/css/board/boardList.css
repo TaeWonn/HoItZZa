@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#article h3{
+	text-align: center; 
+	margin-bottom: 10px;
+}
 .input-group{
 	margin-top : 3%;
 	margin-left: 30%;

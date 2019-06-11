@@ -1,6 +1,8 @@
 package opinion.controllor;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import comment.model.vo.Comment;
 import opinion.model.service.OpinionService;
 import opinion.model.vo.Opinion;
 import sell.model.service.SellService;
@@ -56,7 +59,7 @@ public class DeclarationViewServlet extends HttpServlet {
 		
 		
 		Opinion o = new OpinionService().selectOneBoard(boardNo);
-		
+		List<Comment> cList = new OpinionService().commentList(boardNo);
 		
 		if(o == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
@@ -67,6 +70,7 @@ public class DeclarationViewServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("declaration", o);
+		request.setAttribute("cList", cList);
 		request.getRequestDispatcher("/WEB-INF/views/opinion/declarationView.jsp")
 			.forward(request, response);
 		

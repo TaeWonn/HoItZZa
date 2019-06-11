@@ -11,7 +11,7 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardList.css" />
-	<h3 style="text-align: center; margin: 30px 0 0 5px;">나눔 게시판</h3>
+	<h3 style="text-align: center; margin: 30px 0 20px 5px;">나눔 게시판</h3>
 	<%if(userLoggedIn != null){ %>
 	<input type="button" value="글쓰기" id="btn-add"
 		onclick="location.href='<%=request.getContextPath()%>/views/free/freeWrite'" />
