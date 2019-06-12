@@ -775,7 +775,9 @@ public class BuyDAO {
 		    String sql = prop.getProperty("selectBuyCount_search");
 		    PreparedStatement ps = null;
 		    ResultSet rs  = null;
-		    sql+=(search_category+" like '%"+search_key+"%')");
+		    System.out.println(sql);
+		    sql+=(" "+search_category+" like '%"+search_key+"%'");
+		    System.out.println(sql);
 		    
 		    try {
 		    	ps = conn.prepareStatement(sql);

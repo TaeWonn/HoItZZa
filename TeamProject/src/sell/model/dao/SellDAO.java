@@ -615,7 +615,7 @@ public class SellDAO {
 	    String sql = prop.getProperty("selectSellCount_search");
 	    PreparedStatement ps = null;
 	    ResultSet rs  = null;
-	    sql+=(search_category+" like '%"+search_key+"%'");
+	    sql+=(" "+search_category+" like '%"+search_key+"%'");
 	    
 	    System.out.println("숫자쿼리"+sql);
 	    try {

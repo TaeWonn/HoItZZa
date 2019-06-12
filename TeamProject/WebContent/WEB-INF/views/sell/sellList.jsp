@@ -56,13 +56,13 @@
 	</div>
 	
 	<div class="input-group">
-		<select>
-			<option value="boardTitle" selected>제목</option>
-			<option value="boardWriter">작성자</option>
-			<option value="boardContant">내용</option>
+		<select id="search_category">
+			<option value="board_Title" selected>제목</option>
+			<option value="board_Writer">작성자</option>
+			<option value="board_Contant">내용</option>
 		</select>
-		<input class="form-control" placeholder="검색어를 입력하세요" />
-		<input type="submit" value="검색">
+		<input class="form-control" placeholder="검색어를 입력하세요" id="search_key"/>
+		<input type="button" value="검색" onclick="search_category();">
 	</div>
 </article>
 
