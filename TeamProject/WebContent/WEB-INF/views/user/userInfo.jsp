@@ -29,6 +29,7 @@ table#interestSellBoard2 th{max-width:76px;border:1px solid;text-align: center;b
 table#interestSellBoard2 td{max-width:120px;border:1px solid;text-align: center;max-height: 10px;text-overflow:ellipsis;}
 table#interestSellBoard2 th,td{overflow:hidden;}
 table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
+#hover:hover{background: lightgray;}
 </style>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -135,9 +136,9 @@ table#interestSellBoard2 tr{max-height: 10px; overflow: hidden;}
 	</tr>
 	 <%  if(interestBoardList!=null){ %>
 		<% for(Sell s:interestBoardList){%>
-		<tr>
+		<tr id="hover" style="cursor:pointer;"onclick="location.href='<%=request.getContextPath()%>/sell/sellView?boardNo=<%=s.getBoardNo()%>'">
 			<td><nobr> <%=s.getBoardNo() %> </nobr></td>
-			<td style="min-width: 130px;"><nobr> <%=s.getBoardTitle() %> </nobr></td>
+			<td style="min-width: 130px;" ><nobr> <%=s.getBoardTitle() %> </nobr></td>
 			<td><nobr><%=s.getBoardWriter() %> </nobr></td>
 			<td><nobr> <%=s.getBoardReadCounter()%> </nobr></td>
 		</tr>
