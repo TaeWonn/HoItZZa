@@ -16,7 +16,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrap cdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" /> 
 
 
  
