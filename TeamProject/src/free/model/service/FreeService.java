@@ -245,6 +245,13 @@ public class FreeService {
 		return b;
 	}
 
+	public List<Free> selectSearch(String searchType, String keyword, String code) {
+		Connection conn=getConnection();
+		List<Free> list=new FreeDAO().selectSearch(searchType,keyword,conn,code);
+		close(conn);
+		return list;
+	}
+
 
 
 }

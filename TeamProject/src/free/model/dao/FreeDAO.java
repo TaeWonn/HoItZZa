@@ -756,5 +756,47 @@ public class FreeDAO {
 		return b;
 	}
 
+	public List<Free> selectSearch(String searchType, String keyword, Connection conn, String code) {
+		List<Free> list=new ArrayList<>();
+		System.out.println("키워드 드듣ㅇ"+keyword+code+searchType);
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="";
+		if(searchType.equals("boardTitle")) {
+			sql=prop.getProperty("selectSearchByTitle");
+		}else if(searchType.equals("boardWriter")) {
+			sql=prop.getProperty("selectSearchByWriter");
+		}else if(searchType.equals("boardContant")) {
+			sql=prop.getProperty("selectSearchByContent");
+		}
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, code);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Free f = new Free();
+				f.setBoardNo(rs.getString("board_no"));
+				f.setBoardTitle(rs.getString("board_title"));
+				f.setBoardContent(rs.getString("board_content"));
+				f.setBoardDate(rs.getDate("board_date"));
+				f.setBoardReadCounter(rs.getInt("board_read_count"));
+				f.setBoardWriter(rs.getString("board_writer"));
+				
+				list.add(f);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 	
 }

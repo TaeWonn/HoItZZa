@@ -13,17 +13,24 @@ import free.model.service.FreeService;
 import free.model.vo.Free;
 
 /**
- * Servlet implementation class FreeListServlet
+ * Servlet implementation class FreeSearchServlet
  */
-@WebServlet("/free/freeList")
-public class FreeListServlet extends HttpServlet {
+@WebServlet("/free/search")
+public class FreeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("======<FreeListServlet Start>======");
+		String searchType=request.getParameter("searchType");
+		String keyword=request.getParameter("keyword");
+		String code=request.getParameter("code");
+		System.out.println("키워드 " +keyword);
+		
+		List<Free> free=new FreeService().selectSearch(searchType,keyword,code);
+		
+		System.out.println(free);
 		int cPage = 1;
 		int numPerPage = 10;
 		
@@ -31,7 +38,6 @@ public class FreeListServlet extends HttpServlet {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {}
 		
-		List<Free> free = new FreeService().selectAllFreeList(cPage, numPerPage);
 		
 		int totalContents = new FreeService().selectFreeCount();
 		int totalPage = (int)Math.ceil((double)totalContents/numPerPage);
