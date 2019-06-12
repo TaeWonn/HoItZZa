@@ -223,4 +223,11 @@ public class SellService {
 		return str;
 	}
 
+	public String selectWarningReason(String boardWriter) {
+		Connection conn=getConnection();
+		String result=new SellDAO().selectWarningReason(conn,boardWriter);
+		close(conn);
+		return result;
+	}
+
 }

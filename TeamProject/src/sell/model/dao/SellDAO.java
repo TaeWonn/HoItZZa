@@ -730,6 +730,30 @@ public class SellDAO {
 		System.out.println("다오 : 보드넘버가져오기"+result);
 		return result;
 	}
+
+	public String selectWarningReason(Connection conn, String boardWriter) {
+		String result="";
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectWarningReason");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, boardWriter);
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				result+=rset.getString("reason")+"/ ";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
+	}
 	
 	
 

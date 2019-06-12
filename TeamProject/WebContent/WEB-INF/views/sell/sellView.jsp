@@ -11,12 +11,17 @@ Sell prev = (Sell)request.getAttribute("prev");
 Sell next = (Sell)request.getAttribute("next");
 List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 List<FileTable> file = (List<FileTable>)request.getAttribute("files");
+int warningCnt=(int)request.getAttribute("warningCnt");
+String reason=(String)request.getAttribute("reason");
 %>
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrap cdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" /> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" /> 
+<style>
+#warning{color:red;font-size: 14px;}
+</style>
 
 <article id="article">
 
@@ -27,8 +32,11 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("files");
 		<span id="k_span"><%=b.getBoardCodeNo() %></span>
 	</div>
 	<div class="ed_box">
-		<span class="id"><%=b.getBoardWriter()%></span> <span
-			class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span> <span
+		<span class="id"><%=b.getBoardWriter()%></span> 
+		<%if(warningCnt!=0){ %>
+			<span id="warning">&nbsp; 경고 횟수 : <%=warningCnt %>회 &nbsp; 경고 사유 : <%=reason %></span>
+			<%} %>
+			<span class="ed text-xsmall text-muted"><%=b.getBoardDate() %></span> <span
 			class="ed text-xsmall text-muted">조회수 <%=b.getBoardReadCounter() %></span>
 		<div id="div-message">
 			<%if(userLoggedIn != null){ %>
@@ -55,7 +63,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("files");
             
             
            	</div>
-		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;overflow: auto;max-height: 600px;;">
+		<div style="width: 100%; margin-left: -16px; min-height: 200px; margin-top: 10px;overflow: auto;max-height: 350px;;">
 		<%for(int i=0;i<file.size();i++){ %>
 			<img src="<%=request.getContextPath() %>/upload/sell/<%=file.get(i).getRenamedFileName() %>" alt="" id="imgView" />
 		<%} %>
