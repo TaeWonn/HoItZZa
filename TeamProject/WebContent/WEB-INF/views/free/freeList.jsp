@@ -56,7 +56,7 @@
 			<option value="boardTitle" selected>제목</option>
 			<option value="boardWriter">작성자</option>
 			<option value="boardContant">내용</option>
-		</select> 
+		</select>  
 		<input class="form-control" placeholder="검색어를 입력하세요" name="keyword"/>
 		<input type="hidden" name="code" value="<%if(!free.isEmpty()){ %><%=free.get(0).getBoardNo().substring(0,2)%><%}%>"/>
 		<input type="submit" value="검색">
