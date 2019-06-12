@@ -40,7 +40,7 @@ List<FileTable> file = (List<FileTable>)request.getAttribute("fileList");
 			<a onclick="interest_btn('<%=userLoggedIn.getUserId() %>','<%=b.getBoardNo()%>');"
 				id="interest_btn">☆ 관심등록</a> 
 				<input type="hidden" value="0" id="interest_val">
-			<% } %>
+			<% } %> 
 		</div>
 	</div>
 
