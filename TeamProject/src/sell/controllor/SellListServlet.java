@@ -101,11 +101,15 @@ public class SellListServlet extends HttpServlet {
 							"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
 		System.out.println(pageBar);
+		List<Integer> warningCnt=new ArrayList<>();
+		for(int i=0;i<sellList.size();i++) {
+			int c= new SellService().warningCnt(sellList.get(i).getBoardWriter());
+			warningCnt.add(c);
+		}
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
-		
 		request.setAttribute("sellList", sellList);
 		request.setAttribute("warningCntList", warningCntList);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellList.jsp")
