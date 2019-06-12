@@ -22,15 +22,15 @@
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
-				<th scope="col" ">글번호</th>
-				<th scope="col" ">작성자</th>
+				<th scope="col" >글번호</th>
+				<th scope="col" >작성자</th>
 				<th scope="col" id="title">제목</th>
 				<th scope="col">작성일</th>
 				<th scope="col">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% for(Free f : free){ %>
+			<%if(free!=null){ for(Free f : free){ %>
 			<tr>
 				<th scope="row"><%=f.getBoardNo() %></th>
 				<td><nobr><%=f.getBoardWriter() %></nobr></td>
@@ -44,22 +44,24 @@
 				<td><%=f.getBoardDate() %></td>
 				<td><%=f.getBoardReadCounter() %></td>
 			</tr>
-			<% } %>
+			<% }} %>
 		</tbody>
 	</table>
 	<div id="pageBar">
 		<%=pageBar %>
 	</div>
+		<form action="<%=request.getContextPath()%>/free/search">
 		<div class="input-group">
-		<select>
+		<select name="searchType">
 			<option value="boardTitle" selected>제목</option>
 			<option value="boardWriter">작성자</option>
 			<option value="boardContant">내용</option>
-			<option value="boardCodeName">카테고리</option>
 		</select>
-		<input class="form-control" placeholder="검색어를 입력하세요" />
+		<input class="form-control" placeholder="검색어를 입력하세요" name="keyword"/>
+		<input type="hidden" name="code" value="<%if(free!=null){ %><%=free.get(0).getBoardNo().substring(0,2)%><%}%>"/>
 		<input type="submit" value="검색">
 	</div>
+		</form>
 </article>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
