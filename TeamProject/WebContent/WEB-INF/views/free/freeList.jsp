@@ -30,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%if(free!=null){ for(Free f : free){ %>
+			<%if(!free.isEmpty()){ for(Free f : free){ %>
 			<tr>
 				<th scope="row"><%=f.getBoardNo() %></th>
 				<td><nobr><%=f.getBoardWriter() %></nobr></td>
@@ -58,7 +58,7 @@
 			<option value="boardContant">내용</option>
 		</select>
 		<input class="form-control" placeholder="검색어를 입력하세요" name="keyword"/>
-		<input type="hidden" name="code" value="<%if(free!=null){ %><%=free.get(0).getBoardNo().substring(0,2)%><%}%>"/>
+		<input type="hidden" name="code" value="<%if(!free.isEmpty()){ %><%=free.get(0).getBoardNo().substring(0,2)%><%}%>"/>
 		<input type="submit" value="검색">
 	</div>
 		</form>
