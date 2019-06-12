@@ -215,8 +215,8 @@ public class SellDAO {
 		return result;
 	}
 
-	public FileTable selectFiles(Connection conn, String boardNo) {
-		FileTable ft = new FileTable();
+	public List<FileTable> selectFiles(Connection conn, String boardNo) {
+		List<FileTable> ft = new ArrayList<>();
 		String sql = prop.getProperty("selectFiles");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -227,9 +227,12 @@ public class SellDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				ft.setBoardNo(rs.getString("board_no"));
-				ft.setOriginalFileName(rs.getString("original_filename"));
-				ft.setRenamedFileName(rs.getString("renamed_filename"));
+				FileTable t = new FileTable();
+				t.setBoardNo(rs.getString("board_no"));
+				t.setOriginalFileName(rs.getString("original_filename"));
+				t.setRenamedFileName(rs.getString("renamed_filename"));
+				
+				ft.add(t);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

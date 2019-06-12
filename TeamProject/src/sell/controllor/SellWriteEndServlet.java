@@ -61,8 +61,8 @@ public class SellWriteEndServlet extends HttpServlet {
 		String fileOriginName= multiReq.getOriginalFileName("upFile");
 		String fileRenamedName= multiReq.getFilesystemName("upFile");
 		
-		String imageOriginName=multiReq.getOriginalFileName("upFile1");
-		String imageRenamedName=multiReq.getFilesystemName("upFile1");
+		String imageOriginName=multiReq.getOriginalFileName("imgFile");
+		String imageRenamedName=multiReq.getFilesystemName("imgFile");
 		
 		System.out.println("넘어온 값 전체확인");
 		System.out.println(boardTitle+"제목");

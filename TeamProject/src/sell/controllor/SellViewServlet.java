@@ -32,7 +32,7 @@ public class SellViewServlet extends HttpServlet {
 		String boardNo = request.getParameter("boardNo");
 		
 		Sell s = new SellService().selectOneSell(boardNo);
-		//List<FileTable> ft = new SellService().selectFiles(boardNo);
+		List<FileTable> ft = new SellService().selectFiles(boardNo);
 		
 		if(s == null) {
 			request.setAttribute("msg", "게시글이 존재하지않습니다");
@@ -117,7 +117,7 @@ public class SellViewServlet extends HttpServlet {
 //		request.setAttribute("warningCnt", warningCnt);
 		request.setAttribute("sell", s);
 		
-//		request.setAttribute("files", ft);
+		request.setAttribute("files", ft);
 		request.getRequestDispatcher("/WEB-INF/views/sell/sellView.jsp")
 				.forward(request, response);
 	}
