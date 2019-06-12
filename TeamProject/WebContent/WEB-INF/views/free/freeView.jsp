@@ -117,11 +117,11 @@ div#min_div{
 	
 	<div id="comment-container" style="text-align: center;">
 			<div class="comment-editor">
-				<form action="<%=request.getContextPath()%>/free<%=link %>"
+				<form action="<%=request.getContextPath()%>/free<%=link %>" onsubmit="return chekLogin();"
 					name="boardCommentFrm" method="post">
 					<textarea name="commentContent" cols="70" rows="2" maxlength="65"
 						placeholder="65자까지만 작성 할 수 있습니다."></textarea>
-					<button type="submit" id="btn-insert"
+					<button type="submit" id="btn-insert" 
 						style="position: relative; top: -9px;">등록</button>
 					<input type="hidden" name="boardNo" value="<%=f.getBoardNo() %>" />
 					<input type="hidden" name="commentWriter"
@@ -257,11 +257,17 @@ $(function() {
 		 }
 		 
 	});
-   function loginAlert(){
-		alert('로그인이 필요한 기능입니다.');
-	}
-	
 });
+
+function chekLogin(){
+	if(<%=userLoggedIn==null%>){
+		loginAlert();
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }

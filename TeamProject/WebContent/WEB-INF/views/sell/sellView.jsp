@@ -75,7 +75,7 @@ List<Comment> commentList = (List<Comment>)request.getAttribute("cList");
 		<Br>
 		<div id="comment-container" style="text-align: center;">
 			<div class="comment-editor">
-				<form action="<%=request.getContextPath()%>/sell/sellComment"
+				<form action="<%=request.getContextPath()%>/sell/sellComment" onsubmit="return checkLogin();"
 					name="boardCommentFrm" method="post">
 					<textarea name="commentContent" cols="70" rows="2" maxlength="65"
 						placeholder="65자까지만 작성 할 수 있습니다."></textarea>
@@ -275,6 +275,15 @@ function loginAlert(){
 	alert('로그인이 필요한 기능입니다.');
 }
 
+function checkLogin(){
+	if(<%=userLoggedIn==null%>){
+		loginAlert();
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function deleteBoard(){
 	if(!confirm("정말 삭제하시겠습니까?")) return;
 	//삭제처리후 돌아올 현재게시판번호도 함께 전송함.
@@ -293,7 +302,7 @@ $(function() {
        <% } else {%>
            var tr = $("<tr></tr>");
            var html = '<td style="display:none; text-align:left;" colspan="2">';
-           html += '<form action="<%=request.getContextPath()%>/sell/sellComment" method="post">';
+           html += '<form action="<%=request.getContextPath()%>/sell/sellComment" onsubmit="return checkLogin();" method="post">';
            html += '<textarea name="commentContent" cols="60" rows="3"></textarea>';
            html += '<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>" />';
            html += '<input type="hidden" name="commentWriter" value="<%=userLoggedIn!=null?userLoggedIn.getUserId():""%>" />';
