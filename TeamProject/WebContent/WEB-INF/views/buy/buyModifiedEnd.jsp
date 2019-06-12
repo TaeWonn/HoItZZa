@@ -14,7 +14,7 @@
 <article id="article">
 
 
-	<form action="<%=request.getContextPath()%>/sell/sellModifiedEnd"
+	<form action="<%=request.getContextPath()%>/buy/buyModifiedEnd"
 	 method="post" >
 	 
 		<input type="hidden" name="boardNo" value="<%=s.getBoardNo()%>"/>
